@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
+<style>text { font-family: 'Segoe UI', 'Inter', 'Helvetica Neue', Roboto, Arial, sans-serif; text-rendering: geometricPrecision; }rect, line, polyline { shape-rendering: geometricPrecision; }</style>
+<rect width="100%" height="100%" fill="#F8FAFC"/>
+<text x="700" y="45" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Figure 1 — Continual Bioenergetic Plasticity Ablation (5-Task Continual Split-ARC)</text>
+<text x="700" y="74" text-anchor="middle" font-size="14" fill="#475569">Coupling SynGAP (Fisher EMA) + Memorized Mistake Gating + Mitochondrial Tensor M vs. Standard Baselines</text>
+<rect x="60" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="84" y="139" font-size="16" font-weight="700" fill="#0F172A">A. Final Continual Accuracy (%)</text>
+<text x="646" y="139" text-anchor="end" font-size="13" fill="#64748B">(Higher = Better)</text>
+<line x1="125" y1="170" x2="640" y2="170" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="174" text-anchor="end" font-size="12" fill="#64748B">100</text>
+<line x1="125" y1="228" x2="640" y2="228" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="232" text-anchor="end" font-size="12" fill="#64748B">75</text>
+<line x1="125" y1="287" x2="640" y2="287" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="291" text-anchor="end" font-size="12" fill="#64748B">50</text>
+<line x1="125" y1="346" x2="640" y2="346" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="350" text-anchor="end" font-size="12" fill="#64748B">25</text>
+<line x1="125" y1="405" x2="640" y2="405" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="409" text-anchor="end" font-size="12" fill="#64748B">0</text>
+<rect x="162" y="301" width="82" height="104" rx="5" fill="#94A3B8"/>
+<text x="203.0" y="293" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">44.3%</text>
+<text x="203.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
+<rect x="281" y="192" width="82" height="213" rx="5" fill="#3B82F6"/>
+<text x="322.0" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">90.7%</text>
+<text x="322.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
+<rect x="400" y="286" width="82" height="119" rx="5" fill="#F59E0B"/>
+<text x="441.0" y="278" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">50.7%</text>
+<text x="441.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
+<rect x="519" y="190" width="82" height="215" rx="5" fill="#10B981"/>
+<text x="560.0" y="182" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">91.7%</text>
+<text x="560.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
+<rect x="730" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="754" y="139" font-size="16" font-weight="700" fill="#0F172A">B. Catastrophic Forgetting (%)</text>
+<text x="1316" y="139" text-anchor="end" font-size="13" fill="#64748B">(Lower = Better)</text>
+<line x1="795" y1="170" x2="1310" y2="170" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="174" text-anchor="end" font-size="12" fill="#64748B">80</text>
+<line x1="795" y1="228" x2="1310" y2="228" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="232" text-anchor="end" font-size="12" fill="#64748B">60</text>
+<line x1="795" y1="287" x2="1310" y2="287" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="291" text-anchor="end" font-size="12" fill="#64748B">40</text>
+<line x1="795" y1="346" x2="1310" y2="346" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="350" text-anchor="end" font-size="12" fill="#64748B">20</text>
+<line x1="795" y1="405" x2="1310" y2="405" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="409" text-anchor="end" font-size="12" fill="#64748B">0</text>
+<rect x="832" y="201" width="82" height="204" rx="5" fill="#94A3B8"/>
+<text x="873.0" y="193" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">69.6%</text>
+<text x="873.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
+<rect x="951" y="372" width="82" height="33" rx="5" fill="#3B82F6"/>
+<text x="992.0" y="364" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">11.2%</text>
+<text x="992.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
+<rect x="1070" y="226" width="82" height="179" rx="5" fill="#F59E0B"/>
+<text x="1111.0" y="218" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">61.2%</text>
+<text x="1111.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
+<rect x="1189" y="379" width="82" height="26" rx="5" fill="#10B981"/>
+<text x="1230.0" y="371" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">9.2%</text>
+<text x="1230.0" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
+<rect x="60" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="84" y="534" font-size="16" font-weight="700" fill="#0F172A">C. Saved Synaptic Updates (%)</text>
+<text x="646" y="534" text-anchor="end" font-size="13" fill="#64748B">(Higher = Better)</text>
+<line x1="125" y1="565" x2="640" y2="565" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="569" text-anchor="end" font-size="12" fill="#64748B">100</text>
+<line x1="125" y1="623" x2="640" y2="623" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="627" text-anchor="end" font-size="12" fill="#64748B">75</text>
+<line x1="125" y1="682" x2="640" y2="682" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="686" text-anchor="end" font-size="12" fill="#64748B">50</text>
+<line x1="125" y1="741" x2="640" y2="741" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="745" text-anchor="end" font-size="12" fill="#64748B">25</text>
+<line x1="125" y1="800" x2="640" y2="800" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="804" text-anchor="end" font-size="12" fill="#64748B">0</text>
+<rect x="162" y="796" width="82" height="4" rx="5" fill="#94A3B8"/>
+<text x="203.0" y="788" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">0.0%</text>
+<text x="203.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
+<rect x="281" y="796" width="82" height="4" rx="5" fill="#3B82F6"/>
+<text x="322.0" y="788" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">0.0%</text>
+<text x="322.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
+<rect x="400" y="575" width="82" height="225" rx="5" fill="#F59E0B"/>
+<text x="441.0" y="567" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">96.0%</text>
+<text x="441.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
+<rect x="519" y="581" width="82" height="219" rx="5" fill="#10B981"/>
+<text x="560.0" y="573" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">93.5%</text>
+<text x="560.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
+<rect x="730" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="754" y="534" font-size="16" font-weight="700" fill="#0F172A">D. Plasticity Cost M1 (L1 Norm)</text>
+<text x="1316" y="534" text-anchor="end" font-size="13" fill="#64748B">(Lower = Better)</text>
+<line x1="795" y1="565" x2="1310" y2="565" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="569" text-anchor="end" font-size="12" fill="#64748B">8500</text>
+<line x1="795" y1="623" x2="1310" y2="623" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="627" text-anchor="end" font-size="12" fill="#64748B">6375</text>
+<line x1="795" y1="682" x2="1310" y2="682" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="686" text-anchor="end" font-size="12" fill="#64748B">4250</text>
+<line x1="795" y1="741" x2="1310" y2="741" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="745" text-anchor="end" font-size="12" fill="#64748B">2125</text>
+<line x1="795" y1="800" x2="1310" y2="800" stroke="#E2E8F0" stroke-width="1"/>
+<text x="785" y="804" text-anchor="end" font-size="12" fill="#64748B">0</text>
+<rect x="832" y="706" width="82" height="94" rx="5" fill="#94A3B8"/>
+<text x="873.0" y="698" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">3434</text>
+<text x="873.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
+<rect x="951" y="580" width="82" height="220" rx="5" fill="#3B82F6"/>
+<text x="992.0" y="572" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">7987</text>
+<text x="992.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
+<rect x="1070" y="716" width="82" height="84" rx="5" fill="#F59E0B"/>
+<text x="1111.0" y="708" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">3040</text>
+<text x="1111.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
+<rect x="1189" y="725" width="82" height="75" rx="5" fill="#10B981"/>
+<text x="1230.0" y="717" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">2737</text>
+<text x="1230.0" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
+</svg>

@@ -1,0 +1,681 @@
+{
+  "n50_comparison": {
+    "h2_solved_test": 4,
+    "h2_solved_test_pct": 8.0,
+    "h2_ge90_count": 12,
+    "h2_mean_time_sec": 50.6109,
+    "h3_solved_test": 9,
+    "h3_solved_test_pct": 18.0,
+    "h3_ge90_count": 15,
+    "h3_mean_time_sec": 1.6448,
+    "h5_train_100_count": 19,
+    "h5_pass_at_1_count": 19,
+    "h5_pass_at_1_pct": 38.0,
+    "h5_pass_at_2_count": 19,
+    "h5_pass_at_2_pct": 38.0,
+    "h5_ge90_count": 19,
+    "h5_ge90_pct": 38.0,
+    "h5_mean_time_sec": 1.1937,
+    "h5_solved_ids_n50": [
+      "00576224",
+      "00dbd492",
+      "0607ce86",
+      "0692e18c",
+      "070dd51e",
+      "09c534e7",
+      "0c786b71",
+      "0c9aba6e",
+      "137f0df0",
+      "14754a24",
+      "15113be4",
+      "17cae0c1",
+      "18419cfa",
+      "184a9768",
+      "195ba7dc",
+      "1990f7a8",
+      "1acc24af",
+      "1c0d0a4b",
+      "1d0a4b61"
+    ],
+    "h5_newly_converted_in_n50": [
+      {
+        "task_id": "0607ce86",
+        "h3_score_pct": 94.07,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 1.051,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.denoise_subblock_consensus] Align periodic subblocks by density and reconstruct canonical consensus clearing margin noise."
+      },
+      {
+        "task_id": "0692e18c",
+        "h3_score_pct": 87.68,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.1071,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fractal_conditional_kron] Conditional fractal Kronecker (fg cells stamp 'invert' template, bg=0)."
+      },
+      {
+        "task_id": "09c534e7",
+        "h3_score_pct": 92.52,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.7864,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_component_interiors] Fill 3x3 morphological interior of 4-connected components carrying a unique seed color."
+      },
+      {
+        "task_id": "137f0df0",
+        "h3_score_pct": 90.07,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.4153,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors between subgrids with inner=2, outer=1."
+      },
+      {
+        "task_id": "14754a24",
+        "h3_score_pct": 93.81,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 1.3108,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.complete_partial_plus] Complete partial plus (+) neighborhoods anchored by color 4 using color 2."
+      },
+      {
+        "task_id": "15113be4",
+        "h3_score_pct": 98.32,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.8668,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.grid_cell_pattern_stamp] Downscale separator-framed rare-color template and stamp onto matching macro-cells."
+      },
+      {
+        "task_id": "17cae0c1",
+        "h3_score_pct": 45.06,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.2992,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.macro_cell_lookup] Map each (3x3) macro-cell binary pattern to induced uniform color."
+      },
+      {
+        "task_id": "184a9768",
+        "h3_score_pct": 84.46,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.8641,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_rectangles_into_frame_holes] Denoise sparse 1px color and pack exterior solid rectangles into interior frame cavities."
+      },
+      {
+        "task_id": "1990f7a8",
+        "h3_score_pct": 62.66,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.0718,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_objects_into_grid] Pack connected objects (conn=8) into compact grid with gap=1."
+      },
+      {
+        "task_id": "1acc24af",
+        "h3_score_pct": 92.47,
+        "h5_train_score_pct": 100.0,
+        "pass_at_1": true,
+        "pass_at_2": true,
+        "elapsed_sec": 0.4236,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.recolor_cavity_fitting_objects] Recolor 5-objects that plug 1-wall cavities into 2 (mirror=True)."
+      }
+    ]
+  },
+  "full400_benchmark": {
+    "total_tasks": 400,
+    "schema_valid": true,
+    "schema_message": "Kaggle ARC Prize 2026 Schema Validated 100% OK",
+    "train_100_count": 61,
+    "train_100_pct": 15.25,
+    "pass_at_1_count": 56,
+    "pass_at_1_pct": 14.0,
+    "attempt_2_rescue_count": 1,
+    "pass_at_2_count": 57,
+    "pass_at_2_pct": 14.25,
+    "train_to_test_transfer_pass2_over_train100_pct": 86.89,
+    "ge90_structural_train_count": 119,
+    "ge90_structural_train_pct": 29.75,
+    "ge90_test_pixel_acc_count": 128,
+    "ge90_test_pixel_acc_pct": 32.0,
+    "total_elapsed_sec": 647.507,
+    "mean_elapsed_sec": 1.619,
+    "rescued_by_attempt_2": [
+      {
+        "task_id": "9a4bb226",
+        "top1_train_score": 0.562,
+        "top2_train_score": 0.3037,
+        "test_acc_1": 0.0,
+        "test_acc_2": 100.0,
+        "top1_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'largest_object'.",
+        "top2_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'smallest_object'."
+      }
+    ],
+    "all_solved_pass_at_1_ids": [
+      "00576224",
+      "00dbd492",
+      "0607ce86",
+      "0692e18c",
+      "070dd51e",
+      "09c534e7",
+      "0c786b71",
+      "0c9aba6e",
+      "137f0df0",
+      "14754a24",
+      "15113be4",
+      "17cae0c1",
+      "18419cfa",
+      "184a9768",
+      "195ba7dc",
+      "1990f7a8",
+      "1acc24af",
+      "1c0d0a4b",
+      "1d0a4b61",
+      "21f83797",
+      "319f2597",
+      "31d5ba1a",
+      "34b99a2b",
+      "358ba94e",
+      "506d28a5",
+      "516b51b7",
+      "5783df64",
+      "5b6cbef5",
+      "5d2a5c43",
+      "60c09cac",
+      "66f2d22f",
+      "68b67ca3",
+      "833dafe3",
+      "84db8fc4",
+      "8e2edd66",
+      "9ddd00f0",
+      "aa18de87",
+      "bc4146bd",
+      "be03b35f",
+      "c663677b",
+      "ca8de6ea",
+      "ca8f78db",
+      "ccd554ac",
+      "cd3c21df",
+      "ce039d91",
+      "ce8d95cc",
+      "d19f7514",
+      "d37a1ef5",
+      "e133d23d",
+      "e1baa8a4",
+      "e345f17b",
+      "e95e3d8e",
+      "ea959feb",
+      "f0df5ff0",
+      "f5aa3634",
+      "f823c43c"
+    ],
+    "all_solved_pass_at_2_ids": [
+      "00576224",
+      "00dbd492",
+      "0607ce86",
+      "0692e18c",
+      "070dd51e",
+      "09c534e7",
+      "0c786b71",
+      "0c9aba6e",
+      "137f0df0",
+      "14754a24",
+      "15113be4",
+      "17cae0c1",
+      "18419cfa",
+      "184a9768",
+      "195ba7dc",
+      "1990f7a8",
+      "1acc24af",
+      "1c0d0a4b",
+      "1d0a4b61",
+      "21f83797",
+      "319f2597",
+      "31d5ba1a",
+      "34b99a2b",
+      "358ba94e",
+      "506d28a5",
+      "516b51b7",
+      "5783df64",
+      "5b6cbef5",
+      "5d2a5c43",
+      "60c09cac",
+      "66f2d22f",
+      "68b67ca3",
+      "833dafe3",
+      "84db8fc4",
+      "8e2edd66",
+      "9a4bb226",
+      "9ddd00f0",
+      "aa18de87",
+      "bc4146bd",
+      "be03b35f",
+      "c663677b",
+      "ca8de6ea",
+      "ca8f78db",
+      "ccd554ac",
+      "cd3c21df",
+      "ce039d91",
+      "ce8d95cc",
+      "d19f7514",
+      "d37a1ef5",
+      "e133d23d",
+      "e1baa8a4",
+      "e345f17b",
+      "e95e3d8e",
+      "ea959feb",
+      "f0df5ff0",
+      "f5aa3634",
+      "f823c43c"
+    ],
+    "all_solved_details": [
+      {
+        "task_id": "00576224",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.061,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.alternating_mirror_tile] Alternating mirror tile (3, 3) with mode 'row_fliplr'."
+      },
+      {
+        "task_id": "00dbd492",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.3979,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_or_sized_cavities] Fill enclosed cavities conditioned on cavity size {3: 8, 5: 4, 7: 3}."
+      },
+      {
+        "task_id": "0607ce86",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.051,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.denoise_subblock_consensus] Align periodic subblocks by density and reconstruct canonical consensus clearing margin noise."
+      },
+      {
+        "task_id": "0692e18c",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1071,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fractal_conditional_kron] Conditional fractal Kronecker (fg cells stamp 'invert' template, bg=0)."
+      },
+      {
+        "task_id": "070dd51e",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.3777,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priority='vert_over_horiz')."
+      },
+      {
+        "task_id": "09c534e7",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.7864,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_component_interiors] Fill 3x3 morphological interior of 4-connected components carrying a unique seed color."
+      },
+      {
+        "task_id": "0c786b71",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0442,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.mirror_tile_2x2] Apply 2x2 mirror/rotational tiling with mode 'hv'."
+      },
+      {
+        "task_id": "0c9aba6e",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0829,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 0 and combine halves with 'nor' (out_color=8)."
+      },
+      {
+        "task_id": "137f0df0",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.4153,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors between subgrids with inner=2, outer=1."
+      },
+      {
+        "task_id": "14754a24",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.3108,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.complete_partial_plus] Complete partial plus (+) neighborhoods anchored by color 4 using color 2."
+      },
+      {
+        "task_id": "15113be4",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.8668,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.grid_cell_pattern_stamp] Downscale separator-framed rare-color template and stamp onto matching macro-cells."
+      },
+      {
+        "task_id": "17cae0c1",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.2992,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.macro_cell_lookup] Map each (3x3) macro-cell binary pattern to induced uniform color."
+      },
+      {
+        "task_id": "18419cfa",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.3106,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.symmetrize_per_object_or_frame] Complete horizontal and vertical symmetry inside each individual frame/object bbox."
+      },
+      {
+        "task_id": "184a9768",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.8641,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_rectangles_into_frame_holes] Denoise sparse 1px color and pack exterior solid rectangles into interior frame cavities."
+      },
+      {
+        "task_id": "195ba7dc",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1469,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' (out_color=1)."
+      },
+      {
+        "task_id": "1990f7a8",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0718,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_objects_into_grid] Pack connected objects (conn=8) into compact grid with gap=1."
+      },
+      {
+        "task_id": "1acc24af",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.4236,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.recolor_cavity_fitting_objects] Recolor 5-objects that plug 1-wall cavities into 2 (mirror=True)."
+      },
+      {
+        "task_id": "1c0d0a4b",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.7767,
+        "thought": "[Synthesizer D3 | F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Primitives.replace_color + np.rot90] Compose F3Primitives.replace_color then rotate 180 deg. -> Apply cardinal ray & bbox corridor residual patch relative to color 8."
+      },
+      {
+        "task_id": "1d0a4b61",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.4484,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 0."
+      },
+      {
+        "task_id": "21f83797",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.4852,
+        "thought": "[Synthesizer D3 | F3LearnedOperators.fill_bounding_boxes + F3Primitives.fill_enclosed_holes + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3LearnedOperators.fill_bounding_boxes + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.fill_bounding_boxes then fill enclosed holes with 1. -> Apply cardinal ray & bbox corridor residual patch relative to color 2."
+      },
+      {
+        "task_id": "319f2597",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.9101,
+        "thought": "[Synthesizer D2 | F3Primitives.downsample_block + ResidualPatch(ray_corridor_table)] [Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (20, 20) modal color blocks. -> Apply cardinal ray & bbox corridor residual patch relative to color 0."
+      },
+      {
+        "task_id": "31d5ba1a",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1129,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 0 and combine halves with 'xor' (out_color=6)."
+      },
+      {
+        "task_id": "34b99a2b",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.104,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'xor' (out_color=2)."
+      },
+      {
+        "task_id": "358ba94e",
+        "via": "attempt_1",
+        "train_score": 0.923,
+        "elapsed_sec": 1.9567,
+        "thought": "[Synthesizer D2 | F3LearnedOperators.isolate_extremum_object_or_cell + np.transpose] Compose F3LearnedOperators.isolate_extremum_object_or_cell then transpose."
+      },
+      {
+        "task_id": "506d28a5",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1679,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 0 and combine halves with 'or' (out_color=3)."
+      },
+      {
+        "task_id": "516b51b7",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.9443,
+        "thought": "[Synthesizer D3 | F3LearnedOperators.hollow_objects + F3LearnedOperators.hollow_objects + ResidualPatch(pred_neighbor_count_table)] [Synthesizer D2 | F3LearnedOperators.hollow_objects + F3LearnedOperators.hollow_objects] Compose F3LearnedOperators.hollow_objects then hollow interior. -> Apply post-prediction 4/8-neighbor residual patch for color 2."
+      },
+      {
+        "task_id": "5783df64",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0463,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_objects_into_grid] Pack connected objects (conn=4) into compact grid with gap=0."
+      },
+      {
+        "task_id": "5b6cbef5",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.2454,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.kronecker_self_pattern] Apply fractal Kronecker self-tiling on foreground cells (bg=0)."
+      },
+      {
+        "task_id": "5d2a5c43",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1445,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' (out_color=8)."
+      },
+      {
+        "task_id": "60c09cac",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0636,
+        "thought": "[Synthesizer D1 | F3Primitives.scale_up] Scale up each pixel by (2, 2) via Kronecker product."
+      },
+      {
+        "task_id": "66f2d22f",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.099,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'nor' (out_color=5)."
+      },
+      {
+        "task_id": "68b67ca3",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0787,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.compress_non_empty_rows_cols] Remove empty background rows and columns."
+      },
+      {
+        "task_id": "833dafe3",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.034,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.mirror_tile_2x2] Apply 2x2 mirror/rotational tiling with mode 'hv'."
+      },
+      {
+        "task_id": "84db8fc4",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.8977,
+        "thought": "[Synthesizer D2 | F3Primitives.fill_enclosed_holes + ResidualPatch(ray_corridor_table)] [Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 5. -> Apply cardinal ray & bbox corridor residual patch relative to color 1."
+      },
+      {
+        "task_id": "8e2edd66",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1352,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.fractal_conditional_kron] Conditional fractal Kronecker (bg cells stamp 'invert' template)."
+      },
+      {
+        "task_id": "9a4bb226",
+        "via": "attempt_2",
+        "train_score": 0.3037,
+        "elapsed_sec": 1.0336,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'smallest_object'."
+      },
+      {
+        "task_id": "9ddd00f0",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1678,
+        "thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across rot90 axis."
+      },
+      {
+        "task_id": "aa18de87",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.3668,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line color 2."
+      },
+      {
+        "task_id": "bc4146bd",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0752,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.alternating_mirror_tile] Alternating mirror tile (1, 5) with mode 'checker_hv'."
+      },
+      {
+        "task_id": "be03b35f",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.091,
+        "thought": "[Synthesizer D2 | F3LearnedOperators.extend_2d_periodicity + np.rot90] Compose F3LearnedOperators.extend_2d_periodicity then rotate 90 deg."
+      },
+      {
+        "task_id": "c663677b",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 2.0101,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 0."
+      },
+      {
+        "task_id": "ca8de6ea",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0409,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.pack_objects_into_grid] Pack connected objects (conn=4) into compact grid with gap=0."
+      },
+      {
+        "task_id": "ca8f78db",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 2.6105,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 0."
+      },
+      {
+        "task_id": "ccd554ac",
+        "via": "attempt_1",
+        "train_score": 0.9294,
+        "elapsed_sec": 2.3037,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.kronecker_self_pattern] Apply fractal Kronecker self-tiling on foreground cells (bg=2)."
+      },
+      {
+        "task_id": "cd3c21df",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0812,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'unique_color_object'."
+      },
+      {
+        "task_id": "ce039d91",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.2606,
+        "thought": "[Synthesizer D3 | F3Primitives.replace_color + np.fliplr + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Primitives.replace_color + np.fliplr] Compose F3Primitives.replace_color then flip horizontally. -> Apply cardinal ray & bbox corridor residual patch relative to color 5."
+      },
+      {
+        "task_id": "ce8d95cc",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0222,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+      },
+      {
+        "task_id": "d19f7514",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1158,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 0 and combine halves with 'or' (out_color=4)."
+      },
+      {
+        "task_id": "d37a1ef5",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.2791,
+        "thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + ResidualPatch(ray_corridor_table)] [Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priority='horiz_over_vert'). -> Apply cardinal ray & bbox corridor residual patch relative to color 5."
+      },
+      {
+        "task_id": "e133d23d",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.1164,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' (out_color=2)."
+      },
+      {
+        "task_id": "e1baa8a4",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0372,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+      },
+      {
+        "task_id": "e345f17b",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.0682,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'nor' (out_color=4)."
+      },
+      {
+        "task_id": "e95e3d8e",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.6583,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 0."
+      },
+      {
+        "task_id": "ea959feb",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 1.0788,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct occluded color-1 patches."
+      },
+      {
+        "task_id": "f0df5ff0",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.9804,
+        "thought": "[Synthesizer D2 | F3Primitives.fill_enclosed_holes + ResidualPatch(neighbor_count_table)] [Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1. -> Apply 4/8-neighbor count residual patch for color 1."
+      },
+      {
+        "task_id": "f5aa3634",
+        "via": "attempt_1",
+        "train_score": 0.7694,
+        "elapsed_sec": 0.5707,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'largest_object'."
+      },
+      {
+        "task_id": "f823c43c",
+        "via": "attempt_1",
+        "train_score": 1.0,
+        "elapsed_sec": 0.5383,
+        "thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 6."
+      }
+    ]
+  }
+}

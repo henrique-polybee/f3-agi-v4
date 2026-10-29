@@ -1,0 +1,9 @@
+[
+  {
+    "task_id": "1c0d0a4b",
+    "broken_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.expand_local_neighborhoods(grid, rules={8: {'ortho': (2, 1), 'diag': (2, 1)}}, bg_color=0)",
+    "residual_feedback": "Pair 1: 52/65 pixels wrong (20.0% raw match). First mismatches: (0,0): got 2 != exp 0, (0,1): got 2 != exp 0, (0,2): got 2 != exp 0, (0,3): got 2 != exp 0, (0,4): got 2 != exp 0\nPair 2: 92/117 pixels wrong (21.4% raw match). First mismatches: (0,0): got 2 != exp 0, (0,1): got 2 != exp 0, (0,2): got 2 != exp 0, (0,3): got 2 != exp 0, (0,4): got 2 != exp 0\nPair 3: 61/81 pixels wrong (24.7% raw match). First mismatches: (0,0): got 2 != exp 0, (0,1): got 2 != exp 0, (0,2): got 2 != exp 0, (0,3): got 2 != exp 0, (0,4): got 2 != exp 0",
+    "target_winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.apply_residual_patch(grid, np.rot90(F3Primitives.replace_color(grid, 8, 2), 2), {'type': 'ray_corridor_table', 'ref_color': 8, 'table': {(0, 0, 1, 1, 4, 1): 2, (0, 0, 0, 0, 2, 1): 2, (8, 2, 1, 1, 4, 1): 0, (0, 0, 0, 1, 3, 1): 2, (0, 0, 1, 0, 3, 1): 2}}, bg_color=0)",
+    "cycles_used": "3"
+  }
+]

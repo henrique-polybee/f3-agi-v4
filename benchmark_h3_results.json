@@ -1,0 +1,1615 @@
+{
+  "horizon": "Horizonte 3 - Polybee F3-AGI v4.0 (Outubro 2026)",
+  "blind_eval_comparison": {
+    "h2_summary": {
+      "arc_dir": "ARC-AGI/data/evaluation",
+      "backend": "antigravity",
+      "blind_eval": true,
+      "total_tasks": 50,
+      "solved_train": 4,
+      "solved_train_pct": 8.0,
+      "solved_train_ids": [
+        "0c786b71",
+        "0c9aba6e",
+        "195ba7dc",
+        "1d0a4b61"
+      ],
+      "solved_test": 4,
+      "solved_test_pct": 8.0,
+      "solved_test_ids": [
+        "0c786b71",
+        "0c9aba6e",
+        "195ba7dc",
+        "1d0a4b61"
+      ],
+      "mean_structural_score": 0.7465,
+      "mean_synthesis_time_sec": 50.6109,
+      "solved_in_cycle_1_acumulo": 4,
+      "solved_in_cycles_2_3_amplificacao": 0,
+      "mistake_gating_forward_passes": 4,
+      "mistake_gating_gated_updates": 0,
+      "mistake_gating_skipped_updates": 4,
+      "mistake_gating_update_savings_pct": 100.0,
+      "fast_tier_calls": 200,
+      "fast_tier_atp_spent": 2.4811,
+      "deep_tier_calls": 368,
+      "deep_tier_atp_spent": 13.5329,
+      "m1_metabolic_cost": 0.0,
+      "soar_nrem_traces_count": 0,
+      "learned_library_functions_count": 15,
+      "operator_contributions": {
+        "F3LearnedOperators.isolate_extremum_object_or_cell": 3,
+        "F3Primitives.tile_grid": 2,
+        "F3Primitives.replace_color + F3Primitives.fill_enclosed_holes": 2,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes": 2,
+        "F3Primitives.fill_enclosed_holes": 2,
+        "F3LearnedOperators.split_and_boolean_combine": 2,
+        "F3Primitives.replace_color": 2,
+        "F3Primitives.downsample_block": 2,
+        "F3LearnedOperators.move_until_contact": 2,
+        "F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes": 1,
+        "F3Primitives.apply_gravity + np.flipud": 1,
+        "F3LearnedOperators.extend_2d_periodicity + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enclosed_holes": 1,
+        "F3Primitives.scale_up": 1,
+        "F3LearnedOperators.fill_bounding_boxes": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + np.flipud": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3LearnedOperators.deduplicate_rows_cols": 1,
+        "F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "F3Primitives.downsample_block + F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "np.transpose": 1,
+        "F3LearnedOperators.mirror_tile_2x2": 1,
+        "F3LearnedOperators.dihedral_template_matching": 1,
+        "F3LearnedOperators.expand_local_neighborhoods": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes": 1,
+        "F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.extend_2d_periodicity + F3LearnedOperators.deduplicate_rows_cols + np.fliplr": 1,
+        "F3LearnedOperators.extract_unique_or_extremum_subgrid": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.deduplicate_rows_cols": 1,
+        "F3LearnedOperators.connect_aligned_markers": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.fill_enclosed_holes": 1,
+        "F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.deduplicate_rows_cols": 1,
+        "F3LearnedOperators.split_and_boolean_combine + F3LearnedOperators.compress_non_empty_rows_cols + np.rot90": 1,
+        "F3Primitives.replace_color + np.flipud + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.extend_2d_periodicity": 1,
+        "F3Primitives.complete_symmetry + F3Primitives.complete_symmetry + F3LearnedOperators.complete_dihedral_symmetry": 1
+      }
+    },
+    "h3_summary": {
+      "arc_dir": "ARC-AGI/data/evaluation",
+      "backend": "antigravity",
+      "blind_eval": true,
+      "total_tasks": 50,
+      "solved_train": 9,
+      "solved_train_pct": 18.0,
+      "solved_train_ids": [
+        "00576224",
+        "00dbd492",
+        "070dd51e",
+        "0c786b71",
+        "0c9aba6e",
+        "18419cfa",
+        "195ba7dc",
+        "1c0d0a4b",
+        "1d0a4b61"
+      ],
+      "solved_test": 9,
+      "solved_test_pct": 18.0,
+      "solved_test_ids": [
+        "00576224",
+        "00dbd492",
+        "070dd51e",
+        "0c786b71",
+        "0c9aba6e",
+        "18419cfa",
+        "195ba7dc",
+        "1c0d0a4b",
+        "1d0a4b61"
+      ],
+      "mean_structural_score": 0.7436,
+      "mean_synthesis_time_sec": 1.6448,
+      "solved_in_cycle_1_acumulo": 8,
+      "solved_in_cycles_2_3_amplificacao": 1,
+      "mistake_gating_forward_passes": 9,
+      "mistake_gating_gated_updates": 1,
+      "mistake_gating_skipped_updates": 8,
+      "mistake_gating_update_savings_pct": 88.89,
+      "fast_tier_calls": 178,
+      "fast_tier_atp_spent": 2.2082,
+      "deep_tier_calls": 333,
+      "deep_tier_atp_spent": 12.2458,
+      "m1_metabolic_cost": 0.0171,
+      "soar_nrem_traces_count": 1,
+      "learned_library_functions_count": 26,
+      "operator_contributions": {
+        "F3LearnedOperators.isolate_extremum_object_or_cell": 3,
+        "unknown": 3,
+        "F3Primitives.downsample_block": 3,
+        "F3Primitives.replace_color + F3Primitives.fill_enclosed_holes": 2,
+        "F3LearnedOperators.connect_aligned_markers": 2,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes": 2,
+        "F3Primitives.fill_enclosed_holes": 2,
+        "F3LearnedOperators.split_and_boolean_combine": 2,
+        "F3Primitives.replace_color": 2,
+        "F3LearnedOperators.alternating_mirror_tile": 1,
+        "F3LearnedOperators.fill_seeded_or_sized_cavities": 1,
+        "F3Primitives.apply_gravity + np.flipud": 1,
+        "F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects": 1,
+        "F3Primitives.scale_up": 1,
+        "F3LearnedOperators.denoise_periodic_subblocks + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enclosed_holes": 1,
+        "F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "F3Primitives.downsample_block + F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "np.transpose": 1,
+        "F3LearnedOperators.mirror_tile_2x2": 1,
+        "F3LearnedOperators.dihedral_template_matching": 1,
+        "F3LearnedOperators.expand_local_neighborhoods": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.extract_unique_or_extremum_subgrid": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes": 1,
+        "F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.deduplicate_rows_cols": 1,
+        "F3LearnedOperators.move_until_contact": 1,
+        "F3Primitives.tile_grid": 1,
+        "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry": 1,
+        "F3LearnedOperators.symmetrize_per_object_or_frame": 1,
+        "F3LearnedOperators.denoise_periodic_subblocks + F3Primitives.fill_enclosed_holes": 1,
+        "F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+        "F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)": 1,
+        "F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry": 1,
+        "F3LearnedOperators.extend_2d_periodicity": 1,
+        "F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1
+      }
+    },
+    "h2_ge_90_count": 12,
+    "h3_ge_90_count": 15,
+    "speedup_factor": 30.77
+  },
+  "blind_eval_h3": {
+    "arc_dir": "ARC-AGI/data/evaluation",
+    "backend": "antigravity",
+    "blind_eval": true,
+    "total_tasks": 50,
+    "solved_train": 9,
+    "solved_train_pct": 18.0,
+    "solved_train_ids": [
+      "00576224",
+      "00dbd492",
+      "070dd51e",
+      "0c786b71",
+      "0c9aba6e",
+      "18419cfa",
+      "195ba7dc",
+      "1c0d0a4b",
+      "1d0a4b61"
+    ],
+    "solved_test": 9,
+    "solved_test_pct": 18.0,
+    "solved_test_ids": [
+      "00576224",
+      "00dbd492",
+      "070dd51e",
+      "0c786b71",
+      "0c9aba6e",
+      "18419cfa",
+      "195ba7dc",
+      "1c0d0a4b",
+      "1d0a4b61"
+    ],
+    "mean_structural_score": 0.7436,
+    "mean_synthesis_time_sec": 1.6448,
+    "solved_in_cycle_1_acumulo": 8,
+    "solved_in_cycles_2_3_amplificacao": 1,
+    "mistake_gating_forward_passes": 9,
+    "mistake_gating_gated_updates": 1,
+    "mistake_gating_skipped_updates": 8,
+    "mistake_gating_update_savings_pct": 88.89,
+    "fast_tier_calls": 178,
+    "fast_tier_atp_spent": 2.2082,
+    "deep_tier_calls": 333,
+    "deep_tier_atp_spent": 12.2458,
+    "m1_metabolic_cost": 0.0171,
+    "soar_nrem_traces_count": 1,
+    "learned_library_functions_count": 26,
+    "operator_contributions": {
+      "F3LearnedOperators.isolate_extremum_object_or_cell": 3,
+      "unknown": 3,
+      "F3Primitives.downsample_block": 3,
+      "F3Primitives.replace_color + F3Primitives.fill_enclosed_holes": 2,
+      "F3LearnedOperators.connect_aligned_markers": 2,
+      "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes": 2,
+      "F3Primitives.fill_enclosed_holes": 2,
+      "F3LearnedOperators.split_and_boolean_combine": 2,
+      "F3Primitives.replace_color": 2,
+      "F3LearnedOperators.alternating_mirror_tile": 1,
+      "F3LearnedOperators.fill_seeded_or_sized_cavities": 1,
+      "F3Primitives.apply_gravity + np.flipud": 1,
+      "F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects": 1,
+      "F3Primitives.scale_up": 1,
+      "F3LearnedOperators.denoise_periodic_subblocks + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enclosed_holes": 1,
+      "F3LearnedOperators.complete_dihedral_symmetry": 1,
+      "F3Primitives.downsample_block + F3LearnedOperators.complete_dihedral_symmetry": 1,
+      "np.transpose": 1,
+      "F3LearnedOperators.mirror_tile_2x2": 1,
+      "F3LearnedOperators.dihedral_template_matching": 1,
+      "F3LearnedOperators.expand_local_neighborhoods": 1,
+      "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3LearnedOperators.complete_dihedral_symmetry": 1,
+      "F3Primitives.complete_symmetry": 1,
+      "F3LearnedOperators.extract_unique_or_extremum_subgrid": 1,
+      "F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+      "F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes": 1,
+      "F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+      "F3LearnedOperators.deduplicate_rows_cols": 1,
+      "F3LearnedOperators.move_until_contact": 1,
+      "F3Primitives.tile_grid": 1,
+      "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry": 1,
+      "F3LearnedOperators.symmetrize_per_object_or_frame": 1,
+      "F3LearnedOperators.denoise_periodic_subblocks + F3Primitives.fill_enclosed_holes": 1,
+      "F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1,
+      "F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)": 1,
+      "F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry": 1,
+      "F3LearnedOperators.extend_2d_periodicity": 1,
+      "F3Primitives.complete_symmetry + F3Primitives.complete_symmetry": 1
+    },
+    "tasks": [
+      {
+        "id": "00576224",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0039,
+        "synthesis_time_sec": 0.0643,
+        "operator_used": "F3LearnedOperators.alternating_mirror_tile",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.alternating_mirror_tile] Alternating mirror tile (3, 3) with mode 'row_fliplr'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.alternating_mirror_tile(grid, 3, 3, mode='row_fliplr')"
+      },
+      {
+        "id": "009d5c81",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7088,
+        "free_energy": 0.3441,
+        "synthesis_time_sec": 0.9737,
+        "operator_used": "F3Primitives.replace_color + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3Primitives.fill_enclosed_holes] Compose F3Primitives.replace_color then fill enclosed holes with 3.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3Primitives.replace_color(grid, 8, 2), 3, 0)"
+      },
+      {
+        "id": "00dbd492",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0051,
+        "synthesis_time_sec": 0.0987,
+        "operator_used": "F3LearnedOperators.fill_seeded_or_sized_cavities",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_or_sized_cavities] Fill enclosed cavities conditioned on cavity size {3: 8, 5: 4, 7: 3}.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.fill_seeded_or_sized_cavities(grid, mode='by_size', rule_map={3: 8, 5: 4, 7: 3}, bg_color=0)"
+      },
+      {
+        "id": "03560426",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7736,
+        "free_energy": 0.2567,
+        "synthesis_time_sec": 0.6259,
+        "operator_used": "F3Primitives.apply_gravity + np.flipud",
+        "winning_thought": "[Synthesizer D2 | F3Primitives.apply_gravity + np.flipud] Compose F3Primitives.apply_gravity then flip vertically.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return np.flipud(F3Primitives.apply_gravity(grid, direction='left', bg_color=0))"
+      },
+      {
+        "id": "05a7bcf2",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6257,
+        "free_energy": 0.4689,
+        "synthesis_time_sec": 2.242,
+        "operator_used": "F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects",
+        "winning_thought": "[Synthesizer D3 | F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects] Compose F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes then hollow interior.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.hollow_objects(F3Primitives.fill_enclosed_holes(F3Primitives.complete_symmetry(grid, axis='rot90', bg_color=0), 3, 0), fill_color=0, bg_color=0)"
+      },
+      {
+        "id": "0607ce86",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9407,
+        "free_energy": 0.0611,
+        "synthesis_time_sec": 5.124,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'remove_noise_dots'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='remove_noise_dots', bg_color=0)"
+      },
+      {
+        "id": "0692e18c",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8768,
+        "free_energy": 0.1315,
+        "synthesis_time_sec": 1.222,
+        "operator_used": "F3Primitives.scale_up",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.scale_up] Scale up each pixel by (3, 3) via Kronecker product.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.scale_up(grid, 3, 3)"
+      },
+      {
+        "id": "070dd51e",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0048,
+        "synthesis_time_sec": 0.1917,
+        "operator_used": "F3LearnedOperators.connect_aligned_markers",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priority='vert_over_horiz').",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='vert_over_horiz', bg_color=0)"
+      },
+      {
+        "id": "08573cc6",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6486,
+        "free_energy": 0.433,
+        "synthesis_time_sec": 0.7908,
+        "operator_used": "F3LearnedOperators.denoise_periodic_subblocks + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.denoise_periodic_subblocks + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.denoise_periodic_subblocks + F3LearnedOperators.complete_dihedral_symmetry then fill enclosed holes with 1.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.denoise_periodic_subblocks(grid, bg_color=0), bg_color=0), 1, 0)"
+      },
+      {
+        "id": "0934a4d8",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.3298,
+        "free_energy": 1.1093,
+        "synthesis_time_sec": 0.428,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects then fill enclosed holes with 3.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3LearnedOperators.hollow_objects(F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='rarest_color', bg_color=1), fill_color=1, bg_color=1), 3, 1)"
+      },
+      {
+        "id": "09c534e7",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9252,
+        "free_energy": 0.0778,
+        "synthesis_time_sec": 2.8155,
+        "operator_used": "F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(grid, 1, 0)"
+      },
+      {
+        "id": "0a1d4ef5",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.0866,
+        "free_energy": 2.4464,
+        "synthesis_time_sec": 0.4174,
+        "operator_used": "unknown",
+        "winning_thought": "Identity fallback.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return grid.copy()"
+      },
+      {
+        "id": "0a2355a6",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7163,
+        "free_energy": 0.3336,
+        "synthesis_time_sec": 1.844,
+        "operator_used": "F3Primitives.replace_color + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3Primitives.fill_enclosed_holes] Compose F3Primitives.replace_color then fill enclosed holes with 3.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3Primitives.replace_color(grid, 8, 1), 3, 0)"
+      },
+      {
+        "id": "0b17323b",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8203,
+        "free_energy": 0.1981,
+        "synthesis_time_sec": 1.2277,
+        "operator_used": "F3LearnedOperators.complete_dihedral_symmetry",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.complete_dihedral_symmetry] Complete 8-fold dihedral symmetry around inferred foreground center.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.complete_dihedral_symmetry(grid, bg_color=0)"
+      },
+      {
+        "id": "0bb8deee",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.4749,
+        "free_energy": 0.7447,
+        "synthesis_time_sec": 1.2737,
+        "operator_used": "F3Primitives.downsample_block + F3LearnedOperators.complete_dihedral_symmetry",
+        "winning_thought": "[Synthesizer D2 | F3Primitives.downsample_block + F3LearnedOperators.complete_dihedral_symmetry] Compose F3Primitives.downsample_block then complete dihedral symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.complete_dihedral_symmetry(F3Primitives.downsample_block(grid, 6, 6), bg_color=0)"
+      },
+      {
+        "id": "0becf7df",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7221,
+        "free_energy": 0.3255,
+        "synthesis_time_sec": 1.3786,
+        "operator_used": "np.transpose",
+        "winning_thought": "[Synthesizer D1 | np.transpose] Transpose grid across main diagonal.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return grid.T.copy()"
+      },
+      {
+        "id": "0c786b71",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0033,
+        "synthesis_time_sec": 0.0965,
+        "operator_used": "F3LearnedOperators.mirror_tile_2x2",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.mirror_tile_2x2] Apply 2x2 mirror/rotational tiling with mode 'hv'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.mirror_tile_2x2(grid, mode='hv')"
+      },
+      {
+        "id": "0c9aba6e",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0045,
+        "synthesis_time_sec": 0.1121,
+        "operator_used": "F3LearnedOperators.split_and_boolean_combine",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 0 and combine halves with 'nor' (out_color=8).",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.split_and_boolean_combine(grid, axis=0, op='nor', out_color=8, bg_color=0)"
+      },
+      {
+        "id": "0d87d2a6",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7567,
+        "free_energy": 0.2788,
+        "synthesis_time_sec": 1.7557,
+        "operator_used": "F3LearnedOperators.dihedral_template_matching",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.dihedral_template_matching] Match multi-pixel template under D4 dihedral symmetries or directional markers.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.dihedral_template_matching(grid, bg_color=0)"
+      },
+      {
+        "id": "0e671a1a",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6743,
+        "free_energy": 0.3941,
+        "synthesis_time_sec": 1.3797,
+        "operator_used": "F3LearnedOperators.expand_local_neighborhoods",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using induced rules {4: {'ortho': (5, 1)}}.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.expand_local_neighborhoods(grid, rules={4: {'ortho': (5, 1)}}, bg_color=0)"
+      },
+      {
+        "id": "0f63c0b9",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.58,
+        "free_energy": 0.5448,
+        "synthesis_time_sec": 2.6535,
+        "operator_used": "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3LearnedOperators.complete_dihedral_symmetry",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3LearnedOperators.complete_dihedral_symmetry] Compose F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry then complete dihedral symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={6: {'ortho': (6, 1)}, 2: {'ortho': (2, 1)}, 8: {'ortho': (8, 1), 'diag': (8, 1)}, 1: {'ortho': (1, 1)}, 3: {'ortho': (3, 1)}, 7: {'ortho': (7, 1)}, 9: {'ortho': (9, 1)}}, bg_color=0), bg_color=0), bg_color=0)"
+      },
+      {
+        "id": "103eff5b",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7533,
+        "free_energy": 0.2833,
+        "synthesis_time_sec": 1.0252,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.isolate_extremum_object_or_cell + F3LearnedOperators.hollow_objects then fill enclosed holes with 3.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3LearnedOperators.hollow_objects(F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='rank_by_area', bg_color=0), fill_color=0, bg_color=0), 3, 0)"
+      },
+      {
+        "id": "11e1fe23",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7907,
+        "free_energy": 0.2348,
+        "synthesis_time_sec": 0.6134,
+        "operator_used": "F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(grid, axis='diagonal', bg_color=0)"
+      },
+      {
+        "id": "12422b43",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8229,
+        "free_energy": 0.1949,
+        "synthesis_time_sec": 1.1816,
+        "operator_used": "F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(grid, 4, 0)"
+      },
+      {
+        "id": "12997ef3",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.312,
+        "free_energy": 1.1646,
+        "synthesis_time_sec": 0.1277,
+        "operator_used": "unknown",
+        "winning_thought": "Identity fallback.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return grid.copy()"
+      },
+      {
+        "id": "12eac192",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8406,
+        "free_energy": 0.1736,
+        "synthesis_time_sec": 1.2207,
+        "operator_used": "F3Primitives.replace_color",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 3.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.replace_color(grid, 1, 3)"
+      },
+      {
+        "id": "136b0064",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6202,
+        "free_energy": 0.4777,
+        "synthesis_time_sec": 0.604,
+        "operator_used": "F3LearnedOperators.extract_unique_or_extremum_subgrid",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.extract_unique_or_extremum_subgrid] Extract subgrid cell from separator grid using mode 'min_fg'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.extract_unique_or_extremum_subgrid(grid, mode='min_fg', bg_color=0)"
+      },
+      {
+        "id": "13713586",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6338,
+        "free_energy": 0.4561,
+        "synthesis_time_sec": 2.0139,
+        "operator_used": "F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry] Compose F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry then complete vertical symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(F3Primitives.complete_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={4: {'diag': (4, 1)}, 8: {'diag': (8, 1)}, 5: {'diag': (6, 1)}, 3: {'diag': (3, 1)}, 7: {'diag': (7, 1)}, 6: {'diag': (6, 1)}}, bg_color=0), axis='horizontal', bg_color=0), axis='vertical', bg_color=0)"
+      },
+      {
+        "id": "137f0df0",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9007,
+        "free_energy": 0.1046,
+        "synthesis_time_sec": 2.0799,
+        "operator_used": "F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.connect_aligned_markers then fill enclosed holes with 2.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3LearnedOperators.connect_aligned_markers(grid, line_color=2, priority='default', bg_color=0), 2, 0)"
+      },
+      {
+        "id": "140c817e",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6342,
+        "free_energy": 0.4554,
+        "synthesis_time_sec": 1.2483,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry] Compose F3LearnedOperators.isolate_extremum_object_or_cell + F3Primitives.complete_symmetry then complete vertical symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(F3Primitives.complete_symmetry(F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='rank_by_area', bg_color=8), axis='horizontal', bg_color=8), axis='vertical', bg_color=8)"
+      },
+      {
+        "id": "14754a24",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9381,
+        "free_energy": 0.0638,
+        "synthesis_time_sec": 5.2256,
+        "operator_used": "F3LearnedOperators.deduplicate_rows_cols",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.deduplicate_rows_cols(grid)"
+      },
+      {
+        "id": "15113be4",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9832,
+        "free_energy": 0.0169,
+        "synthesis_time_sec": 9.7729,
+        "operator_used": "F3Primitives.downsample_block",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (23, 23) modal color blocks.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.downsample_block(grid, 23, 23)"
+      },
+      {
+        "id": "15663ba9",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.803,
+        "free_energy": 0.2193,
+        "synthesis_time_sec": 2.3932,
+        "operator_used": "F3LearnedOperators.move_until_contact",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor object.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.move_until_contact(grid, bg_color=0)"
+      },
+      {
+        "id": "15696249",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7112,
+        "free_energy": 0.3408,
+        "synthesis_time_sec": 1.2033,
+        "operator_used": "F3Primitives.tile_grid",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.tile_grid] Tile input grid (3, 3) times.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.tile_grid(grid, 3, 3)"
+      },
+      {
+        "id": "16b78196",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8544,
+        "free_energy": 0.1574,
+        "synthesis_time_sec": 3.8133,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'keep_largest_only'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='keep_largest_only', bg_color=0)"
+      },
+      {
+        "id": "17b80ad2",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7647,
+        "free_energy": 0.2683,
+        "synthesis_time_sec": 2.0971,
+        "operator_used": "F3LearnedOperators.connect_aligned_markers",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priority='default').",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_color=0)"
+      },
+      {
+        "id": "17cae0c1",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.4506,
+        "free_energy": 0.7972,
+        "synthesis_time_sec": 1.3156,
+        "operator_used": "F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry",
+        "winning_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry] Compose F3LearnedOperators.expand_local_neighborhoods then complete dihedral symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={5: {'ortho': (4, 1), 'diag': (4, 1)}}, bg_color=0), bg_color=0)"
+      },
+      {
+        "id": "18419cfa",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0041,
+        "synthesis_time_sec": 0.2189,
+        "operator_used": "F3LearnedOperators.symmetrize_per_object_or_frame",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.symmetrize_per_object_or_frame] Complete horizontal and vertical symmetry inside each individual frame/object bbox.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.symmetrize_per_object_or_frame(grid, mode='hv', bg_color=0)"
+      },
+      {
+        "id": "184a9768",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.8446,
+        "free_energy": 0.1689,
+        "synthesis_time_sec": 3.8205,
+        "operator_used": "F3LearnedOperators.denoise_periodic_subblocks + F3Primitives.fill_enclosed_holes",
+        "winning_thought": "[Synthesizer D2 | F3LearnedOperators.denoise_periodic_subblocks + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.denoise_periodic_subblocks then fill enclosed holes with 2.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(F3LearnedOperators.denoise_periodic_subblocks(grid, bg_color=0), 2, 0)"
+      },
+      {
+        "id": "195ba7dc",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.0045,
+        "synthesis_time_sec": 0.1241,
+        "operator_used": "F3LearnedOperators.split_and_boolean_combine",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' (out_color=1).",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.split_and_boolean_combine(grid, axis=1, op='or', out_color=1, bg_color=0)"
+      },
+      {
+        "id": "1990f7a8",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6266,
+        "free_energy": 0.4675,
+        "synthesis_time_sec": 2.9092,
+        "operator_used": "F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D3 | F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry + F3Primitives.complete_symmetry] Compose F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry then complete vertical symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(F3Primitives.complete_symmetry(F3LearnedOperators.extend_2d_periodicity(grid, target_h=7, target_w=7, mask_color=-1), axis='horizontal', bg_color=0), axis='vertical', bg_color=0)"
+      },
+      {
+        "id": "19bb5feb",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.4489,
+        "free_energy": 0.8009,
+        "synthesis_time_sec": 0.6499,
+        "operator_used": "F3LearnedOperators.isolate_extremum_object_or_cell",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'rarest_color'.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='rarest_color', bg_color=0)"
+      },
+      {
+        "id": "1a2e2828",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.347,
+        "free_energy": 1.0583,
+        "synthesis_time_sec": 0.4056,
+        "operator_used": "F3Primitives.downsample_block",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (1, 1) modal color blocks.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.downsample_block(grid, 1, 1)"
+      },
+      {
+        "id": "1a6449f1",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.2578,
+        "free_energy": 1.3555,
+        "synthesis_time_sec": 0.3861,
+        "operator_used": "unknown",
+        "winning_thought": "Identity fallback.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return grid.copy()"
+      },
+      {
+        "id": "1acc24af",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.9247,
+        "free_energy": 0.0783,
+        "synthesis_time_sec": 2.4273,
+        "operator_used": "F3Primitives.replace_color",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 5 with color 2.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.replace_color(grid, 5, 2)"
+      },
+      {
+        "id": "1c02dbbe",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.7875,
+        "free_energy": 0.2389,
+        "synthesis_time_sec": 2.2853,
+        "operator_used": "F3Primitives.downsample_block",
+        "winning_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (15, 15) modal color blocks.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.downsample_block(grid, 15, 15)"
+      },
+      {
+        "id": "1c0d0a4b",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 3,
+        "best_score": 1.0,
+        "free_energy": 0.0103,
+        "synthesis_time_sec": 0.7117,
+        "operator_used": "F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)",
+        "winning_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Primitives.replace_color + np.rot90] Compose F3Primitives.replace_color then rotate 180 deg. -> Apply cardinal ray & bbox corridor residual patch relative to color 8.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.apply_residual_patch(grid, np.rot90(F3Primitives.replace_color(grid, 8, 2), 2), {'type': 'ray_corridor_table', 'ref_color': 8, 'table': {(0, 0, 1, 1, 4, 1): 2, (0, 0, 0, 0, 2, 1): 2, (8, 2, 1, 1, 4, 1): 0, (0, 0, 0, 1, 3, 1): 2, (0, 0, 1, 0, 3, 1): 2}}, bg_color=0)"
+      },
+      {
+        "id": "1c56ad9f",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.827,
+        "free_energy": 0.1899,
+        "synthesis_time_sec": 3.5247,
+        "operator_used": "F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D2 | F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry] Compose F3LearnedOperators.fill_bounding_boxes then complete horizontal symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(F3LearnedOperators.fill_bounding_boxes(grid, frame_only=False, bg_color=0), axis='horizontal', bg_color=0)"
+      },
+      {
+        "id": "1d0a4b61",
+        "train_solved": true,
+        "test_correct": true,
+        "solved_in_cycle": 1,
+        "best_score": 1.0,
+        "free_energy": 0.005,
+        "synthesis_time_sec": 1.2255,
+        "operator_used": "F3LearnedOperators.extend_2d_periodicity",
+        "winning_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded by marker color 0.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=0)"
+      },
+      {
+        "id": "1d398264",
+        "train_solved": false,
+        "test_correct": false,
+        "solved_in_cycle": null,
+        "best_score": 0.6435,
+        "free_energy": 0.4408,
+        "synthesis_time_sec": 0.8985,
+        "operator_used": "F3Primitives.complete_symmetry + F3Primitives.complete_symmetry",
+        "winning_thought": "[Synthesizer D2 | F3Primitives.complete_symmetry + F3Primitives.complete_symmetry] Compose F3Primitives.complete_symmetry then complete vertical symmetry.",
+        "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.complete_symmetry(F3Primitives.complete_symmetry(grid, axis='rot90', bg_color=0), axis='vertical', bg_color=0)"
+      }
+    ]
+  },
+  "arc3_ablation_h3": {
+    "benchmark": "ARC-AGI-3 Interactive 5-Game Suite (15 Levels 64x64)",
+    "f3_full_games": [
+      {
+        "game_name": "SwitchAndDoorMaze",
+        "completed_levels": 3,
+        "total_levels": 3,
+        "actions_per_level": {
+          "1": 5,
+          "2": 7,
+          "3": 11
+        },
+        "human_baseline": {
+          "1": 5,
+          "2": 7,
+          "3": 9
+        },
+        "level_rhae": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.6694
+        },
+        "overall_rhae_pct": 88.98,
+        "llm_calls_made": 0,
+        "dead_actions": 0,
+        "atp_consumed": 0.46,
+        "mean_atp_remaining": 1.0
+      },
+      {
+        "game_name": "SokobanPushBlocks",
+        "completed_levels": 3,
+        "total_levels": 3,
+        "actions_per_level": {
+          "1": 6,
+          "2": 9,
+          "3": 10
+        },
+        "human_baseline": {
+          "1": 5,
+          "2": 7,
+          "3": 8
+        },
+        "level_rhae": {
+          "1": 0.6944,
+          "2": 0.6049,
+          "3": 0.64
+        },
+        "overall_rhae_pct": 64.64,
+        "llm_calls_made": 0,
+        "dead_actions": 0,
+        "atp_consumed": 0.5,
+        "mean_atp_remaining": 1.0
+      },
+      {
+        "game_name": "ColorInfectionToggle",
+        "completed_levels": 3,
+        "total_levels": 3,
+        "actions_per_level": {
+          "1": 3,
+          "2": 4,
+          "3": 5
+        },
+        "human_baseline": {
+          "1": 3,
+          "2": 4,
+          "3": 5
+        },
+        "level_rhae": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "overall_rhae_pct": 100.0,
+        "llm_calls_made": 0,
+        "dead_actions": 0,
+        "atp_consumed": 0.24,
+        "mean_atp_remaining": 1.0
+      },
+      {
+        "game_name": "IceSlideInertia",
+        "completed_levels": 3,
+        "total_levels": 3,
+        "actions_per_level": {
+          "1": 2,
+          "2": 3,
+          "3": 4
+        },
+        "human_baseline": {
+          "1": 2,
+          "2": 3,
+          "3": 4
+        },
+        "level_rhae": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "overall_rhae_pct": 100.0,
+        "llm_calls_made": 0,
+        "dead_actions": 0,
+        "atp_consumed": 0.18,
+        "mean_atp_remaining": 1.0
+      },
+      {
+        "game_name": "TeleporterKeyPortal",
+        "completed_levels": 3,
+        "total_levels": 3,
+        "actions_per_level": {
+          "1": 5,
+          "2": 6,
+          "3": 7
+        },
+        "human_baseline": {
+          "1": 5,
+          "2": 6,
+          "3": 7
+        },
+        "level_rhae": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0
+        },
+        "overall_rhae_pct": 100.0,
+        "llm_calls_made": 0,
+        "dead_actions": 0,
+        "atp_consumed": 0.36,
+        "mean_atp_remaining": 1.0
+      }
+    ],
+    "ablation_agents": [
+      {
+        "agent_name": "Random / Greedy Heuristic",
+        "mode": "random_greedy",
+        "completed_levels": 5,
+        "total_levels": 15,
+        "completion_rate_pct": 33.33,
+        "official_rhae_pct": 10.11,
+        "total_dead_actions": 82,
+        "total_atp_consumed": 4.0,
+        "games": [
+          {
+            "game_name": "SwitchAndDoorMaze",
+            "completed_levels": 1,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 22,
+              "2": 18,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 9
+            },
+            "level_rhae": {
+              "1": 0.0517,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 1.72,
+            "llm_calls_made": 0,
+            "dead_actions": 19,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 1.72,
+            "weighted_rhae_pct": 0.86,
+            "level_weighted_rhae_pct": 0.86
+          },
+          {
+            "game_name": "SokobanPushBlocks",
+            "completed_levels": 2,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 8,
+              "2": 12,
+              "3": 20
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 8
+            },
+            "level_rhae": {
+              "1": 0.3906,
+              "2": 0.3403,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 24.36,
+            "llm_calls_made": 0,
+            "dead_actions": 12,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 24.36,
+            "weighted_rhae_pct": 17.85,
+            "level_weighted_rhae_pct": 17.85
+          },
+          {
+            "game_name": "ColorInfectionToggle",
+            "completed_levels": 1,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 15,
+              "2": 25,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "level_rhae": {
+              "1": 0.04,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 1.33,
+            "llm_calls_made": 0,
+            "dead_actions": 23,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 1.33,
+            "weighted_rhae_pct": 0.67,
+            "level_weighted_rhae_pct": 0.67
+          },
+          {
+            "game_name": "IceSlideInertia",
+            "completed_levels": 0,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 40,
+              "2": 0,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 2,
+              "2": 3,
+              "3": 4
+            },
+            "level_rhae": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 0.0,
+            "llm_calls_made": 0,
+            "dead_actions": 13,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 0.0,
+            "weighted_rhae_pct": 0.0,
+            "level_weighted_rhae_pct": 0.0
+          },
+          {
+            "game_name": "TeleporterKeyPortal",
+            "completed_levels": 1,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 6,
+              "2": 34,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 6,
+              "3": 7
+            },
+            "level_rhae": {
+              "1": 0.6944,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 23.15,
+            "llm_calls_made": 0,
+            "dead_actions": 15,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 23.15,
+            "weighted_rhae_pct": 11.57,
+            "level_weighted_rhae_pct": 11.57
+          }
+        ],
+        "unweighted_rhae_pct": 10.11,
+        "weighted_rhae_pct": 6.19,
+        "level_weighted_rhae_pct": 6.19
+      },
+      {
+        "agent_name": "Pragmatic-Only (Sem Valor Epistêmico / Sem Dead-Signature)",
+        "mode": "pragmatic_only",
+        "completed_levels": 3,
+        "total_levels": 15,
+        "completion_rate_pct": 20.0,
+        "official_rhae_pct": 15.33,
+        "total_dead_actions": 119,
+        "total_atp_consumed": 4.0,
+        "games": [
+          {
+            "game_name": "SwitchAndDoorMaze",
+            "completed_levels": 0,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 40,
+              "2": 0,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 9
+            },
+            "level_rhae": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 0.0,
+            "llm_calls_made": 0,
+            "dead_actions": 39,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 0.0,
+            "weighted_rhae_pct": 0.0,
+            "level_weighted_rhae_pct": 0.0
+          },
+          {
+            "game_name": "SokobanPushBlocks",
+            "completed_levels": 2,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 6,
+              "2": 9,
+              "3": 25
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 8
+            },
+            "level_rhae": {
+              "1": 0.6944,
+              "2": 0.6049,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 43.31,
+            "llm_calls_made": 0,
+            "dead_actions": 16,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 43.31,
+            "weighted_rhae_pct": 31.74,
+            "level_weighted_rhae_pct": 31.74
+          },
+          {
+            "game_name": "ColorInfectionToggle",
+            "completed_levels": 0,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 40,
+              "2": 0,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "level_rhae": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 0.0,
+            "llm_calls_made": 0,
+            "dead_actions": 39,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 0.0,
+            "weighted_rhae_pct": 0.0,
+            "level_weighted_rhae_pct": 0.0
+          },
+          {
+            "game_name": "IceSlideInertia",
+            "completed_levels": 0,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 40,
+              "2": 0,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 2,
+              "2": 3,
+              "3": 4
+            },
+            "level_rhae": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 0.0,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 0.0,
+            "weighted_rhae_pct": 0.0,
+            "level_weighted_rhae_pct": 0.0
+          },
+          {
+            "game_name": "TeleporterKeyPortal",
+            "completed_levels": 1,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 5,
+              "2": 35,
+              "3": 0
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 6,
+              "3": 7
+            },
+            "level_rhae": {
+              "1": 1.0,
+              "2": 0.0,
+              "3": 0.0
+            },
+            "overall_rhae_pct": 33.33,
+            "llm_calls_made": 0,
+            "dead_actions": 25,
+            "atp_consumed": 0.8,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 33.33,
+            "weighted_rhae_pct": 16.67,
+            "level_weighted_rhae_pct": 16.67
+          }
+        ],
+        "unweighted_rhae_pct": 15.33,
+        "weighted_rhae_pct": 9.68,
+        "level_weighted_rhae_pct": 9.68
+      },
+      {
+        "agent_name": "Active Inference sem Dead-Signature Pruning",
+        "mode": "active_inference_no_dead_sig",
+        "completed_levels": 15,
+        "total_levels": 15,
+        "completion_rate_pct": 100.0,
+        "official_rhae_pct": 47.17,
+        "total_dead_actions": 32,
+        "total_atp_consumed": 2.38,
+        "games": [
+          {
+            "game_name": "SwitchAndDoorMaze",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 7,
+              "2": 10,
+              "3": 15
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 9
+            },
+            "level_rhae": {
+              "1": 0.5102,
+              "2": 0.49,
+              "3": 0.36
+            },
+            "overall_rhae_pct": 45.34,
+            "llm_calls_made": 0,
+            "dead_actions": 9,
+            "atp_consumed": 0.64,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 45.34,
+            "weighted_rhae_pct": 42.84,
+            "level_weighted_rhae_pct": 42.84
+          },
+          {
+            "game_name": "SokobanPushBlocks",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 7,
+              "2": 10,
+              "3": 11
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 8
+            },
+            "level_rhae": {
+              "1": 0.5102,
+              "2": 0.49,
+              "3": 0.5289
+            },
+            "overall_rhae_pct": 50.97,
+            "llm_calls_made": 0,
+            "dead_actions": 3,
+            "atp_consumed": 0.56,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 50.97,
+            "weighted_rhae_pct": 51.28,
+            "level_weighted_rhae_pct": 51.28
+          },
+          {
+            "game_name": "ColorInfectionToggle",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 5,
+              "2": 7,
+              "3": 9
+            },
+            "human_baseline": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "level_rhae": {
+              "1": 0.36,
+              "2": 0.3265,
+              "3": 0.3086
+            },
+            "overall_rhae_pct": 33.17,
+            "llm_calls_made": 0,
+            "dead_actions": 9,
+            "atp_consumed": 0.42,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 33.17,
+            "weighted_rhae_pct": 32.31,
+            "level_weighted_rhae_pct": 32.31
+          },
+          {
+            "game_name": "IceSlideInertia",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "human_baseline": {
+              "1": 2,
+              "2": 3,
+              "3": 4
+            },
+            "level_rhae": {
+              "1": 0.4444,
+              "2": 0.5625,
+              "3": 0.64
+            },
+            "overall_rhae_pct": 54.9,
+            "llm_calls_made": 0,
+            "dead_actions": 3,
+            "atp_consumed": 0.24,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 54.9,
+            "weighted_rhae_pct": 58.16,
+            "level_weighted_rhae_pct": 58.16
+          },
+          {
+            "game_name": "TeleporterKeyPortal",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 6,
+              "2": 9,
+              "3": 11
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 6,
+              "3": 7
+            },
+            "level_rhae": {
+              "1": 0.6944,
+              "2": 0.4444,
+              "3": 0.405
+            },
+            "overall_rhae_pct": 51.46,
+            "llm_calls_made": 0,
+            "dead_actions": 8,
+            "atp_consumed": 0.52,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 51.46,
+            "weighted_rhae_pct": 46.64,
+            "level_weighted_rhae_pct": 46.64
+          }
+        ],
+        "unweighted_rhae_pct": 47.17,
+        "weighted_rhae_pct": 46.24,
+        "level_weighted_rhae_pct": 46.24
+      },
+      {
+        "agent_name": "F3-AGI v4.0 Completo (EFE + SIGReg-JEPA 512D + Dead-Signature + Rule Transfer)",
+        "mode": "f3_full",
+        "completed_levels": 15,
+        "total_levels": 15,
+        "completion_rate_pct": 100.0,
+        "official_rhae_pct": 90.72,
+        "total_dead_actions": 0,
+        "total_atp_consumed": 1.74,
+        "games": [
+          {
+            "game_name": "SwitchAndDoorMaze",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 5,
+              "2": 7,
+              "3": 11
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 9
+            },
+            "level_rhae": {
+              "1": 1.0,
+              "2": 1.0,
+              "3": 0.6694
+            },
+            "overall_rhae_pct": 88.98,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.46,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 88.98,
+            "weighted_rhae_pct": 83.47,
+            "level_weighted_rhae_pct": 83.47
+          },
+          {
+            "game_name": "SokobanPushBlocks",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 6,
+              "2": 9,
+              "3": 10
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 7,
+              "3": 8
+            },
+            "level_rhae": {
+              "1": 0.6944,
+              "2": 0.6049,
+              "3": 0.64
+            },
+            "overall_rhae_pct": 64.64,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.5,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 64.64,
+            "weighted_rhae_pct": 63.74,
+            "level_weighted_rhae_pct": 63.74
+          },
+          {
+            "game_name": "ColorInfectionToggle",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "human_baseline": {
+              "1": 3,
+              "2": 4,
+              "3": 5
+            },
+            "level_rhae": {
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0
+            },
+            "overall_rhae_pct": 100.0,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.24,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 100.0,
+            "weighted_rhae_pct": 100.0,
+            "level_weighted_rhae_pct": 100.0
+          },
+          {
+            "game_name": "IceSlideInertia",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 2,
+              "2": 3,
+              "3": 4
+            },
+            "human_baseline": {
+              "1": 2,
+              "2": 3,
+              "3": 4
+            },
+            "level_rhae": {
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0
+            },
+            "overall_rhae_pct": 100.0,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.18,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 100.0,
+            "weighted_rhae_pct": 100.0,
+            "level_weighted_rhae_pct": 100.0
+          },
+          {
+            "game_name": "TeleporterKeyPortal",
+            "completed_levels": 3,
+            "total_levels": 3,
+            "actions_per_level": {
+              "1": 5,
+              "2": 6,
+              "3": 7
+            },
+            "human_baseline": {
+              "1": 5,
+              "2": 6,
+              "3": 7
+            },
+            "level_rhae": {
+              "1": 1.0,
+              "2": 1.0,
+              "3": 1.0
+            },
+            "overall_rhae_pct": 100.0,
+            "llm_calls_made": 0,
+            "dead_actions": 0,
+            "atp_consumed": 0.36,
+            "mean_atp_remaining": 1.0,
+            "unweighted_rhae_pct": 100.0,
+            "weighted_rhae_pct": 100.0,
+            "level_weighted_rhae_pct": 100.0
+          }
+        ],
+        "unweighted_rhae_pct": 90.72,
+        "weighted_rhae_pct": 89.44,
+        "level_weighted_rhae_pct": 89.44
+      }
+    ]
+  }
+}

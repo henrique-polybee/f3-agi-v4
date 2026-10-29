@@ -1,0 +1,231 @@
+{
+  "arc_dir": "ARC-AGI/data/training",
+  "backend": "antigravity",
+  "total_tasks": 20,
+  "solved_train": 20,
+  "solved_train_pct": 100.0,
+  "solved_test": 20,
+  "solved_test_pct": 100.0,
+  "solved_in_cycle_1_acumulo": 12,
+  "solved_in_cycles_2_3_amplificacao": 8,
+  "mistake_gating_forward_passes": 20,
+  "mistake_gating_gated_updates": 8,
+  "mistake_gating_skipped_updates": 12,
+  "mistake_gating_update_savings_pct": 60.0,
+  "fast_tier_calls": 80,
+  "fast_tier_atp_spent": 0.9924,
+  "deep_tier_calls": 32,
+  "deep_tier_atp_spent": 1.1768,
+  "m1_metabolic_cost": 0.4021,
+  "soar_nrem_traces_count": 8,
+  "learned_library_functions_count": 25,
+  "learned_library_functions": [
+    "solved_e98196ab",
+    "solved_2204b7a8",
+    "solved_a61ba2ce",
+    "solved_5614dbcf",
+    "solved_007bbfb7",
+    "solved_00d62c1b",
+    "solved_017c7c7b",
+    "solved_025d127b",
+    "solved_045e512c",
+    "solved_0520fde7",
+    "solved_05269061",
+    "solved_05f2a901",
+    "solved_06df4c85",
+    "solved_08ed6ac7",
+    "solved_09629e4f",
+    "solved_0962bcdd",
+    "solved_0a938d79",
+    "solved_0b148d64",
+    "solved_0ca9ddb6",
+    "solved_0d3d703e",
+    "solved_0dfd9992",
+    "solved_0e206a2e",
+    "solved_10fcaaa3",
+    "solved_11852cab",
+    "solved_2dee498d"
+  ],
+  "tasks": [
+    {
+      "id": "007bbfb7",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.00336,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    mask = (grid != 0).astype(int)\n    return np.kron(mask, grid)"
+    },
+    {
+      "id": "00d62c1b",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.0030600000000000002,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    return F3Primitives.fill_enclosed_holes(grid, 4, 0)"
+    },
+    {
+      "id": "017c7c7b",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.00912,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    h, w = grid.shape\n    period = h\n    for p in range(1, h):\n        if np.array_equal(grid[:-p], grid[p:]):\n            period = p\n            break\n    ext = np.array([grid[r % period] for r in range(9)])\n    return F3Primitives.replace_color(ext, 1, 2)"
+    },
+    {
+      "id": "025d127b",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.018510000000000002,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = np.zeros_like(grid)\n    for col in np.unique(grid):\n        if col == 0:\n            continue\n        mask = (grid == col)\n        rows = np.unique(np.where(mask)[0])\n        rmax = rows.max()\n        cmax = np.where(mask)[1].max()\n        for r in rows:\n            cols = np.where(mask[r])[0]\n            if r < rmax:\n                for c in cols:\n                    nc = c + 1 if (cols.max() < cmax or c < cmax) else c\n                    res[r, nc] = col\n            else:\n                for c in cols:\n                    res[r, c] = col\n    return res"
+    },
+    {
+      "id": "045e512c",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.03426,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    vals, counts = np.unique(grid[grid != 0], return_counts=True)\n    if len(vals) == 0:\n        return res\n    main_color = int(vals[np.argmax(counts)])\n    mr, mc = np.where(grid == main_color)\n    mr0, mr1, mc0, mc1 = int(mr.min()), int(mr.max()) + 1, int(mc.min()), int(mc.max()) + 1\n    tmpl = (grid[mr0:mr1, mc0:mc1] == main_color).astype(int)\n    th, tw = tmpl.shape\n    for o in F3Primitives.get_connected_objects(grid):\n        if o['color'] == main_color:\n            continue\n        r0, c0, r1, c1 = o['bbox']\n        col = o['color']\n        dr = -1 if r1 <= mr0 else (1 if r0 >= mr1 else 0)\n        dc = -1 if c1 <= mc0 else (1 if c0 >= mc1 else 0)\n        if dr == 0 and dc == 0:\n            continue\n        for k in range(1, 6):\n            sr = mr0 + k * dr * (th + 1)\n            sc = mc0 + k * dc * (tw + 1)\n            for rr in range(th):\n                for cc_i in range(tw):\n                    if tmpl[rr, cc_i] and 0 <= sr + rr < res.shape[0] and 0 <= sc + cc_i < res.shape[1]:\n                        res[sr + rr, sc + cc_i] = col\n    return res"
+    },
+    {
+      "id": "0520fde7",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.00432,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    left = grid[:, :3] != 0\n    right = grid[:, 4:7] != 0\n    return np.where(left & right, 2, 0)"
+    },
+    {
+      "id": "05269061",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.0108,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    h, w = grid.shape\n    cmap = {}\n    for r in range(h):\n        for c in range(w):\n            if grid[r, c] != 0:\n                cmap[(r + c) % 3] = int(grid[r, c])\n    res = np.zeros_like(grid)\n    for r in range(h):\n        for c in range(w):\n            res[r, c] = cmap.get((r + c) % 3, 0)\n    return res"
+    },
+    {
+      "id": "05f2a901",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.02055,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    red = (grid == 2)\n    cyan = (grid == 8)\n    if not np.any(red) or not np.any(cyan):\n        return grid.copy()\n    rr, rc = np.where(red)\n    cr, cc = np.where(cyan)\n    dr, dc = 0, 0\n    if rr.max() < cr.min():\n        dr = int(cr.min() - rr.max() - 1)\n    elif rr.min() > cr.max():\n        dr = int(cr.max() - rr.min() + 1)\n    elif rc.max() < cc.min():\n        dc = int(cc.min() - rc.max() - 1)\n    elif rc.min() > cc.max():\n        dc = int(cc.max() - rc.min() + 1)\n    res = np.where(red, 0, grid)\n    moved_red = F3Primitives.translate_object(np.where(red, 2, 0), dr, dc, bg_color=0)\n    return np.where(moved_red != 0, 2, res)"
+    },
+    {
+      "id": "06df4c85",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.017580000000000002,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    sep_color = int(grid[2, 2])\n    cells = grid[0::3, 0::3].copy()\n    colors = [int(c) for c in np.unique(cells) if c != 0 and c != sep_color]\n    conn = np.zeros_like(cells)\n    for col in colors:\n        layer = F3Primitives.draw_connecting_lines(np.where(cells == col, col, 0), col, col)\n        conn = np.where(layer == col, col, conn)\n    for r in range(conn.shape[0]):\n        for c in range(conn.shape[1]):\n            if conn[r, c] != 0:\n                res[3*r:3*r+2, 3*c:3*c+2] = conn[r, c]\n    return res"
+    },
+    {
+      "id": "08ed6ac7",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.01089,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    objs = F3Primitives.get_connected_objects(grid)\n    objs.sort(key=lambda o: (-o['size'], o['bbox'][1]))\n    for idx, o in enumerate(objs):\n        r0, c0, r1, c1 = o['bbox']\n        sub = o['subgrid']\n        res[r0:r1, c0:c1] = np.where(sub != 0, idx + 1, res[r0:r1, c0:c1])\n    return res"
+    },
+    {
+      "id": "09629e4f",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.01782,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = np.zeros_like(grid)\n    res[3, :] = 5\n    res[7, :] = 5\n    res[:, 3] = 5\n    res[:, 7] = 5\n    best_sub = None\n    best_cnt = 999\n    for br in range(3):\n        for bc in range(3):\n            sub = grid[4*br:4*br+3, 4*bc:4*bc+3]\n            cnt = int(np.sum(sub != 0))\n            if 0 < cnt < best_cnt:\n                best_cnt = cnt\n                best_sub = sub\n    if best_sub is not None:\n        for br in range(3):\n            for bc in range(3):\n                res[4*br:4*br+3, 4*bc:4*bc+3] = best_sub[br, bc]\n    return res"
+    },
+    {
+      "id": "0962bcdd",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.02682,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    h, w = grid.shape\n    for r in range(1, h - 1):\n        for c in range(1, w - 1):\n            c_center = int(grid[r, c])\n            c_petal = int(grid[r - 1, c])\n            if c_center != 0 and c_petal != 0 and c_center != c_petal:\n                if grid[r+1, c] == c_petal and grid[r, c-1] == c_petal and grid[r, c+1] == c_petal:\n                    for d in [-2, -1, 1, 2]:\n                        if 0 <= r + d < h:\n                            res[r + d, c] = c_petal\n                        if 0 <= c + d < w:\n                            res[r, c + d] = c_petal\n                        if 0 <= r + d < h and 0 <= c + d < w:\n                            res[r + d, c + d] = c_center\n                        if 0 <= r + d < h and 0 <= c - d < w:\n                            res[r + d, c - d] = c_center\n    return res"
+    },
+    {
+      "id": "0a938d79",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.02493,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = np.zeros_like(grid)\n    h, w = grid.shape\n    pts = [(r, c, int(grid[r, c])) for r in range(h) for c in range(w) if grid[r, c] != 0]\n    if len(pts) < 2:\n        return grid.copy()\n    if h <= w:\n        pts.sort(key=lambda x: x[1])\n        _, c1, col1 = pts[0]\n        _, c2, col2 = pts[1]\n        step = c2 - c1\n        colors = [col1, col2]\n        k = 0\n        c = c1\n        while c < w:\n            res[:, c] = colors[k % 2]\n            c += step\n            k += 1\n    else:\n        pts.sort(key=lambda x: x[0])\n        r1, _, col1 = pts[0]\n        r2, _, col2 = pts[1]\n        step = r2 - r1\n        colors = [col1, col2]\n        k = 0\n        r = r1\n        while r < h:\n            res[r, :] = colors[k % 2]\n            r += step\n            k += 1\n    return res"
+    },
+    {
+      "id": "0b148d64",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.01137,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    vals, counts = np.unique(grid[grid != 0], return_counts=True)\n    rare_color = int(vals[np.argmin(counts)])\n    mask = (grid == rare_color)\n    r = np.any(mask, axis=1)\n    c = np.any(mask, axis=0)\n    rmin, rmax = np.where(r)[0][[0, -1]]\n    cmin, cmax = np.where(c)[0][[0, -1]]\n    return grid[rmin:rmax+1, cmin:cmax+1].copy()"
+    },
+    {
+      "id": "0ca9ddb6",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.01887,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    h, w = grid.shape\n    for r in range(h):\n        for c in range(w):\n            if grid[r, c] == 2:\n                for dr, dc in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:\n                    if 0 <= r + dr < h and 0 <= c + dc < w and res[r + dr, c + dc] == 0:\n                        res[r + dr, c + dc] = 4\n            elif grid[r, c] == 1:\n                for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n                    if 0 <= r + dr < h and 0 <= c + dc < w and res[r + dr, c + dc] == 0:\n                        res[r + dr, c + dc] = 7\n    return res"
+    },
+    {
+      "id": "0d3d703e",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.00588,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    mp = {1: 5, 2: 6, 3: 4, 4: 3, 5: 1, 6: 2, 8: 9, 9: 8}\n    res = grid.copy()\n    for k, v in mp.items():\n        res[grid == k] = v\n    return res"
+    },
+    {
+      "id": "0dfd9992",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.029490000000000002,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    res = grid.copy()\n    h, w = grid.shape\n    best_pr, best_pc = 1, 1\n    for pr in range(2, 10):\n        ok = True\n        for r in range(h - pr):\n            m = (grid[r] != 0) & (grid[r + pr] != 0)\n            if np.any(grid[r, m] != grid[r + pr, m]):\n                ok = False\n                break\n        if ok:\n            best_pr = pr\n            break\n    for pc in range(2, 10):\n        ok = True\n        for c in range(w - pc):\n            m = (grid[:, c] != 0) & (grid[:, c + pc] != 0)\n            if np.any(grid[m, c] != grid[m, c + pc]):\n                ok = False\n                break\n        if ok:\n            best_pc = pc\n            break\n    for r in range(h):\n        for c in range(w):\n            if res[r, c] == 0:\n                vals = grid[r % best_pr::best_pr, c % best_pc::best_pc]\n                nz = vals[vals != 0]\n                if len(nz) > 0:\n                    res[r, c] = nz[0]\n    return res"
+    },
+    {
+      "id": "0e206a2e",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 2,
+      "best_score": 1.0,
+      "free_energy": 0.05,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    h, w = grid.shape\n    vals, counts = np.unique(grid[grid != 0], return_counts=True)\n    if len(vals) == 0:\n        return grid.copy()\n    body_color = int(vals[np.argmax(counts)])\n    vis = np.zeros((h, w), dtype=bool)\n    templates = []\n    dot_list = []\n    for r in range(h):\n        for c in range(w):\n            if grid[r, c] != 0 and not vis[r, c]:\n                q = [(r, c)]\n                vis[r, c] = True\n                pts = []\n                while q:\n                    cr, cc = q.pop()\n                    pts.append((cr, cc))\n                    for dr in [-1, 0, 1]:\n                        for dc in [-1, 0, 1]:\n                            nr, nc = cr + dr, cc + dc\n                            if 0 <= nr < h and 0 <= nc < w and grid[nr, nc] != 0 and not vis[nr, nc]:\n                                vis[nr, nc] = True\n                                q.append((nr, nc))\n                if any(grid[pr, pc] == body_color for pr, pc in pts):\n                    rs = [p[0] for p in pts]\n                    cs = [p[1] for p in pts]\n                    r0, r1, c0, c1 = min(rs), max(rs) + 1, min(cs), max(cs) + 1\n                    sub = np.zeros((r1 - r0, c1 - c0), dtype=grid.dtype)\n                    for pr, pc in pts:\n                        sub[pr - r0, pc - c0] = grid[pr, pc]\n                    templates.append(sub)\n                else:\n                    for pr, pc in pts:\n                        dot_list.append((pr, pc, int(grid[pr, pc])))\n    res = np.zeros_like(grid)\n    for tmpl in templates:\n        transforms = []\n        for k in range(4):\n            rot = np.rot90(tmpl, k)\n            transforms.append(rot)\n            transforms.append(np.fliplr(rot))\n        placed = False\n        for t in transforms:\n            if placed:\n                break\n            th, tw = t.shape\n            anchors = [(r, c, int(t[r, c])) for r in range(th) for c in range(tw) if t[r, c] != 0 and t[r, c] != body_color]\n            if not anchors:\n                continue\n            ar, ac, acol = anchors[0]\n            for dr, dc, dcol in dot_list:\n                if acol == dcol:\n                    sr, sc = dr - ar, dc - ac\n                    if all((sr + a2r, sc + a2c, a2col) in dot_list for a2r, a2c, a2col in anchors):\n                        for rr in range(th):\n                            for cc in range(tw):\n                                if t[rr, cc] != 0 and 0 <= sr + rr < res.shape[0] and 0 <= sc + cc < res.shape[1]:\n                                    res[sr + rr, sc + cc] = t[rr, cc]\n                        placed = True\n                        break\n    return res"
+    },
+    {
+      "id": "10fcaaa3",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.013260000000000001,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    tiled = F3Primitives.tile_grid(grid, 2, 2)\n    res = tiled.copy()\n    h, w = tiled.shape\n    for r in range(h):\n        for c in range(w):\n            if tiled[r, c] != 0:\n                for dr, dc in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:\n                    if 0 <= r + dr < h and 0 <= c + dc < w and res[r + dr, c + dc] == 0:\n                        res[r + dr, c + dc] = 8\n    return res"
+    },
+    {
+      "id": "11852cab",
+      "train_solved": true,
+      "test_correct": true,
+      "solved_in_cycle": 1,
+      "best_score": 1.0,
+      "free_energy": 0.05,
+      "winning_code": "def transform(grid: np.ndarray) -> np.ndarray:\n    coords = np.argwhere(grid != 0)\n    rmin, cmin = coords.min(axis=0)\n    rmax, cmax = coords.max(axis=0)\n    res = grid.copy()\n    best_cr, best_cc = (rmin + rmax) / 2.0, (cmin + cmax) / 2.0\n    best_score = -1\n    for cr2 in range(int(2 * rmin), int(2 * rmax) + 1):\n        for cc2 in range(int(2 * cmin), int(2 * cmax) + 1):\n            cr, cc = cr2 / 2.0, cc2 / 2.0\n            ok = True\n            cnt = 0\n            for r in range(grid.shape[0]):\n                for c in range(grid.shape[1]):\n                    if grid[r, c] != 0:\n                        for nr, nc in [(int(round(2*cr - r)), c), (r, int(round(2*cc - c))), (int(round(cr + (c - cc))), int(round(cc + (r - cr))))]:\n                            if 0 <= nr < grid.shape[0] and 0 <= nc < grid.shape[1]:\n                                if grid[nr, nc] != 0 and grid[nr, nc] != grid[r, c]:\n                                    ok = False\n                                elif grid[nr, nc] == grid[r, c]:\n                                    cnt += 1\n                            else:\n                                ok = False\n            if ok and cnt > best_score:\n                best_score = cnt\n                best_cr, best_cc = cr, cc\n    cr, cc = best_cr, best_cc\n    for _ in range(3):\n        pts = np.argwhere(res != 0)\n        for r, c in pts:\n            val = res[r, c]\n            for nr, nc in [\n                (int(round(2*cr - r)), c),\n                (r, int(round(2*cc - c))),\n                (int(round(2*cr - r)), int(round(2*cc - c))),\n                (int(round(cr + (c - cc))), int(round(cc + (r - cr)))),\n                (int(round(cr - (c - cc))), int(round(cc - (r - cr))))\n            ]:\n                if 0 <= nr < grid.shape[0] and 0 <= nc < res.shape[1] and res[nr, nc] == 0:\n                    res[nr, nc] = val\n    return res"
+    }
+  ]
+}

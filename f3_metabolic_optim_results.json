@@ -1,0 +1,97 @@
+{
+  "config": {
+    "n_tasks": 5,
+    "classes_per_task": 2,
+    "input_dim": 64,
+    "hidden1_dim": 256,
+    "hidden2_dim": 128,
+    "samples_per_task_train": 120,
+    "samples_per_task_test": 60,
+    "epochs_per_task": 10,
+    "learning_rate": 0.045,
+    "mistake_margin": 0.18,
+    "ewc_lambda": 4.5,
+    "syngap_stiffness": 12.0,
+    "syngap_anchor_pull": 4.5,
+    "mdl_decay": 0.0001,
+    "seed": 42
+  },
+  "regimes": [
+    {
+      "regime": "sgd",
+      "final_average_accuracy_pct": 44.33,
+      "forgetting_ratio_pct": 69.58,
+      "saved_synaptic_updates_pct": 0.0,
+      "total_forward_steps": 6000,
+      "total_synaptic_updates": 6000,
+      "total_skipped_updates": 0,
+      "m1_metabolic_cost_l1": 3433.87,
+      "final_task_accuracies": [
+        0.0,
+        43.33,
+        43.33,
+        35.0,
+        100.0
+      ],
+      "elapsed_sec": 0.915,
+      "label": "Baseline 1 — SGD/Adam Padrão"
+    },
+    {
+      "regime": "ewc",
+      "final_average_accuracy_pct": 90.67,
+      "forgetting_ratio_pct": 11.25,
+      "saved_synaptic_updates_pct": 0.0,
+      "total_forward_steps": 6000,
+      "total_synaptic_updates": 6000,
+      "total_skipped_updates": 0,
+      "m1_metabolic_cost_l1": 7986.85,
+      "final_task_accuracies": [
+        65.0,
+        98.33,
+        100.0,
+        91.67,
+        98.33
+      ],
+      "elapsed_sec": 2.321,
+      "label": "Baseline 2 — EWC Clássico (Elastic Weight Consolidation)"
+    },
+    {
+      "regime": "mistake_gating",
+      "final_average_accuracy_pct": 50.67,
+      "forgetting_ratio_pct": 61.25,
+      "saved_synaptic_updates_pct": 95.97,
+      "total_forward_steps": 6000,
+      "total_synaptic_updates": 242,
+      "total_skipped_updates": 5758,
+      "m1_metabolic_cost_l1": 3040.31,
+      "final_task_accuracies": [
+        0.0,
+        65.0,
+        43.33,
+        45.0,
+        100.0
+      ],
+      "elapsed_sec": 0.293,
+      "label": "Baseline 3 — Memorized Mistake Gating Puro (arXiv:2604.14336)"
+    },
+    {
+      "regime": "f3_metabolic",
+      "final_average_accuracy_pct": 91.67,
+      "forgetting_ratio_pct": 9.17,
+      "saved_synaptic_updates_pct": 93.47,
+      "total_forward_steps": 6000,
+      "total_synaptic_updates": 392,
+      "total_skipped_updates": 5608,
+      "m1_metabolic_cost_l1": 2736.81,
+      "final_task_accuracies": [
+        75.0,
+        95.0,
+        96.67,
+        95.0,
+        96.67
+      ],
+      "elapsed_sec": 1.06,
+      "label": "F3-Metabolic-Optim Completo (SynGAP + Mistake Gating + Tensor M)"
+    }
+  ]
+}

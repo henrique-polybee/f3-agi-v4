@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 860" width="1480" height="860">
+<style>text { font-family: 'Segoe UI', 'Inter', 'Helvetica Neue', Roboto, Arial, sans-serif; text-rendering: geometricPrecision; }rect, line, polyline { shape-rendering: geometricPrecision; }</style>
+<rect width="100%" height="100%" fill="#F8FAFC"/>
+<text x="740" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Figure 2 — Blind Evaluation on ARC-AGI Evaluation Split: N=50 Progression and Full N=400 Benchmark</text>
+<text x="740" y="70" text-anchor="middle" font-size="14" fill="#475569">Calibration Slice (N=50): 38.0% | Uninspected Hold-Out (N=350): 10.86% | Full N=400: 56 pass@1 / 57 pass@2 (14.25%) | Speedup 31.3x</text>
+<rect x="40" y="98" width="450" height="715" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="60" y="132" font-size="16" font-weight="700" fill="#0F172A">A. Calibration Slice Progression (N = 50)</text>
+<line x1="92" y1="178" x2="466" y2="178" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="182" text-anchor="end" font-size="11" fill="#64748B">55%</text>
+<line x1="92" y1="288" x2="466" y2="288" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="292" text-anchor="end" font-size="11" fill="#64748B">44%</text>
+<line x1="92" y1="398" x2="466" y2="398" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="402" text-anchor="end" font-size="11" fill="#64748B">33%</text>
+<line x1="92" y1="508" x2="466" y2="508" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="512" text-anchor="end" font-size="11" fill="#64748B">22%</text>
+<line x1="92" y1="618" x2="466" y2="618" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="622" text-anchor="end" font-size="11" fill="#64748B">11%</text>
+<line x1="92" y1="728" x2="466" y2="728" stroke="#E2E8F0" stroke-width="1"/>
+<text x="84" y="732" text-anchor="end" font-size="11" fill="#64748B">0%</text>
+<rect x="116" y="648" width="40" height="80" rx="4" fill="#3B82F6"/>
+<text x="136" y="641" text-anchor="middle" font-size="12" font-weight="700" fill="#1D4ED8">8%</text>
+<text x="136" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H2</text>
+<rect x="162" y="548" width="40" height="180" rx="4" fill="#F59E0B"/>
+<text x="182" y="541" text-anchor="middle" font-size="12" font-weight="700" fill="#B45309">18%</text>
+<text x="182" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H3</text>
+<rect x="208" y="348" width="40" height="380" rx="4" fill="#10B981"/>
+<text x="228" y="341" text-anchor="middle" font-size="12" font-weight="700" fill="#047857">38%</text>
+<text x="228" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H5</text>
+<text x="182" y="768" text-anchor="middle" font-size="13" font-weight="700" fill="#1E293B">Exact Blind Test</text>
+<rect x="301" y="488" width="40" height="240" rx="4" fill="#3B82F6"/>
+<text x="321" y="481" text-anchor="middle" font-size="12" font-weight="700" fill="#1D4ED8">24%</text>
+<text x="321" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H2</text>
+<rect x="347" y="428" width="40" height="300" rx="4" fill="#F59E0B"/>
+<text x="367" y="421" text-anchor="middle" font-size="12" font-weight="700" fill="#B45309">30%</text>
+<text x="367" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H3</text>
+<rect x="393" y="348" width="40" height="380" rx="4" fill="#10B981"/>
+<text x="413" y="341" text-anchor="middle" font-size="12" font-weight="700" fill="#047857">38%</text>
+<text x="413" y="746" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">H5</text>
+<text x="367" y="768" text-anchor="middle" font-size="13" font-weight="700" fill="#1E293B">Stratum >= 90%</text>
+<rect x="510" y="98" width="560" height="715" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="530" y="132" font-size="16" font-weight="700" fill="#0F172A">B. Score Distribution &amp; Full Official Benchmark N=400</text>
+<line x1="562" y1="168" x2="1044" y2="168" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="172" text-anchor="end" font-size="11" fill="#64748B">100%</text>
+<line x1="562" y1="242" x2="1044" y2="242" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="246" text-anchor="end" font-size="11" fill="#64748B">90%</text>
+<line x1="562" y1="316" x2="1044" y2="316" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="320" text-anchor="end" font-size="11" fill="#64748B">80%</text>
+<line x1="562" y1="390" x2="1044" y2="390" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="394" text-anchor="end" font-size="11" fill="#64748B">70%</text>
+<line x1="562" y1="464" x2="1044" y2="464" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="468" text-anchor="end" font-size="11" fill="#64748B">60%</text>
+<line x1="562" y1="538" x2="1044" y2="538" stroke="#E2E8F0" stroke-width="1"/>
+<text x="554" y="542" text-anchor="end" font-size="11" fill="#64748B">50%</text>
+<polyline fill="none" stroke="#3B82F6" stroke-width="2.5" points="562,168 571,168 581,168 591,168 601,180 611,181 621,207 630,211 640,213 650,223 660,223 670,241 680,258 689,259 699,265 709,275 719,283 729,285 739,296 748,299 758,300 768,313 778,318 788,322 798,325 807,335 817,341 827,348 837,350 847,373 857,377 866,381 876,383 886,409 896,421 906,427 916,438 925,438 935,444 945,446 955,449 965,481 975,530 984,538 994,538 1004,538 1014,538 1024,538 1034,538 1044,538"/>
+<polyline fill="none" stroke="#F59E0B" stroke-width="2.8" points="562,168 571,168 581,168 591,168 601,168 611,168 621,168 630,168 640,168 650,180 660,211 670,213 680,223 689,223 699,241 709,259 719,275 729,282 739,285 748,296 758,299 768,300 778,313 788,322 798,325 807,335 817,342 827,348 837,350 847,373 857,377 866,381 876,383 886,409 896,428 906,431 916,438 925,438 935,444 945,444 955,449 965,478 975,538 984,538 994,538 1004,538 1014,538 1024,538 1034,538 1044,538"/>
+<polyline fill="none" stroke="#10B981" stroke-width="3.5" points="562,168 571,168 581,168 591,168 601,168 611,168 621,168 630,168 640,168 650,168 660,168 670,168 680,168 689,168 699,168 709,168 719,168 729,168 739,168 748,275 758,277 768,285 778,296 788,299 798,300 807,313 817,322 827,325 837,335 847,342 857,348 866,350 876,373 886,377 896,381 906,383 916,417 925,418 935,431 945,434 955,444 965,449 975,466 984,538 994,538 1004,538 1014,538 1024,538 1034,538 1044,538"/>
+<line x1="919" y1="185" x2="941" y2="185" stroke="#3B82F6" stroke-width="3.5"/>
+<text x="949" y="189" font-size="12" font-weight="700" fill="#3B82F6">H2 (8%)</text>
+<line x1="919" y1="207" x2="941" y2="207" stroke="#F59E0B" stroke-width="3.5"/>
+<text x="949" y="211" font-size="12" font-weight="700" fill="#F59E0B">H3 (18%)</text>
+<line x1="919" y1="229" x2="941" y2="229" stroke="#10B981" stroke-width="3.5"/>
+<text x="949" y="233" font-size="12" font-weight="700" fill="#10B981">H5 (38%)</text>
+<rect x="534" y="573" width="512" height="215" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+<text x="554" y="603" font-size="15" font-weight="700" fill="#065F46">Full ARC-AGI-1 Official Evaluation Benchmark (N = 400)</text>
+<text x="554" y="647" font-size="14" font-weight="700" fill="#1E293B">pass@1:</text>
+<rect x="629" y="627" width="140" height="26" rx="5" fill="#059669"/>
+<text x="779" y="646" font-size="13" font-weight="700" fill="#065F46">56/400 (14.00%)</text>
+<text x="554" y="691" font-size="14" font-weight="700" fill="#1E293B">pass@2:</text>
+<rect x="629" y="671" width="143" height="26" rx="5" fill="#10B981"/>
+<text x="782" y="690" font-size="13" font-weight="700" fill="#047857">57/400 (14.25%)</text>
+<text x="554" y="731" font-size="12" font-weight="600" fill="#334155">Calibration Slice (N=50): 19/50 (38.0%) | Hold-Out Uninspected (N=350): 38/350 (10.86%)</text>
+<text x="554" y="759" font-size="12" font-weight="600" fill="#0F172A">Second-Attempt Rescues: +1 task | 100% Offline CPU (&lt;400 MB RAM, Zero LLM Calls)</text>
+<rect x="1090" y="98" width="355" height="715" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="1110" y="132" font-size="16" font-weight="700" fill="#0F172A">C. Mean Latency per Task (sec)</text>
+<rect x="1114" y="152" width="307" height="46" rx="8" fill="#ECFDF5" stroke="#10B981"/>
+<text x="1267.5" y="181" text-anchor="middle" font-size="16" font-weight="700" fill="#047857">Overall Speedup: 31.3x</text>
+<rect x="1144" y="307" width="64" height="421" rx="5" fill="#EF4444"/>
+<text x="1176" y="299" text-anchor="middle" font-size="13" font-weight="700" fill="#B91C1C">50.61s</text>
+<text x="1176" y="752" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">H2 (N=50)</text>
+<rect x="1236" y="715" width="64" height="13" rx="5" fill="#F59E0B"/>
+<text x="1268" y="707" text-anchor="middle" font-size="13" font-weight="700" fill="#B45309">1.64s</text>
+<text x="1268" y="752" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">H3 (N=50)</text>
+<rect x="1328" y="715" width="64" height="13" rx="5" fill="#10B981"/>
+<text x="1360" y="707" text-anchor="middle" font-size="13" font-weight="700" fill="#047857">1.62s</text>
+<text x="1360" y="752" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">H5 (N=400)</text>
+</svg>
