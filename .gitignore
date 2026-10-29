@@ -39,6 +39,13 @@ scratch/
 # Raw benchmark dataset (downloaded separately)
 ARC-AGI/
 
+# Internal workspace configs & preliminary Portuguese documentation
+.agents/
+GEMINI.md
+guia_setup_f3_agi_v4.md
+*.docx
+*.pdf
+
 # OS generated files
 .DS_Store
 Thumbs.db
