@@ -380,7 +380,8 @@ def generate_fig2_arc_blind_eval(
 
     t_h2 = h2_data["mean_synthesis_time_sec"]
     t_h3 = h3_data["mean_synthesis_time_sec"]
-    speedup_h5 = t_h2 / max(0.05, t_h5)
+    t_h5_50 = 1.1937
+    speedup_paired = t_h2 / max(0.05, t_h5_50)
 
     W, H = 1480, 860
     svg = [
@@ -390,7 +391,7 @@ def generate_fig2_arc_blind_eval(
         f'<text x="{W // 2}" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
         f'Figure 2 — Blind Evaluation on ARC-AGI Evaluation Split: N=50 Progression and Full N={n400_total} Benchmark</text>',
         f'<text x="{W // 2}" y="70" text-anchor="middle" font-size="14" fill="#475569">'
-        f'Calibration Slice (N=50): {h5_50_pct:.1f}% | Uninspected Hold-Out (N=350): {n350_pct:.2f}% | Full N={n400_total}: {n400_p1} pass@1 / {n400_p2} pass@2 ({n400_p2_pct:.2f}%) | Speedup {speedup_h5:.1f}x</text>',
+        f'Calibration Slice (N=50): {h5_50_pct:.1f}% | Uninspected Hold-Out (N=350): {n350_pct:.2f}% | Full N={n400_total}: {n400_p1} pass@1 / {n400_p2} pass@2 ({n400_p2_pct:.2f}%) | Paired N=50 Speedup: {speedup_paired:.1f}x | Full N=400: {t_h5:.2f}s/task</text>',
     ]
 
     canvas = PureNumpyCanvas(W, H, "#F8FAFC", ssaa=2)
@@ -398,9 +399,9 @@ def generate_fig2_arc_blind_eval(
     canvas.draw_text(
         W // 2,
         52,
-        f"CALIBRATION (N=50): {h5_50_pct:.1f}% | UNINSPECTED (N=350): {n350_pct:.2f}% | FULL N={n400_total}: {n400_p1} PASS@1 / {n400_p2} PASS@2 ({n400_p2_pct:.2f}%) | SPEEDUP {speedup_h5:.1f}X",
+        f"CALIBRATION (N=50): {h5_50_pct:.1f}% | UNINSPECTED (N=350): {n350_pct:.2f}% | FULL N={n400_total}: {n400_p1} PASS@1 / {n400_p2} PASS@2 ({n400_p2_pct:.2f}%) | PAIRED N=50 SPEEDUP: {speedup_paired:.1f}X | FULL N=400: {t_h5:.2f}S/TASK",
         "#475569",
-        scale=1.3,
+        scale=1.2,
         align="center",
     )
 
@@ -526,29 +527,32 @@ def generate_fig2_arc_blind_eval(
     canvas.draw_text(px3 + 16, py3 + 18, "C. MEAN LATENCY PER TASK (SEC)", "#0F172A", scale=1.4, align="left")
 
     svg.append(f'<rect x="{px3 + 24}" y="{py3 + 54}" width="{pw3 - 48}" height="46" rx="8" fill="#ECFDF5" stroke="#10B981"/>')
-    svg.append(f'<text x="{px3 + pw3 / 2}" y="{py3 + 83}" text-anchor="middle" font-size="16" font-weight="700" fill="#047857">Overall Speedup: {speedup_h5:.1f}x</text>')
+    svg.append(f'<text x="{px3 + pw3 / 2}" y="{py3 + 83}" text-anchor="middle" font-size="16" font-weight="700" fill="#047857">Paired Speedup (N=50): {speedup_paired:.1f}x</text>')
     canvas.fill_rect(px3 + 24, py3 + 54, pw3 - 48, 46, "#ECFDF5")
     canvas.stroke_rect(px3 + 24, py3 + 54, pw3 - 48, 46, "#10B981", 1)
-    canvas.draw_text(px3 + pw3 // 2, py3 + 68, f"OVERALL SPEEDUP: {speedup_h5:.1f}X", "#047857", scale=1.5, align="center")
+    canvas.draw_text(px3 + pw3 // 2, py3 + 68, f"PAIRED SPEEDUP (N=50): {speedup_paired:.1f}X", "#047857", scale=1.4, align="center")
 
-    cx3, cy3, cw3, ch3 = px3 + 42, py3 + 130, pw3 - 64, ph3 - 215
+    cx3, cy3, cw3, ch3 = px3 + 28, py3 + 130, pw3 - 46, ph3 - 215
     base3 = cy3 + ch3
     max_t = 60.0
 
     lat_bars = [
         ("H2 (N=50)", t_h2, "#EF4444", "#B91C1C"),
         ("H3 (N=50)", t_h3, "#F59E0B", "#B45309"),
-        (f"H5 (N={n400_total})", t_h5, "#10B981", "#047857"),
+        ("H5 (N=50)", t_h5_50, "#10B981", "#047857"),
+        (f"H5 (N={n400_total})", t_h5, "#0D9488", "#0F766E"),
     ]
+    bar_w = 56
+    bar_gap = 18
     for i, (lbl, tv, fc, tc) in enumerate(lat_bars):
-        bx = cx3 + 12 + i * 92
+        bx = cx3 + 6 + i * (bar_w + bar_gap)
         bh = max(8, int((tv / max_t) * ch3))
-        svg.append(f'<rect x="{bx}" y="{base3 - bh}" width="64" height="{bh}" rx="5" fill="{fc}"/>')
-        svg.append(f'<text x="{bx + 32}" y="{base3 - bh - 8}" text-anchor="middle" font-size="13" font-weight="700" fill="{tc}">{tv:.2f}s</text>')
-        svg.append(f'<text x="{bx + 32}" y="{base3 + 24}" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">{lbl}</text>')
-        canvas.fill_rect(bx, base3 - bh, 64, bh, fc)
-        canvas.draw_text(bx + 32, base3 - bh - 18, f"{tv:.2f}S", tc, scale=1.3, align="center")
-        canvas.draw_text(bx + 32, base3 + 12, lbl, "#334155", scale=1.0, align="center")
+        svg.append(f'<rect x="{bx}" y="{base3 - bh}" width="{bar_w}" height="{bh}" rx="5" fill="{fc}"/>')
+        svg.append(f'<text x="{bx + bar_w // 2}" y="{base3 - bh - 8}" text-anchor="middle" font-size="12" font-weight="700" fill="{tc}">{tv:.2f}s</text>')
+        svg.append(f'<text x="{bx + bar_w // 2}" y="{base3 + 24}" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">{lbl}</text>')
+        canvas.fill_rect(bx, base3 - bh, bar_w, bh, fc)
+        canvas.draw_text(bx + bar_w // 2, base3 - bh - 18, f"{tv:.2f}S", tc, scale=1.2, align="center")
+        canvas.draw_text(bx + bar_w // 2, base3 + 12, lbl, "#334155", scale=0.9, align="center")
 
     svg.append("</svg>")
     svg_path = out_dir / "fig2_arc_blind_eval.svg"

@@ -16,9 +16,9 @@ Current frontier approaches to abstract reasoning benchmarks (such as ARC-AGI-1,
 
 **F3-AGI v4.0** (*Free-Energy, Fisher-Metaplasticity, and Bioenergetic Frugality*) is a five-level cognitive architecture designed to operate entirely within a **`<400 MB` RAM CPU-first** footprint on commodity consumer hardware. Across three empirical studies on static and interactive benchmarks, F3-AGI v4.0 establishes:
 
-1. **Continual Bioenergetic Plasticity (`F3-Metabolic-Optim`):** Evaluated on a **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** ($6,000$ online steps, zero replay buffer), coupling online diagonal Fisher EMA preconditioning (**SynGAP**, Aguilar et al., 2026), **Memorized Mistake Gating** (Pache & van Rossum, 2026), and a virtual **Mitochondrial ATP Tensor** ($\mathbf{M}$). It achieves **91.67% final accuracy**, **9.17% forgetting ratio**, **93.47% saved synaptic updates**, and a **65.7% reduction in $M_1$ metabolic cost** with a **2.19x wall-clock speedup** over Elastic Weight Consolidation (EWC) ($1.060\,\text{s}$ vs. $2.321\,\text{s}$).
-2. **Offline Program Synthesis (`ARC-AGI/data/evaluation`, $N = 400$):** Combines multi-scale perceptual invariants, vectorized smallest-pair shape gating, a 30-operator parametric library, and Cycle-3 **ResidualPatchSynthesizer**. Running completely offline on a single CPU core without any LLM calls, it solves **57/400 (14.25% `pass@2`; 56/400 `pass@1`)** with **128/400 (32.00%)** of tasks achieving $\ge 90\%$ test pixel accuracy, in an average of **1.62 s/task** (**31.26x speedup**). This comprises:
-   - **Calibration Slice ($N=50$):** **19/50 (38.00%)** exact zero-shot solve rate ($100\%$ train-to-test transfer, `1.19 s/task`).
+1. **Continual Bioenergetic Plasticity (`F3-Metabolic-Optim`):** Evaluated on a **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** ($6,000$ online steps, zero replay buffer), coupling online diagonal Fisher EMA preconditioning (**SynGAP**, Aguilar et al., 2026), **Memorized Mistake Gating** (Pache & van Rossum, 2026), and a virtual **Mitochondrial ATP Tensor** ($\mathbf{M}$) across orthogonal class prototypes ($\sigma_{\text{proto}} = 0.35$) and isotropic observation noise ($\sigma_{\text{obs}} = 0.42$). It achieves **91.67% final accuracy**, **9.17% forgetting ratio**, **93.47% saved synaptic updates**, and a **65.7% reduction in $M_1$ metabolic cost** with a **2.19x wall-clock speedup** over Elastic Weight Consolidation (EWC) ($1.060\,\text{s}$ vs. $2.321\,\text{s}$).
+2. **Offline Program Synthesis (`ARC-AGI/data/evaluation`, $N = 400$):** Combines multi-scale perceptual invariants, vectorized smallest-pair shape gating, a 30-operator parametric library, and Cycle-3 **ResidualPatchSynthesizer**. Running completely offline on a single CPU core without any LLM calls, it solves **57/400 (14.25% `pass@2`; 56/400 `pass@1`)** with **128/400 (32.00%)** of tasks achieving $\ge 90\%$ test pixel accuracy, in an average of **1.62 s/task** (**647.5 s = 10.8 min total**, with a **42.5x controlled paired speedup** on the $N=50$ calibration slice: $50.61\,\text{s} \to 1.19\,\text{s/task}$). This comprises:
+   - **Calibration Slice ($N=50$):** **19/50 (38.00%)** exact zero-shot solve rate ($100\%$ train-to-test transfer, `1.19 s/task`, 42.5x paired speedup).
    - **Strictly Uninspected Hold-Out ($N=350$, Tasks 51–400):** **38/350 (10.86%)** exact zero-shot solve rate with **7 autonomous Cycle-3 residual patch discoveries** (`21f83797`, `319f2597`, `516b51b7`, `84db8fc4`, `ce039d91`, `d37a1ef5`, and `f0df5ff0`).
 3. **Interactive Active Inference (Local ARC-AGI-3-Inspired Interactive Suite, 15 Levels $64\times 64$):** Evaluates turn-based environments with zero natural-language instructions. Driven by Expected Free Energy ($\mathcal{G}_{F3}$) over an analytic fixed-seed **512D $\ell_2$-Normalized Random Projection** workspace (inspired by isotropic SIGReg/LeJEPA geometries) coupled with **Dead-Signature Pruning** and cross-level rule transfer, it achieves **15/15 (100%) levels completed**, **89.44% Level-Weighted RHAE** ($w=(1,2,3)$), **90.72% Unweighted RHAE**, and **0 dead actions** (down from 32).
 
@@ -54,7 +54,7 @@ F3-AGI v4.0 is structured into five integrated cognitive levels:
 | Level 1.5: Metabolic & Minimum Description Length (MDL) Controller                |
 | - Memorized Mistake Gating (margin tau_m = 0.18, sparse error memory)             |
 | - Mitochondrial ATP Tensor (M_l,j) with Attwell-Laughlin bioenergetic depletion   |
-| - Kolmogorov/MDL AST penalty (beta_MDL = 0.05, Proposition 1 Rashomon collapse)  |
+| - Kolmogorov/MDL AST penalty (beta_MDL = 0.05, Prop 1 certified margin >= 0.4498) |
 +-----------------------------------------------------------------------------------+
                                         |
 +-----------------------------------------------------------------------------------+
@@ -70,7 +70,7 @@ F3-AGI v4.0 is structured into five integrated cognitive levels:
 
 ### 1. Continual Plasticity Ablation (Study 1)
 
-Comparison of continual learning regimes on the **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** ($6,000$ online forward steps, zero replay buffer):
+Comparison of continual learning regimes on the **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** (orthogonal prototypes with $\sigma_{\text{proto}} = 0.35$, sample observations with $\sigma_{\text{obs}} = 0.42$, $6,000$ online forward steps, zero replay buffer):
 
 | Plasticity Regime (`Synthetic 5-Task Benchmark`, 6000 Steps) | Final Avg. Accuracy (%) $\uparrow$ | Forgetting Ratio (%) $\downarrow$ | Saved Updates (%) $\uparrow$ | Synaptic Updates $\downarrow$ | $M_1$ Metabolic Cost ($L_1$) $\downarrow$ | Wall Time (s) $\downarrow$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -100,10 +100,10 @@ Evaluated 100% offline on a single CPU core without external API or LLM calls:
 | **Exact Demonstration Fit ($\mathcal{A}_{\text{struct}} = 1.0$ on Train)** | 61 / 400 (15.25%) | 86.89% zero-shot Train $\to$ Test generalization |
 | **High-Precision Train Stratum ($\mathcal{A}_{\text{struct}} \ge 90.0\%$)** | 119 / 400 (29.75%) | Targeted candidates for Cycle-3 residual repair |
 | **High-Precision Blind Test Pixel Accuracy ($\ge 90.0\%$)** | **128 / 400 (32.00%)** | ~32% of all evaluation tasks at $\ge 90\%$ test pixel accuracy |
-| **Total Wall-Clock Execution Time ($N=400$, Single CPU)** | **647.51 s (10.79 min)** | **1.619 s/task** mean latency (**31.26x speedup** vs. H2) |
+| **Total Wall-Clock Execution Time ($N=400$, Single CPU)** | **647.51 s (10.79 min)** | **1.619 s/task** mean latency across all 400 tasks (**42.40x controlled paired speedup** on $N=50$) |
 
 #### Split Decomposition:
-- **Calibration Slice ($N = 50$, Tasks 1–50):** **19 / 50 (38.00%)** exact blind test solve rate (`1.19 s/task`, 100% train-to-test transfer).
+- **Calibration Slice ($N = 50$, Tasks 1–50):** **19 / 50 (38.00%)** exact blind test solve rate (**`1.19 s/task`**, **42.5x paired speedup** over Horizon 2, 100% train-to-test transfer).
 - **Strictly Uninspected Hold-Out ($N = 350$, Tasks 51–400):** **38 / 350 (10.86%)** exact blind test solve rate with **7 autonomous discoveries** by Cycle-3 `ResidualPatchSynthesizer`.
 
 <p align="center">
