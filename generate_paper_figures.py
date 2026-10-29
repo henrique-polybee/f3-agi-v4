@@ -584,7 +584,7 @@ def generate_fig3_arc3_interactive_ablation(arc3_data: dict, out_dir: Path) -> T
 
     top_panels = [
         ("A. Levels Cleared (/15)", [a["completed_levels"] for a in agents], 15.0, "/15"),
-        ("B. Level-Weighted RHAE (%)", [a.get("weighted_rhae_pct", a.get("level_weighted_rhae_pct", a["official_rhae_pct"])) for a in agents], 100.0, "%"),
+        ("B. Local Interactive Suite — RHAE-style Score (%)", [a.get("weighted_rhae_pct", a.get("level_weighted_rhae_pct", a["official_rhae_pct"])) for a in agents], 100.0, "%"),
         ("C. Wasted Dead Actions", [a["total_dead_actions"] for a in agents], 130.0, ""),
     ]
 
@@ -622,10 +622,10 @@ def generate_fig3_arc3_interactive_ablation(arc3_data: dict, out_dir: Path) -> T
     px4, py4, pw4, ph4 = 50, 490, 1300, 330
     svg.append(f'<rect x="{px4}" y="{py4}" width="{pw4}" height="{ph4}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>')
     svg.append(f'<text x="{px4 + 24}" y="{py4 + 36}" font-size="16" font-weight="700" fill="#0F172A">'
-               f'D. Level-Weighted RHAE (%) by Game Across 5 Environments (EFE w/o Dead-Signature vs. F3-AGI v4.0 Complete)</text>')
+               f'D. Local Interactive Suite — RHAE-style Score (%) by Game Across 5 Environments (EFE w/o Dead-Signature vs. F3-AGI v4.0 Complete)</text>')
     canvas.fill_rect(px4, py4, pw4, ph4, "#FFFFFF")
     canvas.stroke_rect(px4, py4, pw4, ph4, "#CBD5E1", 2)
-    canvas.draw_text(px4 + 24, py4 + 18, "D. LEVEL-WEIGHTED RHAE (%) BY GAME (EFE W/O DEAD VS F3-AGI V4.0 COMPLETE)", "#0F172A", scale=1.5, align="left")
+    canvas.draw_text(px4 + 24, py4 + 18, "D. LOCAL INTERACTIVE SUITE - RHAE-STYLE SCORE (%) BY GAME (EFE W/O DEAD VS F3-AGI V4.0 COMPLETE)", "#0F172A", scale=1.4, align="left")
 
     games_ag3 = agents[2]["games"]
     games_ag4 = agents[3]["games"]

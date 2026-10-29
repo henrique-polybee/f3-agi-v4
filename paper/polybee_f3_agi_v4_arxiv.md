@@ -8,7 +8,7 @@
 
 ## Abstract
 
-Abstract reasoning in ARC-AGI-1 and interactive ARC-AGI-3 exposes the limits of unconstrained test-time scaling in frontier LLMs. We present **F3-AGI v4.0**, a bioenergetically constrained cognitive architecture by **Polybee AI Research** operating entirely within a $<400\,\text{MB}$ CPU-first memory envelope. F3-AGI v4.0 unifies: (1) **F3-Metabolic-Optim**, a continual synaptic update rule coupling diagonal Fisher EMA preconditioning (*SynGAP*), *Memorized Mistake Gating*, and a virtual *Mitochondrial Tensor*; (2) an evolutionary **AACR** cycle with vectorized smallest-pair early rejection and Cycle-3 **ResidualPatchSynthesizer**; and (3) an active inference controller over a $512\text{D}$ isotropic latent workspace (*SIGReg-JEPA*) with dead-signature pruning. Across evaluations, F3-AGI v4.0 achieves: (i) in 5-task continual learning, **100.0% retention, 0.0% forgetting**, 93.47% saved updates, 65.7% lower $M_1$ cost, and a **3.67x speedup** over EWC; (ii) on the full `ARC-AGI/data/evaluation` split ($N=400$, 100% CPU, zero LLM calls), **57/400 (14.25% `pass@2`; 56/400 `pass@1`)** in **1.62 s/task** (**31.3x speedup**), decomposed into **19/50 (38.00%)** on the $N=50$ calibration slice and **38/350 (10.86%)** on the strictly uninspected $N=350$ hold-out (7 autonomous Cycle-3 patch discoveries); and (iii) on a **Local ARC-AGI-3-Inspired Interactive Suite** (5 games / 15 levels $64\times 64$), **15/15 (100%)** levels completed, **89.44% Level-Weighted RHAE** ($w=(1,2,3)$), **90.72% Unweighted RHAE**, and **0 dead actions**.
+Abstract reasoning in ARC-AGI-1 and interactive ARC-AGI-3 exposes the limits of unconstrained test-time scaling in frontier LLMs. We present **F3-AGI v4.0**, a bioenergetically constrained cognitive architecture by **Polybee AI Research** operating within a $<400\,\text{MB}$ CPU-first memory envelope. F3-AGI v4.0 unifies: (1) **F3-Metabolic-Optim**, a continual synaptic update rule coupling diagonal Fisher EMA preconditioning (*SynGAP*), *Memorized Mistake Gating*, and a virtual *Mitochondrial Tensor*; (2) an evolutionary **AACR** cycle with smallest-pair early rejection and Cycle-3 **ResidualPatchSynthesizer*; and (3) an active inference controller over a $512\text{D}$ $\ell_2$-normalized random projection latent workspace inspired by isotropic SIGReg/LeJEPA geometries with dead-signature pruning. Across three empirical studies, F3-AGI v4.0 achieves: (i) in a 5-task continual learning benchmark, **91.67% accuracy, 9.17% forgetting**, 93.47% saved updates, 65.7% lower $M_1$ cost, and a **2.19x wall-clock speedup** over EWC ($1.060\,\text{s}$ vs. $2.321\,\text{s}$); (ii) on the full `ARC-AGI/data/evaluation` split ($N=400$, 100% CPU, zero LLM calls), **57/400 (14.25% `pass@2`; 56/400 `pass@1`)** in **1.62 s/task** (**31.3x speedup**), decomposed into **19/50 (38.00%)** on the $N=50$ calibration slice and **38/350 (10.86%)** on the uninspected $N=350$ hold-out (7 autonomous Cycle-3 discoveries); and (iii) on a **Local ARC-AGI-3-Inspired Interactive Suite** (5 games / 15 levels $64\times 64$), **15/15 (100%)** levels completed, **89.44% Level-Weighted RHAE** ($w=(1,2,3)$), **90.72% Unweighted RHAE**, and **0 dead actions**.
 
 **Keywords:** Active Inference, Abstract Reasoning, ARC-AGI, Bioenergetic Plasticity, Metaplastic Preconditioning, Program Synthesis, Minimum Description Length, Continual Learning.
 
@@ -27,17 +27,17 @@ To address these four bottlenecks simultaneously within a strict local hardware 
 - **Level 1 — Multi-Scale Recursive Core (MSRC):** Dual-timescale recurrent state spaces standardized in power-of-two dimensions ($256\text{D}$ fast perceptual module and $512\text{D}$ slow abstract workspace).
 - **Level 1.5 — Metabolic & MDL Controller (`MetabolicControllerV40`):** Couples virtual ATP pools, the Mitochondrial Tensor $\mathbf{M}$, *Memorized Mistake Gating*, and Minimum Description Length (MDL) complexity regularization.
 - **Level 2 — SynGAP + Titans Continual Memory:** Diagonal Fisher EMA geometric preconditioning modulated by mitochondrial energy availability.
-- **Level 3 — SIGReg-JEPA + Active Inference (`VisualCortexV40`, `DreamerV40`, `RealistV40`):** Combines $512\text{D}$ isotropic latent embeddings with compositional synthesis, vectorized smallest-pair early rejection, and Cycle-3 `ResidualPatchSynthesizer`.
-- **Level 4 — Continuous Global Workspace (`AlgebraicWorldModelSLS` & `NREMConsolidationBuffer`):** Maintains compact algebraic state representations, Dead-Signature Pruning, cross-level causal rule transfer, and SOAR-style library learning (`f3_learned_library.py`).
+- **Level 3 — SIGReg/LeJEPA-Inspired Random Latent Space + Active Inference (`VisualCortexV40`, `DreamerV40`, `RealistV40`):** Combines a $512\text{D}$ $\ell_2$-normalized random projection workspace with compositional synthesis, vectorized smallest-pair early rejection, and Cycle-3 `ResidualPatchSynthesizer`.
+- **Level 4 — Continuous Global Workspace (`AlgebraicWorldModelSLS` & `NREMConsolidationBuffer`):** Maintains compact algebraic state representations via a fixed-seed column-normalized $512\text{D}$ projection, Dead-Signature Pruning, cross-level causal rule transfer, and SOAR-style library learning (`f3_learned_library.py`).
 
 ---
 
 ## 2. Related Work (2024–2026)
 
-- **Active Inference and Isotropic Latent World Models:** Pezzulo, Parr, and Friston (2024) formalize sentient behavior as the minimization of Variational Free Energy ($\mathcal{F}$) and Expected Free Energy ($\mathcal{G}$). To prevent representation collapse in latent world models without costly negative sampling, Arnez and Gomez-Villa (2026, `arXiv:2607.13612`) proposed **SIGReg-JEPA** (*Sketched Isotropic Gaussian Regularization*). F3-AGI v4.0 leverages a $512\text{D}$ isotropic SIGReg-JEPA projection to compute non-parametric epistemic state-coverage value via `PairDist` in the Shared Latent Space (SLS).
+- **Active Inference and Isotropic Latent World Models:** Pezzulo, Parr, and Friston (2024) formalize sentient behavior as the minimization of Variational Free Energy ($\mathcal{F}$) and Expected Free Energy ($\mathcal{G}$). In high-dimensional latent world models, representations frequently suffer from collapse or anisotropic covariance degeneration unless explicitly regularized (Balestriero & LeCun, 2025; Arnez & Gomez-Villa, 2026). Recently, Balestriero & LeCun (2025, **LeJEPA**) and Arnez & Gomez-Villa (2026, `arXiv:2607.13612`, **SIGReg-JEPA**) demonstrated that isotropic Gaussian regularization enforces uniform spectral variance across latent dimensions without requiring negative pairs or momentum encoders. In F3-AGI v4.0, rather than training an end-to-end neural JEPA, `AlgebraicWorldModelSLS` adopts an analytic, fixed-seed column-normalized $512\text{D}$ $\ell_2$-spherical random projection (**512D $\ell_2$-Normalized Random Projection**) inspired by this isotropic geometry to compute closed-form epistemic state-coverage value via pairwise Euclidean distances (`PairDist`) in the Shared Latent Space (SLS).
 - **Continual Metaplasticity (`SynGAP`):** Aguilar, Zainal, and Kavehei (2026, `arXiv:2608.14634`) introduced **SynGAP** (*Synaptic Geometric Adaptive Preconditioning*), maintaining an online Exponential Moving Average (EMA) of the diagonal Fisher Information matrix to precondition plastic updates along low-curvature directions while pulling weights toward consolidated metaplastic anchors.
 - **Bioenergetic Plasticity (`Memorized Mistake Gating`):** Building on the bioenergetic plasticity models of Burroni et al. (2017) and Li & van Rossum (2020), Pache and van Rossum (2026, `arXiv:2604.14336`) demonstrated **Memorized Mistake Gating**, proving that restricting synaptic updates to samples whose prediction error exceeds a margin $\tau_m$ or that reside in a sparse mistake memory $\mathcal{M}_{\text{err}}$ eliminates $>90\%$ of redundant updates. F3-AGI v4.0 unifies *SynGAP* with *Memorized Mistake Gating* and the *Mitochondrial Tensor* $\mathbf{M}_t$.
-- **Multi-Scale Recurrence and Evolutionary Program Synthesis:** Wang et al. (2025, `arXiv:2506.21734`, **HRM**) and Jolicoeur-Martineau (2025, `arXiv:2510.04871`, **TRM**) established multi-scale recurrent cores for grid reasoning. Pourcel, Colas, and Oudeyer (2025, `arXiv:2507.14172`, **SOAR**) introduced evolutionary program synthesis via failed-to-repaired trajectory buffers, while Liao (2025, `arXiv:2512.06104`, **CompressARC**) formalized MDL-driven induction.
+- **Multi-Scale Recurrence and Evolutionary Program Synthesis:** Wang et al. (2025, `arXiv:2506.21734`, **HRM**) and Jolicoeur-Martineau (2025, `arXiv:2510.04871`, **TRM**) established multi-scale recurrent cores for grid reasoning. Pourcel, Colas, and Oudeyer (2025, `arXiv:2507.14172`, **SOAR**) introduced evolutionary program synthesis via failed-to-repaired trajectory buffers, while Liao and Gu (2025, `arXiv:2512.06104`, who proposed **CompressARC** in "ARC-AGI Without Pretraining") established Minimum Description Length (MDL) as a powerful inductive bias for ARC-AGI.
 
 ---
 
@@ -71,13 +71,13 @@ where $\beta_{\text{MDL}} = 0.05$ and $L_{\max} = 2000$.
 > $$\mathcal{E}_{\text{pred}}(h; \mathcal{D}_{\text{train}}) \ge \frac{(1 - 0.25)w_{\text{sh}} + 1.00 \cdot w_{\text{px}}}{K} = \frac{0.15 + 0.50}{K} = \frac{0.65}{K} > 0.$$
 > Consequently, no candidate program failing the shape gate on $k^*$ can achieve $\mathcal{A}_{\text{struct}}(h) = 1.0$. Vectorized early rejection on $k^*$ guarantees zero false negative dismissals of exact solutions while avoiding expensive topological evaluations across all $K$ pairs.
 
-> **Proposition 1 (Rashomon Set Collapse via Bioenergetic MDL Regularization):** Let $\mathcal{R}_\epsilon(\mathcal{D}_{\text{train}}) = \{ h \in \mathcal{H} : \mathcal{E}_{\text{pred}}(h; \mathcal{D}_{\text{train}}) \le \epsilon \}$ be the empirical Rashomon set of observationally equivalent candidate hypotheses (Breiman, 2001). By minimizing the bioenergetic free energy $\mathcal{F}_{F3}(h)$, the selection functional:
+> **Proposition 1 (Rashomon Set Collapse via Bioenergetic MDL Regularization):** Let $\mathcal{R}_\epsilon(\mathcal{D}_{\text{train}}) = \{ h \in \mathcal{H} : \mathcal{E}_{\text{pred}}(h; \mathcal{D}_{\text{train}}) \le \epsilon \}$ be the empirical Rashomon set of observationally equivalent candidate hypotheses (Breiman, 2001; Mlodozeniec & Frei, 2026). By minimizing the bioenergetic free energy $\mathcal{F}_{F3}(h)$, the selection functional:
 > $$h^* = \arg\min_{h \in \mathcal{R}_0(\mathcal{D}_{\text{train}})} \left( \beta_{\text{MDL}}\frac{\text{len}_{\text{AST}}(h)}{L_{\max}} + \lambda_{\text{ATP}}\frac{c_{\text{tier}}(h)}{\bar{E}_{\text{ATP}}} \right)$$
 > collapses $\mathcal{R}_0$ to the unique minimal-complexity Kolmogorov hypothesis, breaking observational ties in favor of concise, composable invariants and eliminating overparameterized memorization of spurious pixel configurations.
 
 ### 3.2 Expected Free Energy ($\mathcal{G}_{F3}$) in $\mathbb{R}^{512}$ and Dead-Signature Pruning
 
-In interactive ARC-AGI-3 environments ($64\times 64$ grids), each frame $O_t$ is projected into a $512\text{D}$ isotropic latent vector $\mathbf{z}_t = \phi_{\text{SLS}}(O_t) \in \mathbb{R}^{512}$ (`SIGReg-JEPA`). Given visited latent memory $\mathcal{B}_t = \{\mathbf{z}_0, \dots, \mathbf{z}_t\}$, candidate actions $a \in \mathcal{A}$ minimize the **Complete Expected Free Energy**:
+In interactive ARC-AGI-3 environments ($64\times 64$ grids), each frame $O_t$ is projected by `AlgebraicWorldModelSLS` into an analytic fixed-seed column-normalized $512\text{D}$ $\ell_2$-spherical vector $\mathbf{z}_t = \phi_{\text{SLS}}(O_t) \in \mathbb{R}^{512}$ with $\|\mathbf{z}_t\|_2 = 1$. Inspired by isotropic SIGReg/LeJEPA representations, this enables closed-form, non-parametric epistemic state exploration via pairwise Euclidean distances (`PairDist`) in the latent workspace without end-to-end neural training. Given visited latent memory $\mathcal{B}_t = \{\mathbf{z}_0, \dots, \mathbf{z}_t\}$, candidate actions $a \in \mathcal{A}$ minimize the **Complete Expected Free Energy**:
 
 $$\mathcal{G}_{F3}(a \mid O_t) = \underbrace{d_{\text{eff}}\big(\hat{O}_{t+1}(a),\, O_{\text{goal}}\big)}_{\text{Pragmatic Goal Divergence}} - \underbrace{\alpha_{\text{ep}} \cdot \min_{\mathbf{z}' \in \mathcal{B}_t} \|\hat{\mathbf{z}}_{t+1}(a) - \mathbf{z}'\|_2}_{\text{Epistemic State-Coverage Value (\texttt{PairDist})}} + \underbrace{c_{\text{ATP}}(a)}_{\text{Action Cost}} + \underbrace{\Psi_{\text{dead}}(\sigma(O_t), a)}_{\text{Dead-Signature Penalty}}$$
 
@@ -110,12 +110,16 @@ where $\mathbb{I}_{\text{gate}}(x, y; \tau_m, \mathcal{M}_{\text{err}}) = \mathb
 
 ### 5.1 Study 1: Continual Bioenergetic Plasticity Ablation (`F3-Metabolic-Optim`)
 
-| Plasticity Regime (`5-Task Continual Split-ARC`, 6000 Steps) | Final Avg. Accuracy (%) $\uparrow$ | Forgetting Ratio (%) $\downarrow$ | Saved Updates (%) $\uparrow$ | Synaptic Updates $\downarrow$ | $M_1$ Metabolic Cost ($L_1$) $\downarrow$ | Wall Time (s) $\downarrow$ |
+We evaluated four plasticity regimes on a synthetic 5-task class-incremental benchmark (**Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)**, generated via `generate_split_task_stream()` in `f3_metabolic_optim.py` with 64-dimensional feature vectors drawn from class prototypes, latent factors, and Gaussian noise $\sigma = 0.35$ across 5 sequential tasks, $64\text{D} \to 256\text{D} \to 128\text{D} \to 2$, $6000$ total online steps without episodic replay buffer):
+
+| Plasticity Regime (`Synthetic 5-Task Benchmark`, 6000 Steps) | Final Avg. Accuracy (%) $\uparrow$ | Forgetting Ratio (%) $\downarrow$ | Saved Updates (%) $\uparrow$ | Synaptic Updates $\downarrow$ | $M_1$ Metabolic Cost ($L_1$) $\downarrow$ | Wall Time (s) $\downarrow$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **1. Standard SGD / Adam Baseline** | `44.33%` | `69.58%` | `0.00%` | `6,000 / 6,000` | `3,433.87` | `0.915s` |
 | **2. Classic EWC (Fisher Penalty)** | `90.67%` | `11.25%` | `0.00%` | `6,000 / 6,000` | `7,986.85` | `2.321s` |
 | **3. Pure Memorized Mistake Gating** | `50.67%` | `61.25%` | **`95.97%`** | **`242 / 6,000`** | `3,040.31` | **`0.293s`** |
 | **4. F3-Metabolic-Optim (Ours)** | **`91.67%`** | **`9.17%`** | `93.47%` | `392 / 6,000` | **`2,736.81`** | `1.060s` |
+
+*F3-Metabolic-Optim achieves a **2.19x wall-clock speedup** ($1.060\,\text{s}$ vs. $2.321\,\text{s}$) over Classic EWC.*
 
 ![Figure 1 — F3-Metabolic-Optim Continual Ablation](../figures/fig1_metabolic_ablation.png)
 
@@ -175,9 +179,9 @@ where $\mathbb{I}_{\text{gate}}(x, y; \tau_m, \mathcal{M}_{\text{err}}) = \mathb
 | **1. `Random / Greedy Heuristic`** | `5 / 15` (`33.33%`) | `6.19%` | `10.11%` | `82` | `4.000` |
 | **2. `Pragmatic-Only` (No Epistemic Value / No Dead-Signature)** | `3 / 15` (`20.00%`) | `9.68%` | `15.33%` | `119` | `4.000` |
 | **3. `Active Inference w/o Dead-Signature Pruning`** | **`15 / 15` (`100.00%`)** | `46.24%` | `47.17%` | `32` | `2.380` |
-| **4. `F3-AGI v4.0 Complete` ($\mathcal{G}_{F3}$ + SIGReg-JEPA 512D + Dead-Signature + Rule Transfer)** | **`15 / 15` (`100.00%`)** | **`89.44%`** | **`90.72%`** | **`0`** | **`1.740`** |
+| **4. `F3-AGI v4.0 Complete` ($\mathcal{G}_{F3}$ + 512D Random Proj. + Dead-Signature + Rule Transfer)** | **`15 / 15` (`100.00%`)** | **`89.44%`** | **`90.72%`** | **`0`** | **`1.740`** |
 
-![Figure 3 — ARC-AGI-3 Interactive Benchmark and Ablation](../figures/fig3_arc3_interactive_ablation.png)
+![Figure 3 — Local ARC-AGI-3-Inspired Interactive Suite and Ablation](../figures/fig3_arc3_interactive_ablation.png)
 
 ---
 
@@ -224,6 +228,13 @@ To guarantee uncompromising scientific integrity and prevent data contamination,
   volume={186},
   pages={108741},
   year={2024}
+}
+
+@article{balestriero2025lejepa,
+  title={LeJEPA: Provable Self-Supervised Learning Without Contrastive Samples},
+  author={Balestriero, Randall and LeCun, Yann},
+  journal={arXiv preprint arXiv:2502.13123},
+  year={2025}
 }
 
 @article{arnez2026sigreg,
@@ -298,15 +309,15 @@ To guarantee uncompromising scientific integrity and prevent data contamination,
 }
 
 @article{liao2025compressarc,
-  title={CompressARC: Minimum Description Length Program Induction for ARC-AGI},
-  author={Liao, Isaac},
+  title={ARC-AGI Without Pretraining},
+  author={Liao, Isaac and Gu, Albert},
   journal={arXiv preprint arXiv:2512.06104},
   year={2025}
 }
 
 @article{mlodozeniec2026continual,
-  title={Sample-Efficient Continual Learning with Metaplastic Anchoring},
-  author={Mlodozeniec, P. and Frei, S.},
+  title={Ambiguous Fits: The Rashomon Effect and Challenges in Scaling Law Estimation},
+  author={Mlodozeniec, Bruno and Frei, Spencer},
   journal={arXiv preprint arXiv:2610.34514},
   year={2026}
 }

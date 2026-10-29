@@ -33,7 +33,7 @@
         35.0,
         100.0
       ],
-      "elapsed_sec": 0.915,
+      "elapsed_sec": 0.948,
       "label": "Baseline 1 — SGD/Adam Padrão"
     },
     {
@@ -52,7 +52,7 @@
         91.67,
         98.33
       ],
-      "elapsed_sec": 2.321,
+      "elapsed_sec": 5.073,
       "label": "Baseline 2 — EWC Clássico (Elastic Weight Consolidation)"
     },
     {
@@ -71,7 +71,7 @@
         45.0,
         100.0
       ],
-      "elapsed_sec": 0.293,
+      "elapsed_sec": 0.472,
       "label": "Baseline 3 — Memorized Mistake Gating Puro (arXiv:2604.14336)"
     },
     {
@@ -90,7 +90,7 @@
         95.0,
         96.67
       ],
-      "elapsed_sec": 1.06,
+      "elapsed_sec": 1.554,
       "label": "F3-Metabolic-Optim Completo (SynGAP + Mistake Gating + Tensor M)"
     }
   ]

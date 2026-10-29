@@ -1977,7 +1977,12 @@ LEARNED_METADATA: Dict[str, str] = {
     "solved_18419cfa": "[Synthesizer D1 | F3LearnedOperators.symmetrize_per_object_or_frame] Complete horizontal and vertical symmetry inside...",
     "solved_195ba7dc": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' ...",
     "solved_1c0d0a4b": "[Synthesizer D3 | F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Prim...",
-    "solved_1d0a4b61": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occlude..."
+    "solved_1d0a4b61": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occlude...",
+    "solved_e98196ab": "Residual feedback shows top and bottom 5x11 halves separated by row 5 must be combined with logical OR.",
+    "solved_2204b7a8": "The previous hypothesis achieved 95.4% but missed the border replacement color. Fixing the color mapping using F3Prim...",
+    "solved_a61ba2ce": "Cropping to the non-background bounding box solves all pairs.",
+    "solved_5614dbcf": "Residual feedback shows we need modal block downsampling from 9x9 to 3x3. Using F3Primitives.downsample_block.",
+    "solved_2dee498d": "Broadcast error attempt on 3x9 grid. [Reflexion Fix 1: ValueError: could not broadcast input array from shape (3,9) i..."
 }
 
 # solved_007bbfb7: 
@@ -2074,3 +2079,24 @@ def solved_18419cfa(grid: np.ndarray) -> np.ndarray:
 # solved_1c0d0a4b: [Synthesizer D3 | F3Primitives.replace_color + np.rot90 + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Prim...
 def solved_1c0d0a4b(grid: np.ndarray) -> np.ndarray:
     return F3LearnedOperators.apply_residual_patch(grid, np.rot90(F3Primitives.replace_color(grid, 8, 2), 2), {'type': 'ray_corridor_table', 'ref_color': 8, 'table': {(0, 0, 1, 1, 4, 1): 2, (0, 0, 0, 0, 2, 1): 2, (8, 2, 1, 1, 4, 1): 0, (0, 0, 0, 1, 3, 1): 2, (0, 0, 1, 0, 3, 1): 2}}, bg_color=0)
+
+# solved_e98196ab: Residual feedback shows top and bottom 5x11 halves separated by row 5 must be combined with logical OR.
+def solved_e98196ab(grid: np.ndarray) -> np.ndarray:
+    return F3Primitives.split_and_overlay(grid, axis=0, n_parts=2, op='or', sep_size=1)
+
+# solved_2204b7a8: The previous hypothesis achieved 95.4% but missed the border replacement color. Fixing the color mapping using F3Prim...
+def solved_2204b7a8(grid: np.ndarray) -> np.ndarray:
+    out = F3Primitives.replace_color(grid, 8, 3)
+    return out
+
+# solved_a61ba2ce: Cropping to the non-background bounding box solves all pairs.
+def solved_a61ba2ce(grid: np.ndarray) -> np.ndarray:
+    return F3Primitives.crop_to_content(grid)
+
+# solved_5614dbcf: Residual feedback shows we need modal block downsampling from 9x9 to 3x3. Using F3Primitives.downsample_block.
+def solved_5614dbcf(grid: np.ndarray) -> np.ndarray:
+    return F3Primitives.downsample_block(grid, 3, 3)
+
+# solved_2dee498d: Broadcast error attempt on 3x9 grid. [Reflexion Fix 1: ValueError: could not broadcast input array from shape (3,9) i...
+def solved_2dee498d(grid: np.ndarray) -> np.ndarray:
+    return F3Primitives.resize_grid(grid, 3, 3)

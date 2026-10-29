@@ -45,6 +45,7 @@ GEMINI.md
 guia_setup_f3_agi_v4.md
 *.docx
 *.pdf
+!paper/polybee_f3_agi_v4_arxiv.pdf
 
 # OS generated files
 .DS_Store

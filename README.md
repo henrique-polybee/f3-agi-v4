@@ -14,13 +14,13 @@
 
 Current frontier approaches to abstract reasoning benchmarks (such as ARC-AGI-1, ARC-AGI-2, and interactive ARC-AGI-3) rely heavily on brute-force test-time sampling over massive Large Language Models (LLMs), consuming thousands of watt-hours per task while suffering from catastrophic forgetting, unconstrained exploration of dead-end states, and fragile pixel-level heuristics.
 
-**F3-AGI v4.0** (*Free-Energy, Fisher-Metaplasticity, and Bioenergetic Frugality*) is a five-level cognitive architecture designed to operate entirely within a **`<400 MB` RAM CPU-first** footprint on commodity consumer hardware. Across empirical evaluations on static and interactive benchmarks, F3-AGI v4.0 establishes:
+**F3-AGI v4.0** (*Free-Energy, Fisher-Metaplasticity, and Bioenergetic Frugality*) is a five-level cognitive architecture designed to operate entirely within a **`<400 MB` RAM CPU-first** footprint on commodity consumer hardware. Across three empirical studies on static and interactive benchmarks, F3-AGI v4.0 establishes:
 
-1. **Continual Bioenergetic Plasticity (`F3-Metabolic-Optim`):** Couples online diagonal Fisher EMA preconditioning (**SynGAP**, Aguilar et al., 2026), **Memorized Mistake Gating** (Pache & van Rossum, 2026), and a virtual **Mitochondrial ATP Tensor** ($\mathbf{M}$). Across 5 sequential tasks ($6,000$ forward steps, zero data replay), it achieves **91.67% final accuracy**, **9.17% forgetting ratio**, **93.47% saved synaptic updates**, and a **65.7% reduction in $M_1$ metabolic cost** with a **3.67x speedup** over Elastic Weight Consolidation (EWC).
+1. **Continual Bioenergetic Plasticity (`F3-Metabolic-Optim`):** Evaluated on a **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** ($6,000$ online steps, zero replay buffer), coupling online diagonal Fisher EMA preconditioning (**SynGAP**, Aguilar et al., 2026), **Memorized Mistake Gating** (Pache & van Rossum, 2026), and a virtual **Mitochondrial ATP Tensor** ($\mathbf{M}$). It achieves **91.67% final accuracy**, **9.17% forgetting ratio**, **93.47% saved synaptic updates**, and a **65.7% reduction in $M_1$ metabolic cost** with a **2.19x wall-clock speedup** over Elastic Weight Consolidation (EWC) ($1.060\,\text{s}$ vs. $2.321\,\text{s}$).
 2. **Offline Program Synthesis (`ARC-AGI/data/evaluation`, $N = 400$):** Combines multi-scale perceptual invariants, vectorized smallest-pair shape gating, a 30-operator parametric library, and Cycle-3 **ResidualPatchSynthesizer**. Running completely offline on a single CPU core without any LLM calls, it solves **57/400 (14.25% `pass@2`; 56/400 `pass@1`)** with **128/400 (32.00%)** of tasks achieving $\ge 90\%$ test pixel accuracy, in an average of **1.62 s/task** (**31.26x speedup**). This comprises:
    - **Calibration Slice ($N=50$):** **19/50 (38.00%)** exact zero-shot solve rate ($100\%$ train-to-test transfer, `1.19 s/task`).
    - **Strictly Uninspected Hold-Out ($N=350$, Tasks 51–400):** **38/350 (10.86%)** exact zero-shot solve rate with **7 autonomous Cycle-3 residual patch discoveries** (`21f83797`, `319f2597`, `516b51b7`, `84db8fc4`, `ce039d91`, `d37a1ef5`, and `f0df5ff0`).
-3. **Interactive Active Inference (Local ARC-AGI-3-Inspired Interactive Suite, 15 Levels $64\times 64$):** Evaluates turn-based environments with zero natural-language instructions. Driven by Expected Free Energy ($\mathcal{G}_{F3}$) over an isotropic $512\text{D}$ latent workspace (**SIGReg-JEPA**, Arnez & Gomez-Villa, 2026) coupled with **Dead-Signature Pruning** and cross-level rule transfer, it achieves **15/15 (100%) levels completed**, **89.44% Level-Weighted RHAE** ($w=(1,2,3)$), **90.72% Unweighted RHAE**, and **0 dead actions** (down from 32).
+3. **Interactive Active Inference (Local ARC-AGI-3-Inspired Interactive Suite, 15 Levels $64\times 64$):** Evaluates turn-based environments with zero natural-language instructions. Driven by Expected Free Energy ($\mathcal{G}_{F3}$) over an analytic fixed-seed **512D $\ell_2$-Normalized Random Projection** workspace (inspired by isotropic SIGReg/LeJEPA geometries) coupled with **Dead-Signature Pruning** and cross-level rule transfer, it achieves **15/15 (100%) levels completed**, **89.44% Level-Weighted RHAE** ($w=(1,2,3)$), **90.72% Unweighted RHAE**, and **0 dead actions** (down from 32).
 
 ---
 
@@ -31,13 +31,13 @@ F3-AGI v4.0 is structured into five integrated cognitive levels:
 ```
 +-----------------------------------------------------------------------------------+
 | Level 4: Continuous Global Workspace                                              |
-| - AlgebraicWorldModelSLS (Compact Astra-style notations)                          |
+| - AlgebraicWorldModelSLS (Analytic 512D L2-Normalized Random Projection)          |
 | - Dead-Signature Tracker & Cross-Level Rule Transfer                              |
 | - NREM Consolidation Buffer (soar_nrem_traces.json & f3_learned_library.py)       |
 +-----------------------------------------------------------------------------------+
                                         |
 +-----------------------------------------------------------------------------------+
-| Level 3: SIGReg-JEPA Latent Space + Active Inference Controller                   |
+| Level 3: 512D L2-Random Proj. (SIGReg/LeJEPA-Inspired) + Active Inference         |
 | - VisualCortexV40 (Invariant extraction over ALL demonstration pairs)             |
 | - CompositionalProgramSynthesizer (30-operator parametric library)                |
 | - Vectorized Smallest-Pair Shape Gate (Lemma 1: zero false negatives)             |
@@ -70,14 +70,16 @@ F3-AGI v4.0 is structured into five integrated cognitive levels:
 
 ### 1. Continual Plasticity Ablation (Study 1)
 
-Comparison of continual learning regimes across 5 sequential tasks ($6,000$ forward steps, zero replay buffer):
+Comparison of continual learning regimes on the **Synthetic 5-Task Class-Incremental Feature Stream (64D Prototype-Latent Benchmark)** ($6,000$ online forward steps, zero replay buffer):
 
-| Plasticity Regime | Final Avg. Accuracy (%) $\uparrow$ | Forgetting Ratio (%) $\downarrow$ | Saved Updates (%) $\uparrow$ | Synaptic Updates $\downarrow$ | $M_1$ Metabolic Cost ($L_1$) $\downarrow$ | Wall Time (s) $\downarrow$ |
+| Plasticity Regime (`Synthetic 5-Task Benchmark`, 6000 Steps) | Final Avg. Accuracy (%) $\uparrow$ | Forgetting Ratio (%) $\downarrow$ | Saved Updates (%) $\uparrow$ | Synaptic Updates $\downarrow$ | $M_1$ Metabolic Cost ($L_1$) $\downarrow$ | Wall Time (s) $\downarrow$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | Standard SGD / Adam Baseline | 44.33% | 69.58% | 0.00% | 6,000 / 6,000 | 3,433.87 | 0.915s |
 | Classic EWC (Fisher Penalty) | 90.67% | 11.25% | 0.00% | 6,000 / 6,000 | 7,986.85 | 2.321s |
 | Pure Memorized Mistake Gating | 50.67% | 61.25% | **95.97%** | **242 / 6,000** | 3,040.31 | **0.293s** |
 | **F3-Metabolic-Optim (Ours)** | **91.67%** | **9.17%** | 93.47% | 392 / 6,000 | **2,736.81** | 1.060s |
+
+*F3-Metabolic-Optim achieves a **2.19x wall-clock speedup** ($1.060\,\text{s}$ vs. $2.321\,\text{s}$) over Classic EWC.*
 
 <p align="center">
   <img src="figures/fig1_metabolic_ablation.png" width="90%" alt="Continual Plasticity Ablation">
@@ -130,7 +132,7 @@ Evaluated across 5 complex mechanics (15 levels total, $64\times 64$ turn-based 
 | Random / Greedy Heuristic | 5 / 15 (33.33%) | 6.19% | 10.11% | 82 | 4.000 |
 | Pragmatic-Only (No Epistemic / No Dead-Signature) | 3 / 15 (20.00%) | 9.68% | 15.33% | 119 | 4.000 |
 | Active Inference w/o Dead-Signature Pruning | **15 / 15 (100.00%)** | 46.24% | 47.17% | 32 | 2.380 |
-| **F3-AGI v4.0 Complete ($\mathcal{G}_{F3}$ + SIGReg + Dead-Signature)** | **15 / 15 (100.00%)** | **89.44%** | **90.72%** | **0** | **1.740** |
+| **F3-AGI v4.0 Complete ($\mathcal{G}_{F3}$ + 512D Random Proj. + Dead-Signature)** | **15 / 15 (100.00%)** | **89.44%** | **90.72%** | **0** | **1.740** |
 
 <p align="center">
   <img src="figures/fig3_arc3_interactive_ablation.png" width="90%" alt="Interactive Suite Ablation">
@@ -155,11 +157,14 @@ polybee-f3-agi/
 │   ├── fig1_metabolic_ablation.{png,svg}
 │   ├── fig2_arc_blind_eval.{png,svg}
 │   └── fig3_arc3_interactive_ablation.{png,svg}
-├── paper/                       # Complete arXiv preprint manuscript
-│   ├── polybee_f3_agi_v4_arxiv.tex
-│   └── polybee_f3_agi_v4_arxiv.md
+├── paper/                       # Complete arXiv preprint manuscript and compiled PDF
+│   ├── polybee_f3_agi_v4_arxiv.pdf # Canonical compiled preprint PDF
+│   ├── polybee_f3_agi_v4_arxiv.tex # LaTeX manuscript
+│   └── polybee_f3_agi_v4_arxiv.md  # Markdown manuscript
 ├── benchmark_h3_results.json    # Verified telemetry logs for Horizon 3
 ├── benchmark_h3_arc3_ablation.json # Verified per-game telemetry for the 4 interactive agents
+├── benchmark_h5_blind_eval.json # Verified longitudinal telemetry for N=50 and N=400
+├── benchmark_h5_full400_eval.json # Full 400-task official verification report
 ├── f3_metabolic_optim_results.json # Verified telemetry for the continual plasticity study
 ├── requirements.txt             # Minimal dependencies (numpy, matplotlib)
 └── README.md                    # Project documentation and reproduction guide
