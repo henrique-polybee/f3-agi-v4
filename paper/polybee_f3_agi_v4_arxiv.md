@@ -231,9 +231,10 @@ To guarantee uncompromising scientific integrity and prevent data contamination,
 }
 
 @article{balestriero2025lejepa,
-  title={LeJEPA: Provable Self-Supervised Learning Without Contrastive Samples},
+  title={LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics},
   author={Balestriero, Randall and LeCun, Yann},
-  journal={arXiv preprint arXiv:2502.13123},
+  journal={arXiv preprint arXiv:2511.08544},
+  url={https://arxiv.org/abs/2511.08544},
   year={2025}
 }
 
