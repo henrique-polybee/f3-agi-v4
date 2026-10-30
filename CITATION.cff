@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this release."
+type: software
+title: "F3-AGI v4.0: CPU-First Neuro-Symbolic Reasoning"
+version: 4.0.0
+license: MIT
+repository-code: "https://github.com/henrique-polybee/f3-agi-v4"
+authors:
+  - family-names: Oliveira
+    given-names: Henrique
+    orcid: "https://orcid.org/0009-0004-2730-292X"
+    affiliation: Polybee AI Research Laboratory
+keywords:
+  - artificial intelligence
+  - abstract reasoning
+  - neuro-symbolic program synthesis
+  - active inference
+  - continual learning
