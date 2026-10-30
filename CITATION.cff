@@ -3,6 +3,7 @@ message: "If you use this software, please cite this release."
 type: software
 title: "F3-AGI v4.0: CPU-First Neuro-Symbolic Reasoning"
 version: 4.0.0
+doi: 10.5281/zenodo.23816665
 license: MIT
 repository-code: "https://github.com/henrique-polybee/f3-agi-v4"
 authors:

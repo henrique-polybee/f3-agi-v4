@@ -4,6 +4,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Hardware: CPU-First](https://img.shields.io/badge/Hardware-100%25%20CPU%20%7C%20%3C400MB%20RAM-success.svg)]()
 [![Preprint](https://img.shields.io/badge/Preprint-cs.AI%20%7C%20cs.LG-red.svg)](paper/polybee_f3_agi_v4_arxiv.pdf)
+[![DOI](https://zenodo.org/badge/1437900405.svg)](https://doi.org/10.5281/zenodo.23816664)
 
 > **Official Implementation of F3-AGI v4.0** by **[Polybee AI Research](https://polybee.ai/)**  
 > *Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning.*
