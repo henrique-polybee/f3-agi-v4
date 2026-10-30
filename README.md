@@ -224,7 +224,39 @@ python kaggle_submission/f3_agi_v4_kaggle_submission.py
 
 ---
 
+## Public Kaggle Reproduction Notebooks
+
+These independent, CPU-first research notebooks demonstrate the three studies from F3-AGI v4.0. They reference the archived [v4.0.0 software release](https://doi.org/10.5281/zenodo.23816665), allowing readers to identify the source version.
+
+| Study | Kaggle notebook | Experimental scope |
+| --- | --- | --- |
+| 1 — Continual Learning | [Reproducible Continual Learning](https://www.kaggle.com/code/henriquehq8/f3-agi-v4-0-reproducible-continual-learning-po) | Synthetic five-task class-incremental learning; SGD, EWC, Mistake Gating, and F3-Metabolic-Optim |
+| 2 — Abstract Reasoning | [ARC-AGI-1 Public Evaluation](https://www.kaggle.com/code/henriquehq8/f3-agi-v4-0-arc-agi-1-public-evaluation-polybee) | Offline neuro-symbolic synthesis on publicly released ARC-AGI-1 tasks |
+| 3 — Interactive Reasoning | [Interactive Active Inference & Dead-Action Pruning](https://www.kaggle.com/code/henriquehq8/f3-agi-v4-0-interactive-active-inference-dap) | Four-agent ablation on five **locally implemented**, ARC-AGI-3-inspired interactive games (15 levels) |
+
+**Interpretation:** The ARC-AGI-1 study uses public evaluation tasks, not a private competition leaderboard. The third study uses Polybee's own local interactive game suite; its RHAE-style scores are **not official ARC-AGI-3 competition results**. The continual-learning data are synthetic. Execution times are hardware-dependent, and a successful notebook run is not independent peer review.
+
+When citing the **software**, use the version-specific DOI [10.5281/zenodo.23816665](https://doi.org/10.5281/zenodo.23816665). The scholarly manuscript is available as a [preprint PDF in this repository](paper/polybee_f3_agi_v4_arxiv.pdf) while its arXiv submission awaits endorsement.
+
+---
+
 ## Citation
+
+For the versioned software implementation, cite:
+
+```bibtex
+@software{oliveira2026f3agi_software,
+  author = {Oliveira, Henrique},
+  title = {F3-AGI v4.0: CPU-First Neuro-Symbolic Reasoning},
+  version = {4.0.0},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.23816665},
+  url = {https://doi.org/10.5281/zenodo.23816665}
+}
+```
+
+For the manuscript (preprint pending arXiv endorsement), use:
 
 ```bibtex
 @article{oliveira2026f3agi,
