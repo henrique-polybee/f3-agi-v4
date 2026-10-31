@@ -508,7 +508,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
         ),
         (
             "Task cad67732 (ARC-1)",
-            "Two-Step (F3-MLP + Δ2)",
+            "Two-Step (F3-MLP + STEP-2 LUT)",
             "85.5% -> 99.5%",
             "Chained Residual Cavity Hole Repair",
             "#3B82F6",

@@ -124,7 +124,7 @@
 <text x="770" y="736" font-size="12" fill="#334155">Axis-Aligned Collision Snap to Target</text>
 <rect x="754" y="760" width="562" height="56" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.2"/>
 <text x="770" y="784" font-size="14" font-weight="700" fill="#0F172A">Task cad67732 (ARC-1)</text>
-<text x="964" y="784" font-size="12" font-weight="600" fill="#475569">Two-Step (F3-MLP + Δ2)</text>
+<text x="964" y="784" font-size="12" font-weight="600" fill="#475569">Two-Step (F3-MLP + STEP-2 LUT)</text>
 <text x="1300" y="784" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">85.5% -> 99.5%</text>
 <text x="770" y="804" font-size="12" fill="#334155">Chained Residual Cavity Hole Repair</text>
 </svg>
