@@ -38,6 +38,7 @@ scratch/
 
 # Raw benchmark dataset (downloaded separately)
 ARC-AGI/
+ARC-AGI-2/
 
 # Internal workspace configs & preliminary Portuguese documentation
 .agents/
