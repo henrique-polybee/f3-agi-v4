@@ -304,6 +304,8 @@ class BaseARC3GameEnvironment:
             "unweighted_rhae_pct": round(mean_rhae * 100.0, 2),
             "weighted_rhae_pct": round(weighted_rhae * 100.0, 2),
             "level_weighted_rhae_pct": round(weighted_rhae * 100.0, 2),
+            "local_rhae_style_unweighted_pct": round(mean_rhae * 100.0, 2),
+            "local_rhae_style_weighted_pct": round(weighted_rhae * 100.0, 2),
         }
 
 
@@ -1202,6 +1204,8 @@ def run_arc3_ablation_study(backend: Any, verbose: bool = True) -> Dict[str, Any
             "unweighted_rhae_pct": overall_rhae_pct,
             "weighted_rhae_pct": weighted_rhae_pct,
             "level_weighted_rhae_pct": weighted_rhae_pct,
+            "local_rhae_style_unweighted_pct": overall_rhae_pct,
+            "local_rhae_style_weighted_pct": weighted_rhae_pct,
             "total_dead_actions": total_dead_actions,
             "total_atp_consumed": round(total_atp_spent, 4),
             "games": per_game_results,
@@ -1213,14 +1217,15 @@ def run_arc3_ablation_study(backend: Any, verbose: bool = True) -> Dict[str, Any
         if verbose:
             print(
                 f"   👉 Níveis Concluídos: {total_completed}/{total_levels} | "
-                f"Weighted RHAE (w=1,2,3): {weighted_rhae_pct:.2f}% | "
-                f"Unweighted RHAE: {overall_rhae_pct:.2f}% | "
+                f"[Local Suite — RHAE-style Score] Weighted (w=1,2,3): {weighted_rhae_pct:.2f}% | "
+                f"Unweighted: {overall_rhae_pct:.2f}% | "
                 f"Dead Actions: {total_dead_actions} | "
                 f"ATP Consumido: {total_atp_spent:.3f}"
             )
 
     return {
         "benchmark": "Local ARC-AGI-3-Inspired Interactive Suite (15 Levels 64x64)",
+        "score_definition": "[Local Suite — RHAE-style Score]",
         "f3_full_games": f3_full_per_game,
         "ablation_agents": ablation_summary,
     }
@@ -1467,7 +1472,13 @@ def main() -> None:
         print("\n▶ [ETAPA 2] Executando Suíte Interativa ARC-AGI-3 (5 Jogos / 15 Níveis 64x64)...")
         ablation_data = run_arc3_ablation_study(backend, verbose=True)
         f3_full = ablation_data["ablation_agents"][-1]
-        assert f3_full["completed_levels"] == 15 and f3_full["official_rhae_pct"] >= 85.0
+        print(
+            f"\n📊 [Local Suite — RHAE-style Score] F3-AGI v4.0 Completo:\n"
+            f"   • local_rhae_style_weighted_pct: {f3_full['local_rhae_style_weighted_pct']:.2f}%\n"
+            f"   • local_rhae_style_unweighted_pct: {f3_full['local_rhae_style_unweighted_pct']:.2f}%\n"
+            f"   • Níveis Concluídos: {f3_full['completed_levels']}/{f3_full['total_levels']}"
+        )
+        assert f3_full["completed_levels"] == 15 and f3_full["local_rhae_style_weighted_pct"] >= 85.0
 
 
 if __name__ == "__main__":
