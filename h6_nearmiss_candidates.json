@@ -1,0 +1,2563 @@
+{
+  "nearmiss_definition": "(shape_match == True and 0.80 <= train_score < 1.00) or (85.0% <= best_test_pixel_acc < 100.0%)",
+  "total_nearmiss_candidates": 282,
+  "arc1_full400_count": 184,
+  "arc2_evaluation_120_count": 63,
+  "arc2_training_100_count": 35,
+  "arc1_candidates": [
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "0b17323b",
+      "train_score": 0.8203,
+      "test_pixel_acc_best_pct": 99.11,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.complete_dihedral_symmetry] Complete 8-fold dihedral symmetry around inferred foreg"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "0e671a1a",
+      "train_score": 0.8526,
+      "test_pixel_acc_best_pct": 51.48,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.complete_symmetry] Compose F3LearnedOperators.separat"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "11e1fe23",
+      "train_score": 0.7907,
+      "test_pixel_acc_best_pct": 97.62,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "12422b43",
+      "train_score": 0.8229,
+      "test_pixel_acc_best_pct": 85.71,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "12eac192",
+      "train_score": 0.8406,
+      "test_pixel_acc_best_pct": 76.56,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "15663ba9",
+      "train_score": 0.803,
+      "test_pixel_acc_best_pct": 86.67,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor "
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "16b78196",
+      "train_score": 0.8544,
+      "test_pixel_acc_best_pct": 94.11,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'kee"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "1c56ad9f",
+      "train_score": 0.827,
+      "test_pixel_acc_best_pct": 84.0,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry] Compose F3LearnedOperators.fi"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "1da012fc",
+      "train_score": 0.8325,
+      "test_pixel_acc_best_pct": 91.37,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "1e81d6f9",
+      "train_score": 0.9751,
+      "test_pixel_acc_best_pct": 98.22,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (15, 15) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "1e97544e",
+      "train_score": 0.9442,
+      "test_pixel_acc_best_pct": 89.22,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "20981f0e",
+      "train_score": 0.8796,
+      "test_pixel_acc_best_pct": 90.05,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "212895b5",
+      "train_score": 0.7812,
+      "test_pixel_acc_best_pct": 92.55,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Fill interior of solid shapes with color 2 keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "22a4bbc2",
+      "train_score": 0.89,
+      "test_pixel_acc_best_pct": 69.32,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.separ"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "25094a63",
+      "train_score": 0.9429,
+      "test_pixel_acc_best_pct": 90.44,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Fill interior of solid shapes with color 4 keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "2546ccf6",
+      "train_score": 0.9679,
+      "test_pixel_acc_best_pct": 97.66,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "2685904e",
+      "train_score": 0.9096,
+      "test_pixel_acc_best_pct": 88.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (10, 10) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "27a77e38",
+      "train_score": 0.939,
+      "test_pixel_acc_best_pct": 98.77,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "281123b4",
+      "train_score": 0.8499,
+      "test_pixel_acc_best_pct": 56.25,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.grid_cell_consensus] Separator macro-cell consensus/algebra mode='overlay_last' (ou"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "292dd178",
+      "train_score": 0.8709,
+      "test_pixel_acc_best_pct": 90.91,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "29700607",
+      "train_score": 0.9214,
+      "test_pixel_acc_best_pct": 73.55,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "2a5f8217",
+      "train_score": 0.8694,
+      "test_pixel_acc_best_pct": 92.31,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 8."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "2b01abd0",
+      "train_score": 0.7872,
+      "test_pixel_acc_best_pct": 90.18,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3Primitives.complete_symmetry] Compose F3Primitives.replace_color then c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "2c737e39",
+      "train_score": 0.8574,
+      "test_pixel_acc_best_pct": 90.91,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "310f3251",
+      "train_score": 0.7663,
+      "test_pixel_acc_best_pct": 87.5,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.tile_grid] Tile input grid (3, 3) times."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "31adaf00",
+      "train_score": 0.8068,
+      "test_pixel_acc_best_pct": 77.0,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperat"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "32e9702f",
+      "train_score": 0.81,
+      "test_pixel_acc_best_pct": 16.0,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3LearnedOperators.co"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "3490cc26",
+      "train_score": 0.9335,
+      "test_pixel_acc_best_pct": 91.3,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "351d6448",
+      "train_score": 0.8561,
+      "test_pixel_acc_best_pct": 94.87,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.extract_unique_or_extremum_subgrid + F3Primitives.complete_symmetry] Compose F3Lear"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "3a301edc",
+      "train_score": 0.9207,
+      "test_pixel_acc_best_pct": 63.72,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3Lear"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "3ed85e70",
+      "train_score": 0.9371,
+      "test_pixel_acc_best_pct": 89.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "40f6cd08",
+      "train_score": 0.9026,
+      "test_pixel_acc_best_pct": 75.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "42918530",
+      "train_score": 0.9682,
+      "test_pixel_acc_best_pct": 95.52,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "42a15761",
+      "train_score": 0.964,
+      "test_pixel_acc_best_pct": 96.65,
+      "top1_thought": "[Synthesizer D1 | np.flipud] Reflect grid vertically."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4364c1c4",
+      "train_score": 0.9065,
+      "test_pixel_acc_best_pct": 89.01,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded b"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "456873bc",
+      "train_score": 0.8508,
+      "test_pixel_acc_best_pct": 85.87,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3LearnedOperators.hollow_objects] Compose F3Primitives.replace_color the"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "47996f11",
+      "train_score": 1.0,
+      "test_pixel_acc_best_pct": 98.67,
+      "top1_thought": "[Synthesizer D2 | np.transpose + ResidualPatch(ray_corridor_table)] [Synthesizer D1 | np.transpose] Transpose grid acros"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4aab4007",
+      "train_score": 0.9561,
+      "test_pixel_acc_best_pct": 90.69,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.transpose + ResidualPatch(restore_anchors)] [Synthesizer D2 | F3Primit"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4b6b68e5",
+      "train_score": 0.8167,
+      "test_pixel_acc_best_pct": 83.17,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.denoise_periodic_subblocks + F3Primitives.fill_enclosed_holes + F3LearnedOperators."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4c177718",
+      "train_score": 0.6181,
+      "test_pixel_acc_best_pct": 85.93,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.downsample_block + np.flipud] Compose F3Primitives.downsample_block then flip vertically."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4e469f39",
+      "train_score": 0.9212,
+      "test_pixel_acc_best_pct": 72.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4f537728",
+      "train_score": 0.8959,
+      "test_pixel_acc_best_pct": 88.5,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (20, 20) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "4ff4c9da",
+      "train_score": 0.9682,
+      "test_pixel_acc_best_pct": 97.53,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "50f325b5",
+      "train_score": 0.9738,
+      "test_pixel_acc_best_pct": 95.59,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "54db823b",
+      "train_score": 0.9526,
+      "test_pixel_acc_best_pct": 86.67,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (15, 15) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "55059096",
+      "train_score": 0.8766,
+      "test_pixel_acc_best_pct": 96.38,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "551d5bf1",
+      "train_score": 0.8769,
+      "test_pixel_acc_best_pct": 81.36,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.fill_enclosed_holes] Compose F3LearnedOpe"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "575b1a71",
+      "train_score": 0.7361,
+      "test_pixel_acc_best_pct": 94.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "58743b76",
+      "train_score": 0.9206,
+      "test_pixel_acc_best_pct": 92.86,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "59341089",
+      "train_score": 0.8075,
+      "test_pixel_acc_best_pct": 77.78,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.tile_grid] Tile input grid (1, 4) times."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "5af49b42",
+      "train_score": 0.8303,
+      "test_pixel_acc_best_pct": 94.12,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "5b526a93",
+      "train_score": 0.801,
+      "test_pixel_acc_best_pct": 84.76,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes] Compose F3Primitives.complete_symme"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "5b692c0f",
+      "train_score": 0.9428,
+      "test_pixel_acc_best_pct": 81.25,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "5ffb2104",
+      "train_score": 0.943,
+      "test_pixel_acc_best_pct": 94.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.apply_gravity] Apply physical gravity packing towards right."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "60a26a3e",
+      "train_score": 1.0,
+      "test_pixel_acc_best_pct": 97.78,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + ResidualPatch(pred_neighbor_count_table)] [Synthesizer D1"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "642248e4",
+      "train_score": 0.8999,
+      "test_pixel_acc_best_pct": 95.83,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "64a7c07e",
+      "train_score": 0.8535,
+      "test_pixel_acc_best_pct": 72.22,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.complete_dihedral_symmetry + np.fliplr] Compose F3LearnedOperators.complete_dihedra"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "67c52801",
+      "train_score": 0.8849,
+      "test_pixel_acc_best_pct": 76.62,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.apply_gravity + np.fliplr + F3Primitives.complete_symmetry] Compose F3Primitives.apply_gr"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "692cd3b6",
+      "train_score": 0.8817,
+      "test_pixel_acc_best_pct": 81.33,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.separ"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "696d4842",
+      "train_score": 0.7996,
+      "test_pixel_acc_best_pct": 96.5,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across vertical axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "69889d6e",
+      "train_score": 0.7504,
+      "test_pixel_acc_best_pct": 86.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "705a3229",
+      "train_score": 0.8144,
+      "test_pixel_acc_best_pct": 85.8,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "712bf12e",
+      "train_score": 0.8259,
+      "test_pixel_acc_best_pct": 63.91,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.separator_fill + F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes]"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "72207abc",
+      "train_score": 0.762,
+      "test_pixel_acc_best_pct": 94.25,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across rot90 axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "72a961c9",
+      "train_score": 0.8646,
+      "test_pixel_acc_best_pct": 85.86,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "73c3b0d8",
+      "train_score": 0.8625,
+      "test_pixel_acc_best_pct": 89.58,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "759f3fd3",
+      "train_score": 0.844,
+      "test_pixel_acc_best_pct": 56.94,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "770cc55f",
+      "train_score": 0.9045,
+      "test_pixel_acc_best_pct": 85.45,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "79369cc6",
+      "train_score": 0.977,
+      "test_pixel_acc_best_pct": 92.5,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "79fb03f4",
+      "train_score": 0.8188,
+      "test_pixel_acc_best_pct": 46.15,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.fill_enclosed_holes] Compose F3LearnedOpe"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "7c8af763",
+      "train_score": 0.891,
+      "test_pixel_acc_best_pct": 78.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Fill bounding box of each foreground color."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "7d1f7ee8",
+      "train_score": 0.812,
+      "test_pixel_acc_best_pct": 85.47,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor "
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "7e02026e",
+      "train_score": 0.8831,
+      "test_pixel_acc_best_pct": 87.5,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Fill interior of solid shapes with color 3 keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "817e6c09",
+      "train_score": 0.8112,
+      "test_pixel_acc_best_pct": 88.57,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 2 with color 8."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "845d6e51",
+      "train_score": 0.8981,
+      "test_pixel_acc_best_pct": 91.18,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 3 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "84f2aca1",
+      "train_score": 0.9586,
+      "test_pixel_acc_best_pct": 98.08,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 7."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "85b81ff1",
+      "train_score": 0.9267,
+      "test_pixel_acc_best_pct": 88.46,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across vertical axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "8719f442",
+      "train_score": 0.8137,
+      "test_pixel_acc_best_pct": 69.78,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.scale_up] Scale up each pixel by (5, 5) via Kronecker product."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "88207623",
+      "train_score": 0.871,
+      "test_pixel_acc_best_pct": 90.62,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor "
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "891232d6",
+      "train_score": 0.7675,
+      "test_pixel_acc_best_pct": 85.33,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.separ"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "896d5239",
+      "train_score": 0.8779,
+      "test_pixel_acc_best_pct": 90.74,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "8b28cd80",
+      "train_score": 0.8299,
+      "test_pixel_acc_best_pct": 48.77,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.fractal_conditional_kron + F3Primitives.complete_symmetry + F3LearnedOperators.comp"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "8cb8642d",
+      "train_score": 0.8641,
+      "test_pixel_acc_best_pct": 74.56,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_component_interiors] Fill 3x3 morphological interior of 4-connected com"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "8ee62060",
+      "train_score": 0.7961,
+      "test_pixel_acc_best_pct": 85.71,
+      "top1_thought": "[Synthesizer D1 | np.fliplr] Reflect grid horizontally."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "8fbca751",
+      "train_score": 0.8744,
+      "test_pixel_acc_best_pct": 87.5,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "90347967",
+      "train_score": 0.8925,
+      "test_pixel_acc_best_pct": 79.01,
+      "top1_thought": "[Synthesizer D1 | np.rot90] Rotate grid by 180 degrees counterclockwise."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "903d1b4a",
+      "train_score": 1.0,
+      "test_pixel_acc_best_pct": 99.61,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.flipud + ResidualPatch(ray_corridor_table)] [Synthesizer D2 | F3Primit"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "917bccba",
+      "train_score": 0.8337,
+      "test_pixel_acc_best_pct": 81.25,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (12, 12) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "929ab4e9",
+      "train_score": 0.9753,
+      "test_pixel_acc_best_pct": 99.83,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.rot90 + ResidualPatch(restore_anchors)] [Synthesizer D2 | F3Primitives"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "92e50de0",
+      "train_score": 0.9113,
+      "test_pixel_acc_best_pct": 94.29,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "93b4f4b3",
+      "train_score": 0.8151,
+      "test_pixel_acc_best_pct": 65.88,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.split_and_boolean_combine + F3Primitives.fill_enclosed_holes + np.flipud] Compose F"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "93c31fbe",
+      "train_score": 0.9299,
+      "test_pixel_acc_best_pct": 95.33,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "94414823",
+      "train_score": 0.8504,
+      "test_pixel_acc_best_pct": 84.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "94be5b80",
+      "train_score": 0.8378,
+      "test_pixel_acc_best_pct": 72.22,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "95a58926",
+      "train_score": 0.9185,
+      "test_pixel_acc_best_pct": 92.26,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'lar"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "963f59bc",
+      "train_score": 0.8902,
+      "test_pixel_acc_best_pct": 91.96,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "96a8c0cd",
+      "train_score": 0.8676,
+      "test_pixel_acc_best_pct": 68.97,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.separ"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "97239e3d",
+      "train_score": 0.926,
+      "test_pixel_acc_best_pct": 82.7,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9772c176",
+      "train_score": 0.9446,
+      "test_pixel_acc_best_pct": 93.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "981571dc",
+      "train_score": 0.9803,
+      "test_pixel_acc_best_pct": 98.67,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.transpose + ResidualPatch(restore_anchors)] [Synthesizer D2 | F3Primit"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "992798f6",
+      "train_score": 0.8076,
+      "test_pixel_acc_best_pct": 60.16,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "99306f82",
+      "train_score": 0.8422,
+      "test_pixel_acc_best_pct": 77.5,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9b2a60aa",
+      "train_score": 0.7862,
+      "test_pixel_acc_best_pct": 92.31,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across horizontal axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9b4c17c4",
+      "train_score": 0.8326,
+      "test_pixel_acc_best_pct": 76.49,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 1 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9bebae7a",
+      "train_score": 0.8267,
+      "test_pixel_acc_best_pct": 83.33,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3Primitives.complete_symmetry] Compose F3Primitives.replace_color then c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9c1e755f",
+      "train_score": 0.8577,
+      "test_pixel_acc_best_pct": 45.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct occluded color-0 p"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9c56f360",
+      "train_score": 0.9137,
+      "test_pixel_acc_best_pct": 82.72,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9caba7c3",
+      "train_score": 0.8936,
+      "test_pixel_acc_best_pct": 92.8,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Fill interior of solid shapes with color 4 keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "9f27f097",
+      "train_score": 0.8767,
+      "test_pixel_acc_best_pct": 96.53,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 0 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "a096bf4d",
+      "train_score": 0.9894,
+      "test_pixel_acc_best_pct": 98.37,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "a3f84088",
+      "train_score": 0.9156,
+      "test_pixel_acc_best_pct": 77.78,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_hole"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "a57f2f04",
+      "train_score": 0.8398,
+      "test_pixel_acc_best_pct": 88.11,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_component_interiors] Fill 3x3 morphological interior of 4-connected com"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "a934301b",
+      "train_score": 0.8893,
+      "test_pixel_acc_best_pct": 69.23,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "aa300dc3",
+      "train_score": 0.9058,
+      "test_pixel_acc_best_pct": 93.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Fill interior of solid shapes with color 8 keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "aa4ec2a5",
+      "train_score": 0.8671,
+      "test_pixel_acc_best_pct": 83.9,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.fill_enclosed_holes] Compose F3LearnedOpe"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ac0c5833",
+      "train_score": 0.8229,
+      "test_pixel_acc_best_pct": 93.28,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across vertical axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ac3e2b04",
+      "train_score": 0.8375,
+      "test_pixel_acc_best_pct": 63.89,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3LearnedOperators.hollow_objects] Compose F3LearnedOperators.sepa"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ad7e01d0",
+      "train_score": 0.8621,
+      "test_pixel_acc_best_pct": 76.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.kronecker_self_pattern] Apply fractal Kronecker self-tiling on foreground cells (bg"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ae58858e",
+      "train_score": 0.8128,
+      "test_pixel_acc_best_pct": 85.42,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 2 with color 6."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "af22c60d",
+      "train_score": 0.9516,
+      "test_pixel_acc_best_pct": 99.78,
+      "top1_thought": "[Synthesizer D2 | np.transpose + ResidualPatch(restore_anchors)] [Synthesizer D1 | np.transpose] Transpose grid across m"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "b15fca0b",
+      "train_score": 0.9024,
+      "test_pixel_acc_best_pct": 76.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "b20f7c8b",
+      "train_score": 0.8222,
+      "test_pixel_acc_best_pct": 79.55,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 2 with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "b7f8a4d8",
+      "train_score": 0.9243,
+      "test_pixel_acc_best_pct": 89.33,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "b7fb29bc",
+      "train_score": 0.8842,
+      "test_pixel_acc_best_pct": 90.67,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "b9630600",
+      "train_score": 0.9319,
+      "test_pixel_acc_best_pct": 73.89,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priori"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ba9d41b8",
+      "train_score": 0.8829,
+      "test_pixel_acc_best_pct": 80.89,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "baf41dbf",
+      "train_score": 0.9252,
+      "test_pixel_acc_best_pct": 84.19,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3LearnedOperators.hollow_objects] Compose F3LearnedOperators.sepa"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bb52a14b",
+      "train_score": 0.9533,
+      "test_pixel_acc_best_pct": 97.93,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (22, 22) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bbb1b8b6",
+      "train_score": 0.9429,
+      "test_pixel_acc_best_pct": 90.62,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.split_and_boolean_combine] Split grid along axis 1 and combine halves with 'or' (ou"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bcb3040b",
+      "train_score": 0.8914,
+      "test_pixel_acc_best_pct": 95.06,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bd14c3bf",
+      "train_score": 0.8462,
+      "test_pixel_acc_best_pct": 87.26,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.replace_color + F3Primitives.fill_enclosed_holes] Compose F3Primitives.replace_color then"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bf32578f",
+      "train_score": 0.9112,
+      "test_pixel_acc_best_pct": 75.0,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + F3Primitives.complete_symmetry] Compose F3LearnedOperator"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bf699163",
+      "train_score": 0.8409,
+      "test_pixel_acc_best_pct": 11.11,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.crop_to_color_bbox] Crop grid to bounding box of color 1 (trim_border=0)."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "bf89d739",
+      "train_score": 0.9255,
+      "test_pixel_acc_best_pct": 80.25,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.separ"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c074846d",
+      "train_score": 0.8513,
+      "test_pixel_acc_best_pct": 96.13,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 2 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c35c1b4c",
+      "train_score": 0.9529,
+      "test_pixel_acc_best_pct": 88.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Hollow out interior of solid shapes keeping 1px boundary."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c48954c1",
+      "train_score": 0.7904,
+      "test_pixel_acc_best_pct": 85.19,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.alternating_mirror_tile + np.rot90] Compose F3LearnedOperators.alternating_mirror_t"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c6e1b8da",
+      "train_score": 0.9572,
+      "test_pixel_acc_best_pct": 86.75,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Fill bounding box of each foreground color."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c7d4e6ad",
+      "train_score": 0.8411,
+      "test_pixel_acc_best_pct": 88.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 5 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c87289bb",
+      "train_score": 0.8225,
+      "test_pixel_acc_best_pct": 76.0,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry] Compose F3LearnedOpera"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "c97c0139",
+      "train_score": 0.8163,
+      "test_pixel_acc_best_pct": 85.71,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "cad67732",
+      "train_score": 0.8502,
+      "test_pixel_acc_best_pct": 85.5,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.tile_grid] Tile input grid (2, 2) times."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "cb227835",
+      "train_score": 0.8529,
+      "test_pixel_acc_best_pct": 60.44,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "cf133acc",
+      "train_score": 0.8139,
+      "test_pixel_acc_best_pct": 90.67,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d017b73f",
+      "train_score": 0.8014,
+      "test_pixel_acc_best_pct": 62.5,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.compress_non_empty_rows_cols + F3Primitives.complete_symmetry] Compose F3LearnedOpe"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d282b262",
+      "train_score": 0.9001,
+      "test_pixel_acc_best_pct": 92.89,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.apply_gravity] Apply physical gravity packing towards right."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d2acf2cb",
+      "train_score": 0.8157,
+      "test_pixel_acc_best_pct": 73.33,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 7 with color 0."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d304284e",
+      "train_score": 0.6394,
+      "test_pixel_acc_best_pct": 90.22,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.complete_symmetry + F3LearnedOperators.complete_dihedral_symmetry + F3Primitives.fill_enc"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d47aa2ff",
+      "train_score": 0.8546,
+      "test_pixel_acc_best_pct": 96.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extract_unique_or_extremum_subgrid] Extract subgrid cell from separator grid using "
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d492a647",
+      "train_score": 0.874,
+      "test_pixel_acc_best_pct": 82.75,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d931c21c",
+      "train_score": 0.8696,
+      "test_pixel_acc_best_pct": 89.56,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_hole"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "d94c3b52",
+      "train_score": 0.8418,
+      "test_pixel_acc_best_pct": 84.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 7."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "da2b0fe3",
+      "train_score": 0.9331,
+      "test_pixel_acc_best_pct": 94.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "dc2aa30b",
+      "train_score": 0.8448,
+      "test_pixel_acc_best_pct": 76.86,
+      "top1_thought": "[Synthesizer D1 | np.flipud] Reflect grid vertically."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "df8cc377",
+      "train_score": 0.878,
+      "test_pixel_acc_best_pct": 79.02,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.fill_enclosed_holes + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_hole"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e0fb7511",
+      "train_score": 1.0,
+      "test_pixel_acc_best_pct": 97.63,
+      "top1_thought": "[Synthesizer D2 | F3Primitives.fill_enclosed_holes + ResidualPatch(neighbor_count_table)] [Synthesizer D1 | F3Primitives"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e1d2900e",
+      "train_score": 0.9185,
+      "test_pixel_acc_best_pct": 94.67,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e2092e0c",
+      "train_score": 0.9175,
+      "test_pixel_acc_best_pct": 93.33,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e21a174a",
+      "train_score": 0.8702,
+      "test_pixel_acc_best_pct": 79.56,
+      "top1_thought": "[Synthesizer D1 | np.flipud] Reflect grid vertically."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e5790162",
+      "train_score": 0.8824,
+      "test_pixel_acc_best_pct": 46.67,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.separator_fill + F3Primitives.complete_symmetry + F3Primitives.fill_enclosed_holes]"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e633a9e5",
+      "train_score": 0.8058,
+      "test_pixel_acc_best_pct": 64.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (5, 5) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e681b708",
+      "train_score": 0.9131,
+      "test_pixel_acc_best_pct": 94.82,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e69241bd",
+      "train_score": 0.8804,
+      "test_pixel_acc_best_pct": 76.54,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_or_sized_cavities] Fill enclosed cavities containing an interior seed p"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e74e1818",
+      "train_score": 0.8975,
+      "test_pixel_acc_best_pct": 76.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e760a62e",
+      "train_score": 0.8345,
+      "test_pixel_acc_best_pct": 82.02,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_seeded_or_sized_cavities] Fill enclosed cavities containing an interior seed p"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e7639916",
+      "train_score": 0.929,
+      "test_pixel_acc_best_pct": 82.97,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.separator_fill + F3Primitives.complete_symmetry + F3LearnedOperators.hollow_objects"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e7dd8335",
+      "train_score": 0.7842,
+      "test_pixel_acc_best_pct": 89.9,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e88171ec",
+      "train_score": 1.0,
+      "test_pixel_acc_best_pct": 97.96,
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.hollow_objects + ResidualPatch(restore_anchors)] [Synthesizer D1 | F3LearnedOperato"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "e99362f0",
+      "train_score": 0.8213,
+      "test_pixel_acc_best_pct": 85.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.grid_cell_consensus] Separator macro-cell consensus/algebra mode='overlay_first' (o"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ecaa0ec1",
+      "train_score": 0.8683,
+      "test_pixel_acc_best_pct": 95.87,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 4."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ef26cbf6",
+      "train_score": 0.8909,
+      "test_pixel_acc_best_pct": 81.82,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f0afb749",
+      "train_score": 0.7325,
+      "test_pixel_acc_best_pct": 94.44,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.scale_up] Scale up each pixel by (2, 2) via Kronecker product."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f21745ec",
+      "train_score": 0.895,
+      "test_pixel_acc_best_pct": 81.82,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Fill bounding box of each foreground color."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f3b10344",
+      "train_score": 0.9804,
+      "test_pixel_acc_best_pct": 90.0,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned markers along rows and columns with line c"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f3e62deb",
+      "train_score": 0.8333,
+      "test_pixel_acc_best_pct": 84.0,
+      "top1_thought": "[Synthesizer D3 | F3Primitives.apply_gravity + F3LearnedOperators.complete_dihedral_symmetry + F3LearnedOperators.hollow"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f83cb3f6",
+      "train_score": 0.8289,
+      "test_pixel_acc_best_pct": 95.33,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.denoise_periodic_subblocks] Denoise repeating subblock tiles via majority vote acro"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f9a67cb5",
+      "train_score": 0.8508,
+      "test_pixel_acc_best_pct": 70.48,
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 2."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "f9d67f8b",
+      "train_score": 0.921,
+      "test_pixel_acc_best_pct": 88.11,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (30, 30) modal color blocks."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "fafd9572",
+      "train_score": 0.8746,
+      "test_pixel_acc_best_pct": 85.71,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "fc754716",
+      "train_score": 0.814,
+      "test_pixel_acc_best_pct": 57.14,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.apply_gravity] Apply physical gravity packing towards up."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "fd096ab6",
+      "train_score": 0.8334,
+      "test_pixel_acc_best_pct": 97.0,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "fd4b2b02",
+      "train_score": 0.6545,
+      "test_pixel_acc_best_pct": 86.72,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry + F3LearnedOperators.co"
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "fea12743",
+      "train_score": 0.7677,
+      "test_pixel_acc_best_pct": 86.36,
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 3."
+    },
+    {
+      "dataset": "ARC-AGI-1",
+      "split": "evaluation",
+      "task_id": "ff72ca3e",
+      "train_score": 0.819,
+      "test_pixel_acc_best_pct": 48.67,
+      "top1_thought": "[Synthesizer D3 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry + F3Lear"
+    }
+  ],
+  "arc2_evaluation_candidates": [
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "135a2760",
+      "shape_match": true,
+      "train_score": 0.985,
+      "test_pixel_acc_best_pct": 98.93,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=3)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "16b78196",
+      "shape_match": true,
+      "train_score": 0.9853,
+      "test_pixel_acc_best_pct": 89.22,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 1, 0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 1.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "16de56c4",
+      "shape_match": true,
+      "train_score": 0.8284,
+      "test_pixel_acc_best_pct": 58.47,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct occluded color-0 p",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "1818057f",
+      "shape_match": true,
+      "train_score": 0.8723,
+      "test_pixel_acc_best_pct": 93.8,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 8, 2)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 2 with color 8.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "195c6913",
+      "shape_match": true,
+      "train_score": 0.8414,
+      "test_pixel_acc_best_pct": 88.94,
+      "winning_expr": "F3LearnedOperators.fill_bounding_boxes(grid, frame_only=True, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "1ae2feb7",
+      "shape_match": true,
+      "train_score": 0.8,
+      "test_pixel_acc_best_pct": 73.83,
+      "winning_expr": "F3Primitives.complete_symmetry(grid, axis='horizontal', bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across horizontal axis.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "247ef758",
+      "shape_match": true,
+      "train_score": 0.8656,
+      "test_pixel_acc_best_pct": 86.19,
+      "winning_expr": "F3LearnedOperators.hollow_objects(grid, fill_color=0, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.hollow_objects] Hollow out interior of solid shapes keeping 1px boundary.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "28a6681f",
+      "shape_match": true,
+      "train_score": 0.9415,
+      "test_pixel_acc_best_pct": 90.0,
+      "winning_expr": "F3Primitives.downsample_block(grid, 10, 10)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (10, 10) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "2b83f449",
+      "shape_match": true,
+      "train_score": 0.8477,
+      "test_pixel_acc_best_pct": 83.28,
+      "winning_expr": "F3Primitives.complete_symmetry(F3Primitives.fill_enclosed_holes(F3Primitives.replace_color(grid, 7, 6), 6, 8), axis='ver",
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + F3Primitives.fill_enclosed_holes + F3Primitives.complete_symmetry] Compos",
+      "used_residual_patch": true
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "2c181942",
+      "shape_match": true,
+      "train_score": 0.7846,
+      "test_pixel_acc_best_pct": 87.66,
+      "winning_expr": "F3Primitives.replace_color(grid, 3, 1)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 3 with color 1.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "31f7f899",
+      "shape_match": true,
+      "train_score": 0.931,
+      "test_pixel_acc_best_pct": 89.62,
+      "winning_expr": "np.flipud(grid)",
+      "top1_thought": "[Synthesizer D1 | np.flipud] Reflect grid vertically.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "332f06d7",
+      "shape_match": true,
+      "train_score": 0.9413,
+      "test_pixel_acc_best_pct": 92.0,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 0, 3)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 3 with color 0.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "35ab12c3",
+      "shape_match": true,
+      "train_score": 0.7924,
+      "test_pixel_acc_best_pct": 91.61,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_co",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + F3Primitives.complete_symmetry] Compose F3LearnedOperator",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "36a08778",
+      "shape_match": true,
+      "train_score": 0.823,
+      "test_pixel_acc_best_pct": 75.86,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={6: {'diag': (6, 1), 'ortho': (6, 1)}, 2: {'ortho': (6, 1), 'd",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "38007db0",
+      "shape_match": true,
+      "train_score": 0.9831,
+      "test_pixel_acc_best_pct": 0.0,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=19, target_w=7, mask_color=-1)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D period and extend grid to (19, 7).",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "3dc255db",
+      "shape_match": true,
+      "train_score": 0.9056,
+      "test_pixel_acc_best_pct": 89.74,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "3e6067c3",
+      "shape_match": true,
+      "train_score": 0.9196,
+      "test_pixel_acc_best_pct": 80.16,
+      "winning_expr": "F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='remove_noise_dots', bg_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'rem",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "409aa875",
+      "shape_match": true,
+      "train_score": 0.8558,
+      "test_pixel_acc_best_pct": 96.48,
+      "winning_expr": "F3Primitives.downsample_block(grid, 16, 16)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (16, 16) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "4c3d4a41",
+      "shape_match": true,
+      "train_score": 0.8744,
+      "test_pixel_acc_best_pct": 90.94,
+      "winning_expr": "F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='keep_largest_only', bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.isolate_extremum_object_or_cell] Isolate or rank objects/subgrids by criterion 'kee",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "4c416de3",
+      "shape_match": true,
+      "train_score": 0.89,
+      "test_pixel_acc_best_pct": 94.02,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=1)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "53fb4810",
+      "shape_match": true,
+      "train_score": 0.8849,
+      "test_pixel_acc_best_pct": 93.78,
+      "winning_expr": "F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priori",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "5545f144",
+      "shape_match": false,
+      "train_score": 0.3916,
+      "test_pixel_acc_best_pct": 91.11,
+      "winning_expr": "np.rot90(grid, 2)",
+      "top1_thought": "[Beam | np.rot90] Rotate grid by 180 degrees counterclockwise.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "581f7754",
+      "shape_match": true,
+      "train_score": 0.8109,
+      "test_pixel_acc_best_pct": 75.62,
+      "winning_expr": "F3Primitives.complete_symmetry(grid, axis='horizontal', bg_color=1)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across horizontal axis.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "58490d8a",
+      "shape_match": true,
+      "train_score": 0.7994,
+      "test_pixel_acc_best_pct": 90.91,
+      "winning_expr": "F3LearnedOperators.crop_to_color_bbox(grid, 0, trim_border=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.crop_to_color_bbox] Crop grid to bounding box of color 0 (trim_border=0).",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "62593bfd",
+      "shape_match": true,
+      "train_score": 0.7903,
+      "test_pixel_acc_best_pct": 88.18,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(F3Primitives.complete_symmetry(F3Primitives.apply_gravity(grid, direction=",
+      "top1_thought": "[Synthesizer D3 | F3Primitives.apply_gravity + F3Primitives.complete_symmetry + F3LearnedOperators.complete_dihedral_sym",
+      "used_residual_patch": true
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "64efde09",
+      "shape_match": true,
+      "train_score": 0.7636,
+      "test_pixel_acc_best_pct": 85.73,
+      "winning_expr": "F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priori",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "6e4f6532",
+      "shape_match": true,
+      "train_score": 0.8904,
+      "test_pixel_acc_best_pct": 85.25,
+      "winning_expr": "F3Primitives.complete_symmetry(F3Primitives.complete_symmetry(grid, axis='vertical', bg_color=5), axis='horizontal', bg_",
+      "top1_thought": "[Synthesizer D2 | F3Primitives.complete_symmetry + F3Primitives.complete_symmetry] Compose F3Primitives.complete_symmetr",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "71e489b6",
+      "shape_match": true,
+      "train_score": 0.854,
+      "test_pixel_acc_best_pct": 83.61,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={0: {'ortho': (7, 1), 'diag': (7, 1)}}, bg_color=1)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7491f3cf",
+      "shape_match": true,
+      "train_score": 0.9243,
+      "test_pixel_acc_best_pct": 93.14,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.hollow_objects(grid, fill_color=4, bg_color=4), axis='vertical', bg_co",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.hollow_objects + F3Primitives.complete_symmetry] Compose F3LearnedOperators.hollow_",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7666fa5d",
+      "shape_match": true,
+      "train_score": 0.8644,
+      "test_pixel_acc_best_pct": 94.53,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(F3LearnedOperators.connect_aligned_markers(grid, line_color=2, priority='default', bg_c",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.connect_aligned_markers + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperat",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7b0280bc",
+      "shape_match": true,
+      "train_score": 0.8571,
+      "test_pixel_acc_best_pct": 93.78,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7b80bb43",
+      "shape_match": true,
+      "train_score": 0.8862,
+      "test_pixel_acc_best_pct": 97.16,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 6, 1)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 1 with color 6.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7c66cb00",
+      "shape_match": true,
+      "train_score": 0.8868,
+      "test_pixel_acc_best_pct": 94.17,
+      "winning_expr": "F3LearnedOperators.apply_residual_patch(grid, np.fliplr(grid), {'type': 'restore_anchors', 'colors': [4, 8]}, bg_color=1",
+      "top1_thought": "[Synthesizer D2 | np.fliplr + ResidualPatch(restore_anchors)] [Synthesizer D1 | np.fliplr] Reflect grid horizontally. ->",
+      "used_residual_patch": true
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "7ed72f31",
+      "shape_match": true,
+      "train_score": 0.8502,
+      "test_pixel_acc_best_pct": 86.17,
+      "winning_expr": "F3Primitives.downsample_block(grid, 18, 18)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (18, 18) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "80a900e0",
+      "shape_match": true,
+      "train_score": 0.9348,
+      "test_pixel_acc_best_pct": 90.26,
+      "winning_expr": "F3LearnedOperators.deduplicate_rows_cols(grid)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.deduplicate_rows_cols] Deduplicate consecutive identical rows and columns.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "88bcf3b4",
+      "shape_match": true,
+      "train_score": 0.8655,
+      "test_pixel_acc_best_pct": 95.05,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={2: {'ortho': (4, 1)}, 3: {'ortho': (9, 1)}}, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "88e364bc",
+      "shape_match": true,
+      "train_score": 0.9749,
+      "test_pixel_acc_best_pct": 97.75,
+      "winning_expr": "F3LearnedOperators.denoise_periodic_subblocks(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.denoise_periodic_subblocks] Denoise repeating subblock tiles via majority vote acro",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "8b7bacbf",
+      "shape_match": true,
+      "train_score": 0.9528,
+      "test_pixel_acc_best_pct": 95.47,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 4, 0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 4.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "8b9c3697",
+      "shape_match": true,
+      "train_score": 0.8083,
+      "test_pixel_acc_best_pct": 91.3,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=2)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded b",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "8e5c0c38",
+      "shape_match": true,
+      "train_score": 0.9822,
+      "test_pixel_acc_best_pct": 97.11,
+      "winning_expr": "F3Primitives.downsample_block(grid, 22, 22)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (22, 22) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "8f215267",
+      "shape_match": true,
+      "train_score": 0.9205,
+      "test_pixel_acc_best_pct": 92.11,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=1)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "8f3a5a89",
+      "shape_match": true,
+      "train_score": 0.8162,
+      "test_pixel_acc_best_pct": 80.56,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={1: {'diag': (7, 1), 'ortho': (7, 1)}, 6: {'ortho': (7, 1)}}, ",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "97d7923e",
+      "shape_match": true,
+      "train_score": 0.9055,
+      "test_pixel_acc_best_pct": 94.0,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 2, 0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "981571dc",
+      "shape_match": true,
+      "train_score": 0.9859,
+      "test_pixel_acc_best_pct": 98.44,
+      "winning_expr": "F3LearnedOperators.apply_residual_patch(grid, F3Primitives.replace_color(grid, 0, 3).T.copy(), {'type': 'restore_anchors",
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + np.transpose + ResidualPatch(restore_anchors)] [Synthesizer D2 | F3Primit",
+      "used_residual_patch": true
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "9aaea919",
+      "shape_match": true,
+      "train_score": 0.8251,
+      "test_pixel_acc_best_pct": 93.44,
+      "winning_expr": "F3LearnedOperators.complete_partial_plus(grid, 2, 5, bg_color=7)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.complete_partial_plus] Complete partial plus (+) neighborhoods anchored by color 2 ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "9bbf930d",
+      "shape_match": true,
+      "train_score": 0.9539,
+      "test_pixel_acc_best_pct": 97.52,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 0, 7)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 7 with color 0.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "a25697e4",
+      "shape_match": true,
+      "train_score": 0.8169,
+      "test_pixel_acc_best_pct": 93.93,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={2: {'ortho': (3, 1), 'diag': (3, 1)}, 6: {'diag': (7, 1), 'or",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "a395ee82",
+      "shape_match": true,
+      "train_score": 0.6726,
+      "test_pixel_acc_best_pct": 87.6,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={2: {'diag': (2,",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry] Compose",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "a47bf94d",
+      "shape_match": true,
+      "train_score": 0.8512,
+      "test_pixel_acc_best_pct": 93.49,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "aa4ec2a5",
+      "shape_match": true,
+      "train_score": 0.8671,
+      "test_pixel_acc_best_pct": 83.9,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(F3LearnedOperators.expand_local_neighborhoods(grid, rules={1: {'ortho': (2, 1), 'diag':",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.fill_enclosed_holes] Compose F3LearnedOpe",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "b10624e5",
+      "shape_match": true,
+      "train_score": 0.9101,
+      "test_pixel_acc_best_pct": 81.07,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(grid, bg_color=4)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.complete_dihedral_symmetry] Complete 8-fold dihedral symmetry around inferred foreg",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "b99e7126",
+      "shape_match": true,
+      "train_score": 0.9735,
+      "test_pixel_acc_best_pct": 97.5,
+      "winning_expr": "F3Primitives.downsample_block(grid, 29, 29)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (29, 29) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "c4d067a0",
+      "shape_match": true,
+      "train_score": 0.8007,
+      "test_pixel_acc_best_pct": 82.3,
+      "winning_expr": "F3Primitives.complete_symmetry(grid, axis='diagonal', bg_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.complete_symmetry] Complete non-background symmetry across diagonal axis.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "c7f57c3e",
+      "shape_match": true,
+      "train_score": 0.89,
+      "test_pixel_acc_best_pct": 90.82,
+      "winning_expr": "F3Primitives.downsample_block(grid, 18, 18)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (18, 18) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "cb2d8a2c",
+      "shape_match": true,
+      "train_score": 0.7917,
+      "test_pixel_acc_best_pct": 87.05,
+      "winning_expr": "F3Primitives.replace_color(grid, 1, 2)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "d35bdbdc",
+      "shape_match": true,
+      "train_score": 0.8635,
+      "test_pixel_acc_best_pct": 75.33,
+      "winning_expr": "F3Primitives.downsample_block(grid, 10, 10)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (10, 10) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "d59b0160",
+      "shape_match": true,
+      "train_score": 0.9093,
+      "test_pixel_acc_best_pct": 61.72,
+      "winning_expr": "F3Primitives.downsample_block(grid, 16, 16)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (16, 16) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "db695cfb",
+      "shape_match": true,
+      "train_score": 0.8171,
+      "test_pixel_acc_best_pct": 74.67,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules=None, bg_color=5",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry] Compose",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "dbff022c",
+      "shape_match": true,
+      "train_score": 0.951,
+      "test_pixel_acc_best_pct": 91.72,
+      "winning_expr": "F3LearnedOperators.symmetrize_per_object_or_frame(grid, mode='hv', bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.symmetrize_per_object_or_frame] Complete horizontal and vertical symmetry inside ea",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "dd6b8c4b",
+      "shape_match": true,
+      "train_score": 0.8865,
+      "test_pixel_acc_best_pct": 85.12,
+      "winning_expr": "F3LearnedOperators.pack_rectangles_into_frame_holes(grid, bg_color=7)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.pack_rectangles_into_frame_holes] Denoise sparse 1px color and pack exterior solid ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "de809cff",
+      "shape_match": true,
+      "train_score": 0.8172,
+      "test_pixel_acc_best_pct": 76.44,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(F3LearnedOperators.grid_cell_consensus(grid, mode='majority_in_place', out_color=-1, bg",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.grid_cell_consensus + F3Primitives.fill_enclosed_holes] Compose F3LearnedOperators.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "e376de54",
+      "shape_match": true,
+      "train_score": 0.9176,
+      "test_pixel_acc_best_pct": 98.83,
+      "winning_expr": "F3Primitives.downsample_block(grid, 16, 16)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (16, 16) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "evaluation",
+      "task_id": "faa9f03d",
+      "shape_match": true,
+      "train_score": 0.8462,
+      "test_pixel_acc_best_pct": 82.64,
+      "winning_expr": "F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priori",
+      "used_residual_patch": false
+    }
+  ],
+  "arc2_training_sample_candidates": [
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "025d127b",
+      "shape_match": true,
+      "train_score": 0.8692,
+      "test_pixel_acc_best_pct": 88.0,
+      "winning_expr": "F3LearnedOperators.expand_local_neighborhoods(grid, rules={8: {'ortho': (8, 1)}, 6: {'ortho': (6, 1)}}, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.expand_local_neighborhoods] Expand local orthogonal/diagonal neighborhoods using in",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "05f2a901",
+      "shape_match": true,
+      "train_score": 0.9469,
+      "test_pixel_acc_best_pct": 92.73,
+      "winning_expr": "F3LearnedOperators.separator_fill(grid, 2, -1, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "06df4c85",
+      "shape_match": true,
+      "train_score": 0.9444,
+      "test_pixel_acc_best_pct": 94.67,
+      "winning_expr": "F3Primitives.crop_to_content(grid, background_color=1)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.crop_to_content] Crop grid to non-background bounding box.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "0b17323b",
+      "shape_match": true,
+      "train_score": 0.8203,
+      "test_pixel_acc_best_pct": 99.11,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.complete_dihedral_symmetry] Complete 8-fold dihedral symmetry around inferred foreg",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "0e206a2e",
+      "shape_match": true,
+      "train_score": 0.3493,
+      "test_pixel_acc_best_pct": 91.67,
+      "winning_expr": "np.fliplr(F3LearnedOperators.isolate_extremum_object_or_cell(grid, criterion='rank_by_area', bg_color=0))",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.isolate_extremum_object_or_cell + np.fliplr] Compose F3LearnedOperators.isolate_ext",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "0e671a1a",
+      "shape_match": true,
+      "train_score": 0.8526,
+      "test_pixel_acc_best_pct": 51.48,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.separator_fill(grid, 5, -1, bg_color=0), axis='horizontal', bg_color=0",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.separator_fill + F3Primitives.complete_symmetry] Compose F3LearnedOperators.separat",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "11dc524f",
+      "shape_match": true,
+      "train_score": 0.9154,
+      "test_pixel_acc_best_pct": 93.49,
+      "winning_expr": "F3LearnedOperators.separator_fill(grid, 2, -1, bg_color=7)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.separator_fill] Fill empty corridors inside figure bbox with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "11e1fe23",
+      "shape_match": false,
+      "train_score": 0.2897,
+      "test_pixel_acc_best_pct": 97.02,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=8)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded b",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "12422b43",
+      "shape_match": true,
+      "train_score": 0.8229,
+      "test_pixel_acc_best_pct": 85.71,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 2, 0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "12eac192",
+      "shape_match": true,
+      "train_score": 0.8406,
+      "test_pixel_acc_best_pct": 76.56,
+      "winning_expr": "F3Primitives.replace_color(grid, 1, 3)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 3.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1478ab18",
+      "shape_match": true,
+      "train_score": 0.8187,
+      "test_pixel_acc_best_pct": 53.12,
+      "winning_expr": "F3LearnedOperators.complete_dihedral_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={5: {'ortho': (8",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3LearnedOperators.complete_dihedral_symmetry] Compose",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "14b8e18c",
+      "shape_match": true,
+      "train_score": 0.8602,
+      "test_pixel_acc_best_pct": 68.0,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 2, 7)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 7 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "150deff5",
+      "shape_match": true,
+      "train_score": 0.8313,
+      "test_pixel_acc_best_pct": 86.36,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(F3LearnedOperators.hollow_objects(F3Primitives.replace_color(grid, 5, 8), fill_color=0,",
+      "top1_thought": "[Synthesizer D3 | F3Primitives.replace_color + F3LearnedOperators.hollow_objects + F3Primitives.fill_enclosed_holes] Com",
+      "used_residual_patch": true
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "15113be4",
+      "shape_match": true,
+      "train_score": 0.9832,
+      "test_pixel_acc_best_pct": 97.16,
+      "winning_expr": "F3Primitives.downsample_block(grid, 23, 23)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (23, 23) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "15663ba9",
+      "shape_match": true,
+      "train_score": 0.803,
+      "test_pixel_acc_best_pct": 86.67,
+      "winning_expr": "F3LearnedOperators.move_until_contact(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.move_until_contact] Translate mobile object orthogonally until contact with anchor ",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "17829a00",
+      "shape_match": true,
+      "train_score": 0.8144,
+      "test_pixel_acc_best_pct": 86.33,
+      "winning_expr": "F3LearnedOperators.connect_aligned_markers(grid, line_color=-1, priority='default', bg_color=7)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.connect_aligned_markers] Connect aligned same-color markers along rows/cols (priori",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "17b866bd",
+      "shape_match": true,
+      "train_score": 0.9103,
+      "test_pixel_acc_best_pct": 62.28,
+      "winning_expr": "np.fliplr(grid)",
+      "top1_thought": "[Synthesizer D1 | np.fliplr] Reflect grid horizontally.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "18286ef8",
+      "shape_match": true,
+      "train_score": 0.9103,
+      "test_pixel_acc_best_pct": 95.01,
+      "winning_expr": "np.fliplr(grid)",
+      "top1_thought": "[Synthesizer D1 | np.fliplr] Reflect grid horizontally.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "182e5d0f",
+      "shape_match": true,
+      "train_score": 0.3934,
+      "test_pixel_acc_best_pct": 92.86,
+      "winning_expr": "F3Primitives.replace_color(grid, 5, 3)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 5 with color 3.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "18447a8d",
+      "shape_match": true,
+      "train_score": 0.8739,
+      "test_pixel_acc_best_pct": 81.82,
+      "winning_expr": "F3Primitives.apply_gravity(grid, direction='left', bg_color=7)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.apply_gravity] Apply physical gravity packing towards left.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1a07d186",
+      "shape_match": true,
+      "train_score": 0.9544,
+      "test_pixel_acc_best_pct": 98.58,
+      "winning_expr": "F3LearnedOperators.denoise_periodic_subblocks(grid, bg_color=0)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.denoise_periodic_subblocks] Denoise repeating subblock tiles via majority vote acro",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1a244afd",
+      "shape_match": true,
+      "train_score": 0.8449,
+      "test_pixel_acc_best_pct": 95.31,
+      "winning_expr": "F3Primitives.replace_color(grid, 6, 7)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 6 with color 7.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1b59e163",
+      "shape_match": true,
+      "train_score": 0.9188,
+      "test_pixel_acc_best_pct": 88.89,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.dihedral_template_matching(grid, bg_color=4), axis='horizontal', bg_co",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.dihedral_template_matching + F3Primitives.complete_symmetry] Compose F3LearnedOpera",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1b60fb0c",
+      "shape_match": true,
+      "train_score": 0.8865,
+      "test_pixel_acc_best_pct": 91.0,
+      "winning_expr": "F3Primitives.fill_enclosed_holes(grid, 2, 0)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.fill_enclosed_holes] Fill enclosed topological cavities of color 0 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1b8318e3",
+      "shape_match": true,
+      "train_score": 0.8318,
+      "test_pixel_acc_best_pct": 92.89,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=3)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded b",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1c02dbbe",
+      "shape_match": true,
+      "train_score": 0.8555,
+      "test_pixel_acc_best_pct": 65.78,
+      "winning_expr": "F3LearnedOperators.fill_bounding_boxes(grid, frame_only=True, bg_color=5)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.fill_bounding_boxes] Draw 1px rectangular frame around bounding box of each foregro",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1c56ad9f",
+      "shape_match": true,
+      "train_score": 0.827,
+      "test_pixel_acc_best_pct": 84.0,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.fill_bounding_boxes(grid, frame_only=False, bg_color=0), axis='horizon",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.fill_bounding_boxes + F3Primitives.complete_symmetry] Compose F3LearnedOperators.fi",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1caeab9d",
+      "shape_match": true,
+      "train_score": 0.8405,
+      "test_pixel_acc_best_pct": 69.0,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shap",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.extend_2d_periodicity + F3Primitives.complete_symmetry] Compose F3LearnedOperators.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1d61978c",
+      "shape_match": true,
+      "train_score": 0.8356,
+      "test_pixel_acc_best_pct": 99.22,
+      "winning_expr": "F3Primitives.replace_color(grid, 5, 8)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 5 with color 8.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1da012fc",
+      "shape_match": true,
+      "train_score": 0.8635,
+      "test_pixel_acc_best_pct": 91.37,
+      "winning_expr": "F3Primitives.replace_color(grid, 1, 4)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 1 with color 4.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1e32b0e9",
+      "shape_match": true,
+      "train_score": 0.8654,
+      "test_pixel_acc_best_pct": 81.31,
+      "winning_expr": "F3Primitives.replace_color(grid, 8, 2)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.replace_color] Replace color 8 with color 2.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1e5d6875",
+      "shape_match": true,
+      "train_score": 0.8088,
+      "test_pixel_acc_best_pct": 73.44,
+      "winning_expr": "F3Primitives.complete_symmetry(F3LearnedOperators.expand_local_neighborhoods(grid, rules={2: {'ortho': (3, 1)}}, bg_colo",
+      "top1_thought": "[Synthesizer D2 | F3LearnedOperators.expand_local_neighborhoods + F3Primitives.complete_symmetry] Compose F3LearnedOpera",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1e81d6f9",
+      "shape_match": true,
+      "train_score": 0.9751,
+      "test_pixel_acc_best_pct": 98.22,
+      "winning_expr": "F3Primitives.downsample_block(grid, 15, 15)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (15, 15) modal color blocks.",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1efba499",
+      "shape_match": true,
+      "train_score": 0.8769,
+      "test_pixel_acc_best_pct": 85.71,
+      "winning_expr": "F3LearnedOperators.extend_2d_periodicity(grid, target_h=grid.shape[0], target_w=grid.shape[1], mask_color=6)",
+      "top1_thought": "[Synthesizer D1 | F3LearnedOperators.extend_2d_periodicity] Infer 2D wallpaper period and reconstruct patches occluded b",
+      "used_residual_patch": false
+    },
+    {
+      "dataset": "ARC-AGI-2",
+      "split": "training_sample_100",
+      "task_id": "1f642eb9",
+      "shape_match": true,
+      "train_score": 0.91,
+      "test_pixel_acc_best_pct": 93.0,
+      "winning_expr": "F3Primitives.downsample_block(grid, 10, 10)",
+      "top1_thought": "[Synthesizer D1 | F3Primitives.downsample_block] Downsample grid into (10, 10) modal color blocks.",
+      "used_residual_patch": false
+    }
+  ]
+}
