@@ -1,7 +1,7 @@
 {
   "study": "Estudo 6.2 — Hybrid Symbolic + NREMCellularResidualLearner on Near-Misses",
   "total_nearmiss_evaluated": 282,
-  "total_nearmiss_converted_to_exact": 3,
+  "total_nearmiss_converted_to_exact": 4,
   "total_pixel_improved": 71,
   "arc1_original_pass2_count": 57,
   "arc1_hybrid_pass2_count": 60,
@@ -10,15 +10,15 @@
   "arc2_eval_hybrid_pass2_count": 0,
   "arc2_eval_hybrid_pass2_pct": 0.0,
   "arc2_train_original_pass2_count": 33,
-  "arc2_train_hybrid_pass2_count": 33,
-  "arc2_train_hybrid_pass2_pct": 33.0,
+  "arc2_train_hybrid_pass2_count": 34,
+  "arc2_train_hybrid_pass2_pct": 34.0,
   "groups": {
     "arc1_candidates": {
       "group_label": "ARC-1 Public Hold-Out (N=400 Split)",
       "total_nearmisses": 184,
       "converted_to_exact_count": 3,
-      "pixel_accuracy_improved_count": 47,
-      "unchanged_count": 134,
+      "pixel_accuracy_improved_count": 48,
+      "unchanged_count": 133,
       "converted_tasks": [
         {
           "task_id": "84f2aca1",
@@ -285,6 +285,13 @@
           "new_test_acc": 92.44
         },
         {
+          "task_id": "bd14c3bf",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 81.99,
+          "new_test_acc": 84.21
+        },
+        {
           "task_id": "bf89d739",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -481,18 +488,20 @@
     "arc2_training_sample_candidates": {
       "group_label": "ARC-2 Training Sample (N=100 Split)",
       "total_nearmisses": 35,
-      "converted_to_exact_count": 0,
-      "pixel_accuracy_improved_count": 11,
+      "converted_to_exact_count": 1,
+      "pixel_accuracy_improved_count": 10,
       "unchanged_count": 24,
-      "converted_tasks": [],
-      "improved_tasks": [
+      "converted_tasks": [
         {
           "task_id": "05f2a901",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
+          "engine": "Motor B — NREMSparseRuleSynthesizer",
+          "rule_type": "object_translation_or_copy_patch",
           "base_test_acc": 92.73,
-          "new_test_acc": 96.36
-        },
+          "new_test_acc": 100.0,
+          "winning_expr": "F3LearnedOperators.separator_fill(grid, 2, -1, bg_color=0)"
+        }
+      ],
+      "improved_tasks": [
         {
           "task_id": "0e671a1a",
           "engine": "Motor A — F3MetabolicCellularMLP",

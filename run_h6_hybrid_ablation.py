@@ -124,7 +124,11 @@ def build_real_arc_cell_stream() -> List[Dict[str, Any]]:
 
 
 def run_real_arc_continual_regime(
-    regime_name: str, stream: List[Dict[str, Any]], epochs: int = 12, lr: float = 0.045
+    regime_name: str,
+    stream: List[Dict[str, Any]],
+    epochs: int = 12,
+    lr: float = 0.045,
+    seed: int = 42,
 ) -> Dict[str, Any]:
     """Executa um dos 4 regimes contínuos no fluxo Class-Incremental de 5 tarefas com células ativas reais."""
     t0 = time.perf_counter()
@@ -137,7 +141,7 @@ def run_real_arc_continual_regime(
         mistake_margin=0.15,
         syngap_gamma=30.0,
         lambda_anc=3000.0,
-        seed=42,
+        seed=seed,
     )
 
     acc_matrix = np.zeros((n_tasks, n_tasks), dtype=np.float64)
@@ -230,17 +234,19 @@ def run_real_arc_continual_regime(
 
 
 def execute_study_6_1() -> Dict[str, Any]:
-    """Executa o Estudo 6.1 comparando os 4 regimes de plasticidade contínua."""
+    """Executa o Estudo 6.1 comparando os 4 regimes de plasticidade contínua em N=5 sementes/permutações."""
     print("\n" + "=" * 78)
     print("🔬 ESTUDO 6.1 — APRENDIZADO CONTÍNUO CLASS-INCREMENTAL EM CÉLULAS ATIVAS DO ARC")
     print("   Fluxo: 5 Tarefas Reais (10 Cores Disjuntas, Células de Transformação Balanceadas)")
     print("   Espaço de Entrada: 64D Cell Features | Zero Replay Buffer | 100% CPU NumPy")
+    print("   Avaliação Multi-Seed: N=5 Sementes [42, 101, 202, 303, 404] x Permutações de Ordem")
     print("=" * 78)
 
-    stream = build_real_arc_cell_stream()
-    total_cells = sum(t["n_train_cells"] for t in stream)
-    print(f"📦 Fluxo carregado com sucesso: {len(stream)} tarefas, {total_cells} células ativas de treino.")
+    base_stream = build_real_arc_cell_stream()
+    total_cells = sum(t["n_train_cells"] for t in base_stream)
+    print(f"📦 Fluxo base carregado: {len(base_stream)} tarefas, {total_cells} células ativas de treino.")
 
+    seeds = [42, 101, 202, 303, 404]
     regimes = ["sgd", "ewc", "mistake_gating", "f3_metabolic"]
     regime_labels = {
         "sgd": "Standard SGD / Adam Baseline",
@@ -249,32 +255,89 @@ def execute_study_6_1() -> Dict[str, Any]:
         "f3_metabolic": "F3-Metabolic-Optim (SynGAP + Mistake Gating + Tensor M)",
     }
 
-    results: List[Dict[str, Any]] = []
+    raw_runs_by_regime: Dict[str, List[Dict[str, Any]]] = {r: [] for r in regimes}
+
+    for s_idx, s in enumerate(seeds, 1):
+        rng = np.random.default_rng(s)
+        perm = rng.permutation(len(base_stream)).tolist()
+        perm_stream = [base_stream[i] for i in perm]
+        order_ids = [t["task_id"] for t in perm_stream]
+        print(f"\n🌱 Semente {s_idx}/5 (Seed={s}) | Ordem das tarefas: {order_ids}")
+
+        for reg in regimes:
+            res = run_real_arc_continual_regime(reg, perm_stream, epochs=12, lr=0.045, seed=s)
+            res["seed"] = s
+            res["task_order"] = order_ids
+            raw_runs_by_regime[reg].append(res)
+            print(
+                f"   [{reg:14s}] Acc: {res['final_mean_accuracy_pct']:5.2f}% | "
+                f"Esquecimento: {res['forgetting_ratio_pct']:5.2f}% | "
+                f"Updates Poupados: {res['saved_synaptic_updates_pct']:5.1f}% | "
+                f"M1: {res['m1_metabolic_cost']:6.1f} | "
+                f"Tempo: {res['elapsed_sec']:4.2f}s"
+            )
+
+    # Agregação estatística robusta (Média ± Desvio-Padrão)
+    aggregated_regimes: List[Dict[str, Any]] = []
+    print("\n" + "=" * 78)
+    print("📊 RESULTADOS ESTATÍSTICOS AGREGADOS (N=5 SEMENTES INDEPENDENTES):")
+    print("=" * 78)
+
     for reg in regimes:
-        print(f"\n▶ Executando regime: {regime_labels[reg]}...")
-        res = run_real_arc_continual_regime(reg, stream, epochs=12, lr=0.045)
-        res["display_name"] = regime_labels[reg]
-        results.append(res)
+        runs = raw_runs_by_regime[reg]
+        accs = [x["final_mean_accuracy_pct"] for x in runs]
+        forgets = [x["forgetting_ratio_pct"] for x in runs]
+        saveds = [x["saved_synaptic_updates_pct"] for x in runs]
+        m1s = [x["m1_metabolic_cost"] for x in runs]
+        times = [x["elapsed_sec"] for x in runs]
+
+        agg = {
+            "regime_name": reg,
+            "display_name": regime_labels[reg],
+            "n_seeds": len(seeds),
+            "seeds": seeds,
+            "final_mean_accuracy_pct_mean": round(float(np.mean(accs)), 2),
+            "final_mean_accuracy_pct_std": round(float(np.std(accs)), 2),
+            "forgetting_ratio_pct_mean": round(float(np.mean(forgets)), 2),
+            "forgetting_ratio_pct_std": round(float(np.std(forgets)), 2),
+            "saved_synaptic_updates_pct_mean": round(float(np.mean(saveds)), 2),
+            "saved_synaptic_updates_pct_std": round(float(np.std(saveds)), 2),
+            "m1_metabolic_cost_mean": round(float(np.mean(m1s)), 2),
+            "m1_metabolic_cost_std": round(float(np.std(m1s)), 2),
+            "elapsed_sec_mean": round(float(np.mean(times)), 3),
+            "elapsed_sec_std": round(float(np.std(times)), 3),
+            # Para retrocompatibilidade com geradores que leem campos escalares:
+            "final_mean_accuracy_pct": round(float(np.mean(accs)), 2),
+            "forgetting_ratio_pct": round(float(np.mean(forgets)), 2),
+            "saved_synaptic_updates_pct": round(float(np.mean(saveds)), 2),
+            "m1_metabolic_cost": round(float(np.mean(m1s)), 2),
+            "elapsed_sec": round(float(np.mean(times)), 3),
+            "seed_runs": runs,
+        }
+        aggregated_regimes.append(agg)
         print(
-            f"   ✓ Acurácia Final: {res['final_mean_accuracy_pct']:.2f}% | "
-            f"Esquecimento: {res['forgetting_ratio_pct']:.2f}% | "
-            f"Updates Poupados: {res['saved_synaptic_updates_pct']:.2f}% | "
-            f"Custo M1: {res['m1_metabolic_cost']:.1f} | "
-            f"Tempo: {res['elapsed_sec']:.2f}s"
+            f"  {regime_labels[reg]:<45s} | "
+            f"Acc: {agg['final_mean_accuracy_pct_mean']:.2f} ± {agg['final_mean_accuracy_pct_std']:.2f}% | "
+            f"Esquecimento: {agg['forgetting_ratio_pct_mean']:.2f} ± {agg['forgetting_ratio_pct_std']:.2f}% | "
+            f"Updates Poupados: {agg['saved_synaptic_updates_pct_mean']:.1f} ± {agg['saved_synaptic_updates_pct_std']:.1f}% | "
+            f"Custo M1: {agg['m1_metabolic_cost_mean']:.1f} ± {agg['m1_metabolic_cost_std']:.1f}"
         )
 
     out_payload = {
-        "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors",
+        "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors (Multi-Seed)",
         "benchmark_dataset": "Real ARC-AGI 5-Task Sequential Stream",
-        "tasks": [t["task_id"] for t in stream],
+        "tasks": [t["task_id"] for t in base_stream],
         "total_train_cells": total_cells,
-        "regimes": results,
+        "n_seeds": len(seeds),
+        "seeds": seeds,
+        "replay_free_audit": "Strictly zero data replay buffer. All 4 regimes store 0 past training samples.",
+        "regimes": aggregated_regimes,
     }
 
     out_file = ROOT_DIR / "benchmark_h6_real_arc_continual.json"
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(out_payload, f, indent=2, ensure_ascii=False)
-    print(f"\n💾 Resultados do Estudo 6.1 salvos em: {out_file}")
+    print(f"\n💾 Resultados multi-seed do Estudo 6.1 salvos em: {out_file}")
 
     return out_payload
 
@@ -339,7 +402,7 @@ def execute_study_6_2() -> Dict[str, Any]:
             base_p2 = base_res["pass_at_2"]
 
             # Define função âncora simbólica segura
-            winning_code = f"def transform(grid: np.ndarray) -> np.ndarray:\n    return {base_res['winning_expr']}"
+            winning_code = base_res.get("winning_code") or f"def transform(grid: np.ndarray) -> np.ndarray:\n    return {base_res['winning_expr']}"
 
             def anchor_call(g: np.ndarray) -> Optional[np.ndarray]:
                 return solver._execute_code_on_grid(winning_code, g)

@@ -313,7 +313,7 @@ class F3MetabolicCellularMLP:
     def consolidate_task_nrem(
         self, task_samples: Optional[Tuple[np.ndarray, np.ndarray]] = None
     ) -> None:
-        """Consolidação ao término de uma tarefa (fase NREM com replay de consolidação de Fisher)."""
+        """Consolidação paramétrica ao término da tarefa (fase NREM puramente replay-free: armazena apenas curvatura de Fisher e pesos theta*, zero replay de dados)."""
         if task_samples is not None:
             X_tr, y_tr = task_samples
             n_samples = len(X_tr)
@@ -846,6 +846,516 @@ class NREMSparseRuleSynthesizer:
             out[mask] = refl[mask]
         return out
 
+    @staticmethod
+    def synthesize_localized_subgrid_operator(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+        c_bg: int = 0,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Sintetiza operações localizadas dentro da bounding box de componentes conexos:
+          - recolor_inside_bbox: mapeia c_src -> c_dst no interior da bbox de componentes c_anc
+          - fill_interior_cavity_bbox: preenche cavidades internas da bbox com fill_color
+        """
+        for c_anc in range(10):
+            if c_anc == c_bg:
+                continue
+            # 1. Recolor inside bbox
+            for c_src in range(10):
+                for c_dst in range(10):
+                    if c_src == c_dst:
+                        continue
+                    repaired_any = False
+                    valid = True
+                    for ex, Y_st in zip(train_pairs, anchor_preds):
+                        X = np.array(ex["input"], int)
+                        Y = np.array(ex["output"], int)
+                        cand = Y_st.copy()
+                        lbl, n_comp = label(cand == c_anc)
+                        if n_comp == 0 and X.shape == cand.shape:
+                            lbl, n_comp = label(X == c_anc)
+                        if n_comp == 0:
+                            valid = False
+                            break
+                        slices = find_objects(lbl)
+                        for sl in slices:
+                            if sl is None:
+                                continue
+                            sub = cand[sl]
+                            mask_src = (sub == c_src)
+                            if np.any(mask_src):
+                                sub[mask_src] = c_dst
+                                cand[sl] = sub
+                        if np.any(cand != Y_st):
+                            repaired_any = True
+                        if not np.array_equal(cand, Y):
+                            valid = False
+                            break
+                    if repaired_any and valid:
+                        return {
+                            "type": "localized_subgrid_operator_patch",
+                            "mode": "recolor_inside_bbox",
+                            "c_anc": c_anc,
+                            "c_src": c_src,
+                            "c_dst": c_dst,
+                            "c_bg": c_bg,
+                        }
+
+            # 2. Fill interior cavity bbox
+            for fill_col in range(10):
+                if fill_col == c_bg:
+                    continue
+                repaired_any = False
+                valid = True
+                for ex, Y_st in zip(train_pairs, anchor_preds):
+                    X = np.array(ex["input"], int)
+                    Y = np.array(ex["output"], int)
+                    cand = Y_st.copy()
+                    lbl, n_comp = label(cand == c_anc)
+                    if n_comp == 0 and X.shape == cand.shape:
+                        lbl, n_comp = label(X == c_anc)
+                    if n_comp == 0:
+                        valid = False
+                        break
+                    slices = find_objects(lbl)
+                    for sl in slices:
+                        if sl is None:
+                            continue
+                        sub = cand[sl]
+                        filled_sub = F3Primitives.fill_enclosed_holes(sub, fill_color=fill_col, bg_color=c_bg)
+                        if np.any(filled_sub != sub):
+                            cand[sl] = filled_sub
+                    if np.any(cand != Y_st):
+                        repaired_any = True
+                    if not np.array_equal(cand, Y):
+                        valid = False
+                        break
+                if repaired_any and valid:
+                    return {
+                        "type": "localized_subgrid_operator_patch",
+                        "mode": "fill_interior_cavity_bbox",
+                        "c_anc": c_anc,
+                        "fill_col": fill_col,
+                        "c_bg": c_bg,
+                    }
+
+        return None
+
+    @staticmethod
+    def apply_localized_subgrid_operator(
+        X: np.ndarray, Y_st: np.ndarray, rule: Dict[str, Any]
+    ) -> np.ndarray:
+        mode = rule.get("mode")
+        c_anc = rule.get("c_anc", 0)
+        c_bg = rule.get("c_bg", 0)
+        out = Y_st.copy()
+        lbl, n_comp = label(out == c_anc)
+        if n_comp == 0 and X.shape == out.shape:
+            lbl, n_comp = label(X == c_anc)
+        if n_comp == 0:
+            return out
+        slices = find_objects(lbl)
+        for sl in slices:
+            if sl is None:
+                continue
+            sub = out[sl]
+            if mode == "recolor_inside_bbox":
+                c_src = rule["c_src"]
+                c_dst = rule["c_dst"]
+                mask_src = (sub == c_src)
+                if np.any(mask_src):
+                    sub[mask_src] = c_dst
+                    out[sl] = sub
+            elif mode == "fill_interior_cavity_bbox":
+                fill_col = rule["fill_col"]
+                filled_sub = F3Primitives.fill_enclosed_holes(sub, fill_color=fill_col, bg_color=c_bg)
+                out[sl] = filled_sub
+        return out
+
+    @staticmethod
+    def synthesize_object_translation_or_copy(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+        c_bg: int = 0,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Sintetiza operações relacionais de translação e cópia de objetos:
+          - axis_aligned_snap_to_target: translada componentes de c_mov até tocarem c_tgt no mesmo eixo
+          - fixed_translation: translada componentes de c_mov por deslocamento constante (dr, dc)
+        """
+        # 1. Axis-aligned snap to target
+        for c_mov in range(10):
+            if c_mov == c_bg:
+                continue
+            for c_tgt in range(10):
+                if c_tgt == c_bg or c_tgt == c_mov:
+                    continue
+                repaired_any = False
+                valid = True
+                for ex, Y_st in zip(train_pairs, anchor_preds):
+                    X = np.array(ex["input"], int)
+                    Y = np.array(ex["output"], int)
+                    cand = NREMSparseRuleSynthesizer._apply_snap_axis(
+                        X, Y_st, c_mov, c_tgt, c_bg
+                    )
+                    if np.any(cand != Y_st):
+                        repaired_any = True
+                    if not np.array_equal(cand, Y):
+                        valid = False
+                        break
+                if repaired_any and valid:
+                    return {
+                        "type": "object_translation_or_copy_patch",
+                        "mode": "axis_aligned_snap_to_target",
+                        "c_mov": c_mov,
+                        "c_tgt": c_tgt,
+                        "c_bg": c_bg,
+                    }
+
+        # 2. Fixed translation
+        for c_mov in range(10):
+            if c_mov == c_bg:
+                continue
+            for dr in range(-4, 5):
+                for dc in range(-4, 5):
+                    if dr == 0 and dc == 0:
+                        continue
+                    repaired_any = False
+                    valid = True
+                    for ex, Y_st in zip(train_pairs, anchor_preds):
+                        X = np.array(ex["input"], int)
+                        Y = np.array(ex["output"], int)
+                        cand = NREMSparseRuleSynthesizer._apply_fixed_trans(
+                            X, Y_st, c_mov, dr, dc, c_bg
+                        )
+                        if np.any(cand != Y_st):
+                            repaired_any = True
+                        if not np.array_equal(cand, Y):
+                            valid = False
+                            break
+                    if repaired_any and valid:
+                        return {
+                            "type": "object_translation_or_copy_patch",
+                            "mode": "fixed_translation",
+                            "c_mov": c_mov,
+                            "dr": dr,
+                            "dc": dc,
+                            "c_bg": c_bg,
+                        }
+
+        return None
+
+    @staticmethod
+    def _apply_snap_axis(
+        X: np.ndarray, Y_st: np.ndarray, c_mov: int, c_tgt: int, c_bg: int = 0
+    ) -> np.ndarray:
+        out = Y_st.copy()
+        H, W = out.shape
+        tgt_mask = (Y_st == c_tgt).copy()
+        if X.shape == Y_st.shape:
+            tgt_mask |= (X == c_tgt)
+        if not np.any(tgt_mask):
+            return out
+        if X.shape == Y_st.shape:
+            lbl, n_comp = label(X == c_mov)
+            if n_comp == 0:
+                lbl, n_comp = label(Y_st == c_mov)
+        else:
+            lbl, n_comp = label(Y_st == c_mov)
+        if n_comp == 0:
+            return out
+        out[out == c_mov] = c_bg
+        for cid in range(1, n_comp + 1):
+            c_mask = (lbl == cid)
+            rs, cs = np.where(c_mask)
+            best_cand = None
+            best_dist = 9999
+            for dr in range(-H, H):
+                for dc in range(-W, W):
+                    if dr != 0 and dc != 0:
+                        continue
+                    new_rs = rs + dr
+                    new_cs = cs + dc
+                    if np.any(new_rs < 0) or np.any(new_rs >= H) or np.any(new_cs < 0) or np.any(new_cs >= W):
+                        continue
+                    if np.any(tgt_mask[new_rs, new_cs]):
+                        continue
+                    adj = False
+                    for r_n, c_n in zip(new_rs, new_cs):
+                        for d_r, d_c in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                            nr, nc = r_n + d_r, c_n + d_c
+                            if 0 <= nr < H and 0 <= nc < W and tgt_mask[nr, nc]:
+                                adj = True
+                                break
+                        if adj:
+                            break
+                    if adj:
+                        dist = abs(dr) + abs(dc)
+                        if dist < best_dist:
+                            best_dist = dist
+                            best_cand = (dr, dc)
+            if best_cand is not None:
+                dr, dc = best_cand
+                out[rs + dr, cs + dc] = c_mov
+            else:
+                out[c_mask] = c_mov
+        return out
+
+    @staticmethod
+    def _apply_fixed_trans(
+        X: np.ndarray, Y_st: np.ndarray, c_mov: int, dr: int, dc: int, c_bg: int = 0
+    ) -> np.ndarray:
+        out = Y_st.copy()
+        H, W = out.shape
+        if X.shape == Y_st.shape:
+            lbl, n_comp = label(X == c_mov)
+            if n_comp == 0:
+                lbl, n_comp = label(Y_st == c_mov)
+        else:
+            lbl, n_comp = label(Y_st == c_mov)
+        if n_comp == 0:
+            return out
+        out[out == c_mov] = c_bg
+        for cid in range(1, n_comp + 1):
+            c_mask = (lbl == cid)
+            rs, cs = np.where(c_mask)
+            new_rs = rs + dr
+            new_cs = cs + dc
+            valid = (new_rs >= 0) & (new_rs < H) & (new_cs >= 0) & (new_cs < W)
+            out[new_rs[valid], new_cs[valid]] = c_mov
+        return out
+
+    @staticmethod
+    def apply_object_translation_or_copy(
+        X: np.ndarray, Y_st: np.ndarray, rule: Dict[str, Any]
+    ) -> np.ndarray:
+        mode = rule.get("mode")
+        c_mov = rule["c_mov"]
+        c_bg = rule.get("c_bg", 0)
+        if mode == "axis_aligned_snap_to_target":
+            return NREMSparseRuleSynthesizer._apply_snap_axis(
+                X, Y_st, c_mov, rule["c_tgt"], c_bg
+            )
+        elif mode == "fixed_translation":
+            return NREMSparseRuleSynthesizer._apply_fixed_trans(
+                X, Y_st, c_mov, rule["dr"], rule["dc"], c_bg
+            )
+        return Y_st
+
+    @staticmethod
+    def synthesize_periodic_or_line_extension(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+        c_bg: int = 0,
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Sintetiza extensão de feixes, alinhamentos periódicos e snap de marcadores em linhas:
+          - snap_dots_to_line: projeta pontos isolados de cor c até ficarem adjacentes a linhas de cor c
+          - periodic_row_col_extension: detecta período p in {2, 3, 4} em linhas/colunas e estende ao longo da grade
+        """
+        # 1. Snap dots to line (com e sem remoção de ruído)
+        for noise_clean in [True, False]:
+            repaired_any = False
+            valid = True
+            for ex, Y_st in zip(train_pairs, anchor_preds):
+                X = np.array(ex["input"], int)
+                Y = np.array(ex["output"], int)
+                cand = NREMSparseRuleSynthesizer._apply_snap_dots(
+                    X, Y_st, c_bg, noise_clean
+                )
+                if np.any(cand != Y_st):
+                    repaired_any = True
+                if not np.array_equal(cand, Y):
+                    valid = False
+                    break
+            if repaired_any and valid:
+                return {
+                    "type": "periodic_or_line_extension_patch",
+                    "mode": "snap_dots_to_line",
+                    "noise_clean": noise_clean,
+                    "c_bg": c_bg,
+                }
+
+        # 2. Periodic line completion
+        for period in (2, 3, 4):
+            repaired_any = False
+            valid = True
+            for ex, Y_st in zip(train_pairs, anchor_preds):
+                X = np.array(ex["input"], int)
+                Y = np.array(ex["output"], int)
+                cand = NREMSparseRuleSynthesizer._apply_periodic_ext(
+                    Y_st, period, c_bg
+                )
+                if np.any(cand != Y_st):
+                    repaired_any = True
+                if not np.array_equal(cand, Y):
+                    valid = False
+                    break
+            if repaired_any and valid:
+                return {
+                    "type": "periodic_or_line_extension_patch",
+                    "mode": "periodic_row_col_extension",
+                    "period": period,
+                    "c_bg": c_bg,
+                }
+
+        return None
+
+    @staticmethod
+    def _apply_snap_dots(
+        X: np.ndarray, Y_st: np.ndarray, c_bg: int = 0, noise_clean: bool = True
+    ) -> np.ndarray:
+        out = Y_st.copy()
+        H, W = out.shape
+        line_colors = set()
+        for c in range(10):
+            if c == c_bg:
+                continue
+            for r in range(H):
+                if np.sum(out[r, :] == c) >= 4:
+                    line_colors.add(c)
+            for col in range(W):
+                if np.sum(out[:, col] == c) >= 4:
+                    line_colors.add(c)
+
+        for c in range(10):
+            if c == c_bg:
+                continue
+            c_mask = (out == c)
+            if not np.any(c_mask):
+                continue
+            lbl, n_comp = label(c_mask)
+            if n_comp < 2:
+                continue
+            line_masks = []
+            dot_masks = []
+            for cid in range(1, n_comp + 1):
+                m = (lbl == cid)
+                rs, cs = np.where(m)
+                bh = rs.max() - rs.min() + 1
+                bw = cs.max() - cs.min() + 1
+                area = len(rs)
+                if (bh >= 4 and bw == 1) or (bw >= 4 and bh == 1) or (area >= 5 and (bh / max(1, bw) >= 3 or bw / max(1, bh) >= 3)):
+                    line_masks.append(m)
+                elif area <= 2:
+                    dot_masks.append(m)
+            if not line_masks or not dot_masks:
+                continue
+            full_line_mask = np.zeros((H, W), dtype=bool)
+            for lm in line_masks:
+                full_line_mask |= lm
+            for dm in dot_masks:
+                d_rs, d_cs = np.where(dm)
+                r_d, c_d = d_rs[0], d_cs[0]
+                best_pos = None
+                min_dist = 9999
+                for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                    step = 1
+                    while True:
+                        nr = r_d + dr * step
+                        nc = c_d + dc * step
+                        if not (0 <= nr < H and 0 <= nc < W):
+                            break
+                        if full_line_mask[nr, nc]:
+                            adj_r = r_d + dr * (step - 1)
+                            adj_c = c_d + dc * (step - 1)
+                            if step < min_dist:
+                                min_dist = step
+                                best_pos = (adj_r, adj_c)
+                            break
+                        step += 1
+                if best_pos is not None:
+                    out[dm] = c_bg
+                    out[best_pos[0], best_pos[1]] = c
+
+        if noise_clean:
+            for c in range(1, 10):
+                if c not in line_colors:
+                    out[out == c] = c_bg
+        return out
+
+    @staticmethod
+    def _apply_periodic_ext(
+        Y_st: np.ndarray, period: int, c_bg: int = 0
+    ) -> np.ndarray:
+        out = Y_st.copy()
+        H, W = out.shape
+        # Rows
+        for r in range(H):
+            non_bg = np.where(out[r, :] != c_bg)[0]
+            if len(non_bg) >= max(3, period * 2):
+                first_idx = non_bg[0]
+                pattern = [out[r, (first_idx + i) % W] for i in range(period)]
+                if len(set(pattern)) > 1:
+                    is_p = True
+                    for c_idx in non_bg:
+                        expected = pattern[(c_idx - first_idx) % period]
+                        if out[r, c_idx] != expected:
+                            is_p = False
+                            break
+                    if is_p:
+                        for c_idx in range(W):
+                            out[r, c_idx] = pattern[(c_idx - first_idx) % period]
+        # Cols
+        for col in range(W):
+            non_bg = np.where(out[:, col] != c_bg)[0]
+            if len(non_bg) >= max(3, period * 2):
+                first_idx = non_bg[0]
+                pattern = [out[(first_idx + i) % H, col] for i in range(period)]
+                if len(set(pattern)) > 1:
+                    is_p = True
+                    for r_idx in non_bg:
+                        expected = pattern[(r_idx - first_idx) % period]
+                        if out[r_idx, col] != expected:
+                            is_p = False
+                            break
+                    if is_p:
+                        for r_idx in range(H):
+                            out[r_idx, col] = pattern[(r_idx - first_idx) % period]
+        return out
+
+    @staticmethod
+    def apply_periodic_or_line_extension(
+        X: np.ndarray, Y_st: np.ndarray, rule: Dict[str, Any]
+    ) -> np.ndarray:
+        mode = rule.get("mode")
+        c_bg = rule.get("c_bg", 0)
+        if mode == "snap_dots_to_line":
+            return NREMSparseRuleSynthesizer._apply_snap_dots(
+                X, Y_st, c_bg=c_bg, noise_clean=rule.get("noise_clean", True)
+            )
+        elif mode == "periodic_row_col_extension":
+            return NREMSparseRuleSynthesizer._apply_periodic_ext(
+                Y_st, period=rule.get("period", 2), c_bg=c_bg
+            )
+        return Y_st
+
+    @staticmethod
+    def apply_rule(
+        X: np.ndarray, Y_st: np.ndarray, rule: Dict[str, Any]
+    ) -> np.ndarray:
+        """Despachador central e determinístico para aplicação de qualquer regra sintética do Motor B."""
+        rtype = rule.get("type")
+        if rtype == "sparse_predicate_lut":
+            return NREMSparseRuleSynthesizer.apply_predicate_lut(X, Y_st, rule)
+        elif rtype == "component_attribute_recolor":
+            return NREMSparseRuleSynthesizer.apply_component_recolor(Y_st, rule)
+        elif rtype == "subblock_or_symmetry_repair":
+            return NREMSparseRuleSynthesizer.apply_symmetry_repair(Y_st, rule)
+        elif rtype == "residual_cavity_or_bbox_fill":
+            return NREMSparseRuleSynthesizer.apply_cavity_or_bbox_fill(Y_st, rule)
+        elif rtype == "residual_ray_or_bridge_patch":
+            return NREMSparseRuleSynthesizer.apply_ray_or_bridge(Y_st, rule)
+        elif rtype == "residual_motif_stamp_patch":
+            return NREMSparseRuleSynthesizer.apply_motif_stamp(X, Y_st, rule)
+        elif rtype == "localized_subgrid_operator_patch":
+            return NREMSparseRuleSynthesizer.apply_localized_subgrid_operator(X, Y_st, rule)
+        elif rtype == "object_translation_or_copy_patch":
+            return NREMSparseRuleSynthesizer.apply_object_translation_or_copy(X, Y_st, rule)
+        elif rtype == "periodic_or_line_extension_patch":
+            return NREMSparseRuleSynthesizer.apply_periodic_or_line_extension(X, Y_st, rule)
+        return Y_st
+
 
 # =============================================================================
 # 4. ORQUESTRADOR HÍBRIDO NREM & CERTIFICADO LOO-CV RASHOMON GATE
@@ -957,6 +1467,27 @@ class NREMCellularResidualLearner:
         if motif_rule is not None:
             candidate_rules.append(motif_rule)
 
+        # B.7: Localized Subgrid Operator Patch
+        subgrid_rule = self.synthesizer.synthesize_localized_subgrid_operator(
+            train_pairs, anchor_train_preds, c_bg=self.c_bg
+        )
+        if subgrid_rule is not None:
+            candidate_rules.append(subgrid_rule)
+
+        # B.8: Object Translation or Copy Patch
+        trans_rule = self.synthesizer.synthesize_object_translation_or_copy(
+            train_pairs, anchor_train_preds, c_bg=self.c_bg
+        )
+        if trans_rule is not None:
+            candidate_rules.append(trans_rule)
+
+        # B.9: Periodic or Line Extension Patch
+        per_rule = self.synthesizer.synthesize_periodic_or_line_extension(
+            train_pairs, anchor_train_preds, c_bg=self.c_bg
+        )
+        if per_rule is not None:
+            candidate_rules.append(per_rule)
+
         # 3. LOO-CV Rashomon Gate sobre as regras candidatas
         best_rule: Optional[Dict[str, Any]] = None
         best_loo_score = float("inf")
@@ -972,32 +1503,7 @@ class NREMCellularResidualLearner:
                     held_exp = np.array(held_ex["output"], dtype=int)
                     held_yst = anchor_train_preds[k]
 
-                    if rule["type"] == "sparse_predicate_lut":
-                        patched = self.synthesizer.apply_predicate_lut(
-                            held_inp, held_yst, rule
-                        )
-                    elif rule["type"] == "component_attribute_recolor":
-                        patched = self.synthesizer.apply_component_recolor(
-                            held_yst, rule
-                        )
-                    elif rule["type"] == "subblock_or_symmetry_repair":
-                        patched = self.synthesizer.apply_symmetry_repair(
-                            held_yst, rule
-                        )
-                    elif rule["type"] == "residual_cavity_or_bbox_fill":
-                        patched = self.synthesizer.apply_cavity_or_bbox_fill(
-                            held_yst, rule
-                        )
-                    elif rule["type"] == "residual_ray_or_bridge_patch":
-                        patched = self.synthesizer.apply_ray_or_bridge(
-                            held_yst, rule
-                        )
-                    elif rule["type"] == "residual_motif_stamp_patch":
-                        patched = self.synthesizer.apply_motif_stamp(
-                            held_inp, held_yst, rule
-                        )
-                    else:
-                        patched = held_yst
+                    patched = self.synthesizer.apply_rule(held_inp, held_yst, rule)
 
                     err = int(np.sum(patched != held_exp))
                     # Regra de Rashomon: não pode degradar nenhum par individual
@@ -1022,33 +1528,7 @@ class NREMCellularResidualLearner:
                 if t_yst is None:
                     t_yst = t_inp.copy()
 
-                if best_rule["type"] == "sparse_predicate_lut":
-                    p_arr = self.synthesizer.apply_predicate_lut(
-                        t_inp, t_yst, best_rule
-                    )
-                elif best_rule["type"] == "component_attribute_recolor":
-                    p_arr = self.synthesizer.apply_component_recolor(
-                        t_yst, best_rule
-                    )
-                elif best_rule["type"] == "subblock_or_symmetry_repair":
-                    p_arr = self.synthesizer.apply_symmetry_repair(
-                        t_yst, best_rule
-                    )
-                elif best_rule["type"] == "residual_cavity_or_bbox_fill":
-                    p_arr = self.synthesizer.apply_cavity_or_bbox_fill(
-                        t_yst, best_rule
-                    )
-                elif best_rule["type"] == "residual_ray_or_bridge_patch":
-                    p_arr = self.synthesizer.apply_ray_or_bridge(
-                        t_yst, best_rule
-                    )
-                elif best_rule["type"] == "residual_motif_stamp_patch":
-                    p_arr = self.synthesizer.apply_motif_stamp(
-                        t_inp, t_yst, best_rule
-                    )
-                else:
-                    p_arr = t_yst
-
+                p_arr = self.synthesizer.apply_rule(t_inp, t_yst, best_rule)
                 test_patched.append(p_arr.tolist())
 
             return {

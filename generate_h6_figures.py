@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Polybee AI Research — F3-AGI v4.0 / Horizonte 7 (Outubro 2026)
-High-Resolution Scientific Figure Generator for Horizon 6 & 7:
+Polybee AI Research — F3-AGI v4.0 / Horizonte 8 (Outubro 2026)
+High-Resolution Scientific Figure Generator for Horizons 6, 7 & 8:
   - Figure 4: Continual Bioenergetic Plasticity on Real ARC Cell Embeddings (Study 6.1)
-  - Figure 5: Horizon 6 & 7 ARC-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)
+  - Figure 5: Horizon 6, 7 & 8 ARC-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)
 
 Generates clean vector SVG and 2x Supersampled Anti-Aliased (SSAA 2x) PNGs in figures/:
   - figures/fig4_h6_real_arc_continual.svg & figures/fig4_h6_real_arc_continual.png
@@ -27,38 +27,39 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
     short_names = ["Standard SGD", "Classic EWC", "Mistake Gating", "F3-Metabolic"]
     colors = ["#94A3B8", "#3B82F6", "#F59E0B", "#10B981"]
 
+    def get_stat(r: dict, field: str) -> Tuple[float, float]:
+        mean_val = r.get(f"{field}_mean", r.get(field, 0.0))
+        std_val = r.get(f"{field}_std", 0.0)
+        return float(mean_val), float(std_val)
+
     panels = [
         (
             "A. Final Continual Accuracy (%)",
-            [r["final_mean_accuracy_pct"] for r in regimes],
+            [get_stat(r, "final_mean_accuracy_pct") for r in regimes],
             100.0,
             "%",
             "Higher = Better",
-            [f"{r['final_mean_accuracy_pct']:.1f}%" for r in regimes],
         ),
         (
             "B. Catastrophic Forgetting (%)",
-            [r["forgetting_ratio_pct"] for r in regimes],
-            60.0,
+            [get_stat(r, "forgetting_ratio_pct") for r in regimes],
+            80.0,
             "%",
             "Lower = Better",
-            [f"{r['forgetting_ratio_pct']:.1f}%" for r in regimes],
         ),
         (
             "C. Saved Synaptic Updates (%)",
-            [r["saved_synaptic_updates_pct"] for r in regimes],
+            [get_stat(r, "saved_synaptic_updates_pct") for r in regimes],
             100.0,
             "%",
             "Higher = Better",
-            [f"{r['saved_synaptic_updates_pct']:.1f}%" for r in regimes],
         ),
         (
             "D. Plasticity Cost M1 (L1 Norm)",
-            [r["m1_metabolic_cost"] for r in regimes],
+            [get_stat(r, "m1_metabolic_cost") for r in regimes],
             1600.0,
             "",
             "Lower = Better",
-            [f"{r['m1_metabolic_cost']:.1f}" for r in regimes],
         ),
     ]
 
@@ -70,7 +71,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
         '<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
         'Figure 4 — Continual Plasticity on Real ARC-AGI Cell Embeddings (Study 6.1)</text>',
         '<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">'
-        'Sequential Stream of 5 Real ARC Tasks (490 Cells, 10 Balanced Colors): F3-Metabolic-Optim vs. Standard Baselines</text>',
+        'Sequential Stream of 5 Real ARC Tasks: N=5 Seeds [42, 101, 202, 303, 404] x Task Permutations (Mean ± Std)</text>',
     ]
 
     canvas = PureNumpyCanvas(W, H, "#F8FAFC", ssaa=2)
@@ -85,9 +86,9 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
     canvas.draw_text(
         700,
         54,
-        "SEQUENTIAL STREAM OF 5 REAL ARC TASKS (490 CELLS, 10 COLORS): F3-METABOLIC-OPTIM VS BASELINES",
+        "SEQUENTIAL STREAM OF 5 REAL ARC TASKS: N=5 SEEDS [42, 101, 202, 303, 404] (MEAN +- STD)",
         "#475569",
-        scale=1.3,
+        scale=1.2,
         align="center",
     )
 
@@ -98,7 +99,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
         (730, 500, 610, 360),
     ]
 
-    for (title, vals, max_v, suffix, subtitle, val_strs), (px, py, pw, ph) in zip(panels, panel_coords):
+    for (title, stat_pairs, max_v, suffix, subtitle), (px, py, pw, ph) in zip(panels, panel_coords):
         svg.append(
             f'<rect x="{px}" y="{py}" width="{pw}" height="{ph}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>'
         )
@@ -109,8 +110,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
 
         canvas.fill_rect(px, py, pw, ph, "#FFFFFF")
         canvas.stroke_rect(px, py, pw, ph, "#CBD5E1", 2)
-        canvas.draw_text(px + 20, py + 18, title, "#0F172A", scale=1.5, align="left")
-        # Subtitle shortened to prevent any title overlap in Panel D
+        canvas.draw_text(px + 20, py + 18, title, "#0F172A", scale=1.4, align="left")
         canvas.draw_text(px + pw - 20, py + 20, subtitle.upper(), "#64748B", scale=1.0, align="right")
 
         chart_x, chart_y = px + 65, py + 65
@@ -133,22 +133,45 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
 
         bar_w = 82
         gap = (chart_w - 4 * bar_w) // 5
-        for b_idx, (val, s_name, col, v_str) in enumerate(zip(vals, short_names, colors, val_strs)):
+        for b_idx, ((mean_v, std_v), s_name, col) in enumerate(zip(stat_pairs, short_names, colors)):
             bx = chart_x + gap + b_idx * (bar_w + gap)
-            bh = max(4, int((val / max_v) * chart_h)) if max_v > 0 else 4
+            bh = max(4, int((mean_v / max_v) * chart_h)) if max_v > 0 else 4
             by = base_y - bh
+            mid_bx = bx + bar_w // 2
 
+            if std_v > 0:
+                v_str = f"{mean_v:.1f}±{std_v:.1f}{suffix}"
+            else:
+                v_str = f"{mean_v:.1f}{suffix}"
+
+            # Bar
             svg.append(f'<rect x="{bx}" y="{by}" width="{bar_w}" height="{bh}" rx="5" fill="{col}"/>')
+            canvas.fill_rect(bx, by, bar_w, bh, col)
+
+            # Error bar whiskers
+            if std_v > 0:
+                y_err_top = max(chart_y, int(base_y - ((mean_v + std_v) / max_v) * chart_h))
+                y_err_bot = min(base_y, int(base_y - ((mean_v - std_v) / max_v) * chart_h))
+                cap_w = 6
+                svg.append(f'<line x1="{mid_bx}" y1="{y_err_top}" x2="{mid_bx}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+                svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_top}" x2="{mid_bx + cap_w}" y2="{y_err_top}" stroke="#1E293B" stroke-width="1.5"/>')
+                svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_bot}" x2="{mid_bx + cap_w}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+                canvas.draw_line(mid_bx, y_err_top, mid_bx, y_err_bot, "#1E293B", 2)
+                canvas.draw_line(mid_bx - cap_w, y_err_top, mid_bx + cap_w, y_err_top, "#1E293B", 2)
+                canvas.draw_line(mid_bx - cap_w, y_err_bot, mid_bx + cap_w, y_err_bot, "#1E293B", 2)
+                label_y = y_err_top - 8
+            else:
+                label_y = by - 8
+
             svg.append(
-                f'<text x="{bx + bar_w / 2}" y="{by - 8}" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">{v_str}</text>'
+                f'<text x="{mid_bx}" y="{label_y}" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">{v_str}</text>'
             )
             svg.append(
-                f'<text x="{bx + bar_w / 2}" y="{base_y + 24}" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">{s_name}</text>'
+                f'<text x="{mid_bx}" y="{base_y + 24}" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">{s_name}</text>'
             )
 
-            canvas.fill_rect(bx, by, bar_w, bh, col)
-            canvas.draw_text(bx + bar_w // 2, by - 18, v_str, "#0F172A", scale=1.4, align="center")
-            canvas.draw_text(bx + bar_w // 2, base_y + 12, s_name, "#334155", scale=1.0, align="center")
+            canvas.draw_text(mid_bx, label_y - 12, v_str, "#0F172A", scale=1.1, align="center")
+            canvas.draw_text(mid_bx, base_y + 12, s_name, "#334155", scale=1.0, align="center")
 
     svg.append("</svg>")
     svg_path = out_dir / "fig4_h6_real_arc_continual.svg"
@@ -171,7 +194,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
         SVG_FONT_STYLE,
         '<rect width="100%" height="100%" fill="#F8FAFC"/>',
         '<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
-        'Figure 5 — Horizon 6 &amp; 7 ARC-AGI-2 Evaluation &amp; NREM Cellular Mutator Ablation (Study 6.2)</text>',
+        'Figure 5 — Horizon 6, 7 &amp; 8 ARC-AGI-2 Evaluation &amp; NREM Cellular Mutator Ablation (Study 6.2)</text>',
         '<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">'
         'Out-of-Distribution Generalization on ARC-2 (N=120 Eval, N=100 Train) and Hybrid Repair of 282 Near-Misses</text>',
     ]
@@ -180,7 +203,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
     canvas.draw_text(
         700,
         24,
-        "FIGURE 5 - HORIZON 6 & 7 ARC-2 EVALUATION AND NREM CELLULAR MUTATOR ABLATION",
+        "FIGURE 5 - HORIZON 6, 7 AND 8 ARC-2 EVALUATION AND NREM CELLULAR MUTATOR ABLATION",
         "#0F172A",
         scale=1.8,
         align="center",

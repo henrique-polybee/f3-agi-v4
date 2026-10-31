@@ -279,6 +279,7 @@ class F3ARC2ZeroTouchSolver:
             "test_pixel_acc_attempt_2_pct": acc_attempt_2,
             "best_test_pixel_acc": best_test_pixel_acc,
             "winning_expr": winning_expr,
+            "winning_code": top1.code,
             "top1_thought": top1.thought,
             "top2_thought": top2_selected.thought if top2_selected else "",
             "used_residual_patch": used_residual,

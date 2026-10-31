@@ -1,5 +1,5 @@
 {
-  "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors",
+  "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors (Multi-Seed)",
   "benchmark_dataset": "Real ARC-AGI 5-Task Sequential Stream",
   "tasks": [
     "32597951",
@@ -9,226 +9,1371 @@
     "83302e8f"
   ],
   "total_train_cells": 490,
+  "n_seeds": 5,
+  "seeds": [
+    42,
+    101,
+    202,
+    303,
+    404
+  ],
+  "replay_free_audit": "Strictly zero data replay buffer. All 4 regimes store 0 past training samples.",
   "regimes": [
     {
       "regime_name": "sgd",
-      "final_mean_accuracy_pct": 67.62,
-      "forgetting_ratio_pct": 40.48,
+      "display_name": "Standard SGD / Adam Baseline",
+      "n_seeds": 5,
+      "seeds": [
+        42,
+        101,
+        202,
+        303,
+        404
+      ],
+      "final_mean_accuracy_pct_mean": 54.19,
+      "final_mean_accuracy_pct_std": 7.31,
+      "forgetting_ratio_pct_mean": 57.26,
+      "forgetting_ratio_pct_std": 9.13,
+      "saved_synaptic_updates_pct_mean": 0.0,
+      "saved_synaptic_updates_pct_std": 0.0,
+      "m1_metabolic_cost_mean": 1156.58,
+      "m1_metabolic_cost_std": 51.34,
+      "elapsed_sec_mean": 0.407,
+      "elapsed_sec_std": 0.056,
+      "final_mean_accuracy_pct": 54.19,
+      "forgetting_ratio_pct": 57.26,
       "saved_synaptic_updates_pct": 0.0,
-      "total_forward_steps": 5880,
-      "total_synaptic_updates": 5880,
-      "m1_metabolic_cost": 1218.43,
-      "elapsed_sec": 0.343,
-      "task_accuracies": [
-        59.52,
-        35.71,
-        45.24,
-        97.62,
-        100.0
-      ],
-      "accuracy_matrix": [
-        [
-          100.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          78.57142857142857,
-          100.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          100.0,
-          50.0,
-          100.0,
-          0.0,
-          0.0
-        ],
-        [
-          23.80952380952381,
-          45.23809523809524,
-          45.23809523809524,
-          100.0,
-          0.0
-        ],
-        [
-          59.523809523809526,
-          35.714285714285715,
-          45.23809523809524,
-          97.61904761904762,
-          100.0
-        ]
-      ],
-      "display_name": "Standard SGD / Adam Baseline"
+      "m1_metabolic_cost": 1156.58,
+      "elapsed_sec": 0.407,
+      "seed_runs": [
+        {
+          "regime_name": "sgd",
+          "final_mean_accuracy_pct": 44.76,
+          "forgetting_ratio_pct": 69.05,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1204.86,
+          "elapsed_sec": 0.329,
+          "task_accuracies": [
+            2.38,
+            11.9,
+            47.62,
+            61.9,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              47.61904761904762,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              61.904761904761905,
+              40.476190476190474,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              7.142857142857143,
+              40.476190476190474,
+              100.0,
+              0.0
+            ],
+            [
+              2.380952380952381,
+              11.904761904761905,
+              47.61904761904762,
+              61.904761904761905,
+              100.0
+            ]
+          ],
+          "seed": 42,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "3631a71a",
+            "264363fd",
+            "32597951"
+          ]
+        },
+        {
+          "regime_name": "sgd",
+          "final_mean_accuracy_pct": 59.05,
+          "forgetting_ratio_pct": 51.19,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1166.24,
+          "elapsed_sec": 0.352,
+          "task_accuracies": [
+            9.52,
+            100.0,
+            38.1,
+            47.62,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              83.33333333333333,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              33.333333333333336,
+              97.61904761904762,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              16.666666666666668,
+              90.47619047619048,
+              78.57142857142857,
+              100.0,
+              0.0
+            ],
+            [
+              9.523809523809524,
+              100.0,
+              38.095238095238095,
+              47.61904761904762,
+              100.0
+            ]
+          ],
+          "seed": 101,
+          "task_order": [
+            "264363fd",
+            "32597951",
+            "3631a71a",
+            "83302e8f",
+            "73251a56"
+          ]
+        },
+        {
+          "regime_name": "sgd",
+          "final_mean_accuracy_pct": 58.1,
+          "forgetting_ratio_pct": 52.38,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1107.4,
+          "elapsed_sec": 0.439,
+          "task_accuracies": [
+            11.9,
+            4.76,
+            88.1,
+            85.71,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              73.80952380952381,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              50.0,
+              95.23809523809524,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              47.61904761904762,
+              23.80952380952381,
+              54.76190476190476,
+              100.0,
+              0.0
+            ],
+            [
+              11.904761904761905,
+              4.761904761904762,
+              88.0952380952381,
+              85.71428571428571,
+              100.0
+            ]
+          ],
+          "seed": 202,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "32597951",
+            "3631a71a",
+            "264363fd"
+          ]
+        },
+        {
+          "regime_name": "sgd",
+          "final_mean_accuracy_pct": 46.19,
+          "forgetting_ratio_pct": 67.26,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1216.63,
+          "elapsed_sec": 0.456,
+          "task_accuracies": [
+            45.24,
+            7.14,
+            45.24,
+            33.33,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              9.523809523809524,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              11.904761904761905,
+              52.38095238095238,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              21.428571428571427,
+              16.666666666666668,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              45.23809523809524,
+              7.142857142857143,
+              45.23809523809524,
+              33.333333333333336,
+              100.0
+            ]
+          ],
+          "seed": 303,
+          "task_order": [
+            "83302e8f",
+            "264363fd",
+            "32597951",
+            "73251a56",
+            "3631a71a"
+          ]
+        },
+        {
+          "regime_name": "sgd",
+          "final_mean_accuracy_pct": 62.86,
+          "forgetting_ratio_pct": 46.43,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1087.79,
+          "elapsed_sec": 0.461,
+          "task_accuracies": [
+            26.19,
+            40.48,
+            97.62,
+            50.0,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              80.95238095238095,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              95.23809523809524,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              11.904761904761905,
+              64.28571428571429,
+              100.0,
+              0.0
+            ],
+            [
+              26.19047619047619,
+              40.476190476190474,
+              97.61904761904762,
+              50.0,
+              100.0
+            ]
+          ],
+          "seed": 404,
+          "task_order": [
+            "3631a71a",
+            "73251a56",
+            "32597951",
+            "264363fd",
+            "83302e8f"
+          ]
+        }
+      ]
     },
     {
       "regime_name": "ewc",
-      "final_mean_accuracy_pct": 76.19,
-      "forgetting_ratio_pct": 29.76,
+      "display_name": "Classic EWC (Fisher Quadratic Penalty)",
+      "n_seeds": 5,
+      "seeds": [
+        42,
+        101,
+        202,
+        303,
+        404
+      ],
+      "final_mean_accuracy_pct_mean": 78.0,
+      "final_mean_accuracy_pct_std": 5.09,
+      "forgetting_ratio_pct_mean": 27.5,
+      "forgetting_ratio_pct_std": 6.36,
+      "saved_synaptic_updates_pct_mean": 0.0,
+      "saved_synaptic_updates_pct_std": 0.0,
+      "m1_metabolic_cost_mean": 1183.95,
+      "m1_metabolic_cost_std": 52.58,
+      "elapsed_sec_mean": 0.879,
+      "elapsed_sec_std": 0.192,
+      "final_mean_accuracy_pct": 78.0,
+      "forgetting_ratio_pct": 27.5,
       "saved_synaptic_updates_pct": 0.0,
-      "total_forward_steps": 5880,
-      "total_synaptic_updates": 5880,
-      "m1_metabolic_cost": 1263.71,
-      "elapsed_sec": 0.569,
-      "task_accuracies": [
-        83.33,
-        47.62,
-        50.0,
-        100.0,
-        100.0
-      ],
-      "accuracy_matrix": [
-        [
-          100.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          92.85714285714286,
-          100.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          100.0,
-          85.71428571428571,
-          100.0,
-          0.0,
-          0.0
-        ],
-        [
-          73.80952380952381,
-          83.33333333333333,
-          61.904761904761905,
-          100.0,
-          0.0
-        ],
-        [
-          83.33333333333333,
-          47.61904761904762,
-          50.0,
-          100.0,
-          100.0
-        ]
-      ],
-      "display_name": "Classic EWC (Fisher Quadratic Penalty)"
+      "m1_metabolic_cost": 1183.95,
+      "elapsed_sec": 0.879,
+      "seed_runs": [
+        {
+          "regime_name": "ewc",
+          "final_mean_accuracy_pct": 72.86,
+          "forgetting_ratio_pct": 33.93,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1234.07,
+          "elapsed_sec": 0.726,
+          "task_accuracies": [
+            28.57,
+            57.14,
+            90.48,
+            88.1,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              50.0,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              80.95238095238095,
+              52.38095238095238,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              16.666666666666668,
+              61.904761904761905,
+              100.0,
+              0.0
+            ],
+            [
+              28.571428571428573,
+              57.142857142857146,
+              90.47619047619048,
+              88.0952380952381,
+              100.0
+            ]
+          ],
+          "seed": 42,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "3631a71a",
+            "264363fd",
+            "32597951"
+          ]
+        },
+        {
+          "regime_name": "ewc",
+          "final_mean_accuracy_pct": 84.76,
+          "forgetting_ratio_pct": 19.05,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1195.06,
+          "elapsed_sec": 0.589,
+          "task_accuracies": [
+            80.95,
+            100.0,
+            80.95,
+            61.9,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              83.33333333333333,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              83.33333333333333,
+              100.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              42.857142857142854,
+              97.61904761904762,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              80.95238095238095,
+              100.0,
+              80.95238095238095,
+              61.904761904761905,
+              100.0
+            ]
+          ],
+          "seed": 101,
+          "task_order": [
+            "264363fd",
+            "32597951",
+            "3631a71a",
+            "83302e8f",
+            "73251a56"
+          ]
+        },
+        {
+          "regime_name": "ewc",
+          "final_mean_accuracy_pct": 71.43,
+          "forgetting_ratio_pct": 35.71,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1123.82,
+          "elapsed_sec": 1.027,
+          "task_accuracies": [
+            28.57,
+            28.57,
+            100.0,
+            100.0,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              76.19047619047619,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              80.95238095238095,
+              100.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              80.95238095238095,
+              42.857142857142854,
+              61.904761904761905,
+              100.0,
+              0.0
+            ],
+            [
+              28.571428571428573,
+              28.571428571428573,
+              100.0,
+              100.0,
+              100.0
+            ]
+          ],
+          "seed": 202,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "32597951",
+            "3631a71a",
+            "264363fd"
+          ]
+        },
+        {
+          "regime_name": "ewc",
+          "final_mean_accuracy_pct": 81.43,
+          "forgetting_ratio_pct": 23.21,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1244.93,
+          "elapsed_sec": 0.948,
+          "task_accuracies": [
+            50.0,
+            78.57,
+            90.48,
+            88.1,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              16.666666666666668,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              28.571428571428573,
+              80.95238095238095,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              42.857142857142854,
+              85.71428571428571,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              50.0,
+              78.57142857142857,
+              90.47619047619048,
+              88.0952380952381,
+              100.0
+            ]
+          ],
+          "seed": 303,
+          "task_order": [
+            "83302e8f",
+            "264363fd",
+            "32597951",
+            "73251a56",
+            "3631a71a"
+          ]
+        },
+        {
+          "regime_name": "ewc",
+          "final_mean_accuracy_pct": 79.52,
+          "forgetting_ratio_pct": 25.6,
+          "saved_synaptic_updates_pct": 0.0,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 5880,
+          "m1_metabolic_cost": 1121.88,
+          "elapsed_sec": 1.104,
+          "task_accuracies": [
+            69.05,
+            64.29,
+            100.0,
+            64.29,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              97.61904761904762,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              38.095238095238095,
+              97.61904761904762,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              42.857142857142854,
+              33.333333333333336,
+              85.71428571428571,
+              100.0,
+              0.0
+            ],
+            [
+              69.04761904761905,
+              64.28571428571429,
+              100.0,
+              64.28571428571429,
+              100.0
+            ]
+          ],
+          "seed": 404,
+          "task_order": [
+            "3631a71a",
+            "73251a56",
+            "32597951",
+            "264363fd",
+            "83302e8f"
+          ]
+        }
+      ]
     },
     {
       "regime_name": "mistake_gating",
-      "final_mean_accuracy_pct": 63.81,
-      "forgetting_ratio_pct": 44.64,
-      "saved_synaptic_updates_pct": 92.93,
-      "total_forward_steps": 5880,
-      "total_synaptic_updates": 416,
-      "m1_metabolic_cost": 880.64,
-      "elapsed_sec": 0.095,
-      "task_accuracies": [
-        50.0,
-        35.71,
-        33.33,
-        100.0,
-        100.0
+      "display_name": "Pure Memorized Mistake Gating",
+      "n_seeds": 5,
+      "seeds": [
+        42,
+        101,
+        202,
+        303,
+        404
       ],
-      "accuracy_matrix": [
-        [
-          100.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          69.04761904761905,
-          97.61904761904762,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          100.0,
-          54.76190476190476,
-          100.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.0,
-          45.23809523809524,
-          30.952380952380953,
-          100.0,
-          0.0
-        ],
-        [
-          50.0,
-          35.714285714285715,
-          33.333333333333336,
-          100.0,
-          100.0
-        ]
-      ],
-      "display_name": "Pure Memorized Mistake Gating"
+      "final_mean_accuracy_pct_mean": 47.05,
+      "final_mean_accuracy_pct_std": 9.44,
+      "forgetting_ratio_pct_mean": 65.95,
+      "forgetting_ratio_pct_std": 11.96,
+      "saved_synaptic_updates_pct_mean": 93.14,
+      "saved_synaptic_updates_pct_std": 0.33,
+      "m1_metabolic_cost_mean": 814.69,
+      "m1_metabolic_cost_std": 57.99,
+      "elapsed_sec_mean": 0.152,
+      "elapsed_sec_std": 0.026,
+      "final_mean_accuracy_pct": 47.05,
+      "forgetting_ratio_pct": 65.95,
+      "saved_synaptic_updates_pct": 93.14,
+      "m1_metabolic_cost": 814.69,
+      "elapsed_sec": 0.152,
+      "seed_runs": [
+        {
+          "regime_name": "mistake_gating",
+          "final_mean_accuracy_pct": 45.71,
+          "forgetting_ratio_pct": 67.26,
+          "saved_synaptic_updates_pct": 92.69,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 430,
+          "m1_metabolic_cost": 884.97,
+          "elapsed_sec": 0.118,
+          "task_accuracies": [
+            0.0,
+            9.52,
+            40.48,
+            78.57,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              38.095238095238095,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              23.80952380952381,
+              16.666666666666668,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              40.476190476190474,
+              97.61904761904762,
+              0.0
+            ],
+            [
+              0.0,
+              9.523809523809524,
+              40.476190476190474,
+              78.57142857142857,
+              100.0
+            ]
+          ],
+          "seed": 42,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "3631a71a",
+            "264363fd",
+            "32597951"
+          ]
+        },
+        {
+          "regime_name": "mistake_gating",
+          "final_mean_accuracy_pct": 47.62,
+          "forgetting_ratio_pct": 65.48,
+          "saved_synaptic_updates_pct": 93.3,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 394,
+          "m1_metabolic_cost": 812.95,
+          "elapsed_sec": 0.141,
+          "task_accuracies": [
+            4.76,
+            100.0,
+            9.52,
+            23.81,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              83.33333333333333,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              7.142857142857143,
+              71.42857142857143,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              16.666666666666668,
+              83.33333333333333,
+              80.95238095238095,
+              100.0,
+              0.0
+            ],
+            [
+              4.761904761904762,
+              100.0,
+              9.523809523809524,
+              23.80952380952381,
+              100.0
+            ]
+          ],
+          "seed": 101,
+          "task_order": [
+            "264363fd",
+            "32597951",
+            "3631a71a",
+            "83302e8f",
+            "73251a56"
+          ]
+        },
+        {
+          "regime_name": "mistake_gating",
+          "final_mean_accuracy_pct": 49.52,
+          "forgetting_ratio_pct": 63.1,
+          "saved_synaptic_updates_pct": 93.21,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 399,
+          "m1_metabolic_cost": 771.92,
+          "elapsed_sec": 0.139,
+          "task_accuracies": [
+            0.0,
+            0.0,
+            59.52,
+            88.1,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              33.333333333333336,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              52.38095238095238,
+              97.61904761904762,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              7.142857142857143,
+              23.80952380952381,
+              35.714285714285715,
+              100.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              59.523809523809526,
+              88.0952380952381,
+              100.0
+            ]
+          ],
+          "seed": 202,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "32597951",
+            "3631a71a",
+            "264363fd"
+          ]
+        },
+        {
+          "regime_name": "mistake_gating",
+          "final_mean_accuracy_pct": 31.43,
+          "forgetting_ratio_pct": 85.71,
+          "saved_synaptic_updates_pct": 92.87,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 419,
+          "m1_metabolic_cost": 871.47,
+          "elapsed_sec": 0.172,
+          "task_accuracies": [
+            21.43,
+            4.76,
+            7.14,
+            23.81,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              64.28571428571429,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              26.19047619047619,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              21.428571428571427,
+              4.761904761904762,
+              7.142857142857143,
+              23.80952380952381,
+              100.0
+            ]
+          ],
+          "seed": 303,
+          "task_order": [
+            "83302e8f",
+            "264363fd",
+            "32597951",
+            "73251a56",
+            "3631a71a"
+          ]
+        },
+        {
+          "regime_name": "mistake_gating",
+          "final_mean_accuracy_pct": 60.95,
+          "forgetting_ratio_pct": 48.21,
+          "saved_synaptic_updates_pct": 93.62,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 375,
+          "m1_metabolic_cost": 732.13,
+          "elapsed_sec": 0.192,
+          "task_accuracies": [
+            7.14,
+            50.0,
+            97.62,
+            50.0,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              54.76190476190476,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              95.23809523809524,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              11.904761904761905,
+              76.19047619047619,
+              97.61904761904762,
+              0.0
+            ],
+            [
+              7.142857142857143,
+              50.0,
+              97.61904761904762,
+              50.0,
+              100.0
+            ]
+          ],
+          "seed": 404,
+          "task_order": [
+            "3631a71a",
+            "73251a56",
+            "32597951",
+            "264363fd",
+            "83302e8f"
+          ]
+        }
+      ]
     },
     {
       "regime_name": "f3_metabolic",
-      "final_mean_accuracy_pct": 83.33,
-      "forgetting_ratio_pct": 20.24,
-      "saved_synaptic_updates_pct": 92.09,
-      "total_forward_steps": 5880,
-      "total_synaptic_updates": 465,
-      "m1_metabolic_cost": 897.79,
-      "elapsed_sec": 0.182,
-      "task_accuracies": [
-        100.0,
-        45.24,
-        71.43,
-        100.0,
-        100.0
+      "display_name": "F3-Metabolic-Optim (SynGAP + Mistake Gating + Tensor M)",
+      "n_seeds": 5,
+      "seeds": [
+        42,
+        101,
+        202,
+        303,
+        404
       ],
-      "accuracy_matrix": [
-        [
-          100.0,
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          100.0,
-          97.61904761904762,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          100.0,
-          85.71428571428571,
-          100.0,
-          0.0,
-          0.0
-        ],
-        [
-          97.61904761904762,
-          73.80952380952381,
-          76.19047619047619,
-          100.0,
-          0.0
-        ],
-        [
-          100.0,
-          45.23809523809524,
-          71.42857142857143,
-          100.0,
-          100.0
-        ]
-      ],
-      "display_name": "F3-Metabolic-Optim (SynGAP + Mistake Gating + Tensor M)"
+      "final_mean_accuracy_pct_mean": 76.76,
+      "final_mean_accuracy_pct_std": 3.82,
+      "forgetting_ratio_pct_mean": 28.81,
+      "forgetting_ratio_pct_std": 4.84,
+      "saved_synaptic_updates_pct_mean": 92.45,
+      "saved_synaptic_updates_pct_std": 0.32,
+      "m1_metabolic_cost_mean": 823.17,
+      "m1_metabolic_cost_std": 55.36,
+      "elapsed_sec_mean": 0.281,
+      "elapsed_sec_std": 0.049,
+      "final_mean_accuracy_pct": 76.76,
+      "forgetting_ratio_pct": 28.81,
+      "saved_synaptic_updates_pct": 92.45,
+      "m1_metabolic_cost": 823.17,
+      "elapsed_sec": 0.281,
+      "seed_runs": [
+        {
+          "regime_name": "f3_metabolic",
+          "final_mean_accuracy_pct": 71.43,
+          "forgetting_ratio_pct": 35.71,
+          "saved_synaptic_updates_pct": 92.07,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 466,
+          "m1_metabolic_cost": 885.68,
+          "elapsed_sec": 0.215,
+          "task_accuracies": [
+            23.81,
+            42.86,
+            92.86,
+            97.62,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              97.61904761904762,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              100.0,
+              80.95238095238095,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              11.904761904761905,
+              92.85714285714286,
+              100.0,
+              0.0
+            ],
+            [
+              23.80952380952381,
+              42.857142857142854,
+              92.85714285714286,
+              97.61904761904762,
+              100.0
+            ]
+          ],
+          "seed": 42,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "3631a71a",
+            "264363fd",
+            "32597951"
+          ]
+        },
+        {
+          "regime_name": "f3_metabolic",
+          "final_mean_accuracy_pct": 78.57,
+          "forgetting_ratio_pct": 26.79,
+          "saved_synaptic_updates_pct": 92.81,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 423,
+          "m1_metabolic_cost": 821.15,
+          "elapsed_sec": 0.335,
+          "task_accuracies": [
+            16.67,
+            100.0,
+            88.1,
+            88.1,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              95.23809523809524,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              78.57142857142857,
+              100.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              33.333333333333336,
+              100.0,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              16.666666666666668,
+              100.0,
+              88.0952380952381,
+              88.0952380952381,
+              100.0
+            ]
+          ],
+          "seed": 101,
+          "task_order": [
+            "264363fd",
+            "32597951",
+            "3631a71a",
+            "83302e8f",
+            "73251a56"
+          ]
+        },
+        {
+          "regime_name": "f3_metabolic",
+          "final_mean_accuracy_pct": 73.33,
+          "forgetting_ratio_pct": 32.74,
+          "saved_synaptic_updates_pct": 92.6,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 435,
+          "m1_metabolic_cost": 764.3,
+          "elapsed_sec": 0.232,
+          "task_accuracies": [
+            38.1,
+            33.33,
+            97.62,
+            100.0,
+            97.62
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              100.0,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              100.0,
+              100.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              95.23809523809524,
+              66.66666666666667,
+              80.95238095238095,
+              100.0,
+              0.0
+            ],
+            [
+              38.095238095238095,
+              33.333333333333336,
+              97.61904761904762,
+              100.0,
+              97.61904761904762
+            ]
+          ],
+          "seed": 202,
+          "task_order": [
+            "83302e8f",
+            "73251a56",
+            "32597951",
+            "3631a71a",
+            "264363fd"
+          ]
+        },
+        {
+          "regime_name": "f3_metabolic",
+          "final_mean_accuracy_pct": 78.57,
+          "forgetting_ratio_pct": 26.79,
+          "saved_synaptic_updates_pct": 92.06,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 467,
+          "m1_metabolic_cost": 885.39,
+          "elapsed_sec": 0.293,
+          "task_accuracies": [
+            47.62,
+            50.0,
+            97.62,
+            97.62,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              38.095238095238095,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              47.61904761904762,
+              88.0952380952381,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              47.61904761904762,
+              83.33333333333333,
+              100.0,
+              100.0,
+              0.0
+            ],
+            [
+              47.61904761904762,
+              50.0,
+              97.61904761904762,
+              97.61904761904762,
+              100.0
+            ]
+          ],
+          "seed": 303,
+          "task_order": [
+            "83302e8f",
+            "264363fd",
+            "32597951",
+            "73251a56",
+            "3631a71a"
+          ]
+        },
+        {
+          "regime_name": "f3_metabolic",
+          "final_mean_accuracy_pct": 81.9,
+          "forgetting_ratio_pct": 22.02,
+          "saved_synaptic_updates_pct": 92.7,
+          "total_forward_steps": 5880,
+          "total_synaptic_updates": 429,
+          "m1_metabolic_cost": 759.34,
+          "elapsed_sec": 0.329,
+          "task_accuracies": [
+            52.38,
+            80.95,
+            100.0,
+            76.19,
+            100.0
+          ],
+          "accuracy_matrix": [
+            [
+              100.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              92.85714285714286,
+              100.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              42.857142857142854,
+              100.0,
+              100.0,
+              0.0,
+              0.0
+            ],
+            [
+              19.047619047619047,
+              40.476190476190474,
+              100.0,
+              97.61904761904762,
+              0.0
+            ],
+            [
+              52.38095238095238,
+              80.95238095238095,
+              100.0,
+              76.19047619047619,
+              100.0
+            ]
+          ],
+          "seed": 404,
+          "task_order": [
+            "3631a71a",
+            "73251a56",
+            "32597951",
+            "264363fd",
+            "83302e8f"
+          ]
+        }
+      ]
     }
   ]
 }
