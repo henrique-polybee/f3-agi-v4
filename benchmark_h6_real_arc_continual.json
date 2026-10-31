@@ -1,0 +1,234 @@
+{
+  "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors",
+  "benchmark_dataset": "Real ARC-AGI 5-Task Sequential Stream",
+  "tasks": [
+    "e98196ab",
+    "2204b7a8",
+    "a61ba2ce",
+    "5614dbcf",
+    "2dee498d"
+  ],
+  "total_train_cells": 544,
+  "regimes": [
+    {
+      "regime_name": "sgd",
+      "final_mean_accuracy_pct": 92.61,
+      "forgetting_ratio_pct": 0.0,
+      "saved_synaptic_updates_pct": 0.0,
+      "total_forward_steps": 4352,
+      "total_synaptic_updates": 4352,
+      "m1_metabolic_cost": 1692.22,
+      "elapsed_sec": 0.269,
+      "task_accuracies": [
+        81.82,
+        100.0,
+        81.25,
+        100.0,
+        100.0
+      ],
+      "accuracy_matrix": [
+        [
+          81.81818181818181,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          81.25,
+          0.0,
+          0.0
+        ],
+        [
+          89.0909090909091,
+          85.0,
+          93.75,
+          100.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          100.0,
+          81.25,
+          100.0,
+          100.0
+        ]
+      ],
+      "display_name": "Standard SGD / Adam Baseline"
+    },
+    {
+      "regime_name": "ewc",
+      "final_mean_accuracy_pct": 92.61,
+      "forgetting_ratio_pct": 0.0,
+      "saved_synaptic_updates_pct": 0.0,
+      "total_forward_steps": 4352,
+      "total_synaptic_updates": 4352,
+      "m1_metabolic_cost": 1694.32,
+      "elapsed_sec": 0.397,
+      "task_accuracies": [
+        81.82,
+        100.0,
+        81.25,
+        100.0,
+        100.0
+      ],
+      "accuracy_matrix": [
+        [
+          81.81818181818181,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          81.25,
+          0.0,
+          0.0
+        ],
+        [
+          89.0909090909091,
+          85.0,
+          93.75,
+          100.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          100.0,
+          81.25,
+          100.0,
+          100.0
+        ]
+      ],
+      "display_name": "Classic EWC (Fisher Quadratic Penalty)"
+    },
+    {
+      "regime_name": "mistake_gating",
+      "final_mean_accuracy_pct": 92.61,
+      "forgetting_ratio_pct": 0.0,
+      "saved_synaptic_updates_pct": 83.78,
+      "total_forward_steps": 4352,
+      "total_synaptic_updates": 706,
+      "m1_metabolic_cost": 1475.95,
+      "elapsed_sec": 0.105,
+      "task_accuracies": [
+        81.82,
+        100.0,
+        81.25,
+        100.0,
+        100.0
+      ],
+      "accuracy_matrix": [
+        [
+          81.81818181818181,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          81.25,
+          0.0,
+          0.0
+        ],
+        [
+          90.9090909090909,
+          85.0,
+          100.0,
+          100.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          100.0,
+          81.25,
+          100.0,
+          100.0
+        ]
+      ],
+      "display_name": "Pure Memorized Mistake Gating"
+    },
+    {
+      "regime_name": "f3_metabolic",
+      "final_mean_accuracy_pct": 92.78,
+      "forgetting_ratio_pct": 0.0,
+      "saved_synaptic_updates_pct": 82.35,
+      "total_forward_steps": 4352,
+      "total_synaptic_updates": 768,
+      "m1_metabolic_cost": 1433.63,
+      "elapsed_sec": 0.249,
+      "task_accuracies": [
+        83.64,
+        99.0,
+        81.25,
+        100.0,
+        100.0
+      ],
+      "accuracy_matrix": [
+        [
+          81.81818181818181,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          81.81818181818181,
+          85.0,
+          81.25,
+          0.0,
+          0.0
+        ],
+        [
+          92.72727272727273,
+          85.0,
+          93.75,
+          100.0,
+          0.0
+        ],
+        [
+          83.63636363636364,
+          99.0,
+          81.25,
+          100.0,
+          100.0
+        ]
+      ],
+      "display_name": "F3-Metabolic-Optim (SynGAP + Mistake Gating + Tensor M)"
+    }
+  ]
+}
