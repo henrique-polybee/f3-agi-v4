@@ -1,0 +1,419 @@
+{
+  "benchmark_title": "Polybee F3-AGI v4.1 — Real-World Industrial & Engineering Utility Benchmark",
+  "evaluation_environment": "Pure CPU, <400 MB RAM, Zero GPU, NumPy only",
+  "timestamp_iso": "2026-10-31T15:38:20Z",
+  "scenario_a_edge_drift": {
+    "scenario": "Scenario A — Industrial Edge IoT Sensor Telemetry under Severe Operational Concept Drift",
+    "description": "Sequential stream of 5 industrial regimes, 32D features, 10 classes, zero replay buffer.",
+    "seeds": [
+      42,
+      101,
+      202,
+      303,
+      404
+    ],
+    "regimes": [
+      {
+        "regime": "sgd",
+        "label": "Standard SGD (No Protection)",
+        "final_accuracy_pct_mean": 51.54,
+        "final_accuracy_pct_std": 7.67,
+        "forgetting_pct_mean": 72.95,
+        "forgetting_pct_std": 14.23,
+        "saved_updates_pct_mean": 0.0,
+        "saved_updates_pct_std": 0.0,
+        "m1_cost_mean": 166.37,
+        "m1_cost_std": 9.37,
+        "elapsed_sec_mean": 0.638,
+        "runs": [
+          {
+            "seed": 42,
+            "final_mean_accuracy_pct": 43.8,
+            "forgetting_ratio_pct": 76.75,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 161.56,
+            "elapsed_sec": 0.495
+          },
+          {
+            "seed": 101,
+            "final_mean_accuracy_pct": 64.8,
+            "forgetting_ratio_pct": 50.75,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 154.24,
+            "elapsed_sec": 0.403
+          },
+          {
+            "seed": 202,
+            "final_mean_accuracy_pct": 53.6,
+            "forgetting_ratio_pct": 63.0,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 182.59,
+            "elapsed_sec": 0.877
+          },
+          {
+            "seed": 303,
+            "final_mean_accuracy_pct": 51.3,
+            "forgetting_ratio_pct": 85.75,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 168.42,
+            "elapsed_sec": 0.666
+          },
+          {
+            "seed": 404,
+            "final_mean_accuracy_pct": 44.2,
+            "forgetting_ratio_pct": 88.5,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 165.03,
+            "elapsed_sec": 0.748
+          }
+        ]
+      },
+      {
+        "regime": "ewc",
+        "label": "Classic EWC (Fisher Regularized)",
+        "final_accuracy_pct_mean": 64.14,
+        "final_accuracy_pct_std": 8.62,
+        "forgetting_pct_mean": 54.7,
+        "forgetting_pct_std": 22.15,
+        "saved_updates_pct_mean": 0.0,
+        "saved_updates_pct_std": 0.0,
+        "m1_cost_mean": 0.0,
+        "m1_cost_std": 0.0,
+        "elapsed_sec_mean": 0.913,
+        "runs": [
+          {
+            "seed": 42,
+            "final_mean_accuracy_pct": 58.7,
+            "forgetting_ratio_pct": 60.0,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.729
+          },
+          {
+            "seed": 101,
+            "final_mean_accuracy_pct": 76.6,
+            "forgetting_ratio_pct": 24.75,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.676
+          },
+          {
+            "seed": 202,
+            "final_mean_accuracy_pct": 70.7,
+            "forgetting_ratio_pct": 35.0,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 1.212
+          },
+          {
+            "seed": 303,
+            "final_mean_accuracy_pct": 62.4,
+            "forgetting_ratio_pct": 68.0,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 1.009
+          },
+          {
+            "seed": 404,
+            "final_mean_accuracy_pct": 52.3,
+            "forgetting_ratio_pct": 85.75,
+            "saved_synaptic_updates_pct": 0.0,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.938
+          }
+        ]
+      },
+      {
+        "regime": "mistake_gating",
+        "label": "Pure Mistake Gating (No Fisher)",
+        "final_accuracy_pct_mean": 50.48,
+        "final_accuracy_pct_std": 7.31,
+        "forgetting_pct_mean": 72.2,
+        "forgetting_pct_std": 13.31,
+        "saved_updates_pct_mean": 91.28,
+        "saved_updates_pct_std": 0.91,
+        "m1_cost_mean": 144.14,
+        "m1_cost_std": 9.01,
+        "elapsed_sec_mean": 0.302,
+        "runs": [
+          {
+            "seed": 42,
+            "final_mean_accuracy_pct": 43.3,
+            "forgetting_ratio_pct": 74.25,
+            "saved_synaptic_updates_pct": 91.62,
+            "m1_metabolic_cost": 137.28,
+            "elapsed_sec": 0.166
+          },
+          {
+            "seed": 101,
+            "final_mean_accuracy_pct": 62.8,
+            "forgetting_ratio_pct": 52.25,
+            "saved_synaptic_updates_pct": 91.4,
+            "m1_metabolic_cost": 133.14,
+            "elapsed_sec": 0.438
+          },
+          {
+            "seed": 202,
+            "final_mean_accuracy_pct": 51.8,
+            "forgetting_ratio_pct": 62.5,
+            "saved_synaptic_updates_pct": 89.68,
+            "m1_metabolic_cost": 159.43,
+            "elapsed_sec": 0.318
+          },
+          {
+            "seed": 303,
+            "final_mean_accuracy_pct": 51.8,
+            "forgetting_ratio_pct": 84.0,
+            "saved_synaptic_updates_pct": 92.48,
+            "m1_metabolic_cost": 145.81,
+            "elapsed_sec": 0.263
+          },
+          {
+            "seed": 404,
+            "final_mean_accuracy_pct": 42.7,
+            "forgetting_ratio_pct": 88.0,
+            "saved_synaptic_updates_pct": 91.2,
+            "m1_metabolic_cost": 145.05,
+            "elapsed_sec": 0.326
+          }
+        ]
+      },
+      {
+        "regime": "f3_metabolic",
+        "label": "F3-Metabolic-Optim (SynGAP + Mistake Gating)",
+        "final_accuracy_pct_mean": 58.86,
+        "final_accuracy_pct_std": 8.27,
+        "forgetting_pct_mean": 59.9,
+        "forgetting_pct_std": 17.77,
+        "saved_updates_pct_mean": 90.73,
+        "saved_updates_pct_std": 1.06,
+        "m1_cost_mean": 0.0,
+        "m1_cost_std": 0.0,
+        "elapsed_sec_mean": 0.394,
+        "runs": [
+          {
+            "seed": 42,
+            "final_mean_accuracy_pct": 52.4,
+            "forgetting_ratio_pct": 64.0,
+            "saved_synaptic_updates_pct": 91.2,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.261
+          },
+          {
+            "seed": 101,
+            "final_mean_accuracy_pct": 72.4,
+            "forgetting_ratio_pct": 33.25,
+            "saved_synaptic_updates_pct": 90.96,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.418
+          },
+          {
+            "seed": 202,
+            "final_mean_accuracy_pct": 62.3,
+            "forgetting_ratio_pct": 47.0,
+            "saved_synaptic_updates_pct": 88.86,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.418
+          },
+          {
+            "seed": 303,
+            "final_mean_accuracy_pct": 58.6,
+            "forgetting_ratio_pct": 72.25,
+            "saved_synaptic_updates_pct": 92.08,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.426
+          },
+          {
+            "seed": 404,
+            "final_mean_accuracy_pct": 48.6,
+            "forgetting_ratio_pct": 83.0,
+            "saved_synaptic_updates_pct": 90.56,
+            "m1_metabolic_cost": 0.0,
+            "elapsed_sec": 0.445
+          }
+        ]
+      }
+    ]
+  },
+  "scenario_b_legacy_repair": {
+    "scenario": "Scenario B — Zero-Regression Legacy Decision Rule Repair via Rashomon Gate",
+    "description": "Critical legacy rule repair using K=4 calibration batches, evaluated on N=1,000 hold-out test samples.",
+    "seeds": [
+      42,
+      101,
+      202,
+      303,
+      404
+    ],
+    "methods": [
+      {
+        "method_key": "legacy_only",
+        "label": "Baseline: Frozen Legacy Rule (No Repair)",
+        "test_accuracy_pct_mean": 86.0,
+        "test_accuracy_pct_std": 1.2,
+        "repaired_errors_pct_mean": 0.0,
+        "repaired_errors_pct_std": 0.0,
+        "regression_rate_pct_mean": 0.0,
+        "regression_rate_pct_std": 0.0,
+        "runs": [
+          {
+            "seed": 42,
+            "test_accuracy_pct": 85.7,
+            "repaired_errors_pct": 0.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 101,
+            "test_accuracy_pct": 84.9,
+            "repaired_errors_pct": 0.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 202,
+            "test_accuracy_pct": 87.3,
+            "repaired_errors_pct": 0.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 303,
+            "test_accuracy_pct": 87.5,
+            "repaired_errors_pct": 0.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 404,
+            "test_accuracy_pct": 84.6,
+            "repaired_errors_pct": 0.0,
+            "regression_rate_pct": 0.0
+          }
+        ]
+      },
+      {
+        "method_key": "unconstrained_mlp",
+        "label": "1. Unconstrained MLP Replacement (Overwrites Legacy)",
+        "test_accuracy_pct_mean": 53.74,
+        "test_accuracy_pct_std": 1.76,
+        "repaired_errors_pct_mean": 51.11,
+        "repaired_errors_pct_std": 2.95,
+        "regression_rate_pct_mean": 45.84,
+        "regression_rate_pct_std": 1.77,
+        "runs": [
+          {
+            "seed": 42,
+            "test_accuracy_pct": 53.3,
+            "repaired_errors_pct": 48.95,
+            "regression_rate_pct": 45.97
+          },
+          {
+            "seed": 101,
+            "test_accuracy_pct": 54.6,
+            "repaired_errors_pct": 52.32,
+            "regression_rate_pct": 44.99
+          },
+          {
+            "seed": 202,
+            "test_accuracy_pct": 53.1,
+            "repaired_errors_pct": 47.24,
+            "regression_rate_pct": 46.05
+          },
+          {
+            "seed": 303,
+            "test_accuracy_pct": 51.2,
+            "repaired_errors_pct": 51.2,
+            "regression_rate_pct": 48.8
+          },
+          {
+            "seed": 404,
+            "test_accuracy_pct": 56.5,
+            "repaired_errors_pct": 55.84,
+            "regression_rate_pct": 43.38
+          }
+        ]
+      },
+      {
+        "method_key": "unverified_patch",
+        "label": "2. Unverified Residual Patch (No LOO-CV Check)",
+        "test_accuracy_pct_mean": 63.68,
+        "test_accuracy_pct_std": 6.28,
+        "repaired_errors_pct_mean": 75.99,
+        "repaired_errors_pct_std": 7.6,
+        "regression_rate_pct_mean": 38.34,
+        "regression_rate_pct_std": 7.15,
+        "runs": [
+          {
+            "seed": 42,
+            "test_accuracy_pct": 62.0,
+            "repaired_errors_pct": 85.31,
+            "regression_rate_pct": 41.89
+          },
+          {
+            "seed": 101,
+            "test_accuracy_pct": 66.3,
+            "repaired_errors_pct": 74.17,
+            "regression_rate_pct": 35.1
+          },
+          {
+            "seed": 202,
+            "test_accuracy_pct": 71.8,
+            "repaired_errors_pct": 70.87,
+            "regression_rate_pct": 28.06
+          },
+          {
+            "seed": 303,
+            "test_accuracy_pct": 65.5,
+            "repaired_errors_pct": 84.0,
+            "regression_rate_pct": 37.14
+          },
+          {
+            "seed": 404,
+            "test_accuracy_pct": 52.8,
+            "repaired_errors_pct": 65.58,
+            "regression_rate_pct": 49.53
+          }
+        ]
+      },
+      {
+        "method_key": "f3_rashomon_gate",
+        "label": "3. F3-AGI Residual Patch + LOO-CV Rashomon Gate (Ours)",
+        "test_accuracy_pct_mean": 100.0,
+        "test_accuracy_pct_std": 0.0,
+        "repaired_errors_pct_mean": 100.0,
+        "repaired_errors_pct_std": 0.0,
+        "regression_rate_pct_mean": 0.0,
+        "regression_rate_pct_std": 0.0,
+        "runs": [
+          {
+            "seed": 42,
+            "test_accuracy_pct": 100.0,
+            "repaired_errors_pct": 100.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 101,
+            "test_accuracy_pct": 100.0,
+            "repaired_errors_pct": 100.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 202,
+            "test_accuracy_pct": 100.0,
+            "repaired_errors_pct": 100.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 303,
+            "test_accuracy_pct": 100.0,
+            "repaired_errors_pct": 100.0,
+            "regression_rate_pct": 0.0
+          },
+          {
+            "seed": 404,
+            "test_accuracy_pct": 100.0,
+            "repaired_errors_pct": 100.0,
+            "regression_rate_pct": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}

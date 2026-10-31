@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
+<style>text { font-family: 'Segoe UI', 'Inter', 'Helvetica Neue', Roboto, Arial, sans-serif; text-rendering: geometricPrecision; }rect, line, polyline { shape-rendering: geometricPrecision; }</style>
+<rect width="100%" height="100%" fill="#F8FAFC"/>
+<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Figure 6 — Horizon 9 Real-World Industrial &amp; Engineering Utility Benchmark</text>
+<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">Beyond ARC Puzzles: Edge IoT Continual Drift (32D Features) and Zero-Regression Legacy Decision Rule Repair</text>
+<rect x="60" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="84" y="139" font-size="16" font-weight="700" fill="#0F172A">A. Edge IoT Telemetry Continual Accuracy (%)</text>
+<text x="646" y="139" text-anchor="end" font-size="13" fill="#64748B">(Higher = Better)</text>
+<line x1="125" y1="170" x2="640" y2="170" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="174" text-anchor="end" font-size="12" fill="#64748B">100%</text>
+<line x1="125" y1="228" x2="640" y2="228" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="232" text-anchor="end" font-size="12" fill="#64748B">75%</text>
+<line x1="125" y1="287" x2="640" y2="287" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="291" text-anchor="end" font-size="12" fill="#64748B">50%</text>
+<line x1="125" y1="346" x2="640" y2="346" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="350" text-anchor="end" font-size="12" fill="#64748B">25%</text>
+<line x1="125" y1="405" x2="640" y2="405" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="409" text-anchor="end" font-size="12" fill="#64748B">0%</text>
+<rect x="162" y="284" width="82" height="121" rx="5" fill="#94A3B8"/>
+<line x1="203" y1="265" x2="203" y2="301" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="197" y1="265" x2="209" y2="265" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="197" y1="301" x2="209" y2="301" stroke="#1E293B" stroke-width="1.5"/>
+<text x="203" y="257" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">51.5+-7.7%</text>
+<text x="203" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
+<rect x="281" y="255" width="82" height="150" rx="5" fill="#3B82F6"/>
+<line x1="322" y1="234" x2="322" y2="274" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="316" y1="234" x2="328" y2="234" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="316" y1="274" x2="328" y2="274" stroke="#1E293B" stroke-width="1.5"/>
+<text x="322" y="226" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">64.1+-8.6%</text>
+<text x="322" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
+<rect x="400" y="287" width="82" height="118" rx="5" fill="#F59E0B"/>
+<line x1="441" y1="269" x2="441" y2="303" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="435" y1="269" x2="447" y2="269" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="435" y1="303" x2="447" y2="303" stroke="#1E293B" stroke-width="1.5"/>
+<text x="441" y="261" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">50.5+-7.3%</text>
+<text x="441" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
+<rect x="519" y="267" width="82" height="138" rx="5" fill="#10B981"/>
+<line x1="560" y1="247" x2="560" y2="286" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="554" y1="247" x2="566" y2="247" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="554" y1="286" x2="566" y2="286" stroke="#1E293B" stroke-width="1.5"/>
+<text x="560" y="239" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">58.9+-8.3%</text>
+<text x="560" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
+<rect x="730" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="754" y="139" font-size="16" font-weight="700" fill="#0F172A">B. Synaptic Updates Saved vs Forgetting</text>
+<text x="1316" y="139" text-anchor="end" font-size="13" fill="#64748B">(Efficiency vs Retention)</text>
+<rect x="754" y="153" width="12" height="12" rx="3" fill="#10B981"/>
+<text x="772" y="163" font-size="11" fill="#047857">Updates Saved % (Higher = Better)</text>
+<rect x="1020" y="153" width="12" height="12" rx="3" fill="#F59E0B"/>
+<text x="1038" y="163" font-size="11" fill="#B45309">Catastrophic Forgetting % (Lower = Better)</text>
+<line x1="785" y1="183" x2="1310" y2="183" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="187" text-anchor="end" font-size="12" fill="#64748B">100%</text>
+<line x1="785" y1="236" x2="1310" y2="236" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="240" text-anchor="end" font-size="12" fill="#64748B">75%</text>
+<line x1="785" y1="289" x2="1310" y2="289" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="293" text-anchor="end" font-size="12" fill="#64748B">50%</text>
+<line x1="785" y1="342" x2="1310" y2="342" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="346" text-anchor="end" font-size="12" fill="#64748B">25%</text>
+<line x1="785" y1="395" x2="1310" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="399" text-anchor="end" font-size="12" fill="#64748B">0%</text>
+<rect x="810" y="391" width="36" height="4" rx="4" fill="#10B981"/>
+<text x="828.0" y="385" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">0.0%</text>
+<rect x="854" y="241" width="36" height="154" rx="4" fill="#F59E0B"/>
+<text x="872.0" y="235" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">73.0%</text>
+<text x="850" y="415" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Standard SGD</text>
+<rect x="941" y="391" width="36" height="4" rx="4" fill="#10B981"/>
+<text x="959.0" y="385" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">0.0%</text>
+<rect x="985" y="280" width="36" height="115" rx="4" fill="#F59E0B"/>
+<text x="1003.0" y="274" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">54.7%</text>
+<text x="981" y="415" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Classic EWC</text>
+<rect x="1072" y="202" width="36" height="193" rx="4" fill="#10B981"/>
+<text x="1090.0" y="196" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">91.3%</text>
+<rect x="1116" y="242" width="36" height="153" rx="4" fill="#F59E0B"/>
+<text x="1134.0" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">72.2%</text>
+<text x="1112" y="415" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Mistake Gating</text>
+<rect x="1203" y="203" width="36" height="192" rx="4" fill="#10B981"/>
+<text x="1221.0" y="197" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">90.7%</text>
+<rect x="1247" y="269" width="36" height="126" rx="4" fill="#F59E0B"/>
+<text x="1265.0" y="263" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">59.9%</text>
+<text x="1243" y="415" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">F3-Metabolic</text>
+<rect x="60" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="84" y="534" font-size="16" font-weight="700" fill="#0F172A">C. Legacy Decision Rule Repair Accuracy (%)</text>
+<text x="646" y="534" text-anchor="end" font-size="13" fill="#64748B">(Hold-Out Test N=1,000)</text>
+<line x1="125" y1="565" x2="640" y2="565" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="569" text-anchor="end" font-size="12" fill="#64748B">100%</text>
+<line x1="125" y1="623" x2="640" y2="623" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="627" text-anchor="end" font-size="12" fill="#64748B">75%</text>
+<line x1="125" y1="682" x2="640" y2="682" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="686" text-anchor="end" font-size="12" fill="#64748B">50%</text>
+<line x1="125" y1="741" x2="640" y2="741" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="745" text-anchor="end" font-size="12" fill="#64748B">25%</text>
+<line x1="125" y1="800" x2="640" y2="800" stroke="#E2E8F0" stroke-width="1"/>
+<text x="115" y="804" text-anchor="end" font-size="12" fill="#64748B">0%</text>
+<rect x="162" y="598" width="82" height="202" rx="5" fill="#94A3B8"/>
+<line x1="203" y1="595" x2="203" y2="600" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="197" y1="595" x2="209" y2="595" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="197" y1="600" x2="209" y2="600" stroke="#1E293B" stroke-width="1.5"/>
+<text x="203" y="587" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">86.0+-1.2%</text>
+<text x="203" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Legacy Base</text>
+<rect x="281" y="674" width="82" height="126" rx="5" fill="#EF4444"/>
+<line x1="322" y1="669" x2="322" y2="677" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="316" y1="669" x2="328" y2="669" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="316" y1="677" x2="328" y2="677" stroke="#1E293B" stroke-width="1.5"/>
+<text x="322" y="661" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">53.7+-1.8%</text>
+<text x="322" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">MLP Overwrite</text>
+<rect x="400" y="651" width="82" height="149" rx="5" fill="#F59E0B"/>
+<line x1="441" y1="635" x2="441" y2="665" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="435" y1="635" x2="447" y2="635" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="435" y1="665" x2="447" y2="665" stroke="#1E293B" stroke-width="1.5"/>
+<text x="441" y="627" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">63.7+-6.3%</text>
+<text x="441" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Unverified Patch</text>
+<rect x="519" y="565" width="82" height="235" rx="5" fill="#10B981"/>
+<text x="560" y="557" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">100.0%</text>
+<text x="560" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Rashomon</text>
+<rect x="730" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+<text x="754" y="534" font-size="16" font-weight="700" fill="#0F172A">D. Production Hazard: Error Repair vs Regression</text>
+<text x="1316" y="534" text-anchor="end" font-size="13" fill="#64748B">(Hallucination-Free Guarantee)</text>
+<rect x="754" y="548" width="12" height="12" rx="3" fill="#3B82F6"/>
+<text x="772" y="558" font-size="11" fill="#1D4ED8">Repaired Errors % (Higher = Better)</text>
+<rect x="1020" y="548" width="12" height="12" rx="3" fill="#EF4444"/>
+<text x="1038" y="558" font-size="11" fill="#B91C1C">Regression Rate % (LOWER = BETTER, HAZARD!)</text>
+<line x1="785" y1="578" x2="1310" y2="578" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="582" text-anchor="end" font-size="12" fill="#64748B">100%</text>
+<line x1="785" y1="631" x2="1310" y2="631" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="635" text-anchor="end" font-size="12" fill="#64748B">75%</text>
+<line x1="785" y1="684" x2="1310" y2="684" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="688" text-anchor="end" font-size="12" fill="#64748B">50%</text>
+<line x1="785" y1="737" x2="1310" y2="737" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="741" text-anchor="end" font-size="12" fill="#64748B">25%</text>
+<line x1="785" y1="790" x2="1310" y2="790" stroke="#E2E8F0" stroke-width="1"/>
+<text x="775" y="794" text-anchor="end" font-size="12" fill="#64748B">0%</text>
+<rect x="823" y="682" width="44" height="108" rx="4" fill="#3B82F6"/>
+<text x="845.0" y="676" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">51.1%</text>
+<rect x="877" y="693" width="44" height="97" rx="4" fill="#EF4444"/>
+<text x="899.0" y="687" text-anchor="middle" font-size="11" font-weight="700" fill="#B91C1C">45.8%</text>
+<text x="872" y="810" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">MLP Overwrite</text>
+<rect x="998" y="629" width="44" height="161" rx="4" fill="#3B82F6"/>
+<text x="1020.0" y="623" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">76.0%</text>
+<rect x="1052" y="709" width="44" height="81" rx="4" fill="#EF4444"/>
+<text x="1074.0" y="703" text-anchor="middle" font-size="11" font-weight="700" fill="#B91C1C">38.3%</text>
+<text x="1047" y="810" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Unverified Patch</text>
+<rect x="1173" y="578" width="44" height="212" rx="4" fill="#3B82F6"/>
+<text x="1195.0" y="572" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">100.0%</text>
+<rect x="1227" y="786" width="44" height="4" rx="4" fill="#CBD5E1"/>
+<text x="1249.0" y="780" text-anchor="middle" font-size="11" font-weight="700" fill="#B91C1C">0.0%</text>
+<text x="1222" y="810" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">F3-Rashomon</text>
+</svg>

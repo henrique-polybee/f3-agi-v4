@@ -2,7 +2,7 @@
   "study": "Estudo 6.2 — Hybrid Symbolic + NREMCellularResidualLearner on Near-Misses",
   "total_nearmiss_evaluated": 282,
   "total_nearmiss_converted_to_exact": 4,
-  "total_pixel_improved": 71,
+  "total_pixel_improved": 90,
   "arc1_original_pass2_count": 57,
   "arc1_hybrid_pass2_count": 60,
   "arc1_hybrid_pass2_pct": 15.0,
@@ -17,8 +17,8 @@
       "group_label": "ARC-1 Public Hold-Out (N=400 Split)",
       "total_nearmisses": 184,
       "converted_to_exact_count": 3,
-      "pixel_accuracy_improved_count": 48,
-      "unchanged_count": 133,
+      "pixel_accuracy_improved_count": 61,
+      "unchanged_count": 120,
       "converted_tasks": [
         {
           "task_id": "84f2aca1",
@@ -54,6 +54,13 @@
           "new_test_acc": 88.17
         },
         {
+          "task_id": "12422b43",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 85.71,
+          "new_test_acc": 87.14
+        },
+        {
           "task_id": "12eac192",
           "engine": "Motor B — NREMSparseRuleSynthesizer",
           "rule_type": "sparse_predicate_lut",
@@ -66,6 +73,13 @@
           "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 84.0,
           "new_test_acc": 85.78
+        },
+        {
+          "task_id": "22a4bbc2",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 55.68,
+          "new_test_acc": 61.36
         },
         {
           "task_id": "25094a63",
@@ -82,6 +96,13 @@
           "new_test_acc": 84.3
         },
         {
+          "task_id": "2b01abd0",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 90.18,
+          "new_test_acc": 91.07
+        },
+        {
           "task_id": "31adaf00",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -90,8 +111,8 @@
         },
         {
           "task_id": "32e9702f",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
+          "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+          "rule_type": "mlp+sparse_predicate_lut",
           "base_test_acc": 16.0,
           "new_test_acc": 41.0
         },
@@ -139,8 +160,8 @@
         },
         {
           "task_id": "59341089",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
+          "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+          "rule_type": "mlp+sparse_predicate_lut",
           "base_test_acc": 77.78,
           "new_test_acc": 91.67
         },
@@ -180,6 +201,13 @@
           "new_test_acc": 96.88
         },
         {
+          "task_id": "79fb03f4",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 46.15,
+          "new_test_acc": 66.57
+        },
+        {
           "task_id": "85b81ff1",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -194,6 +222,27 @@
           "new_test_acc": 80.44
         },
         {
+          "task_id": "896d5239",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 90.74,
+          "new_test_acc": 91.11
+        },
+        {
+          "task_id": "8cb8642d",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 58.33,
+          "new_test_acc": 65.57
+        },
+        {
+          "task_id": "8fbca751",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 87.5,
+          "new_test_acc": 89.58
+        },
+        {
           "task_id": "94be5b80",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -202,10 +251,10 @@
         },
         {
           "task_id": "95a58926",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
-          "base_test_acc": 92.26,
-          "new_test_acc": 92.93
+          "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+          "rule_type": "mlp+sparse_predicate_lut",
+          "base_test_acc": 68.52,
+          "new_test_acc": 94.44
         },
         {
           "task_id": "963f59bc",
@@ -250,11 +299,25 @@
           "new_test_acc": 61.0
         },
         {
+          "task_id": "a3f84088",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 77.78,
+          "new_test_acc": 84.78
+        },
+        {
+          "task_id": "a57f2f04",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 88.11,
+          "new_test_acc": 89.86
+        },
+        {
           "task_id": "a934301b",
-          "engine": "Motor B — NREMSparseRuleSynthesizer",
-          "rule_type": "residual_ray_or_bridge_patch",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 69.23,
-          "new_test_acc": 80.13
+          "new_test_acc": 80.77
         },
         {
           "task_id": "ac3e2b04",
@@ -285,11 +348,11 @@
           "new_test_acc": 92.44
         },
         {
-          "task_id": "bd14c3bf",
+          "task_id": "baf41dbf",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
-          "base_test_acc": 81.99,
-          "new_test_acc": 84.21
+          "base_test_acc": 84.19,
+          "new_test_acc": 88.24
         },
         {
           "task_id": "bf89d739",
@@ -297,6 +360,13 @@
           "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 80.25,
           "new_test_acc": 88.24
+        },
+        {
+          "task_id": "c7d4e6ad",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 88.0,
+          "new_test_acc": 90.0
         },
         {
           "task_id": "c87289bb",
@@ -314,8 +384,8 @@
         },
         {
           "task_id": "cad67732",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
+          "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+          "rule_type": "mlp+sparse_predicate_lut",
           "base_test_acc": 85.5,
           "new_test_acc": 99.5
         },
@@ -328,8 +398,8 @@
         },
         {
           "task_id": "d2acf2cb",
-          "engine": "Motor A — F3MetabolicCellularMLP",
-          "rule_type": "f3_metabolic_mlp",
+          "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+          "rule_type": "mlp+sparse_predicate_lut",
           "base_test_acc": 73.33,
           "new_test_acc": 82.22
         },
@@ -348,11 +418,25 @@
           "new_test_acc": 97.56
         },
         {
+          "task_id": "e2092e0c",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 87.56,
+          "new_test_acc": 93.33
+        },
+        {
           "task_id": "e681b708",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 94.82,
           "new_test_acc": 96.3
+        },
+        {
+          "task_id": "e74e1818",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 76.0,
+          "new_test_acc": 76.44
         },
         {
           "task_id": "e760a62e",
@@ -376,6 +460,13 @@
           "new_test_acc": 95.98
         },
         {
+          "task_id": "f3e62deb",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 84.0,
+          "new_test_acc": 87.5
+        },
+        {
           "task_id": "f9a67cb5",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -388,8 +479,8 @@
       "group_label": "ARC-2 Public Evaluation (N=120 Split)",
       "total_nearmisses": 63,
       "converted_to_exact_count": 0,
-      "pixel_accuracy_improved_count": 13,
-      "unchanged_count": 50,
+      "pixel_accuracy_improved_count": 16,
+      "unchanged_count": 47,
       "converted_tasks": [],
       "improved_tasks": [
         {
@@ -421,6 +512,13 @@
           "new_test_acc": 91.56
         },
         {
+          "task_id": "581f7754",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 75.62,
+          "new_test_acc": 75.98
+        },
+        {
           "task_id": "71e489b6",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -433,6 +531,13 @@
           "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 97.75,
           "new_test_acc": 98.62
+        },
+        {
+          "task_id": "8b9c3697",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 91.3,
+          "new_test_acc": 91.47
         },
         {
           "task_id": "8f215267",
@@ -482,6 +587,13 @@
           "rule_type": "sparse_predicate_lut",
           "base_test_acc": 75.33,
           "new_test_acc": 77.33
+        },
+        {
+          "task_id": "dd6b8c4b",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 85.12,
+          "new_test_acc": 86.78
         }
       ]
     },
@@ -489,8 +601,8 @@
       "group_label": "ARC-2 Training Sample (N=100 Split)",
       "total_nearmisses": 35,
       "converted_to_exact_count": 1,
-      "pixel_accuracy_improved_count": 10,
-      "unchanged_count": 24,
+      "pixel_accuracy_improved_count": 13,
+      "unchanged_count": 21,
       "converted_tasks": [
         {
           "task_id": "05f2a901",
@@ -531,6 +643,13 @@
           "new_test_acc": 70.31
         },
         {
+          "task_id": "14b8e18c",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 68.0,
+          "new_test_acc": 73.0
+        },
+        {
           "task_id": "150deff5",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -559,6 +678,13 @@
           "new_test_acc": 96.0
         },
         {
+          "task_id": "1c02dbbe",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 65.78,
+          "new_test_acc": 68.89
+        },
+        {
           "task_id": "1e5d6875",
           "engine": "Motor A — F3MetabolicCellularMLP",
           "rule_type": "f3_metabolic_mlp",
@@ -571,6 +697,13 @@
           "rule_type": "f3_metabolic_mlp",
           "base_test_acc": 85.71,
           "new_test_acc": 86.9
+        },
+        {
+          "task_id": "1f642eb9",
+          "engine": "Motor A — F3MetabolicCellularMLP",
+          "rule_type": "f3_metabolic_mlp",
+          "base_test_acc": 93.0,
+          "new_test_acc": 94.0
         }
       ]
     }

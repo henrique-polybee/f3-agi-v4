@@ -20,25 +20,25 @@
 <line x1="203" y1="260" x2="203" y2="294" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="197" y1="260" x2="209" y2="260" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="197" y1="294" x2="209" y2="294" stroke="#1E293B" stroke-width="1.5"/>
-<text x="203" y="252" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">54.2±7.3%</text>
+<text x="203" y="252" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">54.2+-7.3%</text>
 <text x="203" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
 <rect x="281" y="222" width="82" height="183" rx="5" fill="#3B82F6"/>
 <line x1="322" y1="209" x2="322" y2="233" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="316" y1="209" x2="328" y2="209" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="316" y1="233" x2="328" y2="233" stroke="#1E293B" stroke-width="1.5"/>
-<text x="322" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">78.0±5.1%</text>
+<text x="322" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">78.0+-5.1%</text>
 <text x="322" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
 <rect x="400" y="295" width="82" height="110" rx="5" fill="#F59E0B"/>
 <line x1="441" y1="272" x2="441" y2="316" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="435" y1="272" x2="447" y2="272" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="435" y1="316" x2="447" y2="316" stroke="#1E293B" stroke-width="1.5"/>
-<text x="441" y="264" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">47.0±9.4%</text>
+<text x="441" y="264" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">47.0+-9.4%</text>
 <text x="441" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
 <rect x="519" y="225" width="82" height="180" rx="5" fill="#10B981"/>
 <line x1="560" y1="215" x2="560" y2="233" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="554" y1="215" x2="566" y2="215" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="554" y1="233" x2="566" y2="233" stroke="#1E293B" stroke-width="1.5"/>
-<text x="560" y="207" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">76.8±3.8%</text>
+<text x="560" y="207" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">76.8+-3.8%</text>
 <text x="560" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
 <rect x="730" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
 <text x="754" y="139" font-size="16" font-weight="700" fill="#0F172A">B. Catastrophic Forgetting (%)</text>
@@ -57,25 +57,25 @@
 <line x1="873" y1="209" x2="873" y2="263" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="867" y1="209" x2="879" y2="209" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="867" y1="263" x2="879" y2="263" stroke="#1E293B" stroke-width="1.5"/>
-<text x="873" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">57.3±9.1%</text>
+<text x="873" y="201" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">57.3+-9.1%</text>
 <text x="873" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
 <rect x="951" y="325" width="82" height="80" rx="5" fill="#3B82F6"/>
 <line x1="992" y1="305" x2="992" y2="342" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="986" y1="305" x2="998" y2="305" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="986" y1="342" x2="998" y2="342" stroke="#1E293B" stroke-width="1.5"/>
-<text x="992" y="297" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">27.5±6.4%</text>
+<text x="992" y="297" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">27.5+-6.4%</text>
 <text x="992" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
 <rect x="1070" y="212" width="82" height="193" rx="5" fill="#F59E0B"/>
 <line x1="1111" y1="176" x2="1111" y2="246" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1105" y1="176" x2="1117" y2="176" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1105" y1="246" x2="1117" y2="246" stroke="#1E293B" stroke-width="1.5"/>
-<text x="1111" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">66.0±12.0%</text>
+<text x="1111" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">66.0+-12.0%</text>
 <text x="1111" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
 <rect x="1189" y="321" width="82" height="84" rx="5" fill="#10B981"/>
 <line x1="1230" y1="306" x2="1230" y2="334" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1224" y1="306" x2="1236" y2="306" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1224" y1="334" x2="1236" y2="334" stroke="#1E293B" stroke-width="1.5"/>
-<text x="1230" y="298" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">28.8±4.8%</text>
+<text x="1230" y="298" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">28.8+-4.8%</text>
 <text x="1230" y="429" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
 <rect x="60" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
 <text x="84" y="534" font-size="16" font-weight="700" fill="#0F172A">C. Saved Synaptic Updates (%)</text>
@@ -100,13 +100,13 @@
 <line x1="441" y1="580" x2="441" y2="581" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="435" y1="580" x2="447" y2="580" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="435" y1="581" x2="447" y2="581" stroke="#1E293B" stroke-width="1.5"/>
-<text x="441" y="572" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">93.1±0.3%</text>
+<text x="441" y="572" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">93.1+-0.3%</text>
 <text x="441" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
 <rect x="519" y="583" width="82" height="217" rx="5" fill="#10B981"/>
 <line x1="560" y1="581" x2="560" y2="583" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="554" y1="581" x2="566" y2="581" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="554" y1="583" x2="566" y2="583" stroke="#1E293B" stroke-width="1.5"/>
-<text x="560" y="573" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">92.5±0.3%</text>
+<text x="560" y="573" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">92.5+-0.3%</text>
 <text x="560" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
 <rect x="730" y="500" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
 <text x="754" y="534" font-size="16" font-weight="700" fill="#0F172A">D. Plasticity Cost M1 (L1 Norm)</text>
@@ -125,24 +125,24 @@
 <line x1="873" y1="622" x2="873" y2="637" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="867" y1="622" x2="879" y2="622" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="867" y1="637" x2="879" y2="637" stroke="#1E293B" stroke-width="1.5"/>
-<text x="873" y="614" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">1156.6±51.3</text>
+<text x="873" y="614" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">1156.6+-51.3</text>
 <text x="873" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Standard SGD</text>
 <rect x="951" y="627" width="82" height="173" rx="5" fill="#3B82F6"/>
 <line x1="992" y1="618" x2="992" y2="633" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="986" y1="618" x2="998" y2="618" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="986" y1="633" x2="998" y2="633" stroke="#1E293B" stroke-width="1.5"/>
-<text x="992" y="610" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">1184.0±52.6</text>
+<text x="992" y="610" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">1184.0+-52.6</text>
 <text x="992" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Classic EWC</text>
 <rect x="1070" y="681" width="82" height="119" rx="5" fill="#F59E0B"/>
 <line x1="1111" y1="671" x2="1111" y2="688" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1105" y1="671" x2="1117" y2="671" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1105" y1="688" x2="1117" y2="688" stroke="#1E293B" stroke-width="1.5"/>
-<text x="1111" y="663" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">814.7±58.0</text>
+<text x="1111" y="663" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">814.7+-58.0</text>
 <text x="1111" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">Mistake Gating</text>
 <rect x="1189" y="680" width="82" height="120" rx="5" fill="#10B981"/>
 <line x1="1230" y1="670" x2="1230" y2="687" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1224" y1="670" x2="1236" y2="670" stroke="#1E293B" stroke-width="1.5"/>
 <line x1="1224" y1="687" x2="1236" y2="687" stroke="#1E293B" stroke-width="1.5"/>
-<text x="1230" y="662" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">823.2±55.4</text>
+<text x="1230" y="662" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">823.2+-55.4</text>
 <text x="1230" y="824" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">F3-Metabolic</text>
 </svg>

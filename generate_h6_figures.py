@@ -140,7 +140,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
             mid_bx = bx + bar_w // 2
 
             if std_v > 0:
-                v_str = f"{mean_v:.1f}±{std_v:.1f}{suffix}"
+                v_str = f"{mean_v:.1f}+-{std_v:.1f}{suffix}"
             else:
                 v_str = f"{mean_v:.1f}{suffix}"
 
@@ -499,18 +499,18 @@ def generate_fig5_arc2_and_hybrid_nrem(
             "#ECFDF5",
         ),
         (
-            "Task ae58858e (ARC-1)",
-            "Motor B (Attribute Map)",
-            "85.4% -> 100.0%",
-            "Connected Component Attribute Recolor",
+            "Task 05f2a901 (ARC-2)",
+            "Motor B (Object Translation)",
+            "92.7% -> 100.0%",
+            "Axis-Aligned Collision Snap to Target",
             "#10B981",
             "#ECFDF5",
         ),
         (
-            "Task 8f3a5a89 (ARC-2 Eval)",
-            "Motor A (F3-MLP)",
-            "80.6% -> 93.8%",
-            "+13.2% Boost in Complex Context Field",
+            "Task cad67732 (ARC-1)",
+            "Two-Step (F3-MLP + Δ2)",
+            "85.5% -> 99.5%",
+            "Chained Residual Cavity Hole Repair",
             "#3B82F6",
             "#EFF6FF",
         ),
@@ -547,6 +547,303 @@ def generate_fig5_arc2_and_hybrid_nrem(
 
 
 # ============================================================================
+# Figure 6: Horizon 9 Real-World Industrial & Engineering Utility Benchmark
+# ============================================================================
+
+def generate_fig6_realworld_utility(data: dict, out_dir: Path) -> Tuple[Path, Path]:
+    W, H = 1400, 900
+    svg = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">',
+        SVG_FONT_STYLE,
+        '<rect width="100%" height="100%" fill="#F8FAFC"/>',
+        '<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
+        'Figure 6 — Horizon 9 Real-World Industrial &amp; Engineering Utility Benchmark</text>',
+        '<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">'
+        'Beyond ARC Puzzles: Edge IoT Continual Drift (32D Features) and Zero-Regression Legacy Decision Rule Repair</text>',
+    ]
+
+    canvas = PureNumpyCanvas(W, H, "#F8FAFC", ssaa=2)
+    canvas.draw_text(
+        700,
+        24,
+        "FIGURE 6 - HORIZON 9 REAL-WORLD INDUSTRIAL AND ENGINEERING UTILITY BENCHMARK",
+        "#0F172A",
+        scale=1.8,
+        align="center",
+    )
+    canvas.draw_text(
+        700,
+        54,
+        "BEYOND ARC PUZZLES: EDGE IOT CONTINUAL DRIFT (32D) AND ZERO-REGRESSION LEGACY RULE REPAIR",
+        "#475569",
+        scale=1.2,
+        align="center",
+    )
+
+    scen_a = data.get("scenario_a_edge_drift", {})
+    regimes = scen_a.get("regimes", [])
+    scen_b = data.get("scenario_b_legacy_repair", {})
+    methods_b = scen_b.get("methods", [])
+
+    # Panel A: Edge IoT Telemetry Continual Accuracy (%) (60, 105, 610, 360)
+    pax, pay, paw, pah = 60, 105, 610, 360
+    svg.append(f'<rect x="{pax}" y="{pay}" width="{paw}" height="{pah}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>')
+    svg.append(f'<text x="{pax + 24}" y="{pay + 34}" font-size="16" font-weight="700" fill="#0F172A">A. Edge IoT Telemetry Continual Accuracy (%)</text>')
+    svg.append(f'<text x="{pax + paw - 24}" y="{pay + 34}" text-anchor="end" font-size="13" fill="#64748B">(Higher = Better)</text>')
+    canvas.fill_rect(pax, pay, paw, pah, "#FFFFFF")
+    canvas.stroke_rect(pax, pay, paw, pah, "#CBD5E1", 2)
+    canvas.draw_text(pax + 20, pay + 18, "A. EDGE IOT TELEMETRY CONTINUAL ACCURACY (%)", "#0F172A", scale=1.4, align="left")
+    canvas.draw_text(pax + paw - 20, pay + 20, "HIGHER = BETTER", "#64748B", scale=1.0, align="right")
+
+    short_a = ["Standard SGD", "Classic EWC", "Mistake Gating", "F3-Metabolic"]
+    colors_a = ["#94A3B8", "#3B82F6", "#F59E0B", "#10B981"]
+
+    ca_x, ca_y = pax + 65, pay + 65
+    ca_w, ca_h = paw - 95, pah - 125
+    base_ay = ca_y + ca_h
+    max_a = 100.0
+
+    for g in range(5):
+        gy = int(ca_y + (ca_h * g) / 4)
+        lbl = f"{int(max_a * (1.0 - g / 4.0))}%"
+        svg.append(f'<line x1="{ca_x}" y1="{gy}" x2="{ca_x + ca_w}" y2="{gy}" stroke="#E2E8F0" stroke-width="1"/>')
+        svg.append(f'<text x="{ca_x - 10}" y="{gy + 4}" text-anchor="end" font-size="12" fill="#64748B">{lbl}</text>')
+        canvas.draw_line(ca_x, gy, ca_x + ca_w, gy, "#E2E8F0", 1)
+        canvas.draw_text(ca_x - 8, gy - 4, lbl, "#64748B", scale=1.1, align="right")
+
+    bar_aw = 82
+    gap_a = (ca_w - 4 * bar_aw) // 5
+    for idx, (reg_info, s_name, col) in enumerate(zip(regimes, short_a, colors_a)):
+        mean_v = reg_info.get("final_accuracy_pct_mean", 0.0)
+        std_v = reg_info.get("final_accuracy_pct_std", 0.0)
+        bx = ca_x + gap_a + idx * (bar_aw + gap_a)
+        bh = max(4, int((mean_v / max_a) * ca_h))
+        by = base_ay - bh
+        mid_bx = bx + bar_aw // 2
+
+        v_str = f"{mean_v:.1f}+-{std_v:.1f}%" if std_v > 0 else f"{mean_v:.1f}%"
+        svg.append(f'<rect x="{bx}" y="{by}" width="{bar_aw}" height="{bh}" rx="5" fill="{col}"/>')
+        canvas.fill_rect(bx, by, bar_aw, bh, col)
+
+        if std_v > 0:
+            y_err_top = max(ca_y, int(base_ay - ((mean_v + std_v) / max_a) * ca_h))
+            y_err_bot = min(base_ay, int(base_ay - ((mean_v - std_v) / max_a) * ca_h))
+            cap_w = 6
+            svg.append(f'<line x1="{mid_bx}" y1="{y_err_top}" x2="{mid_bx}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+            svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_top}" x2="{mid_bx + cap_w}" y2="{y_err_top}" stroke="#1E293B" stroke-width="1.5"/>')
+            svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_bot}" x2="{mid_bx + cap_w}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+            canvas.draw_line(mid_bx, y_err_top, mid_bx, y_err_bot, "#1E293B", 2)
+            canvas.draw_line(mid_bx - cap_w, y_err_top, mid_bx + cap_w, y_err_top, "#1E293B", 2)
+            canvas.draw_line(mid_bx - cap_w, y_err_bot, mid_bx + cap_w, y_err_bot, "#1E293B", 2)
+            label_y = y_err_top - 8
+        else:
+            label_y = by - 8
+
+        svg.append(f'<text x="{mid_bx}" y="{label_y}" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">{v_str}</text>')
+        svg.append(f'<text x="{mid_bx}" y="{base_ay + 24}" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">{s_name}</text>')
+        canvas.draw_text(mid_bx, label_y - 12, v_str, "#0F172A", scale=1.1, align="center")
+        canvas.draw_text(mid_bx, base_ay + 12, s_name, "#334155", scale=1.0, align="center")
+
+    # Panel B: Edge Synaptic Compute Saved vs Forgetting (730, 105, 610, 360)
+    pbx, pby, pbw, pbh = 730, 105, 610, 360
+    svg.append(f'<rect x="{pbx}" y="{pby}" width="{pbw}" height="{pbh}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>')
+    svg.append(f'<text x="{pbx + 24}" y="{pby + 34}" font-size="16" font-weight="700" fill="#0F172A">B. Synaptic Updates Saved vs Forgetting</text>')
+    svg.append(f'<text x="{pbx + pbw - 24}" y="{pby + 34}" text-anchor="end" font-size="13" fill="#64748B">(Efficiency vs Retention)</text>')
+    canvas.fill_rect(pbx, pby, pbw, pbh, "#FFFFFF")
+    canvas.stroke_rect(pbx, pby, pbw, pbh, "#CBD5E1", 2)
+    canvas.draw_text(pbx + 20, pby + 18, "B. SYNAPTIC UPDATES SAVED VS FORGETTING", "#0F172A", scale=1.4, align="left")
+    canvas.draw_text(pbx + pbw - 20, pby + 20, "EFFICIENCY VS RETENTION", "#64748B", scale=1.0, align="right")
+
+    # Legend for Panel B at top
+    leg_by = pby + 48
+    svg.append(f'<rect x="{pbx + 24}" y="{leg_by}" width="12" height="12" rx="3" fill="#10B981"/>')
+    svg.append(f'<text x="{pbx + 42}" y="{leg_by + 10}" font-size="11" fill="#047857">Updates Saved % (Higher = Better)</text>')
+    svg.append(f'<rect x="{pbx + 290}" y="{leg_by}" width="12" height="12" rx="3" fill="#F59E0B"/>')
+    svg.append(f'<text x="{pbx + 308}" y="{leg_by + 10}" font-size="11" fill="#B45309">Catastrophic Forgetting % (Lower = Better)</text>')
+    canvas.fill_rect(pbx + 24, leg_by, 12, 12, "#10B981")
+    canvas.draw_text(pbx + 40, leg_by, "UPDATES SAVED %", "#047857", scale=0.9, align="left")
+    canvas.fill_rect(pbx + 270, leg_by, 12, 12, "#F59E0B")
+    canvas.draw_text(pbx + 286, leg_by, "FORGETTING %", "#B45309", scale=0.9, align="left")
+
+    cb_x, cb_y = pbx + 55, pby + 78
+    cb_w, cb_h = pbw - 85, pbh - 148
+    base_by = cb_y + cb_h
+    max_b = 100.0
+
+    for g in range(5):
+        gy = int(cb_y + (cb_h * g) / 4)
+        lbl = f"{int(max_b * (1.0 - g / 4.0))}%"
+        svg.append(f'<line x1="{cb_x}" y1="{gy}" x2="{cb_x + cb_w}" y2="{gy}" stroke="#E2E8F0" stroke-width="1"/>')
+        svg.append(f'<text x="{cb_x - 10}" y="{gy + 4}" text-anchor="end" font-size="12" fill="#64748B">{lbl}</text>')
+        canvas.draw_line(cb_x, gy, cb_x + cb_w, gy, "#E2E8F0", 1)
+        canvas.draw_text(cb_x - 8, gy - 4, lbl, "#64748B", scale=1.0, align="right")
+
+    group_bw = cb_w // 4
+    pair_bw = 36
+    for idx, (reg_info, s_name) in enumerate(zip(regimes, short_a)):
+        gx = cb_x + idx * group_bw + (group_bw - 2 * pair_bw - 8) // 2
+        sav_v = reg_info.get("saved_updates_pct_mean", 0.0)
+        forg_v = reg_info.get("forgetting_pct_mean", 0.0)
+
+        bh_sav = max(4, int((sav_v / max_b) * cb_h)) if sav_v > 0 else 4
+        bh_forg = max(4, int((forg_v / max_b) * cb_h)) if forg_v > 0 else 4
+        by_sav = base_by - bh_sav
+        by_forg = base_by - bh_forg
+
+        # Saved bar (Green)
+        svg.append(f'<rect x="{gx}" y="{by_sav}" width="{pair_bw}" height="{bh_sav}" rx="4" fill="#10B981"/>')
+        svg.append(f'<text x="{gx + pair_bw / 2}" y="{by_sav - 6}" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">{sav_v:.1f}%</text>')
+        canvas.fill_rect(gx, by_sav, pair_bw, bh_sav, "#10B981")
+        canvas.draw_text(gx + pair_bw // 2, by_sav - 14, f"{sav_v:.0f}%", "#047857", scale=1.0, align="center")
+
+        # Forgetting bar (Amber)
+        fx = gx + pair_bw + 8
+        svg.append(f'<rect x="{fx}" y="{by_forg}" width="{pair_bw}" height="{bh_forg}" rx="4" fill="#F59E0B"/>')
+        svg.append(f'<text x="{fx + pair_bw / 2}" y="{by_forg - 6}" text-anchor="middle" font-size="10" font-weight="700" fill="#B45309">{forg_v:.1f}%</text>')
+        canvas.fill_rect(fx, by_forg, pair_bw, bh_forg, "#F59E0B")
+        canvas.draw_text(fx + pair_bw // 2, by_forg - 14, f"{forg_v:.0f}%", "#B45309", scale=1.0, align="center")
+
+        mid_x = gx + pair_bw + 4
+        svg.append(f'<text x="{mid_x}" y="{base_by + 20}" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">{s_name}</text>')
+        canvas.draw_text(mid_x, base_by + 10, s_name, "#1E293B", scale=0.9, align="center")
+
+    # Panel C: Critical Legacy Rule Repair Accuracy (%) (60, 500, 610, 360)
+    pcx, pcy, pcw, pch = 60, 500, 610, 360
+    svg.append(f'<rect x="{pcx}" y="{pcy}" width="{pcw}" height="{pch}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>')
+    svg.append(f'<text x="{pcx + 24}" y="{pcy + 34}" font-size="16" font-weight="700" fill="#0F172A">C. Legacy Decision Rule Repair Accuracy (%)</text>')
+    svg.append(f'<text x="{pcx + pcw - 24}" y="{pcy + 34}" text-anchor="end" font-size="13" fill="#64748B">(Hold-Out Test N=1,000)</text>')
+    canvas.fill_rect(pcx, pcy, pcw, pch, "#FFFFFF")
+    canvas.stroke_rect(pcx, pcy, pcw, pch, "#CBD5E1", 2)
+    canvas.draw_text(pcx + 20, pcy + 18, "C. LEGACY DECISION RULE REPAIR ACCURACY (%)", "#0F172A", scale=1.4, align="left")
+    canvas.draw_text(pcx + pcw - 20, pcy + 20, "HOLD-OUT TEST N=1,000", "#64748B", scale=1.0, align="right")
+
+    short_c = ["Legacy Base", "MLP Overwrite", "Unverified Patch", "F3-Rashomon"]
+    colors_c = ["#94A3B8", "#EF4444", "#F59E0B", "#10B981"]
+
+    cc_x, cc_y = pcx + 65, pcy + 65
+    cc_w, cc_h = pcw - 95, pch - 125
+    base_cy = cc_y + cc_h
+    max_c = 100.0
+
+    for g in range(5):
+        gy = int(cc_y + (cc_h * g) / 4)
+        lbl = f"{int(max_c * (1.0 - g / 4.0))}%"
+        svg.append(f'<line x1="{cc_x}" y1="{gy}" x2="{cc_x + cc_w}" y2="{gy}" stroke="#E2E8F0" stroke-width="1"/>')
+        svg.append(f'<text x="{cc_x - 10}" y="{gy + 4}" text-anchor="end" font-size="12" fill="#64748B">{lbl}</text>')
+        canvas.draw_line(cc_x, gy, cc_x + cc_w, gy, "#E2E8F0", 1)
+        canvas.draw_text(cc_x - 8, gy - 4, lbl, "#64748B", scale=1.1, align="right")
+
+    bar_cw = 82
+    gap_c = (cc_w - 4 * bar_cw) // 5
+    for idx, (m_info, s_name, col) in enumerate(zip(methods_b, short_c, colors_c)):
+        mean_v = m_info.get("test_accuracy_pct_mean", 0.0)
+        std_v = m_info.get("test_accuracy_pct_std", 0.0)
+        bx = cc_x + gap_c + idx * (bar_cw + gap_c)
+        bh = max(4, int((mean_v / max_c) * cc_h))
+        by = base_cy - bh
+        mid_bx = bx + bar_cw // 2
+
+        v_str = f"{mean_v:.1f}+-{std_v:.1f}%" if std_v > 0 else f"{mean_v:.1f}%"
+        svg.append(f'<rect x="{bx}" y="{by}" width="{bar_cw}" height="{bh}" rx="5" fill="{col}"/>')
+        canvas.fill_rect(bx, by, bar_cw, bh, col)
+
+        if std_v > 0:
+            y_err_top = max(cc_y, int(base_cy - ((mean_v + std_v) / max_c) * cc_h))
+            y_err_bot = min(base_cy, int(base_cy - ((mean_v - std_v) / max_c) * cc_h))
+            cap_w = 6
+            svg.append(f'<line x1="{mid_bx}" y1="{y_err_top}" x2="{mid_bx}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+            svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_top}" x2="{mid_bx + cap_w}" y2="{y_err_top}" stroke="#1E293B" stroke-width="1.5"/>')
+            svg.append(f'<line x1="{mid_bx - cap_w}" y1="{y_err_bot}" x2="{mid_bx + cap_w}" y2="{y_err_bot}" stroke="#1E293B" stroke-width="1.5"/>')
+            canvas.draw_line(mid_bx, y_err_top, mid_bx, y_err_bot, "#1E293B", 2)
+            canvas.draw_line(mid_bx - cap_w, y_err_top, mid_bx + cap_w, y_err_top, "#1E293B", 2)
+            canvas.draw_line(mid_bx - cap_w, y_err_bot, mid_bx + cap_w, y_err_bot, "#1E293B", 2)
+            label_y = y_err_top - 8
+        else:
+            label_y = by - 8
+
+        svg.append(f'<text x="{mid_bx}" y="{label_y}" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">{v_str}</text>')
+        svg.append(f'<text x="{mid_bx}" y="{base_cy + 24}" text-anchor="middle" font-size="12" font-weight="600" fill="#334155">{s_name}</text>')
+        canvas.draw_text(mid_bx, label_y - 12, v_str, "#0F172A", scale=1.1, align="center")
+        canvas.draw_text(mid_bx, base_cy + 12, s_name, "#334155", scale=1.0, align="center")
+
+    # Panel D: Hazard Breakdown: Error Repair vs Regression Rate (730, 500, 610, 360)
+    pdx, pdy, pdw, pdh = 730, 500, 610, 360
+    svg.append(f'<rect x="{pdx}" y="{pdy}" width="{pdw}" height="{pdh}" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>')
+    svg.append(f'<text x="{pdx + 24}" y="{pdy + 34}" font-size="16" font-weight="700" fill="#0F172A">D. Production Hazard: Error Repair vs Regression</text>')
+    svg.append(f'<text x="{pdx + pdw - 24}" y="{pdy + 34}" text-anchor="end" font-size="13" fill="#64748B">(Hallucination-Free Guarantee)</text>')
+    canvas.fill_rect(pdx, pdy, pdw, pdh, "#FFFFFF")
+    canvas.stroke_rect(pdx, pdy, pdw, pdh, "#CBD5E1", 2)
+    canvas.draw_text(pdx + 20, pdy + 18, "D. PRODUCTION HAZARD: REPAIR VS REGRESSION", "#0F172A", scale=1.4, align="left")
+    canvas.draw_text(pdx + pdw - 20, pdy + 20, "HALLUCINATION-FREE GUARANTEE", "#64748B", scale=1.0, align="right")
+
+    # Legend for Panel D
+    leg_dy = pdy + 48
+    svg.append(f'<rect x="{pdx + 24}" y="{leg_dy}" width="12" height="12" rx="3" fill="#3B82F6"/>')
+    svg.append(f'<text x="{pdx + 42}" y="{leg_dy + 10}" font-size="11" fill="#1D4ED8">Repaired Errors % (Higher = Better)</text>')
+    svg.append(f'<rect x="{pdx + 290}" y="{leg_dy}" width="12" height="12" rx="3" fill="#EF4444"/>')
+    svg.append(f'<text x="{pdx + 308}" y="{leg_dy + 10}" font-size="11" fill="#B91C1C">Regression Rate % (LOWER = BETTER, HAZARD!)</text>')
+    canvas.fill_rect(pdx + 24, leg_dy, 12, 12, "#3B82F6")
+    canvas.draw_text(pdx + 40, leg_dy, "REPAIRED ERRORS %", "#1D4ED8", scale=0.9, align="left")
+    canvas.fill_rect(pdx + 270, leg_dy, 12, 12, "#EF4444")
+    canvas.draw_text(pdx + 286, leg_dy, "REGRESSION RATE % (HAZARD)", "#B91C1C", scale=0.9, align="left")
+
+    cd_x, cd_y = pdx + 55, pdy + 78
+    cd_w, cd_h = pdw - 85, pdh - 148
+    base_dy = cd_y + cd_h
+    max_d = 100.0
+
+    for g in range(5):
+        gy = int(cd_y + (cd_h * g) / 4)
+        lbl = f"{int(max_d * (1.0 - g / 4.0))}%"
+        svg.append(f'<line x1="{cd_x}" y1="{gy}" x2="{cd_x + cd_w}" y2="{gy}" stroke="#E2E8F0" stroke-width="1"/>')
+        svg.append(f'<text x="{cd_x - 10}" y="{gy + 4}" text-anchor="end" font-size="12" fill="#64748B">{lbl}</text>')
+        canvas.draw_line(cd_x, gy, cd_x + cd_w, gy, "#E2E8F0", 1)
+        canvas.draw_text(cd_x - 8, gy - 4, lbl, "#64748B", scale=1.0, align="right")
+
+    # Only show the 3 repair approaches in Panel D (skip baseline legacy which has 0/0)
+    repair_methods = [m for m in methods_b if m.get("method_key") != "legacy_only"]
+    short_d = ["MLP Overwrite", "Unverified Patch", "F3-Rashomon"]
+
+    group_dw = cd_w // 3
+    pair_dw = 44
+    for idx, (m_info, s_name) in enumerate(zip(repair_methods, short_d)):
+        gx = cd_x + idx * group_dw + (group_dw - 2 * pair_dw - 10) // 2
+        rep_v = m_info.get("repaired_errors_pct_mean", 0.0)
+        regr_v = m_info.get("regression_rate_pct_mean", 0.0)
+
+        bh_rep = max(4, int((rep_v / max_d) * cd_h)) if rep_v > 0 else 4
+        bh_regr = max(4, int((regr_v / max_d) * cd_h)) if regr_v > 0 else 4
+        by_rep = base_dy - bh_rep
+        by_regr = base_dy - bh_regr
+
+        # Repaired bar (Blue)
+        svg.append(f'<rect x="{gx}" y="{by_rep}" width="{pair_dw}" height="{bh_rep}" rx="4" fill="#3B82F6"/>')
+        svg.append(f'<text x="{gx + pair_dw / 2}" y="{by_rep - 6}" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">{rep_v:.1f}%</text>')
+        canvas.fill_rect(gx, by_rep, pair_dw, bh_rep, "#3B82F6")
+        canvas.draw_text(gx + pair_dw // 2, by_rep - 14, f"{rep_v:.0f}%", "#1D4ED8", scale=1.1, align="center")
+
+        # Regression bar (Red)
+        rx = gx + pair_dw + 10
+        col_regr = "#EF4444" if regr_v > 0 else "#CBD5E1"
+        svg.append(f'<rect x="{rx}" y="{by_regr}" width="{pair_dw}" height="{bh_regr}" rx="4" fill="{col_regr}"/>')
+        lbl_regr = f"{regr_v:.1f}%" if regr_v > 0 else "0.0%"
+        svg.append(f'<text x="{rx + pair_dw / 2}" y="{by_regr - 6}" text-anchor="middle" font-size="11" font-weight="700" fill="#B91C1C">{lbl_regr}</text>')
+        canvas.fill_rect(rx, by_regr, pair_dw, bh_regr, col_regr)
+        canvas.draw_text(rx + pair_dw // 2, by_regr - 14, lbl_regr, "#B91C1C", scale=1.1, align="center")
+
+        mid_x = gx + pair_dw + 5
+        svg.append(f'<text x="{mid_x}" y="{base_dy + 20}" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">{s_name}</text>')
+        canvas.draw_text(mid_x, base_dy + 10, s_name, "#1E293B", scale=0.9, align="center")
+
+    svg.append("</svg>")
+    svg_path = out_dir / "fig6_h9_realworld_utility.svg"
+    png_path = out_dir / "fig6_h9_realworld_utility.png"
+    svg_path.write_text("\n".join(svg), encoding="utf-8")
+    canvas.save_png(png_path)
+    return svg_path, png_path
+
+
+# ============================================================================
 # Main Execution
 # ============================================================================
 
@@ -558,16 +855,19 @@ def main() -> None:
     continual_path = root / "benchmark_h6_real_arc_continual.json"
     hybrid_path = root / "benchmark_h6_hybrid_nrem_results.json"
     zerotouch_path = root / "benchmark_h6_arc2_zerotouch.json"
+    utility_path = root / "benchmark_h9_realworld_utility.json"
 
     continual_data = json.loads(continual_path.read_text(encoding="utf-8"))
     hybrid_data = json.loads(hybrid_path.read_text(encoding="utf-8"))
     zerotouch_data = json.loads(zerotouch_path.read_text(encoding="utf-8"))
+    utility_data = json.loads(utility_path.read_text(encoding="utf-8"))
 
     f4_svg, f4_png = generate_fig4_real_arc_continual(continual_data, out_dir)
     f5_svg, f5_png = generate_fig5_arc2_and_hybrid_nrem(hybrid_data, zerotouch_data, out_dir)
+    f6_svg, f6_png = generate_fig6_realworld_utility(utility_data, out_dir)
 
-    print("Horizon 6 & 7 figures successfully generated in figures/ (100% Academic English, 2x SSAA PNG + SVG):")
-    for p in [f4_svg, f4_png, f5_svg, f5_png]:
+    print("Horizon 6, 8 & 9 figures successfully generated in figures/ (100% Academic English, 2x SSAA PNG + SVG):")
+    for p in [f4_svg, f4_png, f5_svg, f5_png, f6_svg, f6_png]:
         print(f"  - {p.name} ({p.stat().st_size:,} bytes)")
 
 

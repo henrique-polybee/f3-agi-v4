@@ -1422,204 +1422,335 @@ class NREMCellularResidualLearner:
                 "patched_test_preds": None,
             }
 
-        # 2. Testa candidatos do Motor B (Simbólico)
+    def _synthesize_motor_b_rules(
+        self, train_pairs: List[Dict[str, Any]], current_preds: List[np.ndarray]
+    ) -> List[Dict[str, Any]]:
         candidate_rules: List[Dict[str, Any]] = []
 
         # B.1: Predicate LUT
         lut_rule = self.synthesizer.synthesize_predicate_lut(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if lut_rule is not None:
             candidate_rules.append(lut_rule)
 
         # B.2: Component Attribute Recolor
         comp_rule = self.synthesizer.synthesize_component_recolor(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if comp_rule is not None:
             candidate_rules.append(comp_rule)
 
         # B.3: Symmetry Repair
         sym_rule = self.synthesizer.synthesize_symmetry_repair(
-            train_pairs, anchor_train_preds
+            train_pairs, current_preds
         )
         if sym_rule is not None:
             candidate_rules.append(sym_rule)
 
         # B.4: Cavity or BBox Fill / Isolated Cleanup
         cav_rule = self.synthesizer.synthesize_cavity_or_bbox_fill(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if cav_rule is not None:
             candidate_rules.append(cav_rule)
 
         # B.5: Ray or Bridge Patch
         ray_rule = self.synthesizer.synthesize_ray_or_bridge(
-            train_pairs, anchor_train_preds
+            train_pairs, current_preds
         )
         if ray_rule is not None:
             candidate_rules.append(ray_rule)
 
         # B.6: Motif Stamp Patch
         motif_rule = self.synthesizer.synthesize_motif_stamp(
-            train_pairs, anchor_train_preds
+            train_pairs, current_preds
         )
         if motif_rule is not None:
             candidate_rules.append(motif_rule)
 
         # B.7: Localized Subgrid Operator Patch
         subgrid_rule = self.synthesizer.synthesize_localized_subgrid_operator(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if subgrid_rule is not None:
             candidate_rules.append(subgrid_rule)
 
         # B.8: Object Translation or Copy Patch
         trans_rule = self.synthesizer.synthesize_object_translation_or_copy(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if trans_rule is not None:
             candidate_rules.append(trans_rule)
 
         # B.9: Periodic or Line Extension Patch
         per_rule = self.synthesizer.synthesize_periodic_or_line_extension(
-            train_pairs, anchor_train_preds, c_bg=self.c_bg
+            train_pairs, current_preds, c_bg=self.c_bg
         )
         if per_rule is not None:
             candidate_rules.append(per_rule)
 
-        # 3. LOO-CV Rashomon Gate sobre as regras candidatas
-        best_rule: Optional[Dict[str, Any]] = None
-        best_loo_score = float("inf")
+        return candidate_rules
 
-        for rule in candidate_rules:
-            loo_passed = True
-            loo_total_err = 0
+    def _evaluate_rule_loo_cv(
+        self,
+        train_pairs: List[Dict[str, Any]],
+        baseline_preds: List[np.ndarray],
+        baseline_errors: List[int],
+        rule: Dict[str, Any],
+    ) -> Tuple[bool, int, List[np.ndarray]]:
+        K = len(train_pairs)
+        loo_passed = True
+        loo_total_err = 0
+        patched_list: List[np.ndarray] = []
 
-            if K >= 2:
-                for k in range(K):
-                    held_ex = train_pairs[k]
-                    held_inp = np.array(held_ex["input"], dtype=int)
-                    held_exp = np.array(held_ex["output"], dtype=int)
-                    held_yst = anchor_train_preds[k]
+        for k in range(K):
+            held_ex = train_pairs[k]
+            held_inp = np.array(held_ex["input"], dtype=int)
+            held_exp = np.array(held_ex["output"], dtype=int)
+            held_yst = baseline_preds[k]
 
-                    patched = self.synthesizer.apply_rule(held_inp, held_yst, rule)
+            patched = self.synthesizer.apply_rule(held_inp, held_yst, rule)
+            patched_list.append(patched)
 
-                    err = int(np.sum(patched != held_exp))
-                    # Regra de Rashomon: não pode degradar nenhum par individual
-                    if err > base_errors[k]:
-                        loo_passed = False
-                        break
-                    loo_total_err += err
-            else:
-                loo_passed = True
-                loo_total_err = 0
+            err = int(np.sum(patched != held_exp))
+            if err > baseline_errors[k]:
+                loo_passed = False
+                break
+            loo_total_err += err
 
-            if loo_passed and loo_total_err < total_base_error and loo_total_err < best_loo_score:
-                best_loo_score = loo_total_err
-                best_rule = rule
+        return loo_passed, loo_total_err, patched_list
 
-        # 4. Se encontrou regra simbólica certificada, aplica ao teste
-        if best_rule is not None:
-            test_patched: List[List[List[int]]] = []
-            for tp in test_pairs:
-                t_inp = np.array(tp["input"], dtype=int)
-                t_yst = anchor_fn(t_inp)
-                if t_yst is None:
-                    t_yst = t_inp.copy()
+    def solve_residual(
+        self,
+        task_data: Dict[str, Any],
+        anchor_fn: Callable[[np.ndarray], Optional[np.ndarray]],
+    ) -> Dict[str, Any]:
+        """
+        Executa a indução residual sobre os pares de treino.
+        Suporta Encadeamento Residual de 2 Passos (Two-Step Residual Chaining Δ2 ∘ Δ1):
+        Quando o Passo 1 resolve a macro-geometria (>=88%), o Passo 2 atua sobre o resíduo fino.
+        """
+        train_pairs = task_data.get("train", [])
+        test_pairs = task_data.get("test", [])
+        K = len(train_pairs)
 
-                p_arr = self.synthesizer.apply_rule(t_inp, t_yst, best_rule)
-                test_patched.append(p_arr.tolist())
+        # 1. Gera âncoras simbólicas de treino
+        anchor_train_preds: List[np.ndarray] = []
+        anchor_train_targets: List[np.ndarray] = []
+        shape_compatible = True
 
+        for ex in train_pairs:
+            inp = np.array(ex["input"], dtype=int)
+            exp = np.array(ex["output"], dtype=int)
+            pred = anchor_fn(inp)
+            if pred is None or pred.shape != exp.shape:
+                shape_compatible = False
+                break
+            anchor_train_preds.append(pred)
+            anchor_train_targets.append(exp)
+
+        if not shape_compatible:
             return {
-                "patch_found": True,
-                "engine": "Motor B — NREMSparseRuleSynthesizer",
-                "rule_type": best_rule["type"],
-                "loo_cv_passed": True,
-                "base_train_error": total_base_error,
-                "patched_train_error": best_loo_score,
-                "perfect_train": bool(best_loo_score == 0),
-                "patched_test_preds": test_patched,
+                "patch_found": False,
+                "reason": "Shape mismatch in symbolic anchor",
+                "patched_test_preds": None,
             }
 
-        # 5. Motor A: F3MetabolicCellularMLP quando Motor B não atinge 100%
-        # Treina online nas células dos pares de treino
-        mlp = F3MetabolicCellularMLP(
-            input_dim=64,
-            hidden_dim=128,
-            num_classes=11,
-            learning_rate=0.045,
-            mistake_margin=0.15,
-        )
+        # Mede erro base da âncora
+        base_errors = [
+            int(np.sum(p != t))
+            for p, t in zip(anchor_train_preds, anchor_train_targets)
+        ]
+        total_base_error = sum(base_errors)
+        if total_base_error == 0:
+            return {
+                "patch_found": False,
+                "reason": "Anchor already 100% solved",
+                "patched_test_preds": None,
+            }
 
-        sample_counter = 0
-        all_train_cells_x = []
-        all_train_cells_y = []
-        for epoch in range(6):
-            for ex, Y_st in zip(train_pairs, anchor_train_preds):
+        total_pixels = max(1, sum(t.size for t in anchor_train_targets))
+        candidates: List[Dict[str, Any]] = []
+
+        # 2. Avalia candidatos do Motor B (Simbólico) — Passo 1
+        step1_rules = self._synthesize_motor_b_rules(train_pairs, anchor_train_preds)
+        for r1 in step1_rules:
+            passed, r1_err, r1_preds = self._evaluate_rule_loo_cv(
+                train_pairs, anchor_train_preds, base_errors, r1
+            )
+            if passed and r1_err < total_base_error:
+                pair_errs = [int(np.sum(p != t)) for p, t in zip(r1_preds, anchor_train_targets)]
+                cand = {
+                    "kind": "single_rule",
+                    "rule": r1,
+                    "train_preds": r1_preds,
+                    "pair_errors": pair_errs,
+                    "total_train_err": r1_err,
+                    "perfect": bool(r1_err == 0),
+                    "rule_type": r1["type"],
+                    "engine": "Motor B — NREMSparseRuleSynthesizer",
+                }
+                candidates.append(cand)
+
+                # Se Passo 1 melhorou e atingiu >= 88.0% (mas não 100%), testa Passo 2 Recursivo (Δ2 ∘ Δ1)
+                if 0 < r1_err and (1.0 - r1_err / total_pixels) >= 0.88:
+                    step2_rules = self._synthesize_motor_b_rules(train_pairs, r1_preds)
+                    for r2 in step2_rules:
+                        p2, r2_err, r2_preds = self._evaluate_rule_loo_cv(
+                            train_pairs, r1_preds, pair_errs, r2
+                        )
+                        if p2 and r2_err < r1_err:
+                            p2_cand = {
+                                "kind": "chained_rule",
+                                "rule1": r1,
+                                "rule2": r2,
+                                "train_preds": r2_preds,
+                                "pair_errors": [int(np.sum(p != t)) for p, t in zip(r2_preds, anchor_train_targets)],
+                                "total_train_err": r2_err,
+                                "perfect": bool(r2_err == 0),
+                                "rule_type": f"{r1['type']}+{r2['type']}",
+                                "engine": "Motor B — Two-Step Residual Chaining (Δ2 ∘ Δ1)",
+                            }
+                            candidates.append(p2_cand)
+
+        # 3. Motor A: F3MetabolicCellularMLP quando Motor B não atinge 100% de imediato
+        has_perfect = any(c["perfect"] for c in candidates)
+        if not has_perfect:
+            mlp = F3MetabolicCellularMLP(
+                input_dim=64,
+                hidden_dim=128,
+                num_classes=11,
+                learning_rate=0.045,
+                mistake_margin=0.15,
+            )
+
+            sample_counter = 0
+            all_train_cells_x = []
+            all_train_cells_y = []
+            for epoch in range(6):
+                for ex, Y_st in zip(train_pairs, anchor_train_preds):
+                    X = np.array(ex["input"], dtype=int)
+                    Y = np.array(ex["output"], dtype=int)
+                    H, W = Y.shape
+                    feats = extract_64d_cell_features(X, Y_st, c_bg=self.c_bg)
+                    for r in range(H):
+                        for c in range(W):
+                            target_col = int(Y[r, c])
+                            anchor_col = int(Y_st[r, c])
+                            y_class = 10 if (target_col == anchor_col) else target_col
+                            mlp.train_step(
+                                feats[r, c], y_class, sample_counter, regime="f3_metabolic"
+                            )
+                            if epoch == 0:
+                                all_train_cells_x.append(feats[r, c])
+                                all_train_cells_y.append(y_class)
+                            sample_counter += 1
+
+            if all_train_cells_x:
+                mlp.consolidate_task_nrem(
+                    (np.array(all_train_cells_x, dtype=np.float32), np.array(all_train_cells_y, dtype=np.int64))
+                )
+            else:
+                mlp.consolidate_task_nrem()
+
+            # Valida MLP no treino sob portão Rashomon
+            mlp_train_preds = []
+            mlp_pair_errs = []
+            mlp_valid = True
+            for k, (ex, Y_st) in enumerate(zip(train_pairs, anchor_train_preds)):
                 X = np.array(ex["input"], dtype=int)
                 Y = np.array(ex["output"], dtype=int)
-                H, W = Y.shape
-                feats = extract_64d_cell_features(X, Y_st, c_bg=self.c_bg)
-                for r in range(H):
-                    for c in range(W):
-                        target_col = int(Y[r, c])
-                        anchor_col = int(Y_st[r, c])
-                        # Se já era igual à âncora, target é classe 10 (KEEP_ANCHOR)
-                        y_class = 10 if (target_col == anchor_col) else target_col
-                        mlp.train_step(
-                            feats[r, c], y_class, sample_counter, regime="f3_metabolic"
+                p_grid = mlp.predict_grid(X, Y_st, c_bg=self.c_bg, conf_threshold=0.70)
+                err = int(np.sum(p_grid != Y))
+                if err > base_errors[k]:
+                    mlp_valid = False
+                    break
+                mlp_train_preds.append(p_grid)
+                mlp_pair_errs.append(err)
+
+            mlp_total_err = sum(mlp_pair_errs)
+            if mlp_valid and mlp_total_err < total_base_error:
+                mlp_cand = {
+                    "kind": "mlp",
+                    "mlp": mlp,
+                    "train_preds": mlp_train_preds,
+                    "pair_errors": mlp_pair_errs,
+                    "total_train_err": mlp_total_err,
+                    "perfect": bool(mlp_total_err == 0),
+                    "rule_type": "f3_metabolic_mlp",
+                    "engine": "Motor A — F3MetabolicCellularMLP",
+                }
+                candidates.append(mlp_cand)
+
+                # Se MLP atingiu >= 88.0% de treino (mas não 100%), testa Passo 2 Simbólico no resíduo do MLP!
+                if 0 < mlp_total_err and (1.0 - mlp_total_err / total_pixels) >= 0.88:
+                    step2_rules = self._synthesize_motor_b_rules(train_pairs, mlp_train_preds)
+                    for r2 in step2_rules:
+                        p2, r2_err, r2_preds = self._evaluate_rule_loo_cv(
+                            train_pairs, mlp_train_preds, mlp_pair_errs, r2
                         )
-                        if epoch == 0:
-                            all_train_cells_x.append(feats[r, c])
-                            all_train_cells_y.append(y_class)
-                        sample_counter += 1
+                        if p2 and r2_err < mlp_total_err:
+                            p2_cand = {
+                                "kind": "chained_mlp_rule",
+                                "mlp": mlp,
+                                "rule2": r2,
+                                "train_preds": r2_preds,
+                                "pair_errors": [int(np.sum(p != t)) for p, t in zip(r2_preds, anchor_train_targets)],
+                                "total_train_err": r2_err,
+                                "perfect": bool(r2_err == 0),
+                                "rule_type": f"mlp+{r2['type']}",
+                                "engine": "Motor A+B — Chained (F3-MLP + Δ2)",
+                            }
+                            candidates.append(p2_cand)
 
-        if all_train_cells_x:
-            mlp.consolidate_task_nrem(
-                (np.array(all_train_cells_x, dtype=np.float32), np.array(all_train_cells_y, dtype=np.int64))
-            )
-        else:
-            mlp.consolidate_task_nrem()
-
-        # Valida predição do MLP no treino
-        mlp_train_err = 0
-        mlp_valid = True
-        for ex, Y_st in zip(train_pairs, anchor_train_preds):
-            X = np.array(ex["input"], dtype=int)
-            Y = np.array(ex["output"], dtype=int)
-            p_grid = mlp.predict_grid(X, Y_st, c_bg=self.c_bg, conf_threshold=0.70)
-            err = int(np.sum(p_grid != Y))
-            if err >= int(np.sum(Y_st != Y)):
-                mlp_valid = False
-                break
-            mlp_train_err += err
-
-        if mlp_valid and mlp_train_err < total_base_error:
-            test_patched = []
-            for tp in test_pairs:
-                t_inp = np.array(tp["input"], dtype=int)
-                t_yst = anchor_fn(t_inp)
-                if t_yst is None:
-                    t_yst = t_inp.copy()
-                p_grid = mlp.predict_grid(
-                    t_inp, t_yst, c_bg=self.c_bg, conf_threshold=0.70
-                )
-                test_patched.append(p_grid.tolist())
-
+        if not candidates:
             return {
-                "patch_found": True,
-                "engine": "Motor A — F3MetabolicCellularMLP",
-                "rule_type": "f3_metabolic_mlp",
-                "loo_cv_passed": True,
-                "base_train_error": total_base_error,
-                "patched_train_error": mlp_train_err,
-                "perfect_train": bool(mlp_train_err == 0),
-                "patched_test_preds": test_patched,
+                "patch_found": False,
+                "reason": "No certified patch satisfied LOO-CV Rashomon Gate",
+                "patched_test_preds": None,
             }
 
+        # 4. Seleciona o melhor candidato via Rashomon + MDL
+        perfect_cands = [c for c in candidates if c["perfect"]]
+        if perfect_cands:
+            type_prio = {"single_rule": 0, "chained_rule": 1, "chained_mlp_rule": 2, "mlp": 3}
+            perfect_cands.sort(key=lambda c: type_prio.get(c["kind"], 99))
+            winner = perfect_cands[0]
+        else:
+            candidates.sort(key=lambda c: c["total_train_err"])
+            winner = candidates[0]
+
+        # 5. Aplica aos pares de teste
+        test_patched = []
+        for tp in test_pairs:
+            t_inp = np.array(tp["input"], dtype=int)
+            t_yst = anchor_fn(t_inp)
+            if t_yst is None:
+                t_yst = t_inp.copy()
+
+            if winner["kind"] == "single_rule":
+                p_arr = self.synthesizer.apply_rule(t_inp, t_yst, winner["rule"])
+            elif winner["kind"] == "chained_rule":
+                t1 = self.synthesizer.apply_rule(t_inp, t_yst, winner["rule1"])
+                p_arr = self.synthesizer.apply_rule(t_inp, t1, winner["rule2"])
+            elif winner["kind"] == "mlp":
+                p_arr = winner["mlp"].predict_grid(t_inp, t_yst, c_bg=self.c_bg, conf_threshold=0.70)
+            elif winner["kind"] == "chained_mlp_rule":
+                t1 = winner["mlp"].predict_grid(t_inp, t_yst, c_bg=self.c_bg, conf_threshold=0.70)
+                p_arr = self.synthesizer.apply_rule(t_inp, t1, winner["rule2"])
+            else:
+                p_arr = t_yst
+
+            test_patched.append(p_arr.tolist())
+
         return {
-            "patch_found": False,
-            "reason": "No certified patch satisfied LOO-CV Rashomon Gate",
-            "patched_test_preds": None,
+            "patch_found": True,
+            "engine": winner["engine"],
+            "rule_type": winner["rule_type"],
+            "loo_cv_passed": True,
+            "base_train_error": total_base_error,
+            "patched_train_error": winner["total_train_err"],
+            "perfect_train": bool(winner["total_train_err"] == 0),
+            "patched_test_preds": test_patched,
         }

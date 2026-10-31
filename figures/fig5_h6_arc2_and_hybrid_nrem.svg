@@ -84,19 +84,19 @@
 <text x="105" y="737" text-anchor="end" font-size="12" fill="#64748B">50</text>
 <line x1="115" y1="790" x2="640" y2="790" stroke="#E2E8F0" stroke-width="1"/>
 <text x="105" y="794" text-anchor="end" font-size="12" fill="#64748B">0</text>
-<rect x="175" y="641" width="95" height="149" fill="#E2E8F0"/>
-<rect x="175" y="587" width="95" height="54" fill="#3B82F6"/>
+<rect x="175" y="655" width="95" height="135" fill="#E2E8F0"/>
+<rect x="175" y="587" width="95" height="68" fill="#3B82F6"/>
 <rect x="175" y="584" width="95" height="3" rx="3" fill="#10B981"/>
-<text x="222.5" y="576" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+51 (27.7%)</text>
+<text x="222.5" y="576" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+64 (34.8%)</text>
 <text x="222.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-1 (N=184)</text>
-<rect x="330" y="734" width="95" height="56" fill="#E2E8F0"/>
-<rect x="330" y="720" width="95" height="14" fill="#3B82F6"/>
-<text x="377.5" y="712" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+13 (20.6%)</text>
+<rect x="330" y="738" width="95" height="52" fill="#E2E8F0"/>
+<rect x="330" y="720" width="95" height="18" fill="#3B82F6"/>
+<text x="377.5" y="712" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+16 (25.4%)</text>
 <text x="377.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-2 EVAL (N=63)</text>
-<rect x="485" y="763" width="95" height="27" fill="#E2E8F0"/>
-<rect x="485" y="752" width="95" height="11" fill="#3B82F6"/>
-<rect x="485" y="750" width="95" height="2" rx="3" fill="#10B981"/>
-<text x="532.5" y="742" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+11 (31.4%)</text>
+<rect x="485" y="767" width="95" height="23" fill="#E2E8F0"/>
+<rect x="485" y="753" width="95" height="14" fill="#3B82F6"/>
+<rect x="485" y="751" width="95" height="2" rx="3" fill="#10B981"/>
+<text x="532.5" y="743" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+14 (40.0%)</text>
 <text x="532.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-2 TRAIN (N=35)</text>
 <rect x="84" y="834" width="12" height="12" rx="2" fill="#10B981"/>
 <text x="102" y="844" font-size="11" fill="#047857">Converted Exact (100%)</text>
@@ -118,13 +118,13 @@
 <text x="1300" y="648" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">99.8% -> 100.0%</text>
 <text x="770" y="668" font-size="12" fill="#334155">Rotational Residual Anchor Restoration</text>
 <rect x="754" y="692" width="562" height="56" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.2"/>
-<text x="770" y="716" font-size="14" font-weight="700" fill="#0F172A">Task ae58858e (ARC-1)</text>
-<text x="964" y="716" font-size="12" font-weight="600" fill="#475569">Motor B (Attribute Map)</text>
-<text x="1300" y="716" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">85.4% -> 100.0%</text>
-<text x="770" y="736" font-size="12" fill="#334155">Connected Component Attribute Recolor</text>
+<text x="770" y="716" font-size="14" font-weight="700" fill="#0F172A">Task 05f2a901 (ARC-2)</text>
+<text x="964" y="716" font-size="12" font-weight="600" fill="#475569">Motor B (Object Translation)</text>
+<text x="1300" y="716" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">92.7% -> 100.0%</text>
+<text x="770" y="736" font-size="12" fill="#334155">Axis-Aligned Collision Snap to Target</text>
 <rect x="754" y="760" width="562" height="56" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.2"/>
-<text x="770" y="784" font-size="14" font-weight="700" fill="#0F172A">Task 8f3a5a89 (ARC-2 Eval)</text>
-<text x="964" y="784" font-size="12" font-weight="600" fill="#475569">Motor A (F3-MLP)</text>
-<text x="1300" y="784" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">80.6% -> 93.8%</text>
-<text x="770" y="804" font-size="12" fill="#334155">+13.2% Boost in Complex Context Field</text>
+<text x="770" y="784" font-size="14" font-weight="700" fill="#0F172A">Task cad67732 (ARC-1)</text>
+<text x="964" y="784" font-size="12" font-weight="600" fill="#475569">Two-Step (F3-MLP + Δ2)</text>
+<text x="1300" y="784" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">85.5% -> 99.5%</text>
+<text x="770" y="804" font-size="12" fill="#334155">Chained Residual Cavity Hole Repair</text>
 </svg>
