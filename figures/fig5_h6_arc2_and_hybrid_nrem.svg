@@ -1,43 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
 <style>text { font-family: 'Segoe UI', 'Inter', 'Helvetica Neue', Roboto, Arial, sans-serif; text-rendering: geometricPrecision; }rect, line, polyline { shape-rendering: geometricPrecision; }</style>
 <rect width="100%" height="100%" fill="#F8FAFC"/>
-<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Figure 5 — Horizon 6 ARC-AGI-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)</text>
+<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">Figure 5 — Horizon 6 &amp; 7 ARC-AGI-2 Evaluation &amp; NREM Cellular Mutator Ablation (Study 6.2)</text>
 <text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">Out-of-Distribution Generalization on ARC-2 (N=120 Eval, N=100 Train) and Hybrid Repair of 282 Near-Misses</text>
 <rect x="60" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
 <text x="84" y="139" font-size="16" font-weight="700" fill="#0F172A">A. Pass@2 Exact Test Solution Rates</text>
 <text x="646" y="139" text-anchor="end" font-size="13" fill="#64748B">(Baseline v4.0 vs Hybrid NREM)</text>
-<line x1="115" y1="170" x2="640" y2="170" stroke="#E2E8F0" stroke-width="1"/>
-<text x="105" y="174" text-anchor="end" font-size="12" fill="#64748B">40%</text>
-<line x1="115" y1="228" x2="640" y2="228" stroke="#E2E8F0" stroke-width="1"/>
-<text x="105" y="232" text-anchor="end" font-size="12" fill="#64748B">30%</text>
-<line x1="115" y1="287" x2="640" y2="287" stroke="#E2E8F0" stroke-width="1"/>
-<text x="105" y="291" text-anchor="end" font-size="12" fill="#64748B">20%</text>
-<line x1="115" y1="346" x2="640" y2="346" stroke="#E2E8F0" stroke-width="1"/>
-<text x="105" y="350" text-anchor="end" font-size="12" fill="#64748B">10%</text>
-<line x1="115" y1="405" x2="640" y2="405" stroke="#E2E8F0" stroke-width="1"/>
-<text x="105" y="409" text-anchor="end" font-size="12" fill="#64748B">0%</text>
-<rect x="149" y="322" width="48" height="83" rx="4" fill="#94A3B8"/>
-<text x="173.0" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">14.2%</text>
-<rect x="207" y="319" width="48" height="86" rx="4" fill="#10B981"/>
-<text x="231.0" y="313" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">14.8%</text>
-<text x="202" y="427" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-1 (N=400)</text>
-<text x="202" y="443" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">57 -> 59 (+2)</text>
-<rect x="324" y="401" width="48" height="4" rx="4" fill="#94A3B8"/>
-<text x="348.0" y="395" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">0.0%</text>
-<rect x="382" y="401" width="48" height="4" rx="4" fill="#CBD5E1"/>
-<text x="406.0" y="395" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">0.0%</text>
-<text x="377" y="427" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-2 EVAL (N=120)</text>
-<text x="377" y="443" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">0 / 120 (0.0%)</text>
-<rect x="499" y="212" width="48" height="193" rx="4" fill="#94A3B8"/>
-<text x="523.0" y="206" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">33.0%</text>
-<rect x="557" y="212" width="48" height="193" rx="4" fill="#0D9488"/>
-<text x="581.0" y="206" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">33.0%</text>
-<text x="552" y="427" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-2 TRAIN (N=100)</text>
-<text x="552" y="443" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">33 / 100 (33.0%)</text>
-<rect x="84" y="437" width="14" height="14" rx="3" fill="#94A3B8"/>
-<text x="104" y="448" font-size="12" fill="#475569">Baseline v4.0.0 (Symbolic AACR)</text>
-<rect x="320" y="437" width="14" height="14" rx="3" fill="#10B981"/>
-<text x="340" y="448" font-size="12" fill="#047857">Hybrid NREM Mutator (Cycle 3.5)</text>
+<rect x="84" y="153" width="12" height="12" rx="3" fill="#94A3B8"/>
+<text x="102" y="163" font-size="11" fill="#475569">Baseline v4.0.0 (Symbolic AACR)</text>
+<rect x="320" y="153" width="12" height="12" rx="3" fill="#10B981"/>
+<text x="338" y="163" font-size="11" fill="#047857">Hybrid NREM Mutator (Ciclo 3.5)</text>
+<line x1="115" y1="183" x2="640" y2="183" stroke="#E2E8F0" stroke-width="1"/>
+<text x="105" y="187" text-anchor="end" font-size="12" fill="#64748B">40%</text>
+<line x1="115" y1="236" x2="640" y2="236" stroke="#E2E8F0" stroke-width="1"/>
+<text x="105" y="240" text-anchor="end" font-size="12" fill="#64748B">30%</text>
+<line x1="115" y1="289" x2="640" y2="289" stroke="#E2E8F0" stroke-width="1"/>
+<text x="105" y="293" text-anchor="end" font-size="12" fill="#64748B">20%</text>
+<line x1="115" y1="342" x2="640" y2="342" stroke="#E2E8F0" stroke-width="1"/>
+<text x="105" y="346" text-anchor="end" font-size="12" fill="#64748B">10%</text>
+<line x1="115" y1="395" x2="640" y2="395" stroke="#E2E8F0" stroke-width="1"/>
+<text x="105" y="399" text-anchor="end" font-size="12" fill="#64748B">0%</text>
+<rect x="149" y="320" width="48" height="75" rx="4" fill="#94A3B8"/>
+<text x="173.0" y="314" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">14.2%</text>
+<rect x="207" y="316" width="48" height="79" rx="4" fill="#10B981"/>
+<text x="231.0" y="310" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">15.0%</text>
+<text x="202" y="413" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-1 (N=400)</text>
+<text x="202" y="429" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">57 -> 60 (+3)</text>
+<rect x="324" y="391" width="48" height="4" rx="4" fill="#94A3B8"/>
+<text x="348.0" y="385" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">0.0%</text>
+<rect x="382" y="391" width="48" height="4" rx="4" fill="#CBD5E1"/>
+<text x="406.0" y="385" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">0.0%</text>
+<text x="377" y="413" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-2 EVAL (N=120)</text>
+<text x="377" y="429" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">0 / 120</text>
+<rect x="499" y="221" width="48" height="174" rx="4" fill="#94A3B8"/>
+<text x="523.0" y="215" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">33.0%</text>
+<rect x="557" y="221" width="48" height="174" rx="4" fill="#0D9488"/>
+<text x="581.0" y="215" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">33.0%</text>
+<text x="552" y="413" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">ARC-2 TRAIN (N=100)</text>
+<text x="552" y="429" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">33/100</text>
 <rect x="730" y="105" width="610" height="360" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
 <text x="754" y="139" font-size="16" font-weight="700" fill="#0F172A">B. ARC-2 Evaluation (N=120) Latent Reservoir</text>
 <text x="1316" y="139" text-anchor="end" font-size="13" fill="#64748B">(Geometric &amp; High Pixel Strata)</text>
@@ -84,18 +84,18 @@
 <text x="105" y="737" text-anchor="end" font-size="12" fill="#64748B">50</text>
 <line x1="115" y1="790" x2="640" y2="790" stroke="#E2E8F0" stroke-width="1"/>
 <text x="105" y="794" text-anchor="end" font-size="12" fill="#64748B">0</text>
-<rect x="175" y="643" width="95" height="147" fill="#E2E8F0"/>
-<rect x="175" y="586" width="95" height="57" fill="#3B82F6"/>
-<rect x="175" y="584" width="95" height="2" rx="3" fill="#10B981"/>
-<text x="222.5" y="576" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+53 (28.8%)</text>
+<rect x="175" y="640" width="95" height="150" fill="#E2E8F0"/>
+<rect x="175" y="588" width="95" height="52" fill="#3B82F6"/>
+<rect x="175" y="585" width="95" height="3" rx="3" fill="#10B981"/>
+<text x="222.5" y="577" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+50 (27.2%)</text>
 <text x="222.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-1 (N=184)</text>
 <rect x="330" y="734" width="95" height="56" fill="#E2E8F0"/>
 <rect x="330" y="720" width="95" height="14" fill="#3B82F6"/>
 <text x="377.5" y="712" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+13 (20.6%)</text>
 <text x="377.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-2 EVAL (N=63)</text>
-<rect x="485" y="768" width="95" height="22" fill="#E2E8F0"/>
-<rect x="485" y="752" width="95" height="16" fill="#3B82F6"/>
-<text x="532.5" y="744" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+15 (42.9%)</text>
+<rect x="485" y="763" width="95" height="27" fill="#E2E8F0"/>
+<rect x="485" y="751" width="95" height="12" fill="#3B82F6"/>
+<text x="532.5" y="743" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+11 (31.4%)</text>
 <text x="532.5" y="810" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">ARC-2 TRAIN (N=35)</text>
 <rect x="84" y="834" width="12" height="12" rx="2" fill="#10B981"/>
 <text x="102" y="844" font-size="11" fill="#047857">Converted Exact (100%)</text>
@@ -112,18 +112,18 @@
 <text x="1300" y="580" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">98.1% -> 100.0%</text>
 <text x="770" y="600" font-size="12" fill="#334155">Exact Perimeter & Cavity Hole Repair</text>
 <rect x="754" y="624" width="562" height="56" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.2"/>
-<text x="770" y="648" font-size="14" font-weight="700" fill="#0F172A">Task ae58858e (ARC-1)</text>
-<text x="964" y="648" font-size="12" font-weight="600" fill="#475569">Motor B (Attribute Map)</text>
-<text x="1300" y="648" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">85.4% -> 100.0%</text>
-<text x="770" y="668" font-size="12" fill="#334155">Connected Component Attribute Recolor</text>
-<rect x="754" y="692" width="562" height="56" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.2"/>
-<text x="770" y="716" font-size="14" font-weight="700" fill="#0F172A">Task 8f3a5a89 (ARC-2 Eval)</text>
-<text x="964" y="716" font-size="12" font-weight="600" fill="#475569">Motor A (F3-MLP)</text>
-<text x="1300" y="716" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">80.6% -> 93.8%</text>
-<text x="770" y="736" font-size="12" fill="#334155">+13.2% Boost in Complex Context Field</text>
+<text x="770" y="648" font-size="14" font-weight="700" fill="#0F172A">Task 929ab4e9 (ARC-1)</text>
+<text x="964" y="648" font-size="12" font-weight="600" fill="#475569">Motor B (Multi-scale LUT)</text>
+<text x="1300" y="648" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">99.8% -> 100.0%</text>
+<text x="770" y="668" font-size="12" fill="#334155">Rotational Residual Anchor Restoration</text>
+<rect x="754" y="692" width="562" height="56" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.2"/>
+<text x="770" y="716" font-size="14" font-weight="700" fill="#0F172A">Task ae58858e (ARC-1)</text>
+<text x="964" y="716" font-size="12" font-weight="600" fill="#475569">Motor B (Attribute Map)</text>
+<text x="1300" y="716" text-anchor="end" font-size="14" font-weight="700" fill="#10B981">85.4% -> 100.0%</text>
+<text x="770" y="736" font-size="12" fill="#334155">Connected Component Attribute Recolor</text>
 <rect x="754" y="760" width="562" height="56" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.2"/>
-<text x="770" y="784" font-size="14" font-weight="700" fill="#0F172A">Task 06df4c85 (ARC-2 Train)</text>
+<text x="770" y="784" font-size="14" font-weight="700" fill="#0F172A">Task 8f3a5a89 (ARC-2 Eval)</text>
 <text x="964" y="784" font-size="12" font-weight="600" fill="#475569">Motor A (F3-MLP)</text>
-<text x="1300" y="784" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">59.8% -> 94.2%</text>
-<text x="770" y="804" font-size="12" fill="#334155">+34.4% Boost in 64D Cell Neighborhood</text>
+<text x="1300" y="784" text-anchor="end" font-size="14" font-weight="700" fill="#3B82F6">80.6% -> 93.8%</text>
+<text x="770" y="804" font-size="12" fill="#334155">+13.2% Boost in Complex Context Field</text>
 </svg>

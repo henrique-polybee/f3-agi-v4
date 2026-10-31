@@ -2,64 +2,64 @@
   "study": "Estudo 6.1 — Continual Learning on Real ARC-AGI 64D Cell Vectors",
   "benchmark_dataset": "Real ARC-AGI 5-Task Sequential Stream",
   "tasks": [
-    "e98196ab",
-    "2204b7a8",
-    "a61ba2ce",
-    "5614dbcf",
-    "2dee498d"
+    "32597951",
+    "264363fd",
+    "73251a56",
+    "3631a71a",
+    "83302e8f"
   ],
-  "total_train_cells": 544,
+  "total_train_cells": 490,
   "regimes": [
     {
       "regime_name": "sgd",
-      "final_mean_accuracy_pct": 92.61,
-      "forgetting_ratio_pct": 0.0,
+      "final_mean_accuracy_pct": 67.62,
+      "forgetting_ratio_pct": 40.48,
       "saved_synaptic_updates_pct": 0.0,
-      "total_forward_steps": 4352,
-      "total_synaptic_updates": 4352,
-      "m1_metabolic_cost": 1692.22,
-      "elapsed_sec": 0.269,
+      "total_forward_steps": 5880,
+      "total_synaptic_updates": 5880,
+      "m1_metabolic_cost": 1218.43,
+      "elapsed_sec": 0.343,
       "task_accuracies": [
-        81.82,
-        100.0,
-        81.25,
-        100.0,
+        59.52,
+        35.71,
+        45.24,
+        97.62,
         100.0
       ],
       "accuracy_matrix": [
         [
-          81.81818181818181,
+          100.0,
           0.0,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
+          78.57142857142857,
+          100.0,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
-          81.25,
+          100.0,
+          50.0,
+          100.0,
           0.0,
           0.0
         ],
         [
-          89.0909090909091,
-          85.0,
-          93.75,
+          23.80952380952381,
+          45.23809523809524,
+          45.23809523809524,
           100.0,
           0.0
         ],
         [
-          81.81818181818181,
-          100.0,
-          81.25,
-          100.0,
+          59.523809523809526,
+          35.714285714285715,
+          45.23809523809524,
+          97.61904761904762,
           100.0
         ]
       ],
@@ -67,53 +67,53 @@
     },
     {
       "regime_name": "ewc",
-      "final_mean_accuracy_pct": 92.61,
-      "forgetting_ratio_pct": 0.0,
+      "final_mean_accuracy_pct": 76.19,
+      "forgetting_ratio_pct": 29.76,
       "saved_synaptic_updates_pct": 0.0,
-      "total_forward_steps": 4352,
-      "total_synaptic_updates": 4352,
-      "m1_metabolic_cost": 1694.32,
-      "elapsed_sec": 0.397,
+      "total_forward_steps": 5880,
+      "total_synaptic_updates": 5880,
+      "m1_metabolic_cost": 1263.71,
+      "elapsed_sec": 0.569,
       "task_accuracies": [
-        81.82,
-        100.0,
-        81.25,
+        83.33,
+        47.62,
+        50.0,
         100.0,
         100.0
       ],
       "accuracy_matrix": [
         [
-          81.81818181818181,
+          100.0,
           0.0,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
+          92.85714285714286,
+          100.0,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
-          81.25,
+          100.0,
+          85.71428571428571,
+          100.0,
           0.0,
           0.0
         ],
         [
-          89.0909090909091,
-          85.0,
-          93.75,
+          73.80952380952381,
+          83.33333333333333,
+          61.904761904761905,
           100.0,
           0.0
         ],
         [
-          81.81818181818181,
-          100.0,
-          81.25,
+          83.33333333333333,
+          47.61904761904762,
+          50.0,
           100.0,
           100.0
         ]
@@ -122,53 +122,53 @@
     },
     {
       "regime_name": "mistake_gating",
-      "final_mean_accuracy_pct": 92.61,
-      "forgetting_ratio_pct": 0.0,
-      "saved_synaptic_updates_pct": 83.78,
-      "total_forward_steps": 4352,
-      "total_synaptic_updates": 706,
-      "m1_metabolic_cost": 1475.95,
-      "elapsed_sec": 0.105,
+      "final_mean_accuracy_pct": 63.81,
+      "forgetting_ratio_pct": 44.64,
+      "saved_synaptic_updates_pct": 92.93,
+      "total_forward_steps": 5880,
+      "total_synaptic_updates": 416,
+      "m1_metabolic_cost": 880.64,
+      "elapsed_sec": 0.095,
       "task_accuracies": [
-        81.82,
-        100.0,
-        81.25,
+        50.0,
+        35.71,
+        33.33,
         100.0,
         100.0
       ],
       "accuracy_matrix": [
         [
-          81.81818181818181,
-          0.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          81.81818181818181,
-          85.0,
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          81.81818181818181,
-          85.0,
-          81.25,
-          0.0,
-          0.0
-        ],
-        [
-          90.9090909090909,
-          85.0,
           100.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          69.04761904761905,
+          97.61904761904762,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          100.0,
+          54.76190476190476,
+          100.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          45.23809523809524,
+          30.952380952380953,
           100.0,
           0.0
         ],
         [
-          81.81818181818181,
-          100.0,
-          81.25,
+          50.0,
+          35.714285714285715,
+          33.333333333333336,
           100.0,
           100.0
         ]
@@ -177,53 +177,53 @@
     },
     {
       "regime_name": "f3_metabolic",
-      "final_mean_accuracy_pct": 92.78,
-      "forgetting_ratio_pct": 0.0,
-      "saved_synaptic_updates_pct": 82.35,
-      "total_forward_steps": 4352,
-      "total_synaptic_updates": 768,
-      "m1_metabolic_cost": 1433.63,
-      "elapsed_sec": 0.249,
+      "final_mean_accuracy_pct": 83.33,
+      "forgetting_ratio_pct": 20.24,
+      "saved_synaptic_updates_pct": 92.09,
+      "total_forward_steps": 5880,
+      "total_synaptic_updates": 465,
+      "m1_metabolic_cost": 897.79,
+      "elapsed_sec": 0.182,
       "task_accuracies": [
-        83.64,
-        99.0,
-        81.25,
+        100.0,
+        45.24,
+        71.43,
         100.0,
         100.0
       ],
       "accuracy_matrix": [
         [
-          81.81818181818181,
+          100.0,
           0.0,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
+          100.0,
+          97.61904761904762,
           0.0,
           0.0,
           0.0
         ],
         [
-          81.81818181818181,
-          85.0,
-          81.25,
+          100.0,
+          85.71428571428571,
+          100.0,
           0.0,
           0.0
         ],
         [
-          92.72727272727273,
-          85.0,
-          93.75,
+          97.61904761904762,
+          73.80952380952381,
+          76.19047619047619,
           100.0,
           0.0
         ],
         [
-          83.63636363636364,
-          99.0,
-          81.25,
+          100.0,
+          45.23809523809524,
+          71.42857142857143,
           100.0,
           100.0
         ]

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Polybee AI Research — F3-AGI v4.0 / Horizon 6 (October 2026)
-High-Resolution Scientific Figure Generator for Horizon 6:
-  - Figure 4: Continual Plasticity on Real ARC-AGI Cell Embeddings (Study 6.1)
-  - Figure 5: Horizon 6 ARC-AGI-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)
+Polybee AI Research — F3-AGI v4.0 / Horizonte 7 (Outubro 2026)
+High-Resolution Scientific Figure Generator for Horizon 6 & 7:
+  - Figure 4: Continual Bioenergetic Plasticity on Real ARC Cell Embeddings (Study 6.1)
+  - Figure 5: Horizon 6 & 7 ARC-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)
 
 Generates clean vector SVG and 2x Supersampled Anti-Aliased (SSAA 2x) PNGs in figures/:
   - figures/fig4_h6_real_arc_continual.svg & figures/fig4_h6_real_arc_continual.png
@@ -39,9 +39,9 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
         (
             "B. Catastrophic Forgetting (%)",
             [r["forgetting_ratio_pct"] for r in regimes],
-            10.0,
+            60.0,
             "%",
-            "Lower = Better (0.0% Retained)",
+            "Lower = Better",
             [f"{r['forgetting_ratio_pct']:.1f}%" for r in regimes],
         ),
         (
@@ -49,15 +49,15 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
             [r["saved_synaptic_updates_pct"] for r in regimes],
             100.0,
             "%",
-            "Higher = Better (~82-84% Reduction)",
+            "Higher = Better",
             [f"{r['saved_synaptic_updates_pct']:.1f}%" for r in regimes],
         ),
         (
             "D. Plasticity Cost M1 (L1 Norm)",
             [r["m1_metabolic_cost"] for r in regimes],
-            2000.0,
+            1600.0,
             "",
-            "Lower = Better (F3-Metabolic Minimizes Drift)",
+            "Lower = Better",
             [f"{r['m1_metabolic_cost']:.1f}" for r in regimes],
         ),
     ]
@@ -70,7 +70,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
         '<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
         'Figure 4 — Continual Plasticity on Real ARC-AGI Cell Embeddings (Study 6.1)</text>',
         '<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">'
-        'Sequential Stream of 5 Real ARC Tasks (544 64D Cells): F3-Metabolic-Optim vs. Standard Baselines</text>',
+        'Sequential Stream of 5 Real ARC Tasks (490 Cells, 10 Balanced Colors): F3-Metabolic-Optim vs. Standard Baselines</text>',
     ]
 
     canvas = PureNumpyCanvas(W, H, "#F8FAFC", ssaa=2)
@@ -85,7 +85,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
     canvas.draw_text(
         700,
         54,
-        "SEQUENTIAL STREAM OF 5 REAL ARC TASKS (544 64D CELLS): F3-METABOLIC-OPTIM VS BASELINES",
+        "SEQUENTIAL STREAM OF 5 REAL ARC TASKS (490 CELLS, 10 COLORS): F3-METABOLIC-OPTIM VS BASELINES",
         "#475569",
         scale=1.3,
         align="center",
@@ -110,7 +110,8 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
         canvas.fill_rect(px, py, pw, ph, "#FFFFFF")
         canvas.stroke_rect(px, py, pw, ph, "#CBD5E1", 2)
         canvas.draw_text(px + 20, py + 18, title, "#0F172A", scale=1.5, align="left")
-        canvas.draw_text(px + pw - 20, py + 20, subtitle, "#64748B", scale=1.1, align="right")
+        # Subtitle shortened to prevent any title overlap in Panel D
+        canvas.draw_text(px + pw - 20, py + 20, subtitle.upper(), "#64748B", scale=1.0, align="right")
 
         chart_x, chart_y = px + 65, py + 65
         chart_w, chart_h = pw - 95, ph - 125
@@ -158,7 +159,7 @@ def generate_fig4_real_arc_continual(data: dict, out_dir: Path) -> Tuple[Path, P
 
 
 # ============================================================================
-# Figure 5: Horizon 6 ARC-2 Evaluation & NREM Hybrid Mutator Ablation
+# Figure 5: Horizon 6 & 7 ARC-2 Evaluation & NREM Hybrid Mutator Ablation
 # ============================================================================
 
 def generate_fig5_arc2_and_hybrid_nrem(
@@ -170,7 +171,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
         SVG_FONT_STYLE,
         '<rect width="100%" height="100%" fill="#F8FAFC"/>',
         '<text x="700" y="44" text-anchor="middle" font-size="22" font-weight="700" fill="#0F172A">'
-        'Figure 5 — Horizon 6 ARC-AGI-2 Evaluation & NREM Cellular Mutator Ablation (Study 6.2)</text>',
+        'Figure 5 — Horizon 6 &amp; 7 ARC-AGI-2 Evaluation &amp; NREM Cellular Mutator Ablation (Study 6.2)</text>',
         '<text x="700" y="72" text-anchor="middle" font-size="14" fill="#475569">'
         'Out-of-Distribution Generalization on ARC-2 (N=120 Eval, N=100 Train) and Hybrid Repair of 282 Near-Misses</text>',
     ]
@@ -179,7 +180,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
     canvas.draw_text(
         700,
         24,
-        "FIGURE 5 - HORIZON 6 ARC-2 EVALUATION AND NREM CELLULAR MUTATOR ABLATION",
+        "FIGURE 5 - HORIZON 6 & 7 ARC-2 EVALUATION AND NREM CELLULAR MUTATOR ABLATION",
         "#0F172A",
         scale=1.8,
         align="center",
@@ -206,18 +207,48 @@ def generate_fig5_arc2_and_hybrid_nrem(
     canvas.draw_text(pax + 20, pay + 18, "A. PASS@2 EXACT TEST SOLUTION RATES", "#0F172A", scale=1.4, align="left")
     canvas.draw_text(pax + paw - 20, pay + 20, "BASELINE V4.0 VS HYBRID NREM", "#64748B", scale=1.0, align="right")
 
-    # Benchmarks to plot:
-    # 1. ARC-1 Public (N=400): Base 57 (14.25%), Hybrid 59 (14.75%)
-    # 2. ARC-2 Eval (N=120): Base 0 (0.00%), Hybrid 0 (0.00%)
-    # 3. ARC-2 Train (N=100): Base 33 (33.00%), Hybrid 33 (33.00%)
-    bench_labels = ["ARC-1 Hold-Out\n(N=400)", "ARC-2 Public Eval\n(N=120)", "ARC-2 Calibration\n(N=100 Train)"]
-    bench_short = ["ARC-1 (N=400)", "ARC-2 EVAL (N=120)", "ARC-2 TRAIN (N=100)"]
-    v_base = [14.25, 0.0, 33.0]
-    v_hybr = [14.75, 0.0, 33.0]
-    c_counts = ["57 -> 59 (+2)", "0 / 120 (0.0%)", "33 / 100 (33.0%)"]
+    # Legend for Panel A placed at top (pay + 46) to eliminate bottom text collision!
+    leg_ay = pay + 48
+    svg.append(f'<rect x="{pax + 24}" y="{leg_ay}" width="12" height="12" rx="3" fill="#94A3B8"/>')
+    svg.append(f'<text x="{pax + 42}" y="{leg_ay + 10}" font-size="11" fill="#475569">Baseline v4.0.0 (Symbolic AACR)</text>')
+    svg.append(f'<rect x="{pax + 260}" y="{leg_ay}" width="12" height="12" rx="3" fill="#10B981"/>')
+    svg.append(f'<text x="{pax + 278}" y="{leg_ay + 10}" font-size="11" fill="#047857">Hybrid NREM Mutator (Ciclo 3.5)</text>')
+    canvas.fill_rect(pax + 24, leg_ay, 12, 12, "#94A3B8")
+    canvas.draw_text(pax + 40, leg_ay, "BASELINE V4.0 (SYMBOLIC)", "#475569", scale=0.9, align="left")
+    canvas.fill_rect(pax + 250, leg_ay, 12, 12, "#10B981")
+    canvas.draw_text(pax + 266, leg_ay, "HYBRID NREM MUTATOR", "#047857", scale=0.9, align="left")
 
-    ca_x, ca_y = pax + 55, pay + 65
-    ca_w, ca_h = paw - 85, pah - 125
+    # Extract dynamic numbers from hybrid_data
+    arc1_orig = hybrid_data.get("arc1_original_pass2_count", 57)
+    arc1_hybr = hybrid_data.get("arc1_hybrid_pass2_count", 59)
+    arc1_p1_pct = round(100.0 * arc1_orig / 400.0, 2)
+    arc1_p2_pct = hybrid_data.get("arc1_hybrid_pass2_pct", 14.75)
+    arc1_diff = arc1_hybr - arc1_orig
+
+    arc2_eval_orig = hybrid_data.get("arc2_eval_original_pass2_count", 0)
+    arc2_eval_hybr = hybrid_data.get("arc2_eval_hybrid_pass2_count", 0)
+    arc2_eval_p1_pct = 0.0
+    arc2_eval_p2_pct = hybrid_data.get("arc2_eval_hybrid_pass2_pct", 0.0)
+
+    arc2_train_orig = hybrid_data.get("arc2_train_original_pass2_count", 33)
+    arc2_train_hybr = hybrid_data.get("arc2_train_hybrid_pass2_count", 33)
+    arc2_train_p1_pct = 33.0
+    arc2_train_p2_pct = hybrid_data.get("arc2_train_hybrid_pass2_pct", 33.0)
+    arc2_train_diff = arc2_train_hybr - arc2_train_orig
+
+    bench_short = ["ARC-1 (N=400)", "ARC-2 EVAL (N=120)", "ARC-2 TRAIN (N=100)"]
+    v_base = [arc1_p1_pct, arc2_eval_p1_pct, arc2_train_p1_pct]
+    v_hybr = [arc1_p2_pct, arc2_eval_p2_pct, arc2_train_p2_pct]
+    
+    count_arc1 = f"{arc1_orig} -> {arc1_hybr} (+{arc1_diff})" if arc1_diff > 0 else f"{arc1_hybr}/400"
+    count_arc2_eval = f"{arc2_eval_hybr} / 120"
+    count_arc2_train = f"{arc2_train_orig} -> {arc2_train_hybr} (+{arc2_train_diff})" if arc2_train_diff > 0 else f"{arc2_train_hybr}/100"
+    c_counts = [count_arc1, count_arc2_eval, count_arc2_train]
+
+    ca_x = pax + 55
+    ca_y = pay + 78
+    ca_w = paw - 85
+    ca_h = pah - 148
     base_ay = ca_y + ca_h
     max_acc = 40.0
 
@@ -253,22 +284,12 @@ def generate_fig5_arc2_and_hybrid_nrem(
         canvas.fill_rect(hx, by_h, pair_w, bh_hybr, col_h)
         canvas.draw_text(hx + pair_w // 2, by_h - 16, f"{h_val:.1f}%", "#047857", scale=1.1, align="center")
 
-        # Label
+        # Label - ample spacing without bottom collision!
         mid_x = gx + pair_w + 5
-        svg.append(f'<text x="{mid_x}" y="{base_ay + 22}" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">{b_name}</text>')
-        svg.append(f'<text x="{mid_x}" y="{base_ay + 38}" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">{count_str}</text>')
-        canvas.draw_text(mid_x, base_ay + 10, b_name, "#1E293B", scale=0.9, align="center")
-        canvas.draw_text(mid_x, base_ay + 26, count_str, "#0F766E", scale=0.9, align="center")
-
-    # Legend for Panel A
-    svg.append(f'<rect x="{pax + 24}" y="{pay + pah - 28}" width="14" height="14" rx="3" fill="#94A3B8"/>')
-    svg.append(f'<text x="{pax + 44}" y="{pay + pah - 17}" font-size="12" fill="#475569">Baseline v4.0.0 (Symbolic AACR)</text>')
-    svg.append(f'<rect x="{pax + 260}" y="{pay + pah - 28}" width="14" height="14" rx="3" fill="#10B981"/>')
-    svg.append(f'<text x="{pax + 280}" y="{pay + pah - 17}" font-size="12" fill="#047857">Hybrid NREM Mutator (Cycle 3.5)</text>')
-    canvas.fill_rect(pax + 24, pay + pah - 28, 14, 14, "#94A3B8")
-    canvas.draw_text(pax + 44, pay + pah - 28, "BASELINE V4.0 (SYMBOLIC AACR)", "#475569", scale=1.0, align="left")
-    canvas.fill_rect(pax + 310, pay + pah - 28, 14, 14, "#10B981")
-    canvas.draw_text(pax + 330, pay + pah - 28, "HYBRID NREM MUTATOR (CYCLE 3.5)", "#047857", scale=1.0, align="left")
+        svg.append(f'<text x="{mid_x}" y="{base_ay + 18}" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">{b_name}</text>')
+        svg.append(f'<text x="{mid_x}" y="{base_ay + 34}" text-anchor="middle" font-size="11" font-weight="700" fill="#0F766E">{count_str}</text>')
+        canvas.draw_text(mid_x, base_ay + 8, b_name, "#1E293B", scale=0.9, align="center")
+        canvas.draw_text(mid_x, base_ay + 24, count_str, "#0F766E", scale=0.9, align="center")
 
     # Panel B: ARC-2 Evaluation (N=120) Near-Miss Latent Reservoir
     # (730, 105, 610, 360)
@@ -283,13 +304,6 @@ def generate_fig5_arc2_and_hybrid_nrem(
     canvas.draw_text(pbx + 20, pby + 18, "B. ARC-2 EVALUATION (N=120) LATENT RESERVOIR", "#0F172A", scale=1.4, align="left")
     canvas.draw_text(pbx + pbw - 20, pby + 20, "GEOMETRIC AND HIGH PIXEL STRATA", "#64748B", scale=1.0, align="right")
 
-    # Strata data from ARC-2 Eval:
-    # Shape Match: 95/120 (79.2%)
-    # Pixel >= 80%: 56/120 (46.7%)
-    # Pixel >= 85%: 46/120 (38.3%)
-    # Pixel >= 90%: 33/120 (27.5%)
-    # Pixel >= 95%: 12/120 (10.0%)
-    strata_labels = ["Shape Match\n(S=1.0)", "Test Pixel\n>=80%", "Test Pixel\n>=85%", "Test Pixel\n>=90%", "Test Pixel\n>=95%"]
     strata_short = ["SHAPE (S=1)", "PIX >=80%", "PIX >=85%", "PIX >=90%", "PIX >=95%"]
     strata_counts = [95, 56, 46, 33, 12]
     strata_pcts = [round(100.0 * c / 120.0, 1) for c in strata_counts]
@@ -339,15 +353,37 @@ def generate_fig5_arc2_and_hybrid_nrem(
     canvas.draw_text(pcx + 20, pcy + 18, "C. NEAR-MISS REPAIR IMPACT BY SPLIT (N=282)", "#0F172A", scale=1.4, align="left")
     canvas.draw_text(pcx + pcw - 20, pcy + 20, "LOO-CV RASHOMON CERTIFIED", "#64748B", scale=1.0, align="right")
 
-    # Categories per split:
-    # ARC-1 Hold-Out (N=184): 2 Converted (1.1%), 51 Improved (27.7%), 131 Unchanged (71.2%)
-    # ARC-2 Eval (N=63): 0 Converted, 13 Improved (20.6%), 50 Unchanged (79.4%)
-    # ARC-2 Train (N=35): 0 Converted, 15 Improved (42.9%), 20 Unchanged (57.1%)
-    split_names = ["ARC-1 (N=184)", "ARC-2 EVAL (N=63)", "ARC-2 TRAIN (N=35)"]
-    split_totals = [184, 63, 35]
-    split_exact = [2, 0, 0]
-    split_impr = [51, 13, 15]
-    split_unch = [131, 50, 20]
+    # Groups from hybrid_data
+    groups_dict = hybrid_data.get("groups", {})
+    g_arc1 = groups_dict.get("arc1_candidates", {})
+    g_arc2_eval = groups_dict.get("arc2_evaluation_candidates", {})
+    g_arc2_train = groups_dict.get("arc2_training_sample_candidates", {})
+
+    split_names = [
+        f"ARC-1 (N={g_arc1.get('total_nearmisses', 184)})",
+        f"ARC-2 EVAL (N={g_arc2_eval.get('total_nearmisses', 63)})",
+        f"ARC-2 TRAIN (N={g_arc2_train.get('total_nearmisses', 35)})",
+    ]
+    split_totals = [
+        g_arc1.get("total_nearmisses", 184),
+        g_arc2_eval.get("total_nearmisses", 63),
+        g_arc2_train.get("total_nearmisses", 35),
+    ]
+    split_exact = [
+        g_arc1.get("converted_to_exact_count", 2),
+        g_arc2_eval.get("converted_to_exact_count", 0),
+        g_arc2_train.get("converted_to_exact_count", 0),
+    ]
+    split_impr = [
+        g_arc1.get("pixel_accuracy_improved_count", 51),
+        g_arc2_eval.get("pixel_accuracy_improved_count", 13),
+        g_arc2_train.get("pixel_accuracy_improved_count", 15),
+    ]
+    split_unch = [
+        g_arc1.get("unchanged_count", 131),
+        g_arc2_eval.get("unchanged_count", 50),
+        g_arc2_train.get("unchanged_count", 20),
+    ]
 
     cc_x, cc_y = pcx + 55, pcy + 65
     cc_w, cc_h = pcw - 85, pch - 135
@@ -369,7 +405,6 @@ def generate_fig5_arc2_and_hybrid_nrem(
         zip(split_names, split_totals, split_exact, split_impr, split_unch)
     ):
         bx = cc_x + gap_c + i * (bar_cw + gap_c)
-        # Stacked bar from bottom to top: Unchanged, Improved, Exact
         bh_un = max(2, int((n_un / max_c) * cc_h))
         bh_im = max(2, int((n_im / max_c) * cc_h))
         bh_ex = max(2, int((n_ex / max_c) * cc_h)) if n_ex > 0 else 0
@@ -378,7 +413,6 @@ def generate_fig5_arc2_and_hybrid_nrem(
         by_im = by_un - bh_im
         by_ex = by_im - bh_ex
 
-        # Rectangles
         svg.append(f'<rect x="{bx}" y="{by_un}" width="{bar_cw}" height="{bh_un}" fill="#E2E8F0"/>')
         svg.append(f'<rect x="{bx}" y="{by_im}" width="{bar_cw}" height="{bh_im}" fill="#3B82F6"/>')
         if bh_ex > 0:
@@ -390,7 +424,7 @@ def generate_fig5_arc2_and_hybrid_nrem(
             canvas.fill_rect(bx, by_ex, bar_cw, bh_ex, "#10B981")
 
         top_y = by_ex if bh_ex > 0 else by_im
-        pct_imp = round(100.0 * (n_ex + n_im) / s_tot, 1)
+        pct_imp = round(100.0 * (n_ex + n_im) / max(1, s_tot), 1)
         svg.append(f'<text x="{bx + bar_cw / 2}" y="{top_y - 8}" text-anchor="middle" font-size="12" font-weight="700" fill="#0F172A">+{n_ex + n_im} ({pct_imp}%)</text>')
         svg.append(f'<text x="{bx + bar_cw / 2}" y="{base_cy + 20}" text-anchor="middle" font-size="12" font-weight="600" fill="#1E293B">{s_name}</text>')
 
@@ -434,6 +468,14 @@ def generate_fig5_arc2_and_hybrid_nrem(
             "#ECFDF5",
         ),
         (
+            "Task 929ab4e9 (ARC-1)",
+            "Motor B (Multi-scale LUT)",
+            "99.8% -> 100.0%",
+            "Rotational Residual Anchor Restoration",
+            "#10B981",
+            "#ECFDF5",
+        ),
+        (
             "Task ae58858e (ARC-1)",
             "Motor B (Attribute Map)",
             "85.4% -> 100.0%",
@@ -446,14 +488,6 @@ def generate_fig5_arc2_and_hybrid_nrem(
             "Motor A (F3-MLP)",
             "80.6% -> 93.8%",
             "+13.2% Boost in Complex Context Field",
-            "#3B82F6",
-            "#EFF6FF",
-        ),
-        (
-            "Task 06df4c85 (ARC-2 Train)",
-            "Motor A (F3-MLP)",
-            "59.8% -> 94.2%",
-            "+34.4% Boost in 64D Cell Neighborhood",
             "#3B82F6",
             "#EFF6FF",
         ),
@@ -509,7 +543,7 @@ def main() -> None:
     f4_svg, f4_png = generate_fig4_real_arc_continual(continual_data, out_dir)
     f5_svg, f5_png = generate_fig5_arc2_and_hybrid_nrem(hybrid_data, zerotouch_data, out_dir)
 
-    print("Horizon 6 figures successfully generated in figures/ (100% Academic English, 2x SSAA PNG + SVG):")
+    print("Horizon 6 & 7 figures successfully generated in figures/ (100% Academic English, 2x SSAA PNG + SVG):")
     for p in [f4_svg, f4_png, f5_svg, f5_png]:
         print(f"  - {p.name} ({p.stat().st_size:,} bytes)")
 

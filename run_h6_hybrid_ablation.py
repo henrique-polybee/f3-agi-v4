@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Polybee AI Research — F3-AGI v4.0 (Outubro 2026)
-Horizonte 6 — Fase 6B: Baterias Experimentais do Módulo Híbrido NREM
+Polybee AI Research — F3-AGI v4.0 / Horizonte 7 (Outubro 2026)
+Suíte Experimental de Avaliação e Ablação Híbrida:
+  1. Estudo 6.1 — Aprendizado Contínuo Class-Incremental em Células Ativas Reais do ARC-AGI
+     (5 tarefas reais sequenciais, 10 cores em pares disjuntos, sem dominação de background)
+  2. Estudo 6.2 — Bateria Híbrida Simbólico + NREMCellularResidualLearner (Ciclo 3.5)
+     (282 tarefas Near-Miss nos 3 grupos: ARC-1 Hold-Out, ARC-2 Eval e ARC-2 Train)
 
-Executa duas baterias científicas 100% em CPU (<400 MB RAM):
-  1. Estudo 6.1 — Aprendizado Contínuo com F3-Metabolic-Optim em Vetores Celulares
-     de 64D extraídos de grades reais de 5 tarefas do ARC-AGI
-     (Salva em: benchmark_h6_real_arc_continual.json)
-  2. Estudo 6.2 — Bateria Híbrida Simbólico + NREMCellularResidualLearner nos
-     282 Near-Misses (ARC-1 N=400, ARC-2 N=120 Eval, ARC-2 N=100 Train)
-     (Salva em: benchmark_h6_hybrid_nrem_results.json)
+Opera 100% em CPU com NumPy puro (<400 MB de RAM) e salva os resultados auditáveis em:
+  - benchmark_h6_real_arc_continual.json
+  - benchmark_h6_hybrid_nrem_results.json
 """
 
-import argparse
-import copy
 import json
-import math
 import os
 import sys
 import time
@@ -39,75 +36,97 @@ from f3_nrem_cellular_mutator import (
 
 
 # =============================================================================
-# 1. ESTUDO 6.1: APRENDIZADO CONTÍNUO EM VETORES CELULARES REAIS DO ARC-AGI
+# 1. ESTUDO 6.1: APRENDIZADO CONTÍNUO CLASS-INCREMENTAL EM CÉLULAS ATIVAS REAIS
 # =============================================================================
 
 def build_real_arc_cell_stream() -> List[Dict[str, Any]]:
     """
-    Constrói um fluxo de 5 tarefas reais sequenciais do ARC-AGI extraindo vetores
-    celulares de 64 dimensões (extract_64d_cell_features) a partir de pares reais.
-    Tarefas canônicas da Polybee: e98196ab, 2204b7a8, a61ba2ce, 5614dbcf, 2dee498d.
+    Constrói um fluxo Class-Incremental de 5 tarefas reais sequenciais do ARC-AGI,
+    cobrindo as 10 cores em pares disjuntos de classes ativas de transformação,
+    sem viés de background dominante:
+      - Tarefa 0 (32597951): Classes (0, 1)
+      - Tarefa 1 (264363fd): Classes (2, 3)
+      - Tarefa 2 (73251a56): Classes (4, 5)
+      - Tarefa 3 (3631a71a): Classes (6, 7)
+      - Tarefa 4 (83302e8f): Classes (8, 9)
     """
-    canonical_tasks = ["e98196ab", "2204b7a8", "a61ba2ce", "5614dbcf", "2dee498d"]
+    task_configs = [
+        ("32597951", (0, 1)),
+        ("264363fd", (2, 3)),
+        ("73251a56", (4, 5)),
+        ("3631a71a", (6, 7)),
+        ("83302e8f", (8, 9)),
+    ]
     stream: List[Dict[str, Any]] = []
 
-    for t_idx, tid in enumerate(canonical_tasks):
+    for t_idx, (tid, (c1, c2)) in enumerate(task_configs):
         fpath = ROOT_DIR / "ARC-AGI" / "data" / "training" / f"{tid}.json"
         if not fpath.exists():
             fpath = ROOT_DIR / "ARC-AGI-2" / "data" / "training" / f"{tid}.json"
         if not fpath.exists():
-            raise FileNotFoundError(f"Tarefa canônica {tid} não encontrada em ARC-AGI ou ARC-AGI-2.")
+            raise FileNotFoundError(f"Tarefa {tid} não encontrada em ARC-AGI ou ARC-AGI-2.")
 
         with open(fpath, "r", encoding="utf-8") as f:
             tdata = json.load(f)
 
-        x_train_list, y_train_list, sid_train_list = [], [], []
-        x_test_list, y_test_list = [], []
+        x_c1: List[np.ndarray] = []
+        x_c2: List[np.ndarray] = []
 
-        # Extrai células de treino
-        sample_counter = 0
-        for p_idx, pair in enumerate(tdata.get("train", [])):
+        # Extrai vetores 64D das células reais dos pares de demonstração
+        for pair in tdata.get("train", []):
             inp = np.array(pair["input"], dtype=int)
             exp = np.array(pair["output"], dtype=int)
             H, W = exp.shape
             feats = extract_64d_cell_features(inp, exp, c_bg=0)
             for r in range(H):
                 for c in range(W):
-                    x_train_list.append(feats[r, c])
-                    y_train_list.append(int(exp[r, c]))
-                    sid_train_list.append(t_idx * 100000 + sample_counter)
-                    sample_counter += 1
+                    val = int(exp[r, c])
+                    if val == c1:
+                        x_c1.append(feats[r, c])
+                    elif val == c2:
+                        x_c2.append(feats[r, c])
 
-        # Extrai células de teste
-        for pair in tdata.get("test", []):
-            inp = np.array(pair["input"], dtype=int)
-            exp = np.array(pair["output"], dtype=int)
-            H, W = exp.shape
-            feats = extract_64d_cell_features(inp, exp, c_bg=0)
-            for r in range(H):
-                for c in range(W):
-                    x_test_list.append(feats[r, c])
-                    y_test_list.append(int(exp[r, c]))
+        rng = np.random.default_rng(42 + t_idx)
+        rng.shuffle(x_c1)
+        rng.shuffle(x_c2)
+
+        # Balanceamento estrito entre classes
+        n_per_class = min(len(x_c1), len(x_c2), 70)
+        train_n = int(n_per_class * 0.70)
+        test_n = n_per_class - train_n
+
+        X_tr = np.array(x_c1[:train_n] + x_c2[:train_n], dtype=np.float32)
+        y_tr = np.array([c1] * train_n + [c2] * train_n, dtype=np.int64)
+        s_ids = np.arange(len(X_tr)) + t_idx * 10000
+
+        # Embaralha para treino estocástico
+        idx_tr = np.arange(len(X_tr))
+        rng.shuffle(idx_tr)
+        X_tr, y_tr, s_ids = X_tr[idx_tr], y_tr[idx_tr], s_ids[idx_tr]
+
+        X_te = np.array(x_c1[train_n:n_per_class] + x_c2[train_n:n_per_class], dtype=np.float32)
+        y_te = np.array([c1] * test_n + [c2] * test_n, dtype=np.int64)
 
         stream.append({
             "task_index": t_idx,
             "task_id": tid,
-            "X_train": np.array(x_train_list, dtype=np.float32),
-            "y_train": np.array(y_train_list, dtype=np.int64),
-            "sample_ids": np.array(sid_train_list, dtype=np.int64),
-            "X_test": np.array(x_test_list, dtype=np.float32),
-            "y_test": np.array(y_test_list, dtype=np.int64),
-            "n_train_cells": len(x_train_list),
-            "n_test_cells": len(x_test_list),
+            "classes": (c1, c2),
+            "X_train": X_tr,
+            "y_train": y_tr,
+            "sample_ids": s_ids,
+            "X_test": X_te,
+            "y_test": y_te,
+            "n_train_cells": len(X_tr),
+            "n_test_cells": len(X_te),
         })
 
     return stream
 
 
 def run_real_arc_continual_regime(
-    regime_name: str, stream: List[Dict[str, Any]], epochs: int = 8, lr: float = 0.045
+    regime_name: str, stream: List[Dict[str, Any]], epochs: int = 12, lr: float = 0.045
 ) -> Dict[str, Any]:
-    """Executa um dos 4 regimes contínuos no fluxo de 5 tarefas com células reais do ARC."""
+    """Executa um dos 4 regimes contínuos no fluxo Class-Incremental de 5 tarefas com células ativas reais."""
     t0 = time.perf_counter()
     n_tasks = len(stream)
     net = F3MetabolicCellularMLP(
@@ -116,12 +135,12 @@ def run_real_arc_continual_regime(
         num_classes=10,  # 10 cores do ARC
         learning_rate=lr,
         mistake_margin=0.15,
-        syngap_gamma=12.0,
-        lambda_anc=4.5,
+        syngap_gamma=30.0,
+        lambda_anc=3000.0,
+        seed=42,
     )
 
     acc_matrix = np.zeros((n_tasks, n_tasks), dtype=np.float64)
-    # Estado EWC clássico
     ewc_consolidated: List[Tuple[Dict[str, np.ndarray], Dict[str, np.ndarray]]] = []
 
     for t_idx, task in enumerate(stream):
@@ -136,7 +155,7 @@ def run_real_arc_continual_regime(
                 sid = int(s_ids[i])
 
                 if regime_name == "ewc":
-                    # EWC manual com gradiente de penalização quadrática
+                    # EWC clássico (Kirkpatrick et al., 2017) com penalidade quadrática calibrada
                     net.total_forward_steps += 1
                     probs, cache = net.forward_single(x)
                     net.total_synaptic_updates += 1
@@ -146,7 +165,7 @@ def run_real_arc_continual_regime(
                         g = grads[k]
                         ewc_grad = np.zeros_like(g)
                         for f_old, w_old in ewc_consolidated:
-                            ewc_grad += 4.5 * f_old[k] * (W - w_old[k])
+                            ewc_grad += 2000.0 * f_old[k] * (W - w_old[k])
                         delta = -lr * (g + ewc_grad)
                         setattr(net, k, W + delta)
                         net.m1_metabolic_cost += float(np.sum(np.abs(delta)))
@@ -156,24 +175,23 @@ def run_real_arc_continual_regime(
 
         # Consolidação pós-tarefa
         if regime_name == "ewc":
-            # Estima Fisher diagonal acumulado
             f_task = {k: np.zeros_like(getattr(net, k)) for k in net.param_names}
-            for i in range(min(120, len(X_tr))):
+            for i in range(len(X_tr)):
                 probs, cache = net.forward_single(X_tr[i])
                 g = net.backward_single(probs, int(y_tr[i]), cache)
                 for k in net.param_names:
-                    f_task[k] += (g[k] ** 2) / 120.0
+                    f_task[k] += (g[k] ** 2) / len(X_tr)
             w_task = {k: getattr(net, k).copy() for k in net.param_names}
             ewc_consolidated.append((f_task, w_task))
 
         elif regime_name == "f3_metabolic":
-            net.consolidate_task_nrem()
+            net.consolidate_task_nrem((X_tr, y_tr))
 
         # Avalia acurácia em todas as tarefas vistas até agora
         for eval_idx in range(t_idx + 1):
             t_eval = stream[eval_idx]
             X_te = t_eval["X_test"]
-            y_te = t_eval["y_test"]
+            y_te = t_eval["y_te" if "y_te" in t_eval else "y_test"]
             correct = 0
             for k in range(len(X_te)):
                 p, _ = net.forward_single(X_te[k])
@@ -185,7 +203,7 @@ def run_real_arc_continual_regime(
     final_accs = acc_matrix[n_tasks - 1, :]
     mean_final_acc = round(float(np.mean(final_accs)), 2)
 
-    # Forgetting ratio: média de (R_{j, j} - R_{final, j}) para j = 0..n_tasks-2
+    # Forgetting ratio padrão (GEM, Lopez-Paz & Ranzato, 2017)
     forgetting_list = [
         float(acc_matrix[j, j] - acc_matrix[n_tasks - 1, j])
         for j in range(n_tasks - 1)
@@ -193,9 +211,7 @@ def run_real_arc_continual_regime(
     forgetting_ratio = round(max(0.0, float(np.mean(forgetting_list))), 2)
 
     saved_updates_pct = round(
-        100.0
-        * net.total_skipped_updates
-        / max(1, net.total_forward_steps),
+        100.0 * net.total_skipped_updates / max(1, net.total_forward_steps),
         2,
     )
 
@@ -216,14 +232,14 @@ def run_real_arc_continual_regime(
 def execute_study_6_1() -> Dict[str, Any]:
     """Executa o Estudo 6.1 comparando os 4 regimes de plasticidade contínua."""
     print("\n" + "=" * 78)
-    print("🔬 ESTUDO 6.1 — APRENDIZADO CONTÍNUO COM F3-METABOLIC-OPTIM EM DADOS REAIS DO ARC")
-    print("   Fluxo: 5 Tarefas Reais (e98196ab, 2204b7a8, a61ba2ce, 5614dbcf, 2dee498d)")
+    print("🔬 ESTUDO 6.1 — APRENDIZADO CONTÍNUO CLASS-INCREMENTAL EM CÉLULAS ATIVAS DO ARC")
+    print("   Fluxo: 5 Tarefas Reais (10 Cores Disjuntas, Células de Transformação Balanceadas)")
     print("   Espaço de Entrada: 64D Cell Features | Zero Replay Buffer | 100% CPU NumPy")
     print("=" * 78)
 
     stream = build_real_arc_cell_stream()
     total_cells = sum(t["n_train_cells"] for t in stream)
-    print(f"📦 Fluxo carregado com sucesso: {len(stream)} tarefas, {total_cells} células reais de treino.")
+    print(f"📦 Fluxo carregado com sucesso: {len(stream)} tarefas, {total_cells} células ativas de treino.")
 
     regimes = ["sgd", "ewc", "mistake_gating", "f3_metabolic"]
     regime_labels = {
@@ -236,7 +252,7 @@ def execute_study_6_1() -> Dict[str, Any]:
     results: List[Dict[str, Any]] = []
     for reg in regimes:
         print(f"\n▶ Executando regime: {regime_labels[reg]}...")
-        res = run_real_arc_continual_regime(reg, stream, epochs=8, lr=0.045)
+        res = run_real_arc_continual_regime(reg, stream, epochs=12, lr=0.045)
         res["display_name"] = regime_labels[reg]
         results.append(res)
         print(
@@ -322,22 +338,20 @@ def execute_study_6_2() -> Dict[str, Any]:
             base_p1 = base_res["pass_at_1"]
             base_p2 = base_res["pass_at_2"]
 
-            # Define função âncora simbólica
+            # Define função âncora simbólica segura
             winning_code = f"def transform(grid: np.ndarray) -> np.ndarray:\n    return {base_res['winning_expr']}"
 
             def anchor_call(g: np.ndarray) -> Optional[np.ndarray]:
                 return solver._execute_code_on_grid(winning_code, g)
 
-            # 2. Aciona o NREMCellularResidualLearner (Ciclo 3.5)
+            # 2. Aciona o NREMCellularResidualLearner (Ciclo 3.5 com Motor B expandido)
             mut_res = learner.solve_residual(tdata, anchor_call)
 
             new_p1 = base_p1
             new_p2 = base_p2
             new_acc = base_acc
-            patch_applied = False
 
             if mut_res.get("patch_found") and mut_res.get("patched_test_preds"):
-                patch_applied = True
                 test_pairs = tdata.get("test", [])
                 p1_ok = True
                 p2_ok = True
@@ -443,31 +457,30 @@ def execute_study_6_2() -> Dict[str, Any]:
 
 
 # =============================================================================
-# 3. CLI PRINCIPAL
+# MAIN RUNNER
 # =============================================================================
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Polybee F3-AGI v4.0 — Horizonte 6 Fase 6B Hybrid Ablation Runner"
-    )
-    parser.add_argument("--skip-6-1", action="store_true", help="Pula o Estudo 6.1 (Continual)")
-    parser.add_argument("--skip-6-2", action="store_true", help="Pula o Estudo 6.2 (Near-Misses)")
-    args = parser.parse_args()
+    t_start = time.perf_counter()
+    print("🚀 INICIANDO BATERIA EXPERIMENTAL HORIZONTE 7 (F3-AGI v4.0)")
+    print(f"   Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"   Diretório Raiz: {ROOT_DIR}")
 
-    t_all = time.perf_counter()
-    print("=" * 78)
-    print("🐝 POLYBEE AI RESEARCH — F3-AGI v4.0 (HORIZONTE 6 — FASE 6B)")
-    print("🔬 BATERIAS EXPERIMENTAIS DE APRENDIZADO CONTÍNUO REAL E REPARO RESIDUAL NREM")
-    print("=" * 78)
+    # Estudo 6.1
+    s61_results = execute_study_6_1()
 
-    if not args.skip_6_1:
-        res_6_1 = execute_study_6_1()
+    # Estudo 6.2
+    s62_results = execute_study_6_2()
 
-    if not args.skip_6_2:
-        res_6_2 = execute_study_6_2()
-
+    total_time = time.perf_counter() - t_start
     print("\n" + "=" * 78)
-    print(f"🏁 TODAS AS BATERIAS DA FASE 6B CONCLUÍDAS EM {time.perf_counter() - t_all:.2f}s!")
+    print("🏁 BATERIA EXPERIMENTAL HORIZONTE 7 CONCLUÍDA COM SUCESSO!")
+    print(f"   Tempo Total: {total_time:.2f}s ({total_time / 60.0:.2f} min)")
+    print(f"   ARC-1 Pass@2 Híbrido: {s62_results['arc1_hybrid_pass2_count']}/400 ({s62_results['arc1_hybrid_pass2_pct']}%)")
+    print(f"   ARC-2 Eval Pass@2 Híbrido: {s62_results['arc2_eval_hybrid_pass2_count']}/120 ({s62_results['arc2_eval_hybrid_pass2_pct']}%)")
+    print(f"   ARC-2 Train Pass@2 Híbrido: {s62_results['arc2_train_hybrid_pass2_count']}/100 ({s62_results['arc2_train_hybrid_pass2_pct']}%)")
+    print(f"   Tarefas Convertidas para 100%: {s62_results['total_nearmiss_converted_to_exact']}")
+    print(f"   Tarefas com Acurácia de Pixels Elevada: {s62_results['total_pixel_improved']}")
     print("=" * 78)
 
 

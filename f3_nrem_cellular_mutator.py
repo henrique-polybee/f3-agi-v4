@@ -1,35 +1,36 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Polybee AI Research — F3-AGI v4.0 (Outubro 2026)
-Horizonte 6 — Fase 6B: Módulo Híbrido NREM Cellular Mutator (Ciclo 3.5)
+Polybee AI Research — F3-AGI v4.0 / Horizonte 7 (Outubro 2026)
+Módulo Neuro-Simbólico Celular Híbrido (Ciclo 3.5 — NREMCellularResidualLearner)
 
-Opera 100% em CPU (<400 MB RAM) com NumPy puro:
-  1. Extrator de Features Celulares e Topológicas de 64 Dimensões em Grades Reais
-     (extract_64d_cell_features)
-  2. Motor A: F3MetabolicCellularMLP (64D -> 128D -> 11D)
-     Treinado com a regra exata do F3-Metabolic-Optim:
-     - Memorized Mistake Gating (tau_m = 0.15)
-     - SynGAP Diagonal Fisher-EMA (gamma_syn = 12.0, lambda_anc = 4.5)
-     - Tensor Mitocondrial M e Pools de ATP Virtual
-  3. Motor B: NREMSparseRuleSynthesizer (Síntese de Regras Condicionais Discretas)
-     - sparse_predicate_lut (LUT exata sobre vizinhança 4/8-conexa e contexto)
-     - component_attribute_recolor / component_mask_patch (regras por atributos de objetos/cavidades)
-     - subblock_or_symmetry_repair (reparo por simetria local e periodicidade residual)
-  4. Certificado Anti-Overfitting: Leave-One-Pair-Out Cross-Validation (LOO-CV Rashomon Gate)
+Opera 100% em CPU com NumPy puro (<400 MB de RAM), em estrita conformidade com:
+  1. Extrator de Features Celulares e Topológicas de 64D (extract_64d_cell_features)
+  2. Motor A: F3MetabolicCellularMLP (SynGAP + Mistake Gating + Tensor M)
+  3. Motor B: NREMSparseRuleSynthesizer (LUT Multi-Escala, Cavidades/BBox, Raios/Pontes, Motifs, Componentes e Simetria)
+  4. Certificado Anti-Overfitting: LOO-CV Rashomon Gate (Leave-One-Pair-Out Cross-Validation)
 """
 
-from __future__ import annotations
-
-import copy
 import math
+import os
+import sys
 import time
-from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
 import numpy as np
 
-from f3_agi_v4_0_core import F3Primitives, find_objects, label
+# Garante importação limpa do core da v4.0.0
+ROOT_DIR = Path(__file__).resolve().parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from f3_agi_v4_0_core import (
+    F3Primitives,
+    center_of_mass,
+    find_objects,
+    label,
+)
 
 
 # =============================================================================
@@ -37,45 +38,31 @@ from f3_agi_v4_0_core import F3Primitives, find_objects, label
 # =============================================================================
 
 def extract_64d_cell_features(
-    X: np.ndarray, Y_st: np.ndarray, c_bg: int = 0
+    X: np.ndarray,
+    Y_st: np.ndarray,
+    c_bg: int = 0,
 ) -> np.ndarray:
     """
-    Para cada célula (r, c) de uma grade Y_st de dimensões (H, W), extrai um
-    vetor determinístico f(r, c) em R^64 combinando propriedades locais,
-    topológicas, relacionais e de simetria:
+    Extrai um vetor determinístico de 64 dimensões para cada célula (r, c) de Y_st:
       - 0..9   (10D): One-hot da cor atual em Y_st(r, c)
-      - 10..19 (10D): One-hot da cor no input X(r, c) (com reamostragem proporcional se shapes divergirem)
-      - 20..29 (10D): Contagem normalizada (/8.0) de cada cor 0..9 nos 8 vizinhos imediatos (3x3)
-      - 30..39 (10D): Contagem normalizada (/16.0) de cada cor 0..9 no anel externo 5x5
-      - 40..49 (10D): Presença binária (0/1) de cada cor 0..9 na mesma linha r ou coluna c de Y_st
-      - 50..63 (14D): Invariantes estruturais, espaciais, de componente e simetria:
-          50: r normalizado (r / max(1, H-1))
-          51: c normalizado (c / max(1, W-1))
-          52: distância mínima normalizada à borda da grade
-          53: r mod 2 (paridade de linha)
-          54: c mod 2 (paridade de coluna)
-          55: r mod 3 == 0 (periodicidade ternária)
-          56: c mod 3 == 0 (periodicidade ternária)
-          57: área normalizada da componente conexa em Y_st
-          58: altura normalizada da bounding box da componente
-          59: largura normalizada da bounding box da componente
-          60: indicador binário se (r, c) está dentro de cavidade topológica fechada
-          61: simetria reflexiva horizontal local (Y_st(r, c) == Y_st(r, W-1-c))
-          62: simetria reflexiva vertical local (Y_st(r, c) == Y_st(H-1-r, c))
-          63: bias constante unitário (1.0)
+      - 10..19 (10D): One-hot da cor no input X(r, c) (ou mapeada proporcionalmente)
+      - 20..29 (10D): Contagem normalizada (/8) de cada cor nos 8 vizinhos imediatos (3x3)
+      - 30..39 (10D): Contagem normalizada (/16) de cada cor no anel externo 5x5
+      - 40..49 (10D): Presença binária (0/1) de cada cor na mesma linha r ou coluna c de Y_st
+      - 50..63 (14D): Invariantes estruturais, distâncias, paridades e componentes conexos
     """
     H, W = Y_st.shape
     feats = np.zeros((H, W, 64), dtype=np.float32)
 
-    # 0..9: One-hot da cor em Y_st
     clipped_yst = np.clip(Y_st, 0, 9).astype(int)
+
+    # 0..9: One-hot da cor atual em Y_st
     feats[:, :, 0:10] = np.eye(10, dtype=np.float32)[clipped_yst]
 
-    # 10..19: One-hot da cor em X
-    if X.shape == (H, W):
+    # 10..19: One-hot da cor correspondente em X
+    if X.shape == Y_st.shape:
         clipped_x = np.clip(X, 0, 9).astype(int)
     else:
-        # Reamostragem por coordenadas proporcionais
         rx = (np.arange(H) * X.shape[0]) // max(1, H)
         cx = (np.arange(W) * X.shape[1]) // max(1, W)
         clipped_x = np.clip(X[rx[:, None], cx[None, :]], 0, 9).astype(int)
@@ -172,7 +159,7 @@ class F3MetabolicCellularMLP:
       - Classe 10: KEEP_ANCHOR (mantém a cor da âncora Y_st(r, c))
     Treinado com o algoritmo F3-Metabolic-Optim:
       - Memorized Mistake Gating (tau_m = 0.15)
-      - SynGAP Diagonal Fisher EMA (gamma_syn = 12.0, lambda_anc = 4.5)
+      - SynGAP Diagonal Fisher EMA (gamma_syn = 30.0, lambda_anc = 3000.0)
       - Tensor Mitocondrial M (modulação bioenergética Attwell-Laughlin)
     """
 
@@ -183,8 +170,8 @@ class F3MetabolicCellularMLP:
         num_classes: int = 11,
         learning_rate: float = 0.045,
         mistake_margin: float = 0.15,
-        syngap_gamma: float = 12.0,
-        lambda_anc: float = 4.5,
+        syngap_gamma: float = 30.0,
+        lambda_anc: float = 3000.0,
         seed: int = 42,
     ):
         self.input_dim = input_dim
@@ -323,13 +310,30 @@ class F3MetabolicCellularMLP:
 
         return True
 
-    def consolidate_task_nrem(self) -> None:
-        """Consolidação ao término de uma tarefa (fase NREM)."""
-        for k in self.param_names:
-            self.consolidated_fisher[k] = np.maximum(
-                self.consolidated_fisher[k], self.fisher_ema[k]
-            )
-            self.anchor_weights[k] = getattr(self, k).copy()
+    def consolidate_task_nrem(
+        self, task_samples: Optional[Tuple[np.ndarray, np.ndarray]] = None
+    ) -> None:
+        """Consolidação ao término de uma tarefa (fase NREM com replay de consolidação de Fisher)."""
+        if task_samples is not None:
+            X_tr, y_tr = task_samples
+            n_samples = len(X_tr)
+            f_accum = {k: np.zeros_like(getattr(self, k)) for k in self.param_names}
+            for i in range(n_samples):
+                p, c = self.forward_single(X_tr[i])
+                g = self.backward_single(p, int(y_tr[i]), c)
+                for k in self.param_names:
+                    f_accum[k] += (g[k] ** 2) / max(1, n_samples)
+            for k in self.param_names:
+                self.consolidated_fisher[k] = np.maximum(
+                    self.consolidated_fisher[k], f_accum[k]
+                )
+                self.anchor_weights[k] = getattr(self, k).copy()
+        else:
+            for k in self.param_names:
+                self.consolidated_fisher[k] = np.maximum(
+                    self.consolidated_fisher[k], self.fisher_ema[k]
+                )
+                self.anchor_weights[k] = getattr(self, k).copy()
         self.atp_pool = 1.0
 
     def predict_grid(
@@ -344,7 +348,6 @@ class F3MetabolicCellularMLP:
             for c in range(W):
                 probs, _ = self.forward_single(feats[r, c])
                 pred_cls = int(np.argmax(probs))
-                # Se a classe for 0..9 (cor alterada) e a probabilidade superar o limiar
                 if pred_cls < 10 and probs[pred_cls] >= conf_threshold:
                     pred_grid[r, c] = pred_cls
 
@@ -352,15 +355,18 @@ class F3MetabolicCellularMLP:
 
 
 # =============================================================================
-# 3. MOTOR B — NREMSparseRuleSynthesizer (Síntese de Regras Condicionais)
+# 3. MOTOR B — NREMSparseRuleSynthesizer (Síntese de Regras Condicionais Avançadas)
 # =============================================================================
 
 class NREMSparseRuleSynthesizer:
     """
-    Sintetizador simbólico especializado em fechar discrepâncias residuais:
-      1. sparse_predicate_lut: Tabela hash determinística (cor_atual, cor_inp, vizinhos) -> cor_alvo.
-      2. component_attribute_recolor: Regras por componente conexo (área, bbox, vizinhança).
-      3. subblock_or_symmetry_repair: Completamento por simetria local e periodicidade.
+    Sintetizador simbólico especializado em fechar discrepâncias residuais exatas:
+      1. sparse_predicate_lut: LUT determinística multi-escala (cardinal, simétrica, 8-vizinhos, borda/diag, reflexão).
+      2. component_attribute_recolor: Regras por componente conexo (área, bbox, borda, cores vizinhas).
+      3. residual_cavity_or_bbox_fill: Preenchimento topológico de cavidades, fechamento de bounding box e cleanup de ruído.
+      4. residual_ray_or_bridge_patch: Projeção de raios ortogonais/diagonais e conexões entre marcadores alinhados.
+      5. residual_motif_stamp_patch: Estampagem de motivos locais (2x2, 3x3) ancorados em sementes do input.
+      6. subblock_or_symmetry_repair: Completamento diedral e simétrico local.
     """
 
     @staticmethod
@@ -371,12 +377,10 @@ class NREMSparseRuleSynthesizer:
     ) -> Optional[Dict[str, Any]]:
         """
         Induz uma regra de lookup celular baseada em predicados locais.
-        Testa 3 granularidades estruturais (cardeal estrita, simétrica e dominante).
-        Deve ser 100% consistente em todos os pixels e nunca modificar células corretas.
+        Testa 5 granularidades: cardinal, symmetric, cardinal_8, border_diag, reflected_sym.
         """
-        # Granularidade 1: Cardeal estrita (cur_c, inp_c, n, s, w, e)
-        # Granularidade 2: Simétrica (cur_c, inp_c, num_same_cardinal, dom_neighbor)
-        for gran in ("cardinal", "symmetric"):
+        grans = ("cardinal", "symmetric", "cardinal_8", "border_diag", "reflected_sym")
+        for gran in grans:
             lut: Dict[Any, int] = {}
             discrepancy_seen = False
             conflict = False
@@ -400,11 +404,35 @@ class NREMSparseRuleSynthesizer:
 
                         if gran == "cardinal":
                             key = (cur_c, inp_c, n_c, s_c, w_c, e_c)
-                        else:
+                        elif gran == "symmetric":
                             cardinals = [n_c, s_c, w_c, e_c]
                             same_cnt = cardinals.count(cur_c)
                             dom_c = max(set(cardinals), key=cardinals.count)
                             key = (cur_c, inp_c, same_cnt, dom_c)
+                        elif gran == "cardinal_8":
+                            nw_c = int(pad_yst[r, c])
+                            ne_c = int(pad_yst[r, c + 2])
+                            sw_c = int(pad_yst[r + 2, c])
+                            se_c = int(pad_yst[r + 2, c + 2])
+                            key = (cur_c, inp_c, n_c, s_c, w_c, e_c, nw_c, ne_c, sw_c, se_c)
+                        elif gran == "border_diag":
+                            nw_c = int(pad_yst[r, c])
+                            ne_c = int(pad_yst[r, c + 2])
+                            sw_c = int(pad_yst[r + 2, c])
+                            se_c = int(pad_yst[r + 2, c + 2])
+                            is_border = int(r == 0 or r == H - 1 or c == 0 or c == W - 1)
+                            is_diag = int(r == c or (r + c) == (H - 1))
+                            cardinals = [n_c, s_c, w_c, e_c]
+                            diags = [nw_c, ne_c, sw_c, se_c]
+                            key = (cur_c, inp_c, cardinals.count(cur_c), diags.count(cur_c), is_border, is_diag)
+                        elif gran == "reflected_sym":
+                            rf_h = int(Y_st[r, W - 1 - c])
+                            rf_v = int(Y_st[H - 1 - r, c])
+                            rf_d = int(Y_st[c, r]) if H == W else cur_c
+                            rf_180 = int(Y_st[H - 1 - r, W - 1 - c])
+                            key = (cur_c, inp_c, rf_h, rf_v, rf_d, rf_180)
+                        else:
+                            key = None
 
                         if cur_c != tgt_c:
                             discrepancy_seen = True
@@ -422,37 +450,15 @@ class NREMSparseRuleSynthesizer:
                     break
 
             if discrepancy_seen and not conflict and lut:
-                # Confirma que a LUT não altera falsamente nenhum pixel correto
-                valid = True
+                all_valid = True
                 for ex, Y_st in zip(train_pairs, anchor_preds):
-                    X = np.array(ex["input"], dtype=int)
-                    Y = np.array(ex["output"], dtype=int)
-                    H, W = Y.shape
-                    pad_yst = np.pad(Y_st, 1, mode="constant", constant_values=c_bg)
-                    for r in range(H):
-                        for c in range(W):
-                            cur_c = int(Y_st[r, c])
-                            tgt_c = int(Y[r, c])
-                            inp_c = int(X[r, c]) if X.shape == Y.shape else cur_c
-                            n_c = int(pad_yst[r, c + 1])
-                            s_c = int(pad_yst[r + 2, c + 1])
-                            w_c = int(pad_yst[r + 1, c])
-                            e_c = int(pad_yst[r + 1, c + 2])
-                            if gran == "cardinal":
-                                key = (cur_c, inp_c, n_c, s_c, w_c, e_c)
-                            else:
-                                cardinals = [n_c, s_c, w_c, e_c]
-                                same_cnt = cardinals.count(cur_c)
-                                dom_c = max(set(cardinals), key=cardinals.count)
-                                key = (cur_c, inp_c, same_cnt, dom_c)
-                            if key in lut and lut[key] != tgt_c:
-                                valid = False
-                                break
-                        if not valid:
-                            break
-                    if not valid:
+                    p_arr = NREMSparseRuleSynthesizer.apply_predicate_lut(
+                        np.array(ex["input"], int), Y_st, {"lut": lut, "gran": gran, "c_bg": c_bg}
+                    )
+                    if not np.array_equal(p_arr, np.array(ex["output"], int)):
+                        all_valid = False
                         break
-                if valid:
+                if all_valid:
                     return {"type": "sparse_predicate_lut", "gran": gran, "lut": lut, "c_bg": c_bg}
 
         return None
@@ -476,16 +482,235 @@ class NREMSparseRuleSynthesizer:
                 s_c = int(pad_yst[r + 2, c + 1])
                 w_c = int(pad_yst[r + 1, c])
                 e_c = int(pad_yst[r + 1, c + 2])
+
                 if gran == "cardinal":
                     key = (cur_c, inp_c, n_c, s_c, w_c, e_c)
-                else:
+                elif gran == "symmetric":
                     cardinals = [n_c, s_c, w_c, e_c]
                     same_cnt = cardinals.count(cur_c)
                     dom_c = max(set(cardinals), key=cardinals.count)
                     key = (cur_c, inp_c, same_cnt, dom_c)
+                elif gran == "cardinal_8":
+                    nw_c = int(pad_yst[r, c])
+                    ne_c = int(pad_yst[r, c + 2])
+                    sw_c = int(pad_yst[r + 2, c])
+                    se_c = int(pad_yst[r + 2, c + 2])
+                    key = (cur_c, inp_c, n_c, s_c, w_c, e_c, nw_c, ne_c, sw_c, se_c)
+                elif gran == "border_diag":
+                    nw_c = int(pad_yst[r, c])
+                    ne_c = int(pad_yst[r, c + 2])
+                    sw_c = int(pad_yst[r + 2, c])
+                    se_c = int(pad_yst[r + 2, c + 2])
+                    is_border = int(r == 0 or r == H - 1 or c == 0 or c == W - 1)
+                    is_diag = int(r == c or (r + c) == (H - 1))
+                    cardinals = [n_c, s_c, w_c, e_c]
+                    diags = [nw_c, ne_c, sw_c, se_c]
+                    key = (cur_c, inp_c, cardinals.count(cur_c), diags.count(cur_c), is_border, is_diag)
+                elif gran == "reflected_sym":
+                    rf_h = int(Y_st[r, W - 1 - c])
+                    rf_v = int(Y_st[H - 1 - r, c])
+                    rf_d = int(Y_st[c, r]) if H == W else cur_c
+                    rf_180 = int(Y_st[H - 1 - r, W - 1 - c])
+                    key = (cur_c, inp_c, rf_h, rf_v, rf_d, rf_180)
+                else:
+                    key = None
+
                 if key in lut:
                     out[r, c] = lut[key]
 
+        return out
+
+    @staticmethod
+    def synthesize_cavity_or_bbox_fill(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+        c_bg: int = 0,
+    ) -> Optional[Dict[str, Any]]:
+        """Preenchimento topológico de cavidades e limpeza de ruído isolado."""
+        # 1. Noise cleanup: componentes de área == 1 convertidos para background
+        for bg_cand in range(10):
+            valid = True
+            repaired_any = False
+            for ex, Y_st in zip(train_pairs, anchor_preds):
+                Y = np.array(ex["output"], int)
+                cand = Y_st.copy()
+                for col in range(10):
+                    if col == bg_cand:
+                        continue
+                    lbl, n_comp = label(cand == col)
+                    for c_id in range(1, n_comp + 1):
+                        m = (lbl == c_id)
+                        if np.sum(m) == 1:
+                            cand[m] = bg_cand
+                if np.any(cand != Y_st):
+                    repaired_any = True
+                if not np.array_equal(cand, Y):
+                    valid = False
+                    break
+            if repaired_any and valid:
+                return {"type": "residual_cavity_or_bbox_fill", "mode": "isolated_cleanup", "bg_color": bg_cand}
+
+        # 2. Cavity fill: preenche furos fechados com cor alvo
+        for fill_col in range(10):
+            valid = True
+            repaired_any = False
+            for ex, Y_st in zip(train_pairs, anchor_preds):
+                Y = np.array(ex["output"], int)
+                cand = F3Primitives.fill_enclosed_holes(Y_st, fill_color=fill_col, bg_color=c_bg)
+                if np.any(cand != Y_st):
+                    repaired_any = True
+                if not np.array_equal(cand, Y):
+                    valid = False
+                    break
+            if repaired_any and valid:
+                return {"type": "residual_cavity_or_bbox_fill", "mode": "cavity_fill", "fill_color": fill_col, "c_bg": c_bg}
+
+        return None
+
+    @staticmethod
+    def apply_cavity_or_bbox_fill(Y_st: np.ndarray, rule: Dict[str, Any]) -> np.ndarray:
+        mode = rule["mode"]
+        if mode == "isolated_cleanup":
+            bg = rule["bg_color"]
+            out = Y_st.copy()
+            for col in range(10):
+                if col == bg:
+                    continue
+                lbl, n_comp = label(out == col)
+                for c_id in range(1, n_comp + 1):
+                    m = (lbl == c_id)
+                    if np.sum(m) == 1:
+                        out[m] = bg
+            return out
+        elif mode == "cavity_fill":
+            return F3Primitives.fill_enclosed_holes(Y_st, fill_color=rule["fill_color"], bg_color=rule.get("c_bg", 0))
+        return Y_st
+
+    @staticmethod
+    def synthesize_ray_or_bridge(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+    ) -> Optional[Dict[str, Any]]:
+        """Conecta ou estende segmentos entre objetos/marcadores alinhados na máscara M_diff."""
+        for line_col in range(10):
+            for mode in ("horizontal", "vertical", "orthogonal", "diagonal"):
+                valid = True
+                repaired_any = False
+                for ex, Y_st in zip(train_pairs, anchor_preds):
+                    Y = np.array(ex["output"], int)
+                    diff = Y_st != Y
+                    if not np.any(diff):
+                        continue
+                    if not np.all(Y[diff] == line_col):
+                        valid = False
+                        break
+                    cand = Y_st.copy()
+                    H, W = Y_st.shape
+                    if mode in ("horizontal", "orthogonal"):
+                        for r in range(H):
+                            cd = np.where(diff[r, :])[0]
+                            if len(cd) > 0:
+                                cand[r, cd[0] : cd[-1] + 1] = line_col
+                    if mode in ("vertical", "orthogonal"):
+                        for c in range(W):
+                            rd = np.where(diff[:, c])[0]
+                            if len(rd) > 0:
+                                cand[rd[0] : rd[-1] + 1, c] = line_col
+                    if mode == "diagonal" and H == W:
+                        for d_offset in range(-H + 1, H):
+                            diag_mask = np.eye(H, dtype=bool, k=d_offset)
+                            diff_on_diag = diff & diag_mask
+                            if np.any(diff_on_diag):
+                                cand[diff_on_diag] = line_col
+                    if np.any(cand != Y_st):
+                        repaired_any = True
+                    if not np.array_equal(cand, Y):
+                        valid = False
+                        break
+                if repaired_any and valid:
+                    return {"type": "residual_ray_or_bridge_patch", "mode": mode, "line_col": line_col}
+        return None
+
+    @staticmethod
+    def apply_ray_or_bridge(Y_st: np.ndarray, rule: Dict[str, Any]) -> np.ndarray:
+        mode = rule["mode"]
+        line_col = rule["line_col"]
+        out = Y_st.copy()
+        H, W = Y_st.shape
+        if mode in ("horizontal", "orthogonal"):
+            for r in range(H):
+                non_zero = np.where(out[r, :] != 0)[0]
+                if len(non_zero) >= 2:
+                    out[r, non_zero[0] : non_zero[-1] + 1] = line_col
+        if mode in ("vertical", "orthogonal"):
+            for c in range(W):
+                non_zero = np.where(out[:, c] != 0)[0]
+                if len(non_zero) >= 2:
+                    out[non_zero[0] : non_zero[-1] + 1, c] = line_col
+        return out
+
+    @staticmethod
+    def synthesize_motif_stamp(
+        train_pairs: List[Dict[str, Any]],
+        anchor_preds: List[np.ndarray],
+    ) -> Optional[Dict[str, Any]]:
+        """Estampa pequenos motivos locais (2x2 ou 3x3) ancorados em pixels sementes."""
+        for seed_col in range(10):
+            motif: Dict[Tuple[int, int], int] = {}
+            conflict = False
+            repaired_any = False
+            for ex, Y_st in zip(train_pairs, anchor_preds):
+                X = np.array(ex["input"], int)
+                Y = np.array(ex["output"], int)
+                diff = Y_st != Y
+                if not np.any(diff):
+                    continue
+                seeds = list(zip(*np.where(X == seed_col)))
+                if not seeds:
+                    conflict = True
+                    break
+                for r_s, c_s in seeds:
+                    for dr in range(-1, 2):
+                        for dc in range(-1, 2):
+                            rr, cc = r_s + dr, c_s + dc
+                            if 0 <= rr < Y.shape[0] and 0 <= cc < Y.shape[1]:
+                                if diff[rr, cc]:
+                                    val = int(Y[rr, cc])
+                                    if (dr, dc) in motif and motif[(dr, dc)] != val:
+                                        conflict = True
+                                        break
+                                    motif[(dr, dc)] = val
+                                    repaired_any = True
+                        if conflict:
+                            break
+                    if conflict:
+                        break
+                if conflict:
+                    break
+            if repaired_any and not conflict and motif:
+                all_valid = True
+                for ex, Y_st in zip(train_pairs, anchor_preds):
+                    p_arr = NREMSparseRuleSynthesizer.apply_motif_stamp(
+                        np.array(ex["input"], int), Y_st, {"seed_col": seed_col, "motif": motif}
+                    )
+                    if not np.array_equal(p_arr, np.array(ex["output"], int)):
+                        all_valid = False
+                        break
+                if all_valid:
+                    return {"type": "residual_motif_stamp_patch", "seed_col": seed_col, "motif": motif}
+        return None
+
+    @staticmethod
+    def apply_motif_stamp(X: np.ndarray, Y_st: np.ndarray, rule: Dict[str, Any]) -> np.ndarray:
+        seed_col = rule["seed_col"]
+        motif = rule["motif"]
+        out = Y_st.copy()
+        seeds = list(zip(*np.where(X == seed_col)))
+        for r_s, c_s in seeds:
+            for (dr, dc), val in motif.items():
+                rr, cc = r_s + dr, c_s + dc
+                if 0 <= rr < out.shape[0] and 0 <= cc < out.shape[1]:
+                    out[rr, cc] = val
         return out
 
     @staticmethod
@@ -495,7 +720,7 @@ class NREMSparseRuleSynthesizer:
         c_bg: int = 0,
     ) -> Optional[Dict[str, Any]]:
         """
-        Induz recoloração de componentes conexos monocromáticos onde M_diff coincide
+        Induz recoloração condicional de componentes conexos monocromáticos onde M_diff coincide
         com componentes de certa cor e área ou bounding box.
         """
         candidate_rules: Dict[Tuple[int, int], int] = {}  # (src_color, area) -> target_color
@@ -609,7 +834,6 @@ class NREMSparseRuleSynthesizer:
         H, W = Y_st.shape
         if mode == "horizontal":
             refl = np.fliplr(Y_st)
-            # Preenche onde a reflexão difere de 0
             mask = (out == 0) & (refl != 0)
             out[mask] = refl[mask]
         elif mode == "vertical":
@@ -712,12 +936,32 @@ class NREMCellularResidualLearner:
         if sym_rule is not None:
             candidate_rules.append(sym_rule)
 
+        # B.4: Cavity or BBox Fill / Isolated Cleanup
+        cav_rule = self.synthesizer.synthesize_cavity_or_bbox_fill(
+            train_pairs, anchor_train_preds, c_bg=self.c_bg
+        )
+        if cav_rule is not None:
+            candidate_rules.append(cav_rule)
+
+        # B.5: Ray or Bridge Patch
+        ray_rule = self.synthesizer.synthesize_ray_or_bridge(
+            train_pairs, anchor_train_preds
+        )
+        if ray_rule is not None:
+            candidate_rules.append(ray_rule)
+
+        # B.6: Motif Stamp Patch
+        motif_rule = self.synthesizer.synthesize_motif_stamp(
+            train_pairs, anchor_train_preds
+        )
+        if motif_rule is not None:
+            candidate_rules.append(motif_rule)
+
         # 3. LOO-CV Rashomon Gate sobre as regras candidatas
         best_rule: Optional[Dict[str, Any]] = None
         best_loo_score = float("inf")
 
         for rule in candidate_rules:
-            # Validação cruzada Leave-One-Pair-Out
             loo_passed = True
             loo_total_err = 0
 
@@ -739,6 +983,18 @@ class NREMCellularResidualLearner:
                     elif rule["type"] == "subblock_or_symmetry_repair":
                         patched = self.synthesizer.apply_symmetry_repair(
                             held_yst, rule
+                        )
+                    elif rule["type"] == "residual_cavity_or_bbox_fill":
+                        patched = self.synthesizer.apply_cavity_or_bbox_fill(
+                            held_yst, rule
+                        )
+                    elif rule["type"] == "residual_ray_or_bridge_patch":
+                        patched = self.synthesizer.apply_ray_or_bridge(
+                            held_yst, rule
+                        )
+                    elif rule["type"] == "residual_motif_stamp_patch":
+                        patched = self.synthesizer.apply_motif_stamp(
+                            held_inp, held_yst, rule
                         )
                     else:
                         patched = held_yst
@@ -778,6 +1034,18 @@ class NREMCellularResidualLearner:
                     p_arr = self.synthesizer.apply_symmetry_repair(
                         t_yst, best_rule
                     )
+                elif best_rule["type"] == "residual_cavity_or_bbox_fill":
+                    p_arr = self.synthesizer.apply_cavity_or_bbox_fill(
+                        t_yst, best_rule
+                    )
+                elif best_rule["type"] == "residual_ray_or_bridge_patch":
+                    p_arr = self.synthesizer.apply_ray_or_bridge(
+                        t_yst, best_rule
+                    )
+                elif best_rule["type"] == "residual_motif_stamp_patch":
+                    p_arr = self.synthesizer.apply_motif_stamp(
+                        t_inp, t_yst, best_rule
+                    )
                 else:
                     p_arr = t_yst
 
@@ -805,6 +1073,8 @@ class NREMCellularResidualLearner:
         )
 
         sample_counter = 0
+        all_train_cells_x = []
+        all_train_cells_y = []
         for epoch in range(6):
             for ex, Y_st in zip(train_pairs, anchor_train_preds):
                 X = np.array(ex["input"], dtype=int)
@@ -820,9 +1090,17 @@ class NREMCellularResidualLearner:
                         mlp.train_step(
                             feats[r, c], y_class, sample_counter, regime="f3_metabolic"
                         )
+                        if epoch == 0:
+                            all_train_cells_x.append(feats[r, c])
+                            all_train_cells_y.append(y_class)
                         sample_counter += 1
 
-        mlp.consolidate_task_nrem()
+        if all_train_cells_x:
+            mlp.consolidate_task_nrem(
+                (np.array(all_train_cells_x, dtype=np.float32), np.array(all_train_cells_y, dtype=np.int64))
+            )
+        else:
+            mlp.consolidate_task_nrem()
 
         # Valida predição do MLP no treino
         mlp_train_err = 0
