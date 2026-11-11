@@ -2,7 +2,7 @@
 
 **Authors:** Henrique Oliveira & Polybee AI Research (`https://polybee.ai/`)  
 **Affiliation:** Polybee AI Research Laboratory  
-**Document Series:** Polybee Technical Report Series · Addendum to v4.0.0 (`arXiv:2610.xxxxx`, DOI: `10.5281/zenodo.23816665`)  
+**Document Series:** Polybee Technical Report Series · Addendum to v4.0.0 ([arXiv:2611.13325](https://arxiv.org/abs/2611.13325), DOI: `10.5281/zenodo.23816665`)  
 **Date:** October 2026  
 **Target Architecture:** CPU-First (<400 MB RAM, Zero GPU, NumPy Native)  
 
@@ -10,7 +10,7 @@
 
 ## Abstract
 
-This technical addendum reports the empirical findings and architectural extensions developed during Horizons 6 through 9 of the **Polybee F3-AGI v4.1** research cycle. Following the formal release and archival of F3-AGI v4.0.0 (Zenodo DOI: `10.5281/zenodo.23816665`), we investigate out-of-distribution generalization on the newly released **ARC-AGI-2** benchmark, introduce the **Cycle 3.5 Hybrid NREM Cellular Mutator** (`NREMCellularResidualLearner`), evaluate multi-seed replay-free continual learning on real ARC feature vectors, and benchmark real-world industrial utility beyond abstract grids. 
+This technical addendum reports the empirical findings and architectural extensions developed during Horizons 6 through 9 of the **Polybee F3-AGI v4.1** research cycle. Following the publication of the foundation paper ([arXiv:2611.13325](https://arxiv.org/abs/2611.13325)) and formal archival of F3-AGI v4.0.0 (Zenodo DOI: `10.5281/zenodo.23816665`), we investigate out-of-distribution generalization on the newly released **ARC-AGI-2** benchmark, introduce the **Cycle 3.5 Hybrid NREM Cellular Mutator** (`NREMCellularResidualLearner`), evaluate multi-seed replay-free continual learning on real ARC feature vectors, and benchmark real-world industrial utility beyond abstract grids. 
 
 Our key findings demonstrate:
 1. **Zero-Touch ARC-AGI-2 Evaluation:** Evaluating the frozen v4.0.0 neuro-symbolic engine across all $N=120$ tasks in `ARC-AGI-2/data/evaluation` reveals that the 30 learned operators achieve exact output dimensional prediction ($S_{\text{shape}} = 1.0$) on **95/120 tasks (79.17%)**, with **46/120 (38.33%)** achieving $\ge 85\%$ pixel accuracy and **33/120 (27.50%)** achieving $\ge 90\%$, at an average inference latency of **1.179 s/task** on pure CPU. On a calibration sample of $N=100$ tasks from `ARC-AGI-2/data/training`, frozen v4.0.0 scores **33/100 (33.00% `pass@2`)** and 92.00% shape match. We cataloged 282 high-confidence near-miss tasks exhibiting localized residual discrepancies.
@@ -186,3 +186,4 @@ All code, data, and reproduction scripts for this addendum reside in the `feat/h
 6. Pache, C., & van Rossum, M. (2026). *Memorized Mistake Gating for Energy-Efficient Synaptic Plasticity*. arXiv:2604.14336.
 7. Pourcel, J., Colas, C., & Oudeyer, P.-Y. (2025). *SOAR: Synthesis of Operators via Actionable Residuals for ARC*. arXiv:2507.14172.
 8. Wang, K., et al. (2025). *Hierarchical Recursive Models for Visual Reasoning*. arXiv:2506.21734.
+9. Oliveira, H. (2026). *F3-AGI v4.0: Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning*. arXiv:2611.13325. https://arxiv.org/abs/2611.13325 (DOI: 10.48550/arXiv.2611.13325).
