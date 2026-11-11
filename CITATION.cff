@@ -17,3 +17,16 @@ keywords:
   - neuro-symbolic program synthesis
   - active inference
   - continual learning
+preferred-citation:
+  type: article
+  title: "F3-AGI v4.0: Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning"
+  authors:
+    - family-names: Oliveira
+      given-names: Henrique
+      orcid: "https://orcid.org/0009-0004-2730-292X"
+      affiliation: Polybee AI Research Laboratory
+  journal: "arXiv preprint arXiv:2611.13325"
+  year: 2026
+  doi: 10.48550/arXiv.2611.13325
+  url: "https://arxiv.org/abs/2611.13325"
+

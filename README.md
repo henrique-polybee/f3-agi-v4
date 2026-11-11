@@ -3,11 +3,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Hardware: CPU-First](https://img.shields.io/badge/Hardware-100%25%20CPU%20%7C%20%3C400MB%20RAM-success.svg)]()
-[![Preprint](https://img.shields.io/badge/Preprint-cs.AI%20%7C%20cs.LG-red.svg)](paper/polybee_f3_agi_v4_arxiv.pdf)
+[![arXiv](https://img.shields.io/badge/arXiv-2611.13325%20%5Bcs.AI%5D-b31b1b.svg)](https://arxiv.org/abs/2611.13325)
 [![DOI](https://zenodo.org/badge/1437900405.svg)](https://doi.org/10.5281/zenodo.23816664)
 
 > **Official Implementation of F3-AGI v4.0** by **[Polybee AI Research](https://polybee.ai/)**  
 > *Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning.*
+
+- **Official arXiv Preprint (`arXiv:2611.13325`):** [https://arxiv.org/abs/2611.13325](https://arxiv.org/abs/2611.13325) (DOI: [https://doi.org/10.48550/arXiv.2611.13325](https://doi.org/10.48550/arXiv.2611.13325))
+- **Archived Software Release (`v4.0.0` on Zenodo):** [https://doi.org/10.5281/zenodo.23816665](https://doi.org/10.5281/zenodo.23816665)
 
 ---
 
@@ -236,35 +239,32 @@ These independent, CPU-first research notebooks demonstrate the three studies fr
 
 **Interpretation:** The ARC-AGI-1 study uses public evaluation tasks, not a private competition leaderboard. The third study uses Polybee's own local interactive game suite; its RHAE-style scores are **not official ARC-AGI-3 competition results**. The continual-learning data are synthetic. Execution times are hardware-dependent, and a successful notebook run is not independent peer review.
 
-When citing the **software**, use the version-specific DOI [10.5281/zenodo.23816665](https://doi.org/10.5281/zenodo.23816665). The scholarly manuscript is available as a [preprint PDF in this repository](paper/polybee_f3_agi_v4_arxiv.pdf) while its arXiv submission awaits endorsement.
+When citing the **software**, use the version-specific DOI [10.5281/zenodo.23816665](https://doi.org/10.5281/zenodo.23816665). The scholarly manuscript is officially published on arXiv as [arXiv:2611.13325 [cs.AI]](https://arxiv.org/abs/2611.13325) (DOI: [10.48550/arXiv.2611.13325](https://doi.org/10.48550/arXiv.2611.13325)).
 
 ---
 
 ## Citation
 
-For the versioned software implementation, cite:
-
 ```bibtex
-@software{oliveira2026f3agi_software,
-  author = {Oliveira, Henrique},
-  title = {F3-AGI v4.0: CPU-First Neuro-Symbolic Reasoning},
-  version = {4.0.0},
-  year = {2026},
-  publisher = {Zenodo},
-  doi = {10.5281/zenodo.23816665},
-  url = {https://doi.org/10.5281/zenodo.23816665}
-}
-```
-
-For the manuscript (preprint pending arXiv endorsement), use:
-
-```bibtex
+% 1. To cite the scientific manuscript (arXiv Preprint):
 @article{oliveira2026f3agi,
-  title={{F3-AGI v4.0: Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning}},
-  author={Oliveira, Henrique and {Polybee AI Research}},
-  journal={Preprint [cs.AI, cs.LG]},
+  title={F3-AGI v4.0: Bioenergetically-Gated Active Inference, Metaplastic Preconditioning, and Residual Program Synthesis for Sample-Efficient Abstract Reasoning},
+  author={Oliveira, Henrique},
+  journal={arXiv preprint arXiv:2611.13325},
   year={2026},
-  url={https://polybee.ai/}
+  doi={10.48550/arXiv.2611.13325},
+  url={https://arxiv.org/abs/2611.13325}
+}
+
+% 2. To cite the archived v4.0.0 software release (Zenodo):
+@software{oliveira2026f3agi_software,
+  author={Oliveira, Henrique},
+  title={F3-AGI v4.0: CPU-First Neuro-Symbolic Reasoning},
+  version={v4.0.0},
+  year={2026},
+  publisher={Zenodo},
+  doi={10.5281/zenodo.23816665},
+  url={https://doi.org/10.5281/zenodo.23816665}
 }
 ```
 
